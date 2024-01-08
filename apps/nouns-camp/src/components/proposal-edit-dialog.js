@@ -6,7 +6,6 @@ import {
   markdown as markdownUtils,
   message as messageUtils,
 } from "@shades/common/utils";
-import Link from "@shades/ui-web/link";
 import Button from "@shades/ui-web/button";
 import Input from "@shades/ui-web/input";
 import Dialog from "@shades/ui-web/dialog";
@@ -305,7 +304,11 @@ export const SubmitUpdateDialog = ({
             },
           })}
         >
-          <DialogHeader title="Submit" titleProps={titleProps} />
+          <DialogHeader
+            title="Submit"
+            titleProps={titleProps}
+            dismiss={close}
+          />
           <main>
             <Input
               multiline
@@ -350,8 +353,6 @@ export const PreviewUpdateDialog = ({
     (token) => token.added || token.removed
   );
 
-  const hasVisibleDiff = hasDescriptionChanges || hasTransactionChanges;
-
   return (
     <Dialog
       isOpen={isOpen}
@@ -368,30 +369,16 @@ export const PreviewUpdateDialog = ({
             minHeight: 0,
             display: "flex",
             flexDirection: "column",
+            padding: "1.5rem",
+            "@media (min-width: 600px)": {
+              padding: "2rem",
+            },
           })}
         >
           <DialogHeader
             title="Update preview"
-            subtitle={
-              <>
-                Diff formatted as{" "}
-                <Link
-                  component="a"
-                  href="https://daringfireball.net/projects/markdown/syntax"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Markdown
-                </Link>
-              </>
-            }
             titleProps={titleProps}
-            css={css({
-              padding: "1.5rem 1.5rem 0",
-              "@media (min-width: 600px)": {
-                padding: "2rem 2rem 0",
-              },
-            })}
+            // dismiss={close}
           />
           <main
             css={(t) =>
@@ -399,12 +386,7 @@ export const PreviewUpdateDialog = ({
                 flex: 1,
                 minHeight: 0,
                 overflow: "auto",
-                fontSize: t.text.sizes.small,
-                padding: "0 1.5rem",
-                "@media (min-width: 600px)": {
-                  fontSize: t.text.sizes.base,
-                  padding: "0 2rem",
-                },
+                fontSize: t.text.sizes.base,
                 "[data-diff]": {
                   margin: "0 -1.5rem",
                   "@media (min-width: 600px)": {
@@ -412,9 +394,9 @@ export const PreviewUpdateDialog = ({
                   },
                 },
                 h2: {
-                  fontSize: t.text.sizes.header,
+                  fontSize: t.text.sizes.headerLarge,
                   fontWeight: t.text.weights.header,
-                  margin: "0 0 1.6rem",
+                  margin: "0 0 3.2rem",
                 },
                 "* + h2": {
                   marginTop: "6.4rem",
@@ -422,22 +404,13 @@ export const PreviewUpdateDialog = ({
               })
             }
           >
-            {!hasVisibleDiff ? (
+            {(hasDescriptionChanges || !hasTransactionChanges) && (
+              <DiffBlock diff={descriptionDiff} data-diff />
+            )}
+            {hasTransactionChanges && (
               <>
-                <h2>Content</h2>
-                <DiffBlock diff={descriptionDiff} data-diff />
-              </>
-            ) : (
-              <>
-                <h2>Content</h2>
-                <DiffBlock diff={descriptionDiff} data-diff />
-
-                {hasTransactionChanges && (
-                  <>
-                    <h2>Actions</h2>
-                    <DiffBlock diff={transactionsDiff} data-diff />
-                  </>
-                )}
+                {hasDescriptionChanges && <h2>Actions</h2>}
+                <DiffBlock diff={transactionsDiff} data-diff />
               </>
             )}
           </main>
@@ -446,10 +419,8 @@ export const PreviewUpdateDialog = ({
               display: "flex",
               justifyContent: "flex-end",
               marginTop: "1.5rem",
-              padding: "0 1.5rem 1.5rem",
               "@media (min-width: 600px)": {
                 marginTop: "2rem",
-                padding: "0 2rem 2rem",
               },
             })}
           >
