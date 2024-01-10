@@ -1086,7 +1086,7 @@ const FeedSidebar = React.memo(({ visible = true }) => {
           margin: "0 0 2rem",
         })}
       >
-        <Select
+        {/*<Select
           size="small"
           aria-label="Feed filter"
           value={filter}
@@ -1125,7 +1125,7 @@ const FeedSidebar = React.memo(({ visible = true }) => {
               </>
             );
           }}
-        />
+        />*/}
       </div>
 
       <ActivityFeed filter={filter} />
