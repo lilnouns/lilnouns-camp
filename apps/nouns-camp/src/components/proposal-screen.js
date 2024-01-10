@@ -522,7 +522,7 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                 >
                   <Tabs.Item key="activity" title="Activity">
                     <div style={{ padding: "3.2rem 0 4rem" }}>
-                      <ProposalActionForm
+                      {/*<ProposalActionForm
                         proposalId={proposalId}
                         mode={currentFormAction}
                         setMode={setFormActionOverride}
@@ -532,7 +532,7 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                         support={pendingSupport}
                         setSupport={setPendingSupport}
                         onSubmit={handleFormSubmit}
-                      />
+                      />*/}
                     </div>
 
                     {feedItems.length !== 0 && (
@@ -639,7 +639,7 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                           </div>
                         ) : (
                           <>
-                            <ProposalActionForm
+                            {/*<ProposalActionForm
                               size="small"
                               proposalId={proposalId}
                               mode={currentFormAction}
@@ -650,7 +650,7 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                               support={pendingSupport}
                               setSupport={setPendingSupport}
                               onSubmit={handleFormSubmit}
-                            />
+                            />*/}
                           </>
                         )}
                       </div>
@@ -670,7 +670,7 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                   </Tabs.Item>
                   <Tabs.Item key="activity" title="Activity">
                     <div style={{ padding: "2.4rem 0 6.4rem" }}>
-                      <ProposalActionForm
+                      {/*<ProposalActionForm
                         size="small"
                         proposalId={proposalId}
                         mode={currentFormAction}
@@ -681,7 +681,7 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                         support={pendingSupport}
                         setSupport={setPendingSupport}
                         onSubmit={handleFormSubmit}
-                      />
+                      />*/}
 
                       {feedItems.length !== 0 && (
                         <div style={{ marginTop: "3.2rem" }}>
