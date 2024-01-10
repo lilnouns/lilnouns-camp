@@ -671,7 +671,7 @@ const VoterMainSection = ({ voterAddress }) => {
                   )}
                 </div>
               </Tabs.Item>
-              <Tabs.Item key="candidates" title={candidatesTabTitle}>
+              {/*<Tabs.Item key="candidates" title={candidatesTabTitle}>
                 <div>
                   {hasFetchedData && candidates.length === 0 && (
                     <Tabs.EmptyPlaceholder
@@ -710,8 +710,8 @@ const VoterMainSection = ({ voterAddress }) => {
                     </div>
                   )}
                 </div>
-              </Tabs.Item>
-              <Tabs.Item key="sponsored" title={sponsoredTabTitle}>
+              </Tabs.Item>*/}
+              {/*<Tabs.Item key="sponsored" title={sponsoredTabTitle}>
                 <div>
                   {hasFetchedData && sponsoredProposals.length === 0 && (
                     <Tabs.EmptyPlaceholder
@@ -753,7 +753,7 @@ const VoterMainSection = ({ voterAddress }) => {
                     </div>
                   )}
                 </div>
-              </Tabs.Item>
+              </Tabs.Item>*/}
             </Tabs.Root>
           </div>
         </MainContentContainer>
