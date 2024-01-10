@@ -256,7 +256,7 @@ const NavBar = ({ navigationStack, actions: actions_ }) => {
           })
         }
       >
-        <ul>
+        {/*<ul>
           {[
             ...actions,
             visibleActions.length > 0 && { type: "separator" },
@@ -435,7 +435,7 @@ const NavBar = ({ navigationStack, actions: actions_ }) => {
                 </li>
               )
             )}
-        </ul>
+        </ul>*/}
       </div>
     </div>
   );
