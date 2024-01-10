@@ -163,7 +163,7 @@ const FeedSidebar = React.memo(({ visible = true, voterAddress }) => {
           margin: "0 0 2rem",
         })}
       >
-        <Select
+        {/*<Select
           size="small"
           aria-label="Feed filter"
           value={filter}
@@ -199,7 +199,7 @@ const FeedSidebar = React.memo(({ visible = true, voterAddress }) => {
               </>
             );
           }}
-        />
+        />*/}
       </div>
 
       <ActivityFeed voterAddress={voterAddress} filter={filter} />
@@ -218,7 +218,7 @@ const FeedTabContent = React.memo(({ visible, voterAddress }) => {
   return (
     <div css={css({ padding: "2rem 0" })}>
       <div css={css({ margin: "0 0 2.8rem" })}>
-        <Select
+        {/*<Select
           size="small"
           aria-label="Feed filter"
           value={filter}
@@ -254,7 +254,7 @@ const FeedTabContent = React.memo(({ visible, voterAddress }) => {
               </>
             );
           }}
-        />
+        />*/}
       </div>
 
       <ActivityFeed voterAddress={voterAddress} filter={filter} />

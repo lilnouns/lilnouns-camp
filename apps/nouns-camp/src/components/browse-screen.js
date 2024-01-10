@@ -1061,7 +1061,7 @@ const ActivityFeed = React.memo(({ filter = "all" }) => {
 });
 
 const FeedSidebar = React.memo(({ visible = true }) => {
-  const [filter, setFilter] = useCachedState(
+  const [filter/*, setFilter*/] = useCachedState(
     "browse-screen:activity-filter",
     "all"
   );
