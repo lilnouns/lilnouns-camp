@@ -224,7 +224,7 @@ const BrowseScreen = () => {
   const { items: proposalDrafts } = useDrafts();
 
   const [page, setPage] = React.useState(1);
-  const [candidateSortStrategy_, setCandidateSortStrategy] = useCachedState(
+  const [candidateSortStrategy_/*, setCandidateSortStrategy*/] = useCachedState(
     "candidate-sorting-strategy",
     "popularity"
   );
@@ -714,7 +714,7 @@ const BrowseScreen = () => {
                           )}
                       </div>
                     </Tabs.Item>
-                    <Tabs.Item key="candidates" title="Candidates">
+                    {/*<Tabs.Item key="candidates" title="Candidates">
                       <div
                         css={css({
                           paddingTop: "2.4rem",
@@ -803,8 +803,8 @@ const BrowseScreen = () => {
                             />
                           )}
                       </div>
-                    </Tabs.Item>
-                    <Tabs.Item key="drafts" title="My drafts">
+                    </Tabs.Item>*/}
+                    {/*<Tabs.Item key="drafts" title="My drafts">
                       <div
                         css={css({
                           paddingTop: "2.4rem",
@@ -817,7 +817,7 @@ const BrowseScreen = () => {
                           items={sectionsByName["drafts"]?.items}
                         />
                       </div>
-                    </Tabs.Item>
+                    </Tabs.Item>*/}
                   </Tabs.Root>
                 </>
               )}
@@ -1763,7 +1763,7 @@ const ScoreStack = React.memo(({ for: for_, against }) => {
   );
 });
 
-const DraftTabContent = ({ items = [] }) => {
+/*const DraftTabContent = ({ items = [] }) => {
   const hasDrafts = items.length > 0;
 
   if (!hasDrafts)
@@ -1792,7 +1792,7 @@ const DraftTabContent = ({ items = [] }) => {
       ]}
     />
   );
-};
+};*/
 
 const Pagination = ({ showNext, showAll }) => (
   <div
