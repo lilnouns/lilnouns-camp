@@ -575,7 +575,7 @@ const ProposalCandidateScreenContent = ({
                     <ProposalBody
                       markdownText={candidate.latestVersion.content.body}
                     />
-                    <div style={{ marginTop: "9.6rem" }}>
+                    {/*<div style={{ marginTop: "9.6rem" }}>
                       {connectedWalletAccountAddress == null ? (
                         <div style={{ textAlign: "center" }}>
                           <Button
@@ -599,7 +599,7 @@ const ProposalCandidateScreenContent = ({
                           />
                         </>
                       )}
-                    </div>
+                    </div>*/}
                   </div>
                 </Tabs.Item>
                 <Tabs.Item key="transactions" title="Transactions">

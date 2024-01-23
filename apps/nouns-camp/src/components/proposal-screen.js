@@ -626,7 +626,7 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                       <div style={{ marginTop: "9.6rem" }}>
                         {connectedWalletAccountAddress == null ? (
                           <div style={{ textAlign: "center" }}>
-                            <Button
+                            {/*<Button
                               onClick={() => {
                                 requestWalletAccess();
                               }}
@@ -635,7 +635,7 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                               {!hasCastVote && isVotingOngoing
                                 ? "vote"
                                 : "give feedback"}
-                            </Button>
+                            </Button>*/}
                           </div>
                         ) : (
                           <>
