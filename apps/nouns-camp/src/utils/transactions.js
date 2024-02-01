@@ -28,7 +28,7 @@ const decimalsByCurrency = {
 
 const normalizeSignature = (s) => {
   if (s == null) return null;
-  return s.replace(/\s+/g, " ").replace(/,[^\s+]/g, ", ");
+  return s.replace(/\s+/g, " ").replace(/,\s*/g, ", ");
 };
 
 const CREATE_STREAM_SIGNATURE =
@@ -160,7 +160,8 @@ export const parse = (data, { chainId }) => {
 
     if (
       target === wethTokenContract.address &&
-      normalizeSignature(signature) === "transfer(address, uint256)"
+      normalizeSignature(signature) ===
+        normalizeSignature("transfer(address,uint256)")
     ) {
       const receiverAddress = functionInputs[0].toLowerCase();
       const isStreamFunding = predictedStreamContractAddresses.some(
@@ -204,9 +205,9 @@ export const parse = (data, { chainId }) => {
     if (
       target === nounsTokenContract.address &&
       (normalizeSignature(signature) ===
-        "transferFrom(address, address, uint256)" ||
+        normalizeSignature("transferFrom(address,address,uint256)") ||
         normalizeSignature(signature) ===
-          "safeTransferFrom(address, address, uint256)") &&
+          normalizeSignature("safeTransferFrom(address,address,uint256)")) &&
       functionInputs[0].toLowerCase() ===
         nounsExecutorContract.address.toLowerCase()
     )
@@ -216,7 +217,7 @@ export const parse = (data, { chainId }) => {
         receiverAddress: functionInputs[1],
         safe:
           normalizeSignature(signature) ===
-          "safeTransferFrom(address, address, uint256)",
+          normalizeSignature("safeTransferFrom(address,address,uint256)"),
         target,
         functionName,
         functionInputs,
@@ -226,7 +227,9 @@ export const parse = (data, { chainId }) => {
     if (
       target === nounsGovernanceContract.address &&
       normalizeSignature(signature) ===
-        "withdrawDAONounsFromEscrowIncreasingTotalSupply(uint256[], address)"
+        normalizeSignature(
+          "withdrawDAONounsFromEscrowIncreasingTotalSupply(uint256[],address)"
+        )
     ) {
       return {
         type: "escrow-noun-transfer",
@@ -242,7 +245,9 @@ export const parse = (data, { chainId }) => {
     if (
       target === resolveIdentifier(chainId, "prop-house")?.address &&
       normalizeSignature(signature) ===
-        "createAndFundRoundOnExistingHouse(address, (address impl, bytes config, string title, string description), (uint8 assetType, address token, uint256 identifier, uint256 amount)[])"
+        normalizeSignature(
+          "createAndFundRoundOnExistingHouse(address, (address impl, bytes config, string title, string description), (uint8 assetType, address token, uint256 identifier, uint256 amount)[])"
+        )
     ) {
       const [houseAddress, { impl, config, title, description }, assets] =
         functionInputs;
