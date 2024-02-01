@@ -13,6 +13,9 @@
     "undici": ">=5.26.2",
     "axios": ">=1.6.0"
   },
+  "devDependencies": {
+    "turbo": "^1.12.2"
+  },
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=8.7.5"
