@@ -165,8 +165,6 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0(@swc/core@1.4.1)(rollup@4.12.0)
 
-  packages/webpack-config: {}
-
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
