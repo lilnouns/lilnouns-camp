@@ -1,5 +1,4 @@
 import React from "react";
-import va from "@vercel/analytics";
 import { formatUnits } from "viem";
 import { useBlockNumber } from "wagmi";
 import {
@@ -896,9 +895,6 @@ export const ProposalActionForm = ({
               <Button
                 type="button"
                 onClick={() => {
-                  va.track("Connect Wallet", {
-                    location: "vote/feedback form",
-                  });
                   requestWalletAccess();
                 }}
                 size={size}
