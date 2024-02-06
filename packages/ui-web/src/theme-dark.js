@@ -78,6 +78,7 @@ const fontStacks = {
 
 export default {
   name: "dark",
+  colorScheme: "dark",
   sidebarWidth: "25rem",
   avatars: {
     borderRadius: "50%",
