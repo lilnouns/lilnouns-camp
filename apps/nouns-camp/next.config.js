@@ -39,7 +39,7 @@ module.exports = {
           // and not allow any straggling "old" SWs to hang around
           clientsClaim: true,
           skipWaiting: true,
-          maximumFileSizeToCacheInBytes: 5000000, // 5 MB
+          maximumFileSizeToCacheInBytes: 6000000, // 6 MB
         }),
       ],
     };
