@@ -2,9 +2,9 @@
   "version": "1.0.0-alpha.20",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
-    "lint": "pnpm -r run --if-present lint",
+    "build": "turbo build",
+    "lint": "turbo lint",
     "format": "pnpm -r run --if-present format",
-    "build": "pnpm -r run --if-present build",
     "test": "pnpm -r run --if-present test"
   },
   "resolutions": {
