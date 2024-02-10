@@ -1,7 +1,7 @@
 import React from "react";
+import NextLink from "next/link";
 import { isAddress } from "viem";
 import { useBlockNumber, useEnsAddress } from "wagmi";
-import { useParams, Link as RouterLink } from "react-router-dom";
 import { css } from "@emotion/react";
 import { useFetch } from "@shades/common/react";
 import { APPROXIMATE_BLOCKS_PER_DAY } from "../constants/ethereum.js";
@@ -19,7 +19,6 @@ import {
   useProposalCandidates,
   useProposals,
 } from "../store.js";
-import MetaTags_ from "./meta-tags.js";
 import Layout, { MainContentContainer } from "./layout.js";
 import Callout from "./callout.js";
 import * as Tabs from "./tabs.js";
@@ -288,8 +287,8 @@ const VotingPowerCallout = ({ voterAddress }) => {
       {voteCount === 0 && account?.delegate ? (
         <div>
           Delegating votes to{" "}
-          <RouterLink
-            to={`/campers/${ensName ?? account?.delegateId}`}
+          <NextLink
+            href={`/campers/${ensName ?? account?.delegateId}`}
             css={(t) =>
               css({
                 color: "inherit",
@@ -304,7 +303,7 @@ const VotingPowerCallout = ({ voterAddress }) => {
             }
           >
             {delegateDisplayName}
-          </RouterLink>
+          </NextLink>
         </div>
       ) : (
         <>
@@ -752,9 +751,7 @@ const VoterMainSection = ({ voterAddress }) => {
   );
 };
 
-const VoterScreen = () => {
-  const { voterId } = useParams();
-
+const VoterScreen = ({ voterId }) => {
   const { data: ensAddress, isFetching } = useEnsAddress({
     name: voterId.trim(),
     enabled: voterId.includes("."),
@@ -771,7 +768,6 @@ const VoterScreen = () => {
 
   return (
     <>
-      <MetaTags voterId={voterId} voterAddress={voterAddress} />
       <Layout
         scrollContainerRef={scrollContainerRef}
         navigationStack={[{ to: `/campers/${voterId} `, label: displayName }]}
@@ -826,8 +822,8 @@ const VoterScreen = () => {
                   .
                 </div>
                 <Button
-                  component={RouterLink}
-                  to="/"
+                  component={NextLink}
+                  href="/"
                   variant="primary"
                   size="large"
                 >
@@ -842,18 +838,18 @@ const VoterScreen = () => {
   );
 };
 
-const MetaTags = ({ voterId, voterAddress }) => {
-  const { displayName, truncatedAddress, address } =
-    useAccountDisplayName(voterAddress);
+// const MetaTags = ({ voterId, voterAddress }) => {
+//   const { displayName, truncatedAddress, address } =
+//     useAccountDisplayName(voterAddress);
 
-  const title =
-    address == null
-      ? ""
-      : displayName == null
-      ? `${truncatedAddress}`
-      : `${displayName} (${truncatedAddress})`;
+//   const title =
+//     address == null
+//       ? ""
+//       : displayName == null
+//       ? `${truncatedAddress}`
+//       : `${displayName} (${truncatedAddress})`;
 
-  return <MetaTags_ title={title} canonicalPathname={`/voter/${voterId}`} />;
-};
+//   return <MetaTags_ title={title} canonicalPathname={`/voter/${voterId}`} />;
+// };
 
 export default VoterScreen;
