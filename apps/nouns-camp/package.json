@@ -3,15 +3,19 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "pnpm wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
     "format": "prettier . --write",
     "lint": "next lint && prettier . --check"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.9.0",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.1.0",
     "eslint-config-prettier": "^8.8.0",
-    "prettier": "^2.8.8"
+    "eslint-plugin-next-on-pages": "^1.9.0",
+    "prettier": "^2.8.8",
+    "vercel": "^33.5.1",
+    "wrangler": "^3.28.3"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
