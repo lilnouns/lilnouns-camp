@@ -56,6 +56,7 @@ module.exports = withSerwist({
     return config;
   },
   experimental: {
+    cpus: 4,
     turbo: {
       // Ignoring modules is not a thing yet
       resolveAlias: Object.fromEntries(
