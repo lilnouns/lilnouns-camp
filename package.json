@@ -3,6 +3,7 @@
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "build": "turbo build",
+    "postbuild": "cd apps/nouns-camp && pnpx @cloudflare/next-on-pages",
     "lint": "turbo lint",
     "format": "pnpm -r run --if-present format",
     "test": "pnpm -r run --if-present test"
