@@ -52,6 +52,7 @@ fragment CandidateFeedbackFields on CandidateFeedback {
   }
 }`;
 
+// eslint-disable-next-line no-unused-vars
 const PROPOSAL_FEEDBACK_FIELDS = `
 fragment ProposalFeedbackFields on ProposalFeedback {
   id
@@ -244,7 +245,7 @@ query {
 // TODO: proposal feedbacks
 const createBrowseScreenSecondaryQuery = ({
   proposalIds,
-  candidateIds,
+  candidateIds, // eslint-disable-line no-unused-vars
 } = {}) => `
 ${VOTE_FIELDS}
 query {
@@ -926,7 +927,7 @@ export const fetchProposalsVersions = async (chainId, proposalIds) =>
     query: createProposalsVersionsQuery(proposalIds),
   }).then((data) => {
     if (data.proposalVersions == null)
-      return Promise.reject(new Error("not-found"));
+      return [] /*Promise.reject(new Error("not-found"))*/;
     return data.proposalVersions.map(parseProposalVersion);
   });
 
@@ -968,14 +969,14 @@ export const fetchProposalCandidatesFeedbackPosts = async (
     query: createProposalCandidateFeedbackPostsByCandidatesQuery(candidateIds),
   }).then((data) => {
     if (data.candidateFeedbacks == null)
-      return Promise.reject(new Error("not-found"));
+      return [] /*Promise.reject(new Error("not-found"))*/;
     return data.candidateFeedbacks.map(parseFeedbackPost);
   });
 
 export const fetchProposal = (chainId, id) =>
   subgraphFetch({ chainId, query: createProposalQuery(id) }).then((data) => {
     if (data.proposal == null) return Promise.reject(new Error("not-found"));
-    const candidateId = data.proposalCandidateVersions[0]?.proposal.id;
+    const candidateId = data.proposal.id /*data.proposalCandidateVersions[0]?.proposal.id*/;
     return parseProposal(
       { ...data.proposal, versions: data.proposalVersions, candidateId },
       { chainId }
@@ -990,10 +991,10 @@ export const fetchProposalCandidate = async (chainId, rawId) => {
     subgraphFetch({
       chainId,
       query: createProposalCandidateQuery(id),
-    }).then((data) => {
-      if (data.proposalCandidate == null)
-        return Promise.reject(new Error("not-found"));
-      return data.proposalCandidate;
+    }).then((data) => { // eslint-disable-line no-unused-var
+      // if (data.proposalCandidate == null)
+      //   return Promise.reject(new Error("not-found"));
+      return {} /*data.proposalCandidate*/;
     }),
     subgraphFetch({
       chainId,
@@ -1038,10 +1039,10 @@ export const fetchProposalCandidatesByAccount = (chainId, accountAddress) =>
   subgraphFetch({
     chainId,
     query: createProposalCandidatesByAccountQuery(accountAddress),
-  }).then((data) => {
-    const candidates = data.proposalCandidates.map((c) =>
+  }).then((data) => { // eslint-disable-line no-unused-vars
+    const candidates = [] /*data.proposalCandidates.map((c) =>
       parseCandidate(c, { chainId })
-    );
+    )*/;
     return candidates;
   });
 
@@ -1051,9 +1052,9 @@ export const fetchBrowseScreenData = (chainId, options) =>
       const proposals = data.proposals.map((p) =>
         parseProposal(p, { chainId })
       );
-      const candidates = data.proposalCandidates.map((c) =>
+      const candidates = [] /*data.proposalCandidates.map((c) =>
         parseCandidate(c, { chainId })
-      );
+      );*/
       return { proposals, candidates };
     }
   );
@@ -1064,11 +1065,11 @@ export const fetchBrowseScreenSecondaryData = (chainId, options) =>
     query: createBrowseScreenSecondaryQuery(options),
   }).then((data) => {
     const proposals = data.proposals.map((p) => parseProposal(p, { chainId }));
-    const proposalVersions = data.proposalVersions.map(parseProposalVersion);
-    const candidateVersions = data.proposalCandidateVersions.map((v) =>
+    const proposalVersions = [] /*data.proposalVersions.map(parseProposalVersion)*/;
+    const candidateVersions = [] /*data.proposalCandidateVersions.map((v) =>
       parseCandidateVersion(v, { chainId })
-    );
-    const candidateFeedbacks = data.candidateFeedbacks.map(parseFeedbackPost);
+    )*/;
+    const candidateFeedbacks = [] /*data.candidateFeedbacks.map(parseFeedbackPost)*/;
     return {
       proposals,
       proposalVersions,
@@ -1089,26 +1090,27 @@ export const fetchProposalCandidatesSponsoredByAccount = (
       options
     ),
   })
-    .then((data) => {
+    .then((data) => { // eslint-disable-line no-unused-vars
       // Fetch signatures, then content IDs, and finally the candidate versions
       return arrayUtils.unique(
-        data.proposalCandidateSignatures.map((s) => s.content.id)
+        [] /*data.proposalCandidateSignatures.map((s) => s.content.id)*/
       );
     })
     .then(async (contentIds) => {
+      // eslint-disable-next-line no-unused-vars
       const data = await subgraphFetch({
         chainId,
         query: createProposalCandidateVersionByContentIdsQuery(contentIds),
       });
 
-      const versionIds = data.proposalCandidateVersions.map((v) => v.id);
+      const versionIds = [] /*data.proposalCandidateVersions.map((v) => v.id)*/;
       return subgraphFetch({
         chainId,
         query: createProposalCandidateByLatestVersionIdsQuery(versionIds),
-      }).then((data) => {
-        const candidates = data.proposalCandidates.map((c) =>
+      }).then((data) => { // eslint-disable-line no-unused-vars
+        const candidates = [] /*data.proposalCandidates.map((c) =>
           parseCandidate(c, { chainId })
-        );
+        )*/;
         return candidates;
       });
     });
@@ -1119,13 +1121,13 @@ export const fetchVoterScreenData = (chainId, id, options) =>
     query: createVoterScreenQuery(id.toLowerCase(), options),
   }).then((data) => {
     const proposals = data.proposals.map((p) => parseProposal(p, { chainId }));
-    const candidates = data.proposalCandidates.map((c) =>
+    const candidates = [] /*data.proposalCandidates.map((c) =>
       parseCandidate(c, { chainId })
-    );
+    )*/;
     const votes = data.votes.map(parseProposalVote);
-    const proposalFeedbackPosts = data.proposalFeedbacks.map(parseFeedbackPost);
+    const proposalFeedbackPosts = [] /*data.proposalFeedbacks.map(parseFeedbackPost)*/;
     const candidateFeedbackPosts =
-      data.candidateFeedbacks.map(parseFeedbackPost);
+      [] /*data.candidateFeedbacks.map(parseFeedbackPost)*/;
     const nouns = data.nouns.map(parseNoun);
 
     return {
@@ -1146,12 +1148,12 @@ export const fetchNounsActivity = (chainId, { startBlock, endBlock }) =>
       endBlock: endBlock.toString(),
     }),
   }).then((data) => {
-    if (data.candidateFeedbacks == null)
-      return Promise.reject(new Error("not-found"));
+    // if (data.candidateFeedbacks == null)
+    //   return Promise.reject(new Error("not-found"));
 
     const candidateFeedbackPosts =
-      data.candidateFeedbacks.map(parseFeedbackPost);
-    const proposalFeedbackPosts = data.proposalFeedbacks.map(parseFeedbackPost);
+      [] /*data.candidateFeedbacks.map(parseFeedbackPost)*/;
+    const proposalFeedbackPosts = [] /*data.proposalFeedbacks.map(parseFeedbackPost)*/;
     const votes = data.votes
       .map(parseProposalVote)
       .filter((v) => !hideProposalVote(v));
@@ -1172,8 +1174,8 @@ export const fetchVoterActivity = (
     }),
   }).then((data) => {
     const candidateFeedbackPosts =
-      data.candidateFeedbacks.map(parseFeedbackPost);
-    const proposalFeedbackPosts = data.proposalFeedbacks.map(parseFeedbackPost);
+      [] /*data.candidateFeedbacks.map(parseFeedbackPost)*/;
+    const proposalFeedbackPosts = [] /*data.proposalFeedbacks.map(parseFeedbackPost)*/;
     const votes = data.votes.map(parseProposalVote);
 
     return { votes, proposalFeedbackPosts, candidateFeedbackPosts };
