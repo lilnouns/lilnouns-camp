@@ -1227,6 +1227,8 @@ const ProposalItem = React.memo(({ proposalId }) => {
   const authorAccountDisplayName = useAccountDisplayName(proposal?.proposerId);
   const calculateBlockTimestamp = useApproximateBlockTimestampCalculator();
 
+  if (!proposal) return null;
+
   const statusText = renderPropStatusText({
     proposal,
     calculateBlockTimestamp,
