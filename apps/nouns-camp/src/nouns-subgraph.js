@@ -141,6 +141,7 @@ query {
         id
         blockNumber
         supportDetailed
+        reason
       }`
         : ""
     }
