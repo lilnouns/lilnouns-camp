@@ -6,14 +6,29 @@ import {
   NobleEd25519Signer,
   makeCastAdd,
 } from "@farcaster/core";
-import {
-  buildProposalCastSignatureMessage,
-  createCanonicalProposalUrl,
-} from "../../../utils/farcaster.js";
+import { subgraphFetch } from "../../../nouns-subgraph.js";
+import { buildProposalCastSignatureMessage } from "../../../utils/farcaster.js";
+import { createUri as createTransactionReceiptUri } from "../../../utils/erc-2400.js";
 
 export const runtime = "edge";
 
 const { FARCASTER_HUB_HTTP_ENDPOINT, NEYNAR_API_KEY } = process.env;
+
+const createCanonicalProposalUrl = async (chainId, proposalId) => {
+  const { proposal } = await subgraphFetch({
+    chainId,
+    query: `
+      query {
+        proposal(id: ${proposalId}) {
+          createdTransactionHash
+        }
+      }`,
+  });
+
+  if (proposal == null) throw new Error();
+
+  return createTransactionReceiptUri(chainId, proposal.createdTransactionHash);
+};
 
 const jsonResponse = (statusCode, body) =>
   new Response(JSON.stringify(body), {
@@ -47,7 +62,7 @@ const fetchProposalCasts = async (chainId, proposalId) => {
   const searchParams = new URLSearchParams({
     feed_type: "filter",
     filter_type: "parent_url",
-    parent_url: createCanonicalProposalUrl(chainId, proposalId),
+    parent_url: await createCanonicalProposalUrl(chainId, proposalId),
     limit: 100,
   });
 
@@ -171,7 +186,7 @@ export async function POST(request) {
     await submitCast(
       {
         text,
-        parentUrl: createCanonicalProposalUrl(chainId, proposalId),
+        parentUrl: await createCanonicalProposalUrl(chainId, proposalId),
       },
       { fid: Number(fid), network: FarcasterNetwork.MAINNET },
       new NobleEd25519Signer(hexToBytes(privateAccountKey)),
