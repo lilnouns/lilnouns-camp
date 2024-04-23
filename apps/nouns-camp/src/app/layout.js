@@ -11,6 +11,7 @@ import ThemeProvider from "../theme-provider.js";
 import WagmiProvider from "../wagmi-provider.js";
 import GlobalStylesWrapper from "../global-styles-wrapper.js";
 import { Provider as StoreProvider } from "../store.js";
+import { Provider as FarcasterStateProvider } from "../hooks/farcaster.js";
 
 import "../reset.css";
 import "../index.css";
@@ -103,7 +104,11 @@ export default async function RootLayout({ children }) {
                       headers().get("cookie"),
                     )}
                   >
-                    <StoreProvider>{children}</StoreProvider>
+                    <StoreProvider>
+                      <FarcasterStateProvider>
+                        {children}
+                      </FarcasterStateProvider>
+                    </StoreProvider>
                   </WagmiProvider>
                 </GlobalStylesWrapper>
               </ThemeProvider>
