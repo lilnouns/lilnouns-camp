@@ -623,7 +623,7 @@ const ProposalMainSection = ({
                   }}
                 >
                   <Tabs.Item key="activity" title="Activity">
-                    <div style={{ padding: "3.2rem 0 3.2rem" }}>
+                    <div style={{ padding: "3.2rem 0 4rem" }}>
                       <ProposalActionForm
                         inputRef={proposalActionInputRef}
                         proposalId={proposalId}
