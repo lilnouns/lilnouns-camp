@@ -10,7 +10,7 @@
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.11.3",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.2",
+    "eslint-config-next": "^14.2.3",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-next-on-pages": "^1.11.3",
     "vercel": "^34.1.1",
