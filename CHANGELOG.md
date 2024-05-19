@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0-alpha.52] - 2024-05-19
+
+### 🐛 Bug Fixes
+
+- Update Serwist service worker configuration
+- Solve some minor issues and update dependencies
+
+### ⚙️ Miscellaneous Tasks
+
+- Migrate Next.js config file to `mjs`
+
 ## [1.0.0-alpha.51] - 2024-05-19
 
 ### 🐛 Bug Fixes
