@@ -27,7 +27,7 @@
     "@nouns/sdk": "^0.4.0",
     "@radix-ui/react-toolbar": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.5",
-    "@sentry/nextjs": "^8.2.1",
+    "@sentry/nextjs": "^7.111.0",
     "@serwist/next": "^9.0.2",
     "@serwist/precaching": "^9.0.2",
     "@serwist/sw": "^9.0.2",
