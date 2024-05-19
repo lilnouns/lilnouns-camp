@@ -1,4 +1,4 @@
-import { defaultCache } from "@serwist/next/browser";
+import { defaultCache } from "@serwist/next/worker";
 import { installSerwist } from "@serwist/sw";
 
 installSerwist({
