@@ -1,8 +1,7 @@
-import webpack from "webpack";
-import { withSentryConfig } from "@sentry/nextjs";
-import withSerwistInit from "@serwist/next";
+const webpack = require("webpack");
+const { withSentryConfig } = require("@sentry/nextjs");
 
-const withSerwist = withSerwistInit({
+const withSerwist = require("@serwist/next").default({
   swSrc: "src/app/service-worker.js",
   swDest: "public/service-worker.js",
   swUrl: "/service-worker.js",
@@ -48,7 +47,7 @@ const ignoredModules = [
   "encoding",
 ];
 
-const nextConfig = withSentry(
+module.exports = withSentry(
   withSerwist({
     reactStrictMode: true,
     compiler: {
@@ -104,5 +103,3 @@ const nextConfig = withSentry(
     },
   }),
 );
-
-export default nextConfig;
