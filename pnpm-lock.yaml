@@ -133,10 +133,10 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(react@18.3.1)
       viem:
-        specifier: ^2.8.14
+        specifier: ^2.10.9
         version: 2.10.9(bufferutil@4.0.8)(typescript@4.9.5)(zod@3.23.8)
       wagmi:
-        specifier: ^2.5.11
+        specifier: ^2.9.2
         version: 2.9.2(@react-native-async-storage/async-storage@1.23.1(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.3.1)))(@tanstack/query-core@5.36.1)(@tanstack/react-query@5.37.1(react@18.3.1))(bufferutil@4.0.8)(immer@10.1.1)(ioredis@5.4.1)(react-dom@18.3.1(react@18.3.1))(react-i18next@14.1.1(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1))(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1)(rollup@2.78.0)(typescript@4.9.5)(viem@2.10.9(bufferutil@4.0.8)(typescript@4.9.5)(zod@3.23.8))(zod@3.23.8)
       zustand:
         specifier: ^4.5.2
