@@ -1,8 +1,8 @@
 import webpack from "webpack";
 import { withSentryConfig } from "@sentry/nextjs";
-import { default as withSerwistFn } from "@serwist/next";
+import withSerwistInit from "@serwist/next";
 
-const withSerwist = withSerwistFn({
+const withSerwist = withSerwistInit({
   swSrc: "src/app/service-worker.js",
   swDest: "public/service-worker.js",
   swUrl: "/service-worker.js",
