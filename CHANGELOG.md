@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0-alpha.55] - 2024-05-23
+
+### ◀️ Revert
+
+- Bump wagmi from 2.5.11 to 2.9.6
+
 ## [1.0.0-alpha.54] - 2024-05-23
 
 ### 🐛 Bug Fixes
