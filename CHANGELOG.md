@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0-alpha.54] - 2024-05-23
+
+### 🐛 Bug Fixes
+
+- Replace missing delegator id by noun owner id
+
 ## [1.0.0-alpha.53] - 2024-05-23
 
 ### 🚀 Features
