@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0-alpha.58] - 2024-05-27
+
+### 🚀 Features
+
+- Migrate updates from upstream (#314)
+- Add fallback image and display name for account
+- Add farcaster hooks and utils and components
+- Add new native select component
+
+### 🚜 Refactor
+
+- Update workspace packages to the recent versions
+
 ## [1.0.0-alpha.57] - 2024-05-27
 
 ### ◀️ Revert
