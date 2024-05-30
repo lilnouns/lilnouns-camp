@@ -78,6 +78,7 @@ const buildVoteAndFeedbackPostFeedItems = ({
   proposalId,
   votes: votes_,
   feedbackPosts: feedbackPosts_,
+  candidateFeedbackPosts: candidateFeedbackPosts_,
 }) => {
   // Add a "type" since there’s no way to distinguis votes from feedback posts
   const votes = (votes_ ?? []).map((v) => ({ ...v, type: "vote" }));
@@ -85,9 +86,14 @@ const buildVoteAndFeedbackPostFeedItems = ({
     ...p,
     type: "feedback-post",
   }));
+  const candidateFeedbackPosts = (candidateFeedbackPosts_ ?? []).map((p) => ({
+    ...p,
+    type: "feedback-post",
+  }));
   const ascendingPosts = arrayUtils.sortBy("createdBlock", [
     ...votes,
     ...feedbackPosts,
+    ...candidateFeedbackPosts,
   ]);
 
   return ascendingPosts.map((p) => {
@@ -131,7 +137,10 @@ export const buildFeed = (
 ) => {
   if (proposal == null) return [];
 
-  const candidateItems = candidate == null ? [] : buildCandidateFeed(candidate);
+  const candidateItems =
+    candidate == null
+      ? []
+      : buildCandidateFeed(candidate, { includeFeedbackPosts: false });
 
   const castItems =
     casts?.map((c) => {
@@ -159,7 +168,10 @@ export const buildFeed = (
   const voteAndFeedbackPostItems = buildVoteAndFeedbackPostFeedItems({
     proposalId: proposal.id,
     votes: proposal.votes,
-    feedbackPosts: proposal?.feedbackPosts ?? [],
+    feedbackPosts: [
+      ...(proposal?.feedbackPosts ?? []),
+      ...(candidate?.feedbackPosts ?? []),
+    ],
   });
 
   const propdateItems =
