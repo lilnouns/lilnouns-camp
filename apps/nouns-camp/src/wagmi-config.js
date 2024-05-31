@@ -1,6 +1,5 @@
 import {
   http,
-  fallback,
   createConfig,
   cookieStorage,
   createStorage,
