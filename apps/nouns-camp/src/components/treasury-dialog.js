@@ -447,7 +447,7 @@ const Content = ({ titleProps, dismiss }) => {
                 return (
                   <>
                     {Number(treasuryNouns + (forkEscrowNouns ?? 0n))}{" "}
-                    {forkEscrowNouns != null && forkEscrowNouns > 0 && (
+                    {forkEscrowNouns != null && (
                       <span data-small>
                         (Includes {Number(forkEscrowNouns)} Nouns held in{" "}
                         <EtherscanLink address={forkEscrowAddress}>
