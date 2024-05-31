@@ -3,7 +3,7 @@ import React from "react";
 import { useReadContract, useWriteContract, useSimulateContract } from "wagmi";
 import { CHAIN_ID, CAMP_CLIENT_ID } from "../constants/env.js";
 import { unparse as unparseTransactions } from "../utils/transactions.js";
-import { CAMP_CLIENT_ID, resolveIdentifier } from "../contracts.js";
+import { resolveIdentifier } from "../contracts.js";
 import { useActions } from "../store.js";
 import useBlockNumber from "./block-number.js";
 import usePublicClient from "./public-client.js";
@@ -251,14 +251,14 @@ export const useCastProposalVote = (
   } = useSimulate({
     abi: [
       {
-        inputs: [{ type: "uint256" }, { type: "uint8" }, { type: "uint32" }],
+        inputs: [{ type: "uint256" }, { type: "uint8" }],
         name: "castRefundableVote",
         outputs: [],
         type: "function",
       },
     ],
     functionName: "castRefundableVote",
-    args: [Number(proposalId), support, CAMP_CLIENT_ID],
+    args: [Number(proposalId), support],
     enabled: enabled && support != null && !hasReason,
   });
 
@@ -379,7 +379,14 @@ export const useCreateProposal = () => {
           inputs: [
             { name: "id", type: "uint256" },
             { name: "proposer", type: "address" },
+                { name: "proposer", type: "address" },
             { name: "targets", type: "address[]" },
+                { name: "targets", type: "address[]" },
+                { name: "values", type: "uint256[]" },
+                { name: "signatures", type: "string[]" },
+                { name: "calldatas", type: "bytes[]" },
+                { name: "startBlock", type: "uint256" },
+                { name: "endBlock", type: "uint256" },
             { name: "values", type: "uint256[]" },
             { name: "signatures", type: "string[]" },
             { name: "calldatas", type: "bytes[]" },
@@ -387,7 +394,7 @@ export const useCreateProposal = () => {
             { name: "endBlock", type: "uint256" },
             { name: "proposalThreshold", type: "uint256" },
             { name: "quorumVotes", type: "uint256" },
-            { indexed: true, name: "clientId", type: "uint32" }
+            { name: "description", type: "string" }
           ],
           name: "ProposalCreatedWithRequirements",
           type: "event",
@@ -447,7 +454,6 @@ export const useCreateProposalWithSignatures = () => {
         signatures,
         calldatas,
         description,
-        CAMP_CLIENT_ID,
       ],
     })
       .then((hash) => {
@@ -465,11 +471,18 @@ export const useCreateProposalWithSignatures = () => {
             {
               inputs: [
                 { name: "id", type: "uint256" },
-                // { name: "signers", type: "address[]" },
+                // { name: "proposer", type: "address" },
+                { name: "signers", type: "address[]" },
+                { name: "targets", type: "address[]" },
+                { name: "values", type: "uint256[]" },
+                { name: "signatures", type: "string[]" },
+                { name: "calldatas", type: "bytes[]" },
+                { name: "startBlock", type: "uint256" },
+                { name: "endBlock", type: "uint256" },
                 // { name: "updatePeriodEndBlock", type: "uint256" },
                 { name: "proposalThreshold", type: "uint256" },
                 { name: "quorumVotes", type: "uint256" },
-                // { indexed: true, name: "clientId", type: "uint32" },
+                // { name: "description", type: "string" },
               ],
               name: "ProposalCreatedWithRequirements",
               type: "event",
