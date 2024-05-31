@@ -126,6 +126,8 @@ const metaByIdentifier = {
   },
 };
 
+export const CAMP_CLIENT_ID = 3;
+
 export const resolveIdentifier = (identifier) => {
   const address = addressByIdentifierByChainId[CHAIN_ID]?.[identifier];
   if (address == null) return null;

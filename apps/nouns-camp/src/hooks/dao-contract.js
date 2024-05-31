@@ -3,7 +3,7 @@ import React from "react";
 import { useReadContract, useWriteContract, useSimulateContract } from "wagmi";
 import { CHAIN_ID, CAMP_CLIENT_ID } from "../constants/env.js";
 import { unparse as unparseTransactions } from "../utils/transactions.js";
-import { resolveIdentifier } from "../contracts.js";
+import { CAMP_CLIENT_ID, resolveIdentifier } from "../contracts.js";
 import { useActions } from "../store.js";
 import useBlockNumber from "./block-number.js";
 import usePublicClient from "./public-client.js";
@@ -251,14 +251,14 @@ export const useCastProposalVote = (
   } = useSimulate({
     abi: [
       {
-        inputs: [{ type: "uint256" }, { type: "uint8" }],
+        inputs: [{ type: "uint256" }, { type: "uint8" }, { type: "uint32" }],
         name: "castRefundableVote",
         outputs: [],
         type: "function",
       },
     ],
     functionName: "castRefundableVote",
-    args: [Number(proposalId), support],
+    args: [Number(proposalId), support, CAMP_CLIENT_ID],
     enabled: enabled && support != null && !hasReason,
   });
 
@@ -387,7 +387,7 @@ export const useCreateProposal = () => {
             { name: "endBlock", type: "uint256" },
             { name: "proposalThreshold", type: "uint256" },
             { name: "quorumVotes", type: "uint256" },
-            { name: "description", type: "string" }
+            { indexed: true, name: "clientId", type: "uint32" }
           ],
           name: "ProposalCreatedWithRequirements",
           type: "event",
