@@ -15,7 +15,6 @@ import { subgraphFetch as queryNounsSubgraph } from "../nouns-subgraph.js";
 import useContract from "../hooks/contract.js";
 import { useSearchParams } from "../hooks/navigation.js";
 import { FormattedEthWithConditionalTooltip } from "./transaction-list.js";
-import NativeSelect from "./native-select.js";
 
 const ONE_DAY_IN_SECONDS = 24 * 60 * 60;
 
@@ -494,25 +493,34 @@ const Content = ({ titleProps, dismiss }) => {
 
         <Heading>
           Activity last{" "}
-          <NativeSelect
-            value={activityDayCount}
-            options={[7, 14, 30, 60, 90, 365].map((count) => ({
-              value: count,
-              label: `${count} days`,
-            }))}
+          <span
             css={(t) =>
               css({
                 display: "inline-block",
+                position: "relative",
+                // background: t.colors.backgroundModifierNormal,
                 border: "0.1rem solid",
                 borderColor: t.colors.borderLighter,
                 borderRadius: "0.3rem",
                 padding: "0 0.4rem",
               })
             }
-            onChange={(e) => {
-              setActivityDayCount(e.target.value);
-            }}
-          />
+          >
+            {activityDayCount} days
+            <select
+              value={activityDayCount}
+              onChange={(e) => {
+                setActivityDayCount(e.target.value);
+              }}
+              style={{ position: "absolute", inset: 0, opacity: 0 }}
+            >
+              {[7, 14, 30, 60, 90, 365].map((count) => (
+                <option key={count} value={count}>
+                  {count} days
+                </option>
+              ))}
+            </select>
+          </span>
         </Heading>
         <Dl>
           <dt>
