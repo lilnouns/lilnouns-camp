@@ -11,6 +11,7 @@
   "devDependencies": {
     "@cloudflare/next-on-pages": "1.12.1",
     "dotenv": "16.4.5",
+    "dotenv": "^16.4.5",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",
     "eslint-config-prettier": "9.1.0",
