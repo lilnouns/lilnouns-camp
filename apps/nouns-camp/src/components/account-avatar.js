@@ -80,7 +80,7 @@ const NounsAccountAvatar = React.forwardRef(
       );
 
     const nounAvatarUrl = nounAvatarUrls?.[0];
-    const imageUrl = ensAvatarUrl ?? nounAvatarUrl ?? fallbackImageUrl;
+    const imageUrl = ensAvatarUrl ?? nounAvatarUrl;
 
     if (!placeholder && imageUrl == null) return null;
 
