@@ -62,8 +62,6 @@ const subgraphFetch = async (chainId, query) => {
 };
 
 export const fetchPropdates = async (chainId, ...args) => {
-  return [];
-  // eslint-disable-next-line no-unreachable
   if (chainId !== 1) return [];
   const body = await subgraphFetch(chainId, createPropdatesQuery(...args));
   if (body.data.propUpdates == null) throw new Error("not-found");
