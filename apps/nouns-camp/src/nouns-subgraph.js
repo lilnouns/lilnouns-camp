@@ -112,7 +112,9 @@ export const CANDIDATE_CONTENT_SIGNATURE_FIELDS = `
 export const DELEGATION_EVENT_FIELDS = `
   fragment DelegationEventFields on DelegationEvent {
     id
-    noun { id owner { id } }
+  noun {
+    id
+  }
     newDelegate { id }
     previousDelegate { id }
   # delegator { id }
@@ -390,7 +392,7 @@ const parseTransferEvent = (e) => ({
 const parseDelegationEvent = (e) => ({
   ...e,
   blockTimestamp: parseTimestamp(e.blockTimestamp),
-    delegatorId: e.noun?.owner?.id,
+    delegatorId: e.delegator?.id,
   newAccountId: e.newDelegate?.id,
   previousAccountId: e.previousDelegate?.id,
   nounId: e.noun?.id,
