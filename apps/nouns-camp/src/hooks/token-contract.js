@@ -6,17 +6,16 @@ import {
   useWriteContract,
   useSimulateContract,
 } from "wagmi";
+import { CHAIN_ID } from "../constants/env.js";
 import { resolveIdentifier } from "../contracts.js";
 import useChainId from "./chain-id.js";
 
-const getContractAddress = (chainId) =>
-  resolveIdentifier(chainId, "token").address;
+const { address: contractAddress } = resolveIdentifier("token");
 
 export const useCurrentVotes = (accountAddress) => {
-  const chainId = useChainId();
-
   const { data, isSuccess } = useReadContract({
-    address: getContractAddress(chainId),
+    address: contractAddress,
+    chainId: CHAIN_ID,
     abi: [
       {
         inputs: [{ type: "address" }],
@@ -38,10 +37,9 @@ export const useCurrentVotes = (accountAddress) => {
 };
 
 export const usePriorVotes = ({ account, blockNumber, enabled = true }) => {
-  const chainId = useChainId();
-
   const { data } = useReadContract({
-    address: getContractAddress(chainId),
+    address: contractAddress,
+    chainId: CHAIN_ID,
     abi: [
       {
         inputs: [{ type: "address" }, { type: "uint256" }],
@@ -61,10 +59,9 @@ export const usePriorVotes = ({ account, blockNumber, enabled = true }) => {
 };
 
 export const useNounSeed = (nounId, { enabled = true } = {}) => {
-  const chainId = useChainId();
-
   const { data } = useReadContract({
-    address: getContractAddress(chainId),
+    address: contractAddress,
+    chainId: CHAIN_ID,
     abi: [
       {
         inputs: [{ type: "uint256" }],
@@ -98,11 +95,10 @@ export const useNounSeed = (nounId, { enabled = true } = {}) => {
 };
 
 export const useNounSeeds = (nounIds, { enabled = true } = {}) => {
-  const chainId = useChainId();
-
   const { data } = useReadContracts({
     contracts: nounIds.map((nounId) => ({
-      address: getContractAddress(chainId),
+      address: contractAddress,
+      chainId: CHAIN_ID,
       abi: [
         {
           inputs: [{ type: "uint256" }],
@@ -136,13 +132,13 @@ export const useNounSeeds = (nounIds, { enabled = true } = {}) => {
 
 export const useSetDelegate = (address) => {
   const publicClient = usePublicClient();
-  const chainId = useChainId();
 
   const { writeContractAsync } = useWriteContract();
 
   const { data: simulationResult, isSuccess: simulationSuccessful } =
     useSimulateContract({
-      address: getContractAddress(chainId),
+      address: contractAddress,
+      chainId: CHAIN_ID,
       abi: [
         {
           type: "function",

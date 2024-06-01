@@ -45,7 +45,6 @@ import NounAvatar from "./noun-avatar.js";
 import NounPreviewPopoverTrigger, {
   DelegationStatusDot,
 } from "./noun-preview-popover-trigger.js";
-import useChainId from "../hooks/chain-id.js";
 
 const ActivityFeed = React.lazy(() => import("./activity-feed.js"));
 
@@ -59,7 +58,6 @@ const isDebugSession =
   new URLSearchParams(location.search).get("debug") != null;
 
 const useFeedItems = (accountAddress, { filter } = {}) => {
-  const chainId = useChainId();
   const delegate = useDelegate(accountAddress);
 
   const proposals = useProposals({ state: true, propdates: true });
@@ -74,7 +72,7 @@ const useFeedItems = (accountAddress, { filter } = {}) => {
     const buildProposalItems = () => buildVoterFeed(delegate, { proposals });
     const buildCandidateItems = () => buildVoterFeed(delegate, { candidates });
     const buildNounRepresentationItems = () =>
-      buildVoterFeed(delegate, { account, chainId });
+      buildVoterFeed(delegate, { account });
 
     const buildFeedItems = () => {
       switch (filter) {
@@ -90,7 +88,6 @@ const useFeedItems = (accountAddress, { filter } = {}) => {
               proposals,
               candidates,
               account,
-              chainId,
             }),
           ];
       }
@@ -100,7 +97,7 @@ const useFeedItems = (accountAddress, { filter } = {}) => {
       { value: (i) => i.blockNumber, order: "desc" },
       buildFeedItems(),
     );
-  }, [delegate, proposals, candidates, account, chainId, filter]);
+  }, [delegate, proposals, candidates, account, filter]);
 };
 
 const getDelegateVotes = (delegate) => {
@@ -1018,6 +1015,7 @@ const VoterScreen = ({ voterId: rawAddressOrEnsName }) => {
 
   const { data: ensAddress, isPending: isFetching } = useEnsAddress({
     name: addressOrEnsName,
+    chainId: CHAIN_ID,
     query: {
       enabled: addressOrEnsName.includes("."),
     },

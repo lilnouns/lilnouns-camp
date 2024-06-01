@@ -3,16 +3,16 @@ import { buildFeed as buildCandidateFeed } from "./candidates.js";
 import { buildFeed as buildProposalFeed } from "./proposals.js";
 import { resolveIdentifier } from "../contracts.js";
 
-export const buildEventsFeed = (delegate, account, { chainId }) => {
+const buildEventsFeed = (delegate, account) => {
   if (account == null) return [];
 
   const fromAuctionHouse = (e) =>
-    e.previousAccountId.toLowerCase() ===
-    resolveIdentifier(chainId, "auction-house")?.address?.toLowerCase();
+    e.previousAccountId === resolveIdentifier("auction-house").address;
 
   const toAuctionHouse = (e) =>
-    e.newAccountId.toLowerCase() ===
-    resolveIdentifier(chainId, "auction-house")?.address?.toLowerCase();
+    e.newAccountId === resolveIdentifier("auction-house").address;
+
+  const events = account.events ?? [];
 
   // transfer events always come with an associated delegate event, ignore the latter
   const uniqueEvents = arrayUtils.unique(

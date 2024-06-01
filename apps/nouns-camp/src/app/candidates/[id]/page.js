@@ -16,14 +16,8 @@ import CandidateScreen from "../../../components/proposal-candidate-screen.js";
 
 export const runtime = "edge";
 
-const getChainId = () => {
-  const wagmiState = getWagmiStateFromCookie(headers().get("cookie"));
-  return wagmiState?.chainId ?? mainnet.id;
-};
-
-const fetchCandidate = async (id, { chainId }) => {
+const fetchCandidate = async (id) => {
   const data = await subgraphFetch({
-    chainId,
     query: `
       query {
         proposalCandidate(id: "${id}") {
@@ -50,15 +44,13 @@ const fetchCandidate = async (id, { chainId }) => {
 
   if (data?.proposalCandidate == null) return null;
 
-  return parseCandidate(data.proposalCandidate, { chainId });
+  return parseCandidate(data.proposalCandidate);
 };
 const parseId = (id) => normalizeId(decodeURIComponent(id));
 
 export async function generateMetadata({ params }) {
   const candidateId = parseId(params.id);
-  const candidate = await fetchCandidate(candidateId, {
-    chainId: getChainId(),
-  });
+  const candidate = await fetchCandidate(candidateId);
 
   // Can’t notFound() here since we might be on a testnet
   if (candidate == null) nextNotFound();
@@ -93,9 +85,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const candidate = await fetchCandidate(parseId(params.id), {
-    chainId: getChainId(),
-  });
+  const candidate = await fetchCandidate(parseId(params.id));
 
   if (candidate == null) nextNotFound();
 

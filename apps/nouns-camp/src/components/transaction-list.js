@@ -454,8 +454,6 @@ export const UnparsedFunctionCallCodeBlock = ({ transaction: t }) => (
 );
 
 export const TransactionExplanation = ({ transaction: t }) => {
-  const chainId = useChainId();
-
   switch (t.type) {
     case "transfer":
       return (
@@ -549,10 +547,7 @@ export const TransactionExplanation = ({ transaction: t }) => {
       );
 
     case "payer-top-up": {
-      const { address: nounsPayerAddress } = resolveContractIdentifier(
-        chainId,
-        "payer",
-      );
+      const { address: nounsPayerAddress } = resolveContractIdentifier("payer");
       return (
         <>
           Top up the{" "}

@@ -11,8 +11,6 @@ import useEnsName from "../hooks/ens-name.js";
 import InlineVerticalSeparator from "./inline-vertical-separator.js";
 import NounAvatar from "./noun-avatar.js";
 import FormattedDateWithTooltip from "./formatted-date-with-tooltip.js";
-import { resolveIdentifier } from "../contracts.js";
-import useChainId from "../hooks/chain-id.js";
 import { FormattedEthWithConditionalTooltip } from "./transaction-list.js";
 import { useSaleInfo } from "../hooks/sales.js";
 
@@ -245,7 +243,6 @@ const NounDelegationPreviewText = ({ nounId, event, contextAccount }) => {
 };
 
 const NounTransferPreviewText = ({ event, contextAccount }) => {
-  const chainId = useChainId();
   const noun = useNoun(event.nounId);
   const transactionHash = event.id.split("_")[0];
   const { amount: saleAmount } = useSaleInfo({
