@@ -37,6 +37,7 @@ const NounsAccountAvatar = React.forwardRef(
       transparent = false,
       maxStackCount = 2,
       ensOnly = false,
+      fallbackImageUrl,
       ...props
     },
     ref,
@@ -78,7 +79,7 @@ const NounsAccountAvatar = React.forwardRef(
       );
 
     const nounAvatarUrl = nounAvatarUrls?.[0];
-    const imageUrl = ensAvatarUrl ?? nounAvatarUrl;
+    const imageUrl = ensAvatarUrl ?? nounAvatarUrl ?? fallbackImageUrl;
 
     if (!placeholder && imageUrl == null) return null;
 
