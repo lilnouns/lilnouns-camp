@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { notFound as nextNotFound } from "next/navigation";
 import {
   string as stringUtils,
@@ -6,10 +5,8 @@ import {
   message as messageUtils,
 } from "@shades/common/utils";
 import metaConfig from "../../../metadata-config.js";
-import { getStateFromCookie as getWagmiStateFromCookie } from "../../../wagmi-config.js";
 import { subgraphFetch, parseCandidate } from "../../../nouns-subgraph.js";
 import { normalizeId } from "../../../utils/candidates.js";
-import { mainnet } from "../../../chains.js";
 import { Hydrater as StoreHydrater } from "../../../store.js";
 import ClientAppProvider from "../../client-app-provider.js";
 import CandidateScreen from "../../../components/proposal-candidate-screen.js";

@@ -1,3 +1,4 @@
+import { mainnet, sepolia } from "wagmi/chains";
 import { object as objectUtils } from "@shades/common/utils";
 import { CHAIN_ID } from "./constants/env.js";
 

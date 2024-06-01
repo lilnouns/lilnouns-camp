@@ -9,12 +9,12 @@ import {
 } from "@shades/common/utils";
 import { useCachedState } from "@shades/common/app";
 import { useFetch } from "@shades/common/react";
-import { useAccountDisplayName } from "@shades/common/ethereum-react";
 import Select from "@shades/ui-web/select";
 import Button from "@shades/ui-web/button";
 import Spinner from "@shades/ui-web/spinner";
 import * as DropdownMenu from "@shades/ui-web/dropdown-menu";
 import { DotsHorizontal as DotsHorizontalIcon } from "@shades/ui-web/icons";
+import { CHAIN_ID } from "../constants/env.js";
 import { APPROXIMATE_BLOCKS_PER_DAY } from "../constants/ethereum.js";
 import { buildFeed as buildVoterFeed } from "../utils/voters.js";
 import {
@@ -30,10 +30,13 @@ import {
   useProposalCandidates,
   useProposals,
 } from "../store.js";
+import useBlockNumber from "../hooks/block-number.js";
 import { useWallet } from "../hooks/wallet.js";
 import { useDialog } from "../hooks/global-dialogs.js";
+import { useSearchParams } from "../hooks/navigation.js";
 import useMatchDesktopLayout from "../hooks/match-desktop-layout.js";
 import useEnsName from "../hooks/ens-name.js";
+import useAccountDisplayName from "../hooks/account-display-name.js";
 import Layout, { MainContentContainer } from "./layout.js";
 import Callout from "./callout.js";
 import * as Tabs from "./tabs.js";
@@ -118,7 +121,7 @@ const getDelegateVotes = (delegate) => {
 };
 
 const TruncatedActivityFeed = React.memo(({ voterAddress, filter = "all" }) => {
-  const { data: latestBlockNumber } = useBlockNumber({
+  const latestBlockNumber = useBlockNumber({
     watch: true,
     cache: 20_000,
   });
@@ -177,10 +180,8 @@ const TruncatedActivityFeed = React.memo(({ voterAddress, filter = "all" }) => {
 });
 
 const FeedSidebar = React.memo(({ voterAddress }) => {
-  const [filter, setFilter] = useCachedState(
-    "voter-screen:activity-filter",
-    "all",
-  );
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filter = searchParams.get("feed-filter") ?? "all";
 
   return (
     <React.Suspense fallback={null}>
@@ -203,7 +204,15 @@ const FeedSidebar = React.memo(({ voterAddress }) => {
               { value: "representation", label: "Delegation activity only" },
             ]}
             onChange={(value) => {
-              setFilter(value);
+              setSearchParams(
+                (p) => {
+                  const newParams = new URLSearchParams(p);
+                  if (value === "all") newParams.delete("feed-filter");
+                  else newParams.set("feed-filter", value);
+                  return newParams;
+                },
+                { replace: true },
+              );
             }}
             fullWidth={false}
             width="max-content"
@@ -657,7 +666,7 @@ const VoterHeader = ({ accountAddress }) => {
 
                     case "open-agora":
                       window.open(
-                        `https://lilnounsagora.com/delegate/${accountAddress}`,
+                        `https://nounsagora.com/delegate/${accountAddress}`,
                         "_blank",
                       );
                       break;

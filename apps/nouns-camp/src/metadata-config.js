@@ -1,11 +1,11 @@
 export default {
   viewportThemeColor: "#ffffff",
-  appTitle: "Lil Nouns Camp",
-  appDescription: "A Lil Nouns governance client",
-  titleTemplate: "%s - Lil Nouns Camp",
-  canonicalAppBasename: "https://lilnouns.camp",
+  appTitle: "Nouns Camp",
+  appDescription: "A Nouns governance client",
+  titleTemplate: "%s - Nouns Camp",
+  canonicalAppBasename: "https://www.nouns.camp",
   openGraphType: "website",
-  openGraphSiteName: "lilnouns.camp",
+  openGraphSiteName: "nouns.camp",
   twitterCard: "summary",
   appleWebAppStatusBarStyle: "default",
 };
