@@ -1,13 +1,13 @@
 import React from "react";
 import { css } from "@emotion/react";
 import NextLink from "next/link";
-import { useEnsName } from "wagmi";
 import { useFetch } from "@shades/common/react";
 import { useAccountDisplayName } from "@shades/common/ethereum-react";
 import * as Popover from "@shades/ui-web/popover";
 import Spinner from "@shades/ui-web/spinner";
 import InlineButton from "@shades/ui-web/inline-button";
 import { useActions, useNoun } from "../store.js";
+import useEnsName from "../hooks/ens-name.js";
 import InlineVerticalSeparator from "./inline-vertical-separator.js";
 import NounAvatar from "./noun-avatar.js";
 import FormattedDateWithTooltip from "./formatted-date-with-tooltip.js";
@@ -161,7 +161,7 @@ const NounDelegationPreviewText = ({ nounId, event, contextAccount }) => {
   const newAccountDisplayName = useAccountDisplayName(event.newAccountId);
   const { data: newAccountEns } = useEnsName({ address: event.newAccountId });
   const ownerDisplayName = useAccountDisplayName(noun.ownerId);
-  const { data: ownerEns } = useEnsName({ address: noun.ownerId });
+  const ownerEns = useEnsName(noun.ownerId);
 
   const isDestinationAccount =
     contextAccount != null &&
