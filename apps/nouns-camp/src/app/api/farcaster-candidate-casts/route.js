@@ -16,12 +16,12 @@ import {
 export const runtime = "edge";
 
 const createCanonicalCandidateUrl = async (candidateId) => {
-  const { proposalCandidate } = await subgraphFetch({
+  const { proposalCandidate } = [] | await subgraphFetch({
     query: `
       query {
-        proposalCandidate(id: ${JSON.stringify(candidateId)}) {
-          createdTransactionHash
-        }
+      # proposalCandidate(id: ${JSON.stringify(candidateId)}) {
+      #   createdTransactionHash
+      # }
       }`,
   });
 
