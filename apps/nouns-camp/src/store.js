@@ -868,7 +868,7 @@ const createStore = ({ initialState, publicClient }) =>
                     {
                       or: [
                         { endBlock_gt: ${referenceBlock} },
-                        { objectionPeriodEndBlock_gt: ${referenceBlock} }
+                      # { objectionPeriodEndBlock_gt: ${referenceBlock} }
                       ]
                     }
                   ]
@@ -1568,7 +1568,7 @@ const createStore = ({ initialState, publicClient }) =>
                     or: [
                       { startBlock_gte: ${startBlock}, startBlock_lte: ${endBlock} },
                       { endBlock_gte: ${startBlock}, endBlock_lte: ${endBlock} },
-                      { objectionPeriodEndBlock_gte: ${startBlock}, objectionPeriodEndBlock_lte: ${endBlock} },
+                    # { objectionPeriodEndBlock_gte: ${startBlock}, objectionPeriodEndBlock_lte: ${endBlock} },
                     ]
                   },
                   first: 1000
@@ -1576,7 +1576,7 @@ const createStore = ({ initialState, publicClient }) =>
                   id
                   startBlock
                   endBlock
-                  objectionPeriodEndBlock
+                # objectionPeriodEndBlock
                 }
               # candidateFeedbacks(
               #   where: {
