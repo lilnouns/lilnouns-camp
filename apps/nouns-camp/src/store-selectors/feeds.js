@@ -13,6 +13,14 @@ const buildVoteAndFeedbackPostFeedItems = ({
   votes = [],
   feedbackPosts = [],
 }) => {
+  const getBlockTimestamp = async (blockNumber) => {
+    const response = await fetch(`/api/block-timestamps?block=${blockNumber}`);
+    const { timestamp } = await response.json();
+    return new Date(timestamp * 1000);
+  };
+
+  // Add a "type" since there’s no way to distinguis votes from feedback posts
+  const votes = (votes_ ?? []).map((v) => ({ ...v, type: "vote" }));
   // Hide proposal votes with 0 voting power account if no reason is given
   const filteredVotes = votes.filter(
     (v) => v.votes > 0 || (v.reason?.trim() ?? "") !== "",
@@ -37,7 +45,7 @@ const buildVoteAndFeedbackPostFeedItems = ({
       support: p.support,
       authorAccount: p.voterId,
       blockNumber: p.createdBlock,
-      timestamp: p.createdTimestamp,
+      timestamp: getBlockTimestamp(p.createdBlock),
       voteCount: p.votes,
       proposalId,
       isPending: p.isPending,
@@ -61,6 +69,12 @@ export const buildProposalFeed = (
     includePropdateItems = true,
   },
 ) => {
+  const getBlockTimestamp = async (blockNumber) => {
+    const response = await fetch(`/api/block-timestamps?block=${blockNumber}`);
+    const { timestamp } = await response.json();
+    return new Date(timestamp * 1000);
+  };
+
   const proposal = storeState.proposalsById[proposalId];
 
   if (proposal == null) return [];
@@ -155,7 +169,7 @@ export const buildProposalFeed = (
       eventType: "proposal-canceled",
       id: `${proposal.id}-canceled`,
       blockNumber: proposal.canceledBlock,
-      timestamp: proposal.canceledTimestamp,
+      timestamp: getBlockTimestamp(proposal.canceledBlock),
       proposalId: proposal.id,
     });
 
@@ -165,7 +179,7 @@ export const buildProposalFeed = (
       eventType: "proposal-queued",
       id: `${proposal.id}-queued`,
       blockNumber: proposal.queuedBlock,
-      timestamp: proposal.queuedTimestamp,
+      timestamp: getBlockTimestamp(proposal.queuedBlock),
       proposalId: proposal.id,
     });
 
@@ -175,7 +189,7 @@ export const buildProposalFeed = (
       eventType: "proposal-executed",
       id: `${proposal.id}-executed`,
       blockNumber: proposal.executedBlock,
-      timestamp: proposal.executedTimestamp,
+      timestamp: getBlockTimestamp(proposal.executedBlock),
       proposalId: proposal.id,
     });
 
