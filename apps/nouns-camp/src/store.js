@@ -2432,7 +2432,7 @@ export const useMainFeedItems = (filter, { enabled = true }) => {
         };
 
         return arrayUtils.sortBy(
-          { value: (i) => i.timestamp ?? 0, order: "desc" },
+          { value: (i) => i.blockNumber ?? 0, order: "desc" },
           buildFeedItems(),
         );
       },

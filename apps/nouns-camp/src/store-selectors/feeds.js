@@ -230,7 +230,7 @@ export const buildProposalFeed = (
   }
 
   return arrayUtils.sortBy(
-    { value: (i) => i.timestamp ?? 0, order: "desc" },
+    { value: (i) => i.blockNumber ?? 0, order: "desc" },
     items,
   );
 };
@@ -344,7 +344,7 @@ export const buildCandidateFeed = (
     targetProposalId,
   }));
 
-  return arrayUtils.sortBy({ value: (i) => i.timestamp ?? 0, order: "desc" }, [
+  return arrayUtils.sortBy({ value: (i) => i.blockNumber ?? 0, order: "desc" }, [
     ...items,
     ...signatureItems,
   ]);
@@ -488,7 +488,7 @@ export const buildAccountFeed = (storeState, accountAddress_, { filter }) => {
   };
 
   return arrayUtils.sortBy(
-    { value: (i) => i.timestamp ?? 0, order: "desc" },
+    { value: (i) => i.blockNumber ?? 0, order: "desc" },
     getFilteredItems(),
   );
 };
