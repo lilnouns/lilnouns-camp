@@ -2,6 +2,8 @@ import { CHAIN_ID } from "../../../constants/env.js";
 import { resolveIdentifier } from "../../../contracts";
 import { reportError } from "../../../utils/monitoring.js";
 
+export const runtime = "edge";
+
 const TENDERLY_API_ENDPOINT = `https://api.tenderly.co/api/v1/account/me/project/${process.env.TENDERLY_PROJECT_SLUG}`;
 const TENDERLY_SIMULATION_OPTIONS = {
   save: false,
