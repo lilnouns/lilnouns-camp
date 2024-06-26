@@ -708,7 +708,7 @@ const createStore = ({ initialState, publicClient }) =>
           address,
         });
       const records = await Promise.all(
-        addresses.map((address) =>
+        (addresses ?? []).map((address) =>
           reverse(address).then((name) => ({ address, name })),
         ),
       );
