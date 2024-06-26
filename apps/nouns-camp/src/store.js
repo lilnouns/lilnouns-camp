@@ -499,37 +499,39 @@ const createStore = ({ initialState, publicClient }) =>
       return subgraphEntities;
     };
 
-    const fetchProposalsVersions = async (proposalIds) =>
-      subgraphFetch({
-        query: `{
-          proposalVersions(
-            where: {
-              proposal_in: [${proposalIds.map((id) => `"${id}"`)}]
-            }
-          ) {
-            createdAt
-            createdBlock
-            updateMessage
-            proposal { id }
-          }
-        }`,
-      });
+    // eslint-disable-next-line no-unused-vars
+    const fetchProposalsVersions = async (proposalIds) => ({ proposalVersions: [] })
+      // subgraphFetch({
+      //   query: `{
+      //     proposalVersions(
+      //       where: {
+      //         proposal_in: [${proposalIds.map((id) => `"${id}"`)}]
+      //       }
+      //     ) {
+      //       createdAt
+      //       createdBlock
+      //       updateMessage
+      //       proposal { id }
+      //     }
+      //   }`,
+      // });
 
-    const fetchCandidatesFeedbackPosts = (candidateIds) =>
-      subgraphFetch({
-        query: `
-          ${CANDIDATE_FEEDBACK_FIELDS}
-          query {
-            candidateFeedbacks(
-              where: {
-                candidate_in: [${candidateIds.map((id) => JSON.stringify(id))}]
-              },
-              first: 1000
-            ) {
-              ...CandidateFeedbackFields
-            }
-          }`,
-      });
+    // eslint-disable-next-line no-unused-vars
+    const fetchCandidatesFeedbackPosts = (candidateIds) => ({ candidateFeedbacks: []})
+      // subgraphFetch({
+      //   query: `
+      //     ${CANDIDATE_FEEDBACK_FIELDS}
+      //     query {
+      //       candidateFeedbacks(
+      //         where: {
+      //           candidate_in: [${candidateIds.map((id) => JSON.stringify(id))}]
+      //         },
+      //         first: 1000
+      //       ) {
+      //         ...CandidateFeedbackFields
+      //       }
+      //     }`,
+      // });
 
     const fetchProposalCandidate = async (rawId) => {
       const [account, ...slugParts] = rawId.split("-");
