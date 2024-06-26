@@ -1453,35 +1453,35 @@ const createStore = ({ initialState, publicClient }) =>
 
           (async () => {
             // Fetch signatures, then content IDs, and finally the candidate versions
-            const { proposalCandidateSignatures } = await subgraphFetch({
-              query: `
-                query {
-                  proposalCandidateSignatures(
-                    where: { signer: "${id.toLowerCase()}" }
-                  ) {
-                    content { id }
-                  }
-                } `,
-            });
+            // const { proposalCandidateSignatures } = await subgraphFetch({
+            //   query: `
+            //     query {
+            //       proposalCandidateSignatures(
+            //         where: { signer: "${id.toLowerCase()}" }
+            //       ) {
+            //         content { id }
+            //       }
+            //     } `,
+            // });
 
-            const contentIds = arrayUtils.unique(
-              proposalCandidateSignatures.map((s) => s.content.id),
-            );
+            // const contentIds = arrayUtils.unique(
+            //   proposalCandidateSignatures.map((s) => s.content.id),
+            // );
 
-            const { proposalCandidateVersions } = await subgraphFetch({
-              query: `
-                query {
-                  proposalCandidateVersions(
-                    where: {
-                      content_in: [${contentIds.map((id) => `"${id}"`)}]
-                    }
-                  ) {
-                    id
-                  }
-                } `,
-            });
+            // const { proposalCandidateVersions } = await subgraphFetch({
+            //   query: `
+            //     query {
+            //       proposalCandidateVersions(
+            //         where: {
+            //           content_in: [${contentIds.map((id) => `"${id}"`)}]
+            //         }
+            //       ) {
+            //         id
+            //       }
+            //     } `,
+            // });
 
-            return subgraphFetch({
+            return { proposalCandidates: [] } /*subgraphFetch({
               query: `
                 ${CANDIDATE_CONTENT_SIGNATURE_FIELDS}
                 query {
@@ -1518,7 +1518,7 @@ const createStore = ({ initialState, publicClient }) =>
                     versions { id }
                   }
                 }`,
-            });
+            })*/;
           })(),
 
           PropdatesSubgraph.fetchPropdatesByAccount(id),
