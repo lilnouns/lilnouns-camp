@@ -10,6 +10,8 @@ import {
   shareSimulations,
 } from "../../../tenderly-utils";
 
+export const runtime = "edge";
+
 const chain = getChain(CHAIN_ID);
 
 const publicClient = createPublicClient({
