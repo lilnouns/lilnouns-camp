@@ -163,11 +163,11 @@ const NavBar = ({ navigationStack, actions: actions_ }) => {
         window.open("https://lilnouns.wtf", "_blank");
         break;
       case "open-warpcast":
-        window.open("https://warpcast.com/~/channel/nouns", "_blank");
+        window.open("https://warpcast.com/~/channel/lilnouns", "_blank");
         break;
-      case "open-changelog":
-        window.open("https://warpcast.com/~/channel/camp", "_blank");
-        break;
+      // case "open-changelog":
+      //   window.open("https://warpcast.com/~/channel/camp", "_blank");
+      //   break;
       case "navigate-to-proposal-listing":
         navigate("/proposals");
         break;
