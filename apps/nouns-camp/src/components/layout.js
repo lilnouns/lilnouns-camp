@@ -171,9 +171,9 @@ const NavBar = ({ navigationStack, actions: actions_ }) => {
       case "navigate-to-proposal-listing":
         navigate("/proposals");
         break;
-      case "navigate-to-candidate-listing":
-        navigate("/candidates");
-        break;
+      // case "navigate-to-candidate-listing":
+      //   navigate("/candidates");
+      //   break;
       case "navigate-to-account-listing":
         navigate("/voters");
         break;
@@ -371,10 +371,10 @@ const NavBar = ({ navigationStack, actions: actions_ }) => {
                       id: "navigate-to-proposal-listing",
                       label: "Proposals",
                     },
-                    {
-                      id: "navigate-to-candidate-listing",
-                      label: "Candidates",
-                    },
+                    // {
+                    //   id: "navigate-to-candidate-listing",
+                    //   label: "Candidates",
+                    // },
                     {
                       id: "navigate-to-account-listing",
                       label: "Voters",
