@@ -24,7 +24,7 @@ import { getForYouGroup as getProposalForYouGroup } from "../utils/proposals.js"
 import { search as searchEns } from "../utils/ens.js";
 import {
   getSponsorSignatures as getCandidateSponsorSignatures,
-  getScore as getCandidateScore,
+  // getScore as getCandidateScore,
   getForYouGroup as getCandidateForYouGroup,
   hadRecentActivity as candidateHadRecentActivity,
 } from "../utils/candidates.js";
@@ -126,25 +126,25 @@ const BrowseScreen = () => {
     "voter-sorting-strategy",
     "recent-revotes",
   );
-  const [candidateSortStrategy_, setCandidateSortStrategy] = useCachedState(
-    "candidate-sorting-strategy",
-    "activity",
-  );
+  // const [candidateSortStrategy_, setCandidateSortStrategy] = useCachedState(
+  //   "candidate-sorting-strategy",
+  //   "activity",
+  // );
 
   const [hasFetchedOnce, setHasFetchedOnce] = React.useState(
     hasFetchedBrowseDataOnce,
   );
 
-  const candidateSortStrategies =
-    connectedAccountAddress == null
-      ? ["activity", "popularity"]
-      : ["activity", "popularity", "connected-account-feedback"];
+  // const candidateSortStrategies =
+  //   connectedAccountAddress == null
+  //     ? ["activity", "popularity"]
+  //     : ["activity", "popularity", "connected-account-feedback"];
 
-  const candidateSortStrategy = candidateSortStrategies.includes(
-    candidateSortStrategy_,
-  )
-    ? candidateSortStrategy_
-    : "popularity";
+  // const candidateSortStrategy = candidateSortStrategies.includes(
+  //   candidateSortStrategy_,
+  // )
+  //   ? candidateSortStrategy_
+  //   : "popularity";
 
   const filteredProposals = React.useMemo(
     () => proposals.filter((p) => p.startBlock != null),
@@ -301,24 +301,24 @@ const BrowseScreen = () => {
 
     if (!isActive) return "candidates:inactive";
 
-    if (candidateSortStrategy === "popularity") return "candidates:popular";
+    // if (candidateSortStrategy === "popularity") return "candidates:popular";
 
-    if (candidateSortStrategy === "connected-account-feedback") {
-      const hasFeedback =
-        c.feedbackPosts != null &&
-        c.feedbackPosts.some(
-          (p) => p.voterId.toLowerCase() === connectedAccountAddress,
-        );
-
-      if (
-        // Include authored candidates here for now
-        c.proposerId.toLowerCase() === connectedAccountAddress ||
-        hasFeedback
-      )
-        return "candidates:feedback-given";
-
-      return "candidates:feedback-missing";
-    }
+    // if (candidateSortStrategy === "connected-account-feedback") {
+    //   const hasFeedback =
+    //     c.feedbackPosts != null &&
+    //     c.feedbackPosts.some(
+    //       (p) => p.voterId.toLowerCase() === connectedAccountAddress,
+    //     );
+    //
+    //   if (
+    //     // Include authored candidates here for now
+    //     c.proposerId.toLowerCase() === connectedAccountAddress ||
+    //     hasFeedback
+    //   )
+    //     return "candidates:feedback-given";
+    //
+    //   return "candidates:feedback-missing";
+    // }
 
     return ["candidates", forYouGroup].join(":");
   };
@@ -401,12 +401,12 @@ const BrowseScreen = () => {
         case "candidates:inactive":
         case "proposals:sponsored-proposal-update-awaiting-signature": {
           const sortedItems = arrayUtils.sortBy(
-            candidateSortStrategy === "popularity"
+            /*candidateSortStrategy === "popularity"
               ? {
                   value: (i) => getCandidateScore(i) ?? 0,
                   order: "desc",
                 }
-              : {
+              :*/ {
                   value: (i) =>
                     Math.max(
                       i.lastUpdatedTimestamp,
@@ -622,7 +622,7 @@ const BrowseScreen = () => {
             );
           })()}
         </Tabs.Item>
-        <Tabs.Item key="candidates" title="Candidates">
+        {/*<Tabs.Item key="candidates" title="Candidates">
           <div
             css={css({
               display: "flex",
@@ -707,7 +707,7 @@ const BrowseScreen = () => {
                 showAll={() => setPage(null)}
               />
             )}
-        </Tabs.Item>
+        </Tabs.Item>*/}
         <Tabs.Item key="voters" title="Voters">
           <div
             css={css({
