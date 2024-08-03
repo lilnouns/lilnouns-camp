@@ -1,7 +1,7 @@
 import { decodeEventLog } from "viem";
 import React from "react";
 import { useReadContract, useWriteContract, useSimulateContract } from "wagmi";
-import { CHAIN_ID, CAMP_CLIENT_ID } from "../constants/env.js";
+import { CHAIN_ID, /*CAMP_CLIENT_ID*/ } from "../constants/env.js";
 import { unparse as unparseTransactions } from "../utils/transactions.js";
 import { resolveIdentifier } from "../contracts.js";
 import { useActions } from "../store.js";
@@ -13,7 +13,7 @@ import { useCurrentVotes, useTotalSupply } from "./token-contract.js";
 
 const { address: contractAddress } = resolveIdentifier("dao");
 
-const NOUNDRY_CLIENT_ID = 1;
+// const NOUNDRY_CLIENT_ID = 1;
 
 const useRead = ({ enabled = true, ...options }) =>
   useReadContract({
