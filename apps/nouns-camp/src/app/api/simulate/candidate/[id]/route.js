@@ -7,7 +7,7 @@ const fetchCandidate = async (id) => {
   const data = await subgraphFetch({
     query: `
       query {
-        proposalCandidate(id: "${id}") {
+        proposalCandidate(id: ${JSON.stringify(id)}) {
           id
           slug
           proposer
