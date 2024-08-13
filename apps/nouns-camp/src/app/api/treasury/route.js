@@ -5,6 +5,8 @@ import { resolveIdentifier as resolveContractIdentifier } from "../../../contrac
 import { getChain } from "../../../utils/chains.js";
 import { getJsonRpcUrl } from "../../../wagmi-config.js";
 
+export const runtime = "edge";
+
 const chain = getChain(CHAIN_ID);
 
 const publicClient = createPublicClient({
