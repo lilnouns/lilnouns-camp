@@ -35,16 +35,16 @@ const balanceOf = ({ contract, account }) => {
 export async function GET() {
   const executorAddress = resolveContractIdentifier("executor")?.address;
   const daoProxyAddress = resolveContractIdentifier("dao")?.address;
-  const forkEscrowAddress = resolveContractIdentifier("fork-escrow")?.address;
-  const tokenBuyerAddress = resolveContractIdentifier("token-buyer")?.address;
-  const payerAddress = resolveContractIdentifier("payer")?.address;
+  // const forkEscrowAddress = resolveContractIdentifier("fork-escrow")?.address;
+  // const tokenBuyerAddress = resolveContractIdentifier("token-buyer")?.address;
+  // const payerAddress = resolveContractIdentifier("payer")?.address;
 
   const [
     executorBalances,
     daoProxyEthBalance,
-    tokenBuyerEthBalance,
-    payerUsdcBalance,
-    forkEscrowNounsBalance,
+    // tokenBuyerEthBalance,
+    // payerUsdcBalance,
+    // forkEscrowNounsBalance,
     convertionRates,
     lidoApr,
     rocketPoolApr,
@@ -66,9 +66,9 @@ export async function GET() {
       return { eth, weth, usdc, steth, wsteth, reth, nouns };
     })(),
     publicClient.getBalance({ address: daoProxyAddress }),
-    publicClient.getBalance({ address: tokenBuyerAddress }),
-    balanceOf({ contract: "usdc-token", account: payerAddress }),
-    balanceOf({ contract: "token", account: forkEscrowAddress }),
+    // publicClient.getBalance({ address: tokenBuyerAddress }),
+    // balanceOf({ contract: "usdc-token", account: payerAddress }),
+    // balanceOf({ contract: "token", account: forkEscrowAddress }),
     (async () => {
       const [rethEth, usdcEth] = await Promise.all(
         [
@@ -116,9 +116,9 @@ export async function GET() {
       balances: {
         executor: objectUtils.mapValues((v) => v.toString(), executorBalances),
         "dao-proxy": { eth: daoProxyEthBalance.toString() },
-        "token-buyer": { eth: tokenBuyerEthBalance.toString() },
-        payer: { usdc: payerUsdcBalance.toString() },
-        "fork-escrow": { nouns: forkEscrowNounsBalance.toString() },
+        // "token-buyer": { eth: tokenBuyerEthBalance.toString() },
+        // payer: { usdc: payerUsdcBalance.toString() },
+        // "fork-escrow": { nouns: forkEscrowNounsBalance.toString() },
       },
       rates: objectUtils.mapValues((v) => v.toString(), convertionRates),
       aprs: { lido: lidoApr, rocketPool: rocketPoolApr },
