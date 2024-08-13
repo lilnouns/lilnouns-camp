@@ -309,15 +309,6 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                           )
                         }
                       />
-                      </li>
-                    )}
-                    {treasuryOeth != null && (
-                      <li>
-                        <FormattedEth
-                          value={treasuryOeth}
-                          tokenSymbol="oETH"
-                          tooltip={false}
-                        />
                     </li>
                     {balances.executor.reth > 0 && (
                       <li>
