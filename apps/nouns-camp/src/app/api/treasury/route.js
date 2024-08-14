@@ -57,6 +57,7 @@ export async function GET() {
           "usdc-token",
           "steth-token",
           "wsteth-token",
+          "oeth-token",
           "reth-token",
           "token",
         ].map((contractIdentifier) =>
