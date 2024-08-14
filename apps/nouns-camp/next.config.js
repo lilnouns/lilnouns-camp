@@ -35,7 +35,7 @@ const withSentry = (config) =>
   withSentryConfig(
     config,
     {
-      silent: true, // Suppresses source map uploading logs during build
+      silent: false, // Suppresses source map uploading logs during build
       org: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJECT,
     },
@@ -118,7 +118,7 @@ module.exports = withSentry(
           ignoredModules.map((n) => [n, "@shades/common"]),
         ),
       },
-      instrumentationHook: true,
+      instrumentationHook: process.env.NODE_ENV === 'production',
     },
   }),
 );
