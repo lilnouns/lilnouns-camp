@@ -33,9 +33,9 @@ import useEthToUsdRate, {
 import FormattedNumber from "./formatted-number.js";
 import AddressInput from "./address-input.js";
 import { formatAbiParameter } from "abitype";
-import { useTotalSupply } from "../hooks/token-contract.js";
-import NounAvatar from "./noun-avatar.js";
-import { subgraphFetch } from "../nouns-subgraph.js";
+// import { useTotalSupply } from "../hooks/token-contract.js";
+// import NounAvatar from "./noun-avatar.js";
+// import { subgraphFetch } from "../nouns-subgraph.js";
 
 // const decimalsByCurrency = {
 //   eth: 18,
