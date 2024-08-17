@@ -303,7 +303,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                                 </dd>
                               </>
                             )}
-                            {balances["client-incentives-rewards-proxy"]?.weth >
+                            {/*{balances["client-incentives-rewards-proxy"]?.weth >
                               0 && (
                               <>
                                 <dt>
@@ -329,7 +329,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                                   />
                                 </dd>
                               </>
-                            )}
+                            )}*/}
                             {balances.executor.weth > 0 && (
                               <>
                                 <dt>Treasury wETH</dt>
