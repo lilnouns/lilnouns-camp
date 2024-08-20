@@ -25,6 +25,7 @@ import Select from "@shades/ui-web/select";
 import Dialog from "@shades/ui-web/dialog";
 import DialogHeader from "@shades/ui-web/dialog-header";
 // import { resolveIdentifier as getContractWithIdentifier } from "../contracts.js";
+import { createSignature } from "../utils/transactions.js";
 import usePublicClient from "../hooks/public-client.js";
 import { fetchContractInfo } from "../hooks/etherscan-contract-info.js";
 import useEthToUsdRate, {
@@ -265,203 +266,6 @@ const createSignature = (functionAbiItem) => {
   return `${functionAbiItem.name}(${formattedInputs.join(",")})`;
 };
 
-// const useNounIdsByOwner = ({ owner } = {}) => {
-//   const [nouns, setNouns] = React.useState(null);
-//
-//   useFetch(async () => {
-//     const query = `{
-//       nouns(first: 1000, where: { owner: "${owner.toLowerCase()}" }) {
-//         id
-//       }
-//     }`;
-//     const { nouns } = await subgraphFetch({ query });
-//     const nounIds = nouns.map((n) => n.id);
-//     setNouns(nounIds);
-//   }, [owner]);
-//
-//   if (!owner) return null;
-//
-//   return nouns;
-// };
-//
-// const StreamingPaymentActionForm = ({ state, setState }) => {
-//   const fetchPredictedStreamContractAddress =
-//     useFetchPredictedStreamContractAddress();
-//
-//   const canPredictStreamContractAddress =
-//     isAddress(state.receiverAddress) &&
-//     state.amount > 0 &&
-//     state.dateRange?.start != null &&
-//     state.dateRange?.end != null &&
-//     state.dateRange.start < state.dateRange.end;
-//
-//   useFetch(
-//     !canPredictStreamContractAddress
-//       ? null
-//       : ({ signal }) =>
-//           fetchPredictedStreamContractAddress({
-//             receiverAddress: state.receiverAddress,
-//             amount: state.amount,
-//             currency: state.currency,
-//             startDate: state.dateRange?.start,
-//             endDate: state.dateRange?.end,
-//           }).then((address) => {
-//             if (signal?.aborted) return;
-//             setState({ predictedStreamContractAddress: address });
-//           }),
-//     [
-//       state.receiverAddress,
-//       state.amount,
-//       state.currency,
-//       state.dateRange?.start,
-//       state.dateRange?.end,
-//     ],
-//   );
-//
-//   useCustomCacheEnsAddress(state.receiverQuery.trim(), {
-//     enabled: state.receiverQuery.trim().split(".").slice(-1)[0].length > 0,
-//   });
-//
-//   return (
-//     <>
-//       <div>
-//         <div
-//           style={{
-//             display: "grid",
-//             gridTemplateColumns: "repeat(2, minmax(0,1fr))",
-//             gap: "1.6rem",
-//           }}
-//         >
-//           <Input
-//             label="Start vesting"
-//             type="date"
-//             max={
-//               state.dateRange.end == null
-//                 ? undefined
-//                 : formatDate(state.dateRange.end, "yyyy-MM-dd")
-//             }
-//             value={
-//               state.dateRange.start == null
-//                 ? "yyyy-MM-dd"
-//                 : formatDate(state.dateRange.start, "yyyy-MM-dd")
-//             }
-//             onChange={(e) => {
-//               setState(({ dateRange }) => {
-//                 const { start, end } = dateRange;
-//                 if (isNaN(e.target.valueAsNumber))
-//                   return { dateRange: { start: null, end } };
-//
-//                 try {
-//                   const selectedStart = parseDate(
-//                     e.target.value,
-//                     "yyyy-MM-dd",
-//                     new Date(),
-//                   );
-//                   formatDate(selectedStart, "yyyy-MM-dd"); // Validation :shrug:
-//                   return {
-//                     dateRange: {
-//                       start:
-//                         end == null || selectedStart <= end
-//                           ? selectedStart
-//                           : start,
-//                       end,
-//                     },
-//                   };
-//                 } catch (e) {
-//                   return { dateRange: { start, end } };
-//                 }
-//               });
-//             }}
-//           />
-//           <Input
-//             label="End vesting"
-//             type="date"
-//             min={
-//               state.dateRange.state == null
-//                 ? undefined
-//                 : formatDate(state.dateRange.start, "yyyy-MM-dd")
-//             }
-//             value={
-//               state.dateRange.end == null
-//                 ? "yyyy-MM-dd"
-//                 : formatDate(state.dateRange.end, "yyyy-MM-dd")
-//             }
-//             onChange={(e) => {
-//               setState(({ dateRange }) => {
-//                 const { start, end } = dateRange;
-//
-//                 if (isNaN(e.target.valueAsNumber))
-//                   return { dateRange: { start, end: null } };
-//
-//                 try {
-//                   const selectedEnd = parseDate(
-//                     e.target.value,
-//                     "yyyy-MM-dd",
-//                     new Date(),
-//                   );
-//                   formatDate(selectedEnd, "yyyy-MM-dd"); // Validation :shrug:
-//
-//                   return {
-//                     dateRange: {
-//                       start,
-//                       end:
-//                         start == null || selectedEnd >= start
-//                           ? selectedEnd
-//                           : end,
-//                     },
-//                   };
-//                 } catch (e) {
-//                   return { dateRange: { start, end } };
-//                 }
-//               });
-//             }}
-//           />
-//         </div>
-//         <div
-//           css={(t) =>
-//             css({
-//               fontSize: t.text.sizes.small,
-//               color: t.colors.textDimmed,
-//               marginTop: "0.7rem",
-//               em: {
-//                 fontWeight: t.text.weights.emphasis,
-//                 fontStyle: "normal",
-//               },
-//             })
-//           }
-//         >
-//           Start date <em>can</em> be in the past.
-//         </div>
-//       </div>
-//
-//       <AmountWithCurrencyInput
-//         amount={state.amount}
-//         setAmount={(amount) => setState({ amount })}
-//         currency={state.currency}
-//         setCurrency={(currency) => setState({ currency })}
-//         currencyOptions={[
-//           { value: "weth", label: "WETH" },
-//           { value: "usdc", label: "USDC" },
-//         ]}
-//       />
-//
-//       <AddressInput
-//         label="Receiver account"
-//         value={state.receiverQuery}
-//         onChange={(maybeAddress) => {
-//           setState({ receiverQuery: maybeAddress });
-//         }}
-//         placeholder="0x..., vitalik.eth"
-//         hint={
-//           !isAddress(state.receiverQuery)
-//             ? "Specify an Ethereum account address or ENS name"
-//             : null
-//         }
-//       />
-//     </>
-//   );
-// };
-
 const CustomTransactionActionForm = ({ state, setState }) => {
   const publicClient = usePublicClient();
 
@@ -517,7 +321,10 @@ const CustomTransactionActionForm = ({ state, setState }) => {
   const contractCallAbiItemOptions = abi
     ?.filter(isFunctionAbiItem)
     .map((item) => {
-      const signature = createSignature(item);
+      const signature = createSignature({
+        functionName: item.name,
+        inputTypes: item.inputs,
+      });
 
       const label = (
         <span>
@@ -1021,7 +828,10 @@ const formConfigByActionType = {
           return customAbi.some(
             (abiItem) =>
               isFunctionAbiItem(abiItem) &&
-              createSignature(abiItem) === signature,
+              createSignature({
+                functionName: abiItem.name,
+                inputTypes: abiItem.inputs,
+              }) === signature,
           );
         })(),
       };
@@ -1044,7 +854,9 @@ const formConfigByActionType = {
     },
     hasRequiredInputs: ({ state }) => {
       const selectedSignatureAbiItem = state.abi?.find(
-        (i) => createSignature(i) === state.signature,
+        (i) =>
+          createSignature({ functionName: i.name, inputTypes: i.inputs }) ===
+          state.signature,
       );
 
       if (selectedSignatureAbiItem == null) return false;
@@ -1063,7 +875,9 @@ const formConfigByActionType = {
     },
     buildAction: ({ state }) => {
       const selectedSignatureAbiItem = state.abi?.find(
-        (i) => createSignature(i) === state.signature,
+        (i) =>
+          createSignature({ functionName: i.name, inputTypes: i.inputs }) ===
+          state.signature,
       );
 
       const { inputs: inputTypes } = selectedSignatureAbiItem;
