@@ -590,7 +590,7 @@ const formConfigByActionType = {
       const ensAddress = ensCache.resolve(receiverQuery);
       const receiverAddress = isAddress(receiverQuery)
         ? receiverQuery
-        : ensAddress ?? "";
+        : (ensAddress ?? "");
       return { ...state, receiverAddress };
     },
     hasRequiredInputs: ({ state }) =>
@@ -662,7 +662,7 @@ const formConfigByActionType = {
   //     const ensAddress = ensCache.resolve(receiverQuery);
   //     const receiverAddress = isAddress(receiverQuery)
   //       ? receiverQuery
-  //       : ensAddress ?? "";
+  //       : (ensAddress ?? "");
   //     return { ...state, receiverAddress };
   //   },
   //   hasRequiredInputs: ({ state }) =>
@@ -697,7 +697,7 @@ const formConfigByActionType = {
   //     const ensAddress = ensCache.resolve(receiverQuery);
   //     const receiverAddress = isAddress(receiverQuery)
   //       ? receiverQuery
-  //       : ensAddress ?? "";
+  //       : (ensAddress ?? "");
   //     const { address: treasuryAddress } =
   //       getContractWithIdentifier("executor");
   //     const totalSupply = useTotalSupply();
