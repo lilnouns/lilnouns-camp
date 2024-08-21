@@ -47,15 +47,15 @@ export async function GET() {
   //   "client-incentives-rewards-proxy",
   // )?.address;
   // const forkEscrowAddress = resolveContractIdentifier("fork-escrow")?.address;
-  // const tokenBuyerAddress = resolveContractIdentifier("token-buyer")?.address;
-  // const payerAddress = resolveContractIdentifier("payer")?.address;
+  const tokenBuyerAddress = resolveContractIdentifier("token-buyer")?.address;
+  const payerAddress = resolveContractIdentifier("payer")?.address;
 
   const {
     executorBalances,
     daoProxyEthBalance,
-    // tokenBuyerEthBalance,
+    tokenBuyerEthBalance,
     // clientIncentivesRewardsProxyWethBalance,
-    // payerUsdcBalance,
+    payerUsdcBalance,
     // forkEscrowNounsBalance,
     convertionRates,
     lidoApr,
@@ -73,8 +73,8 @@ export async function GET() {
               { key: "usdc", contract: "usdc-token" },
               { key: "steth", contract: "steth-token" },
               { key: "wsteth", contract: "wsteth-token" },
-              CHAIN_ID === 1 ? { key: "reth", contract: "oeth-token",
-          "reth-token" } : null,
+              CHAIN_ID === 1 ? { key: "reth", contract: "reth-token" } : null,
+              CHAIN_ID === 1 ? { key: "oeth", contract: "oeth-token" } : null,
               { key: "nouns", contract: "token" },
             ]
               .filter(Boolean)
@@ -99,23 +99,23 @@ export async function GET() {
         return [key, balance];
       }),
       ...[
-        CHAIN_ID === 1
-          ? {
-              key: "clientIncentivesRewardsProxyWethBalance",
-              contract: "weth-token",
-              address: clientIncentivesRewardsProxyAddress,
-            }
-          : null,
+        // CHAIN_ID === 1
+        //   ? {
+        //       key: "clientIncentivesRewardsProxyWethBalance",
+        //       contract: "weth-token",
+        //       address: clientIncentivesRewardsProxyAddress,
+        //     }
+        //   : null,
         {
           key: "payerUsdcBalance",
           contract: "usdc-token",
           address: payerAddress,
         },
-        {
-          key: "forkEscrowNounsBalance",
-          contract: "token",
-          address: forkEscrowAddress,
-        },
+        // {
+        //   key: "forkEscrowNounsBalance",
+        //   contract: "token",
+        //   address: forkEscrowAddress,
+        // },
       ]
         .filter(Boolean)
         .map(async ({ key, contract, address }) => {
@@ -177,8 +177,8 @@ export async function GET() {
         // "client-incentives-rewards-proxy": {
         //   weth: clientIncentivesRewardsProxyWethBalance?.toString() ?? null,
         // },
-        // "token-buyer": { eth: tokenBuyerEthBalance.toString() },
-        // payer: { usdc: payerUsdcBalance.toString() },
+        "token-buyer": { eth: tokenBuyerEthBalance.toString() },
+        payer: { usdc: payerUsdcBalance.toString() },
         // "fork-escrow": { nouns: forkEscrowNounsBalance.toString() },
       },
       rates: objectUtils.mapValues((v) => v.toString(), convertionRates),
