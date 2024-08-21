@@ -22,7 +22,7 @@ import FormattedNumber from "./formatted-number.js";
 import ExplorerAddressLink from "./chain-explorer-address-link.js";
 import Link from "@shades/ui-web/link";
 import NextLink from "next/link";
-import { buildEtherscanLink } from "../utils/etherscan.js";
+// import { buildEtherscanLink } from "../utils/etherscan.js";
 
 const ONE_DAY_IN_SECONDS = 24 * 60 * 60;
 
