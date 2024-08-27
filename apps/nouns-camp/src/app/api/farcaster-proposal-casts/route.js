@@ -77,7 +77,7 @@ export async function POST(request) {
   // if (ethSignature == null)
   //   return jsonResponse(400, { error: "eth-signature-required" });
 
-  // // Allow up to 10 minute old signatures
+  // Allow up to 10 minute old signatures
   // if (new Date() + 10 * 60 * 1000 > new Date(timestamp))
   //   return jsonResponse(400, { error: "signature-expired" });
 
@@ -87,17 +87,6 @@ export async function POST(request) {
   // });
 
   // const isValidSignature = await publicClient.verifyMessage({
-  //   address: ethAddress,
-  //   message: buildProposalCastSignatureMessage({
-  //     text,
-  //     proposalId,
-  //     chainId: CHAIN_ID,
-  //     timestamp,
-  //   }),
-  //   signature: ethSignature,
-  // });
-
-  // const isValidSignature = await verifyMessage({
   //   address: ethAddress,
   //   message: buildProposalCastSignatureMessage({
   //     text,
