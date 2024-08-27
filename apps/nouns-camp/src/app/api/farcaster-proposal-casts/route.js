@@ -1,7 +1,9 @@
 // import { kv } from "@vercel/kv";
-// import { verifyMessage, isAddress } from "viem";
+// import { createPublicClient, http, isAddress } from "viem";
 // import { CHAIN_ID, APP_URL } from "../../../constants/env.js";
+// import { getJsonRpcUrl } from "../../../wagmi-config.js";
 // import { subgraphFetch } from "../../../nouns-subgraph.js";
+// import { getChain } from "../../../utils/chains.js";
 // import {
 //   parseEpochTimestamp,
 //   buildProposalCastSignatureMessage,
@@ -14,6 +16,8 @@
 // } from "../farcaster-utils.js";
 
 export const runtime = "edge";
+
+// const chain = getChain(CHAIN_ID);
 
 // const createCanonicalProposalUrl = async (proposalId) => {
 //   const { proposal } = await subgraphFetch({
@@ -62,7 +66,7 @@ export async function GET(request) {
 export async function POST(request) {
   // const { proposalId, text, fid, timestamp, ethAddress, ethSignature } =
   //   await request.json();
-  //
+
   // if (proposalId == null)
   //   return jsonResponse(400, { error: "proposal-required" });
   // if (fid == null) return jsonResponse(400, { error: "fid-required" });
@@ -72,10 +76,26 @@ export async function POST(request) {
   //   return jsonResponse(400, { error: "eth-address-required" });
   // if (ethSignature == null)
   //   return jsonResponse(400, { error: "eth-signature-required" });
-  //
+
   // // Allow up to 10 minute old signatures
   // if (new Date() + 10 * 60 * 1000 > new Date(timestamp))
   //   return jsonResponse(400, { error: "signature-expired" });
+
+  // const publicClient = createPublicClient({
+  //   chain,
+  //   transport: http(getJsonRpcUrl(chain.id)),
+  // });
+
+  // const isValidSignature = await publicClient.verifyMessage({
+  //   address: ethAddress,
+  //   message: buildProposalCastSignatureMessage({
+  //     text,
+  //     proposalId,
+  //     chainId: CHAIN_ID,
+  //     timestamp,
+  //   }),
+  //   signature: ethSignature,
+  // });
 
   // const isValidSignature = await verifyMessage({
   //   address: ethAddress,
@@ -87,17 +107,17 @@ export async function POST(request) {
   //   }),
   //   signature: ethSignature,
   // });
-  //
+
   // if (!isValidSignature)
   //   return jsonResponse(401, { error: "invalid-signature" });
-  //
+
   // const isVerifiedEthAddress = await verifyEthAddress(fid, ethAddress);
-  //
+
   // if (!isVerifiedEthAddress)
   //   return jsonResponse(401, { error: "invalid-address" });
-  //
+
   // const privateAccountKey = await kv.get(`fid:${fid}:account-key`);
-  //
+
   // if (privateAccountKey == null)
   //   return jsonResponse(401, { error: "no-account-key-for-eth-address" });
 
