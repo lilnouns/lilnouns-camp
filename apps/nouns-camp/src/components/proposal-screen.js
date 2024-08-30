@@ -1479,17 +1479,19 @@ const StreamStatus = ({ transaction }) => {
         Number(stopTime) - Number(startTime),
       )}{" "}
       vested{" "}
-      <span>
-        (
-        <a
-          href={buildEtherscanLink(`/address/${streamContractAddress}`)}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {formattedVestedAmount}
-        </a>
-        )
-      </span>
+      {vestedAmount != null && vestedAmount > 0 && (
+        <span>
+          (
+          <a
+            href={buildEtherscanLink(`/address/${streamContractAddress}`)}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {formattedVestedAmount}
+          </a>
+          )
+        </span>
+      )}
       <StreamEndDate stopTime={stopTime} />
     </div>
   );
