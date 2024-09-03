@@ -70,6 +70,11 @@ const ignoredModules = [
   "encoding",
 ];
 
+if (process.env.NODE_ENV === 'development') {
+  const { setupDevPlatform } = require('@cloudflare/next-on-pages/next-dev');
+  setupDevPlatform();
+}
+
 module.exports = withSentry(
   withSerwist({
     reactStrictMode: true,
