@@ -5,7 +5,7 @@ const webpack = require("webpack");
 const { withSentryConfig } = require("@sentry/nextjs");
 
 // Assert environment variables are setup correctly
-(() => {
+const assertEnvironment = () => {
   // Skip this check in CI lint jobs (`next lint` runs this file)
   if (process.env.CI_LINT != null) return;
 
@@ -22,7 +22,14 @@ const { withSentryConfig } = require("@sentry/nextjs");
   //   if (key.startsWith("NEXT_PUBLIC_") && !whitelistedKeys.includes(key))
   //     throw new Error(`${key} is not allowed`);
   }
-})();
+};
+
+try {
+  assertEnvironment();
+} catch (e) {
+  if (process.env.NODE_ENV === "production") throw e;
+  console.warn("Incomplete environment", e);
+}
 
 const withSerwist = require("@serwist/next").default({
   swSrc: "src/app/service-worker.js",
