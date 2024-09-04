@@ -1,7 +1,10 @@
 // import { getPublicKeyAsync, utils as EdDSAUtils } from "@noble/ed25519";
 // import { bytesToHex } from "viem";
 // import { privateKeyToAccount } from "viem/accounts";
-// import { kv } from "@vercel/kv";
+// import {
+//   persistPendingAccountKeyForFid,
+//   setPendingAccountKey,
+// } from "../farcaster-account-key-utils";
 
 export const runtime = "edge";
 
@@ -107,16 +110,12 @@ export const runtime = "edge";
 
 export async function POST() {
   // const { publicKey, privateKey } = await createSignerKeyPair();
+
   const keyRequest = {} // await createSignedKeyRequest(publicKey);
 
-  // await kv.set(`pending-account-key:${publicKey}`, privateKey, {
-  //   ex: 60 * 60 * 2, // Expire after 2 hours (key request deadline is 1h)
-  // });
+  // await setPendingAccountKey({ publicKey, privateKey });
 
-  return new Response(JSON.stringify(keyRequest), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+  return Response.json(keyRequest);
 }
 
 export async function GET(request) {
@@ -128,20 +127,9 @@ export async function GET(request) {
     // await fetchAccountKey(publicKey);
 
   if (status !== "approved")
-    return new Response(JSON.stringify({ key, status, signerApprovalUrl }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return Response.json({ key, status, signerApprovalUrl });
 
-  // const kvPipeline = kv.pipeline();
-  // // Assuming the key exists here. It’s fine.
-  // kvPipeline.renamenx(`pending-account-key:${key}`, `fid:${fid}:account-key`);
-  // // We need to persist to remove the set timeout
-  // kvPipeline.persist(`fid:${fid}:account-key`);
-  // await kvPipeline.exec();
+  // await persistPendingAccountKeyForFid({ publicKey: key, fid });
 
-  return new Response(JSON.stringify({ key, fid, status }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+  return Response.json({ key, fid, status });
 }

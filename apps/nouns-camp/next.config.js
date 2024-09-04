@@ -60,6 +60,20 @@ const withSentry = (config) =>
   );
 
 const BUILD_ID = process.env.CF_PAGES_COMMIT_SHA?.slice(0, 7) ?? "dev";
+const APP_HOST = (() => {
+  if (process.env.APP_HOST != null) return process.env.APP_HOST;
+  if (process.env.VERCEL == null) throw new Error("`APP_HOST` not set");
+  return {
+    production: process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    preview: process.env.VERCEL_BRANCH_URL,
+  }[process.env.VERCEL_ENV];
+})();
+const APP_PRODUCTION_URL = (() => {
+  if (process.env.APP_PRODUCTION_URL != null)
+    return process.env.APP_PRODUCTION_URL;
+  if (process.env.VERCEL == null) return `https://${APP_HOST}`;
+  return process.env.VERCEL_PROJECT_PRODUCTION_URL;
+})();
 
 const ignoredModules = [
   // @nouns/sdk
@@ -107,6 +121,8 @@ module.exports = withSentry(
         ...config.plugins,
         new webpack.DefinePlugin({
           "process.env.BUILD_ID": JSON.stringify(BUILD_ID),
+          "process.env.APP_HOST": JSON.stringify(APP_HOST),
+          "process.env.APP_PRODUCTION_URL": JSON.stringify(APP_PRODUCTION_URL),
         }),
       ];
 

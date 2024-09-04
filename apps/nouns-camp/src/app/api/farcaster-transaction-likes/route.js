@@ -1,105 +1,90 @@
-// import { kv } from "@vercel/kv";
-// import { createPublicClient, http, isAddress } from "viem";
-// import { CHAIN_ID } from "../../../constants/env.js";
-// import { getJsonRpcUrl } from "../../../wagmi-config.js";
-// import { getChain } from "../../../utils/chains.js";
-// import {
-//   parseEpochTimestamp,
-//   buildTransactionLikeSignatureMessage,
-// } from "../../../utils/farcaster.js";
-// import { createUri as createTransactionReceiptUri } from "../../../utils/erc-2400.js";
+// import { CHAIN_ID } from "@/constants/env";
+// import { parseEpochTimestamp } from "@/utils/farcaster";
+// import { createUri as createTransactionReceiptUri } from "@/utils/erc-2400";
+// import { isLoggedIn, isLoggedInAccountFid } from "@/app/api/auth-utils";
 // import {
 //   fetchNounerLikesByTargetUrl,
-//   verifyEthAddress,
-//   submitTargetLikeAdd,
-// } from "../farcaster-utils.js";
-
-export const runtime = 'edge';
-
-// const chain = getChain(CHAIN_ID);
-
-const jsonResponse = (statusCode, body, headers) =>
-  new Response(JSON.stringify(body), {
-    status: statusCode,
-    headers: { "Content-Type": "application/json", ...headers },
-  });
+//   submitReactionAdd,
+//   submitReactionRemove,
+// } from "@/app/api/farcaster-utils";
+// import {
+//   getAccountKeyForFid,
+//   deleteAccountKeyForFid,
+// } from "../farcaster-account-key-utils";
 
 // eslint-disable-next-line no-unused-vars
 export async function GET(request) {
   // const { searchParams } = new URL(request.url);
   // const hash = searchParams.get("hash");
 
-  // if (hash == null) return jsonResponse(400, { error: "hash-required" });
+  // if (hash == null)
+  //   return Response.json({ error: "hash-required" }, { status: 400 });
 
   // const likes = await fetchNounerLikesByTargetUrl(
   //   createTransactionReceiptUri(CHAIN_ID, hash),
   // );
 
-  return jsonResponse(
-    200,
+  // const filteredLikes = likes.filter((l) => l.votingPower > 0);
+  // const filteredLikes = likes.filter((l) => l.nounerAddress != null);
+
+  return Response.json(
     { likes: [] },
-    { "Cache-Control": "max-age=10, stale-while-revalidate=20" },
+    {
+      status: 200,
+      headers: { "Cache-Control": "max-age=10, stale-while-revalidate=20" },
+    },
   );
 }
 
 // eslint-disable-next-line no-unused-vars
 export async function POST(request) {
-  // const { hash, fid, timestamp, ethAddress, ethSignature } =
-  //   await request.json();
+  // const { transactionHash, fid, action } = await request.json();
 
-  // if (hash == null) return jsonResponse(400, { error: "hash-required" });
-  // if (fid == null) return jsonResponse(400, { error: "fid-required" });
-  // if (timestamp == null)
-  //   return jsonResponse(400, { error: "timestamp-required" });
-  // if (!isAddress(ethAddress))
-  //   return jsonResponse(400, { error: "eth-address-required" });
-  // if (ethSignature == null)
-  //   return jsonResponse(400, { error: "eth-signature-required" });
+  // if (!(await isLoggedIn()))
+  //   return Response.json({ error: "not-logged-in" }, { status: 401 });
 
-  // Allow up to 10 minute old signatures
-  // if (new Date() + 10 * 60 * 1000 > new Date(timestamp))
-  //   return jsonResponse(400, { error: "signature-expired" });
+  // if (!(await isLoggedInAccountFid(fid)))
+  //   return Response.json({ error: "address-not-verified" }, { status: 401 });
 
-  // const publicClient = createPublicClient({
-  //   chain,
-  //   transport: http(getJsonRpcUrl(chain.id)),
-  // });
-
-  // const isValidSignature = await publicClient.verifyMessage({
-  //   address: ethAddress,
-  //   message: buildTransactionLikeSignatureMessage({
-  //     hash,
-  //     chainId: CHAIN_ID,
-  //     timestamp,
-  //   }),
-  //   signature: ethSignature,
-  // });
-
-  // if (!isValidSignature)
-  //   return jsonResponse(401, { error: "invalid-signature" });
-
-  // const isVerifiedEthAddress = await verifyEthAddress(fid, ethAddress);
-
-  // if (!isVerifiedEthAddress)
-  //   return jsonResponse(401, { error: "invalid-address" });
-
-  // const privateAccountKey = await kv.get(`fid:${fid}:account-key`);
+  // const privateAccountKey = await getAccountKeyForFid(fid);
 
   // if (privateAccountKey == null)
-  //   return jsonResponse(401, { error: "no-account-key-for-eth-address" });
+  //   return Response.json({ error: "no-account-key" }, { status: 401 });
+
+  // if (transactionHash == null)
+  //   return Response.json(
+  //     { error: "transaction-hash-required" },
+  //     { status: 400 },
+  //   );
+  //
+  // if (action == null)
+  //   return Response.json({ error: "action-required" }, { status: 400 });
 
   // try {
-  //   const reactionMessage = await submitTargetLikeAdd(fid, privateAccountKey, {
-  //     targetUrl: createTransactionReceiptUri(CHAIN_ID, hash),
-  //   });
-  //   return jsonResponse(201, {
-  //     hash: reactionMessage.hash,
-  //     fid: reactionMessage.data.fid,
-  //     timestamp: parseEpochTimestamp(
-  //       reactionMessage.data.timestamp,
-  //     ).toISOString(),
-  //   });
+  //   const submit =
+  //     action === "remove" ? submitReactionRemove : submitReactionAdd;
+  //
+  //   const message = await submit(
+  //     { fid, privateAccountKey },
+  //     {
+  //       type: 1,
+  //       targetUrl: createTransactionReceiptUri(CHAIN_ID, transactionHash),
+  //     },
+  //   );
+  //   return Response.json(
+  //     {
+  //       hash: message.hash,
+  //       fid: message.data.fid,
+  //       timestamp: parseEpochTimestamp(message.data.timestamp).toISOString(),
+  //     },
+  //     { status: 201 },
+  //   );
   // } catch (e) {
-    return jsonResponse(500, { error: "submit-failed" });
+  //   // Delete revoked key
+  //   if (e.message === "invalid-account-key") {
+  //     await deleteAccountKeyForFid(fid);
+  //     return Response.json({ error: "invalid-account-key" }, { status: 401 });
+  //   }
+    return Response.json({ error: "submit-failed" }, { status: 500 });
   // }
 }
