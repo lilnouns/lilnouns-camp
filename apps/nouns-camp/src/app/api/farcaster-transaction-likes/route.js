@@ -38,6 +38,7 @@ export async function GET(request) {
   );
 }
 
+// eslint-disable-next-line no-unused-vars
 export async function POST(request) {
   // const { transactionHash, fid, action } = await request.json();
   //
