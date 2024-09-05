@@ -36,6 +36,7 @@ export const runtime = "edge";
 //   return { accounts, casts: casts.map((c) => ({ ...c, proposalId })) };
 // };
 
+// eslint-disable-next-line no-unused-vars
 export async function GET(request) {
   // const { searchParams } = new URL(request.url);
   // const proposalId = searchParams.get("proposal");
@@ -55,53 +56,54 @@ export async function GET(request) {
   );
 }
 
+// eslint-disable-next-line no-unused-vars
 export async function POST(request) {
-  const { proposalId, text, fid } = await request.json();
-
-  if (!(await isLoggedIn()))
-    return Response.json({ error: "not-logged-in" }, { status: 401 });
-
-  if (!(await isLoggedInAccountFid(fid)))
-    return Response.json({ error: "address-not-verified" }, { status: 401 });
-
-  const privateAccountKey = await getAccountKeyForFid(fid);
-
-  if (privateAccountKey == null)
-    return Response.json({ error: "no-account-key" }, { status: 401 });
-
-  if (proposalId == null)
-    return Response.json({ error: "proposal-required" }, { status: 400 });
-  if (text == null)
-    return Response.json({ error: "text-required" }, { status: 400 });
-
-  try {
-    const account = await fetchAccount(fid);
-    const castMessage = await submitCastAdd(
-      { fid, privateAccountKey },
-      {
-        text,
-        parentUrl: await createCanonicalProposalUrl(proposalId),
-        embeds: [{ url: `${APP_PRODUCTION_URL}/proposals/${proposalId}` }],
-      },
-    );
-    return Response.json(
-      {
-        hash: castMessage.hash,
-        fid: castMessage.data.fid,
-        timestamp: parseEpochTimestamp(
-          castMessage.data.timestamp,
-        ).toISOString(),
-        text: castMessage.data.castAddBody.text,
-        account,
-      },
-      { status: 201 },
-    );
-  } catch (e) {
-    // Delete revoked key
-    if (e.message === "invalid-account-key") {
-      await deleteAccountKeyForFid(fid);
-      return Response.json({ error: "invalid-account-key" }, { status: 401 });
-    }
+  // const { proposalId, text, fid } = await request.json();
+  //
+  // if (!(await isLoggedIn()))
+  //   return Response.json({ error: "not-logged-in" }, { status: 401 });
+  //
+  // if (!(await isLoggedInAccountFid(fid)))
+  //   return Response.json({ error: "address-not-verified" }, { status: 401 });
+  //
+  // const privateAccountKey = await getAccountKeyForFid(fid);
+  //
+  // if (privateAccountKey == null)
+  //   return Response.json({ error: "no-account-key" }, { status: 401 });
+  //
+  // if (proposalId == null)
+  //   return Response.json({ error: "proposal-required" }, { status: 400 });
+  // if (text == null)
+  //   return Response.json({ error: "text-required" }, { status: 400 });
+  //
+  // try {
+  //   const account = await fetchAccount(fid);
+  //   const castMessage = await submitCastAdd(
+  //     { fid, privateAccountKey },
+  //     {
+  //       text,
+  //       parentUrl: await createCanonicalProposalUrl(proposalId),
+  //       embeds: [{ url: `${APP_PRODUCTION_URL}/proposals/${proposalId}` }],
+  //     },
+  //   );
+  //   return Response.json(
+  //     {
+  //       hash: castMessage.hash,
+  //       fid: castMessage.data.fid,
+  //       timestamp: parseEpochTimestamp(
+  //         castMessage.data.timestamp,
+  //       ).toISOString(),
+  //       text: castMessage.data.castAddBody.text,
+  //       account,
+  //     },
+  //     { status: 201 },
+  //   );
+  // } catch (e) {
+  //   // Delete revoked key
+  //   if (e.message === "invalid-account-key") {
+  //     await deleteAccountKeyForFid(fid);
+  //     return Response.json({ error: "invalid-account-key" }, { status: 401 });
+  //   }
     return Response.json({ error: "submit-failed" }, { status: 500 });
-  }
+  // }
 }
