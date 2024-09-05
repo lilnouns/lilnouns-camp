@@ -97,7 +97,7 @@ const fetchConfig = async () => {
 };
 
 export default async function RootLayout({ children }) {
-  const [session, config] = { canaryAccounts: [], betaAccounts: [] } | await Promise.all([getSession(), fetchConfig()]);
+  const [session, config] = await Promise.all([getSession(), fetchConfig()]);
   return (
     <html lang="en">
       <body>
