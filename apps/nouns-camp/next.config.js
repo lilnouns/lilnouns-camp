@@ -4,10 +4,13 @@ const dotenv = require("dotenv");
 const webpack = require("webpack");
 const { withSentryConfig } = require("@sentry/nextjs");
 
+// `next lint` runs this file
+const isLintJob = process.env.CI_LINT != null;
+
 // Assert environment variables are setup correctly
 const assertEnvironment = () => {
-  // Skip this check in CI lint jobs (`next lint` runs this file)
-  if (process.env.CI_LINT != null) return;
+  // Skip this check in CI lint jobs
+  if (isLintJob) return;
 
   const templateFile = readFileSync(path.join(__dirname, ".env.template"));
   const whitelistedKeys = Object.keys(dotenv.parse(templateFile));
@@ -69,7 +72,8 @@ const withSentry = (config) =>
 const BUILD_ID = process.env.CF_PAGES_COMMIT_SHA?.slice(0, 7) ?? "dev";
 const APP_HOST = (() => {
   if (process.env.APP_HOST != null) return process.env.APP_HOST;
-  if (process.env.VERCEL == null) throw new Error("`APP_HOST` not set");
+  if (process.env.VERCEL == null && !isLintJob)
+    throw new Error("`APP_HOST` not set");
   return {
     production: process.env.VERCEL_PROJECT_PRODUCTION_URL,
     preview: process.env.VERCEL_BRANCH_URL,
