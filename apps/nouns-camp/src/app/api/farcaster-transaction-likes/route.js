@@ -12,6 +12,8 @@
 //   deleteAccountKeyForFid,
 // } from "../farcaster-account-key-utils";
 
+export const runtime = 'edge';
+
 // eslint-disable-next-line no-unused-vars
 export async function GET(request) {
   // const { searchParams } = new URL(request.url);

@@ -13,6 +13,8 @@
 //   deleteAccountKeyForFid,
 // } from "../farcaster-account-key-utils.js";
 
+export const runtime = 'edge';
+
 // const chain = getChain(CHAIN_ID);
 
 // const createCanonicalProposalUrl = async (proposalId) => {
