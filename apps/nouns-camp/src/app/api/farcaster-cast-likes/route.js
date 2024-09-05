@@ -26,7 +26,7 @@ export async function GET(request) {
   // // // Only accounts with voting power for now
   // // const filteredLikes = likes.filter((l) => l.votingPower > 0);
   // const filteredLikes = likes.filter((l) => l.nounerAddress != null);
-  //
+
   return Response.json(
     { likes: [] /*filteredLikes*/ },
     {

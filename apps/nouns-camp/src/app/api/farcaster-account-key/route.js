@@ -110,26 +110,26 @@ export const runtime = "edge";
 
 export async function POST() {
   // const { publicKey, privateKey } = await createSignerKeyPair();
-
-  const keyRequest = {} // await createSignedKeyRequest(publicKey);
-
+  //
+  // const keyRequest = await createSignedKeyRequest(publicKey);
+  //
   // await setPendingAccountKey({ publicKey, privateKey });
 
-  return Response.json(keyRequest);
+  return Response.json({} /*keyRequest*/);
 }
 
+// eslint-disable-next-line no-unused-vars
 export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  // eslint-disable-next-line no-unused-vars
-  const publicKey = searchParams.get("key");
-
-  const { key, fid, status, signerApprovalUrl } = {}
-    // await fetchAccountKey(publicKey);
-
-  if (status !== "approved")
-    return Response.json({ key, status, signerApprovalUrl });
-
+  // const { searchParams } = new URL(request.url);
+  // const publicKey = searchParams.get("key");
+  //
+  // const { key, fid, status, signerApprovalUrl } =
+  //   await fetchAccountKey(publicKey);
+  //
+  // if (status !== "approved")
+  //   return Response.json({ key, status, signerApprovalUrl });
+  //
   // await persistPendingAccountKeyForFid({ publicKey: key, fid });
 
-  return Response.json({ key, fid, status });
+  return Response.json({} /*{ key, fid, status }*/);
 }

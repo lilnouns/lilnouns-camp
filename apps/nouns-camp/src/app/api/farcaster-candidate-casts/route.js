@@ -14,9 +14,7 @@
 //   deleteAccountKeyForFid,
 // } from "../farcaster-account-key-utils.js";
 
-export const runtime = 'edge';
-
-// const chain = getChain(CHAIN_ID);
+export const runtime = "edge";
 
 // const createCanonicalCandidateUrl = async (candidateId) => {
 //   const { proposalCandidate } = await subgraphFetch({
@@ -61,9 +59,9 @@ export async function GET(request) {
   );
 }
 
+// eslint-disable-next-line no-unused-vars
 export async function POST(request) {
-  // eslint-disable-next-line no-unused-vars
-  const { candidateId, text, fid } = await request.json();
+  // const { candidateId, text, fid } = await request.json();
 
   // if (!(await isLoggedIn()))
   //   return Response.json({ error: "not-logged-in" }, { status: 401 });

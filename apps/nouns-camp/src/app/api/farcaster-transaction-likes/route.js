@@ -18,19 +18,19 @@ export const runtime = 'edge';
 export async function GET(request) {
   // const { searchParams } = new URL(request.url);
   // const hash = searchParams.get("hash");
-
+  //
   // if (hash == null)
   //   return Response.json({ error: "hash-required" }, { status: 400 });
-
+  //
   // const likes = await fetchNounerLikesByTargetUrl(
   //   createTransactionReceiptUri(CHAIN_ID, hash),
   // );
-
-  // const filteredLikes = likes.filter((l) => l.votingPower > 0);
+  //
+  // // const filteredLikes = likes.filter((l) => l.votingPower > 0);
   // const filteredLikes = likes.filter((l) => l.nounerAddress != null);
 
   return Response.json(
-    { likes: [] },
+    { likes: [] /*filteredLikes*/ },
     {
       status: 200,
       headers: { "Cache-Control": "max-age=10, stale-while-revalidate=20" },
@@ -38,21 +38,20 @@ export async function GET(request) {
   );
 }
 
-// eslint-disable-next-line no-unused-vars
 export async function POST(request) {
   // const { transactionHash, fid, action } = await request.json();
-
+  //
   // if (!(await isLoggedIn()))
   //   return Response.json({ error: "not-logged-in" }, { status: 401 });
-
+  //
   // if (!(await isLoggedInAccountFid(fid)))
   //   return Response.json({ error: "address-not-verified" }, { status: 401 });
-
+  //
   // const privateAccountKey = await getAccountKeyForFid(fid);
-
+  //
   // if (privateAccountKey == null)
   //   return Response.json({ error: "no-account-key" }, { status: 401 });
-
+  //
   // if (transactionHash == null)
   //   return Response.json(
   //     { error: "transaction-hash-required" },
@@ -61,7 +60,7 @@ export async function POST(request) {
   //
   // if (action == null)
   //   return Response.json({ error: "action-required" }, { status: 400 });
-
+  //
   // try {
   //   const submit =
   //     action === "remove" ? submitReactionRemove : submitReactionAdd;
