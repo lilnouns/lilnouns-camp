@@ -1176,6 +1176,8 @@ const createStore = ({ initialState, publicClient }) =>
             #   canceledTimestamp
             #   createdTimestamp
             #   lastUpdatedTimestamp
+            #   createdTransactionHash
+            #   canceledTransactionHash
             #   latestVersion {
             #     id
             #     content {
@@ -1391,12 +1393,12 @@ const createStore = ({ initialState, publicClient }) =>
                 #   lastUpdatedTimestamp
                 #   latestVersion {
                 #     id
-                #     content {
+                #       content {
                 #       title
                 #       matchingProposalIds
                 #       proposalIdToUpdate
                 #       contentSignatures {
-                #         ...CandidateContentSignatureFields
+                #       ...CandidateContentSignatureFields
                 #       }
                 #     }
                 #   }
