@@ -1,4 +1,4 @@
-import { kv } from "@vercel/kv";
+// import { kv } from "@vercel/kv";
 import { isAddress } from "viem";
 import { fetchAccountsWithVerifiedAddress } from "../farcaster-utils.js";
 
