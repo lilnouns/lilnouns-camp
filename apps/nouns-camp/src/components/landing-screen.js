@@ -1036,7 +1036,8 @@ const Feed = React.memo(() => {
               { value: "all", label: "Everything" },
               { value: "proposals", label: "Proposal activity only" },
               // { value: "candidates", label: "Candidate activity only" },
-              // { value: "propdates", label: "Propdates only" },
+              // { value: "auction", label: "Auction activity only" },
+              { value: "propdates", label: "Propdates only" },
             ]}
             onChange={(value) => {
               setFilter(value);
@@ -1048,6 +1049,7 @@ const Feed = React.memo(() => {
                 all: "Everything",
                 proposals: "Proposal activity",
                 // candidates: "Candidate activity",
+                auction: "Auction",
                 // propdates: "Propdates",
               }[value];
               return (
