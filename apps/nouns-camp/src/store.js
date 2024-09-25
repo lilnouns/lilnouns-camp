@@ -462,7 +462,7 @@ const createStore = ({ initialState, publicClient }) =>
                   // The owner and delegator are only different for delegation
                   // events originating from a token transfer. Since these events
                   // aren’t really delegations, we ignore them.
-                  e.delegator.id === e.noun.owner.id &&
+                  // e.delegator.id === e.noun.owner.id &&
                   // Fork escrows shouldn’t show as delegation events either
                   e.newAccountId !== forkEscrowAddress
                 );
