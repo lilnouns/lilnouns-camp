@@ -470,8 +470,8 @@ const createStore = ({ initialState, publicClient }) =>
               if (e.type === "transfer")
                 // Hide the initial transfer between the treasury and auction house
                 return !(
-                  e.previousAccountId === treasuryAddress &&
-                  e.newAccountId === auctionHouseAddress
+                  e.previousAccountId === treasuryAddress /*&&
+                  e.newAccountId === auctionHouseAddress*/
                 );
 
               throw new Error();
