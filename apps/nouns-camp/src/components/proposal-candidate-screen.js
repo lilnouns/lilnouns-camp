@@ -15,7 +15,10 @@ import Button from "@shades/ui-web/button";
 import Link from "@shades/ui-web/link";
 import Input from "@shades/ui-web/input";
 import Spinner from "@shades/ui-web/spinner";
-import { Checkmark as CheckmarkIcon } from "@shades/ui-web/icons";
+import {
+  Checkmark as CheckmarkIcon,
+  Share as ShareIcon,
+} from "@shades/ui-web/icons";
 import { diffParagraphs } from "../utils/diff.js";
 import { stringify as stringifyTransaction } from "../utils/transactions.js";
 import {
@@ -128,7 +131,7 @@ const ProposalCandidateScreenContent = ({
   const submitCandidateCast = useSubmitCandidateCast(candidateId);
 
   const [isProposalUpdateDiffDialogOpen, toggleProposalUpdateDiffDialog] =
-    useSearchParamToggleState("diff", { prefetch: true });
+    useSearchParamToggleState("diff", { replace: true });
   const [hasPendingProposalUpdate, setPendingProposalUpdate] =
     React.useState(false);
   const submitProposalUpdate = useUpdateSponsoredProposalWithSignatures(
@@ -1402,6 +1405,7 @@ const ProposalCandidateScreen = ({ candidateId: rawId }) => {
   const scrollContainerRef = React.useRef();
 
   const navigate = useNavigate();
+  const isDesktopLayout = useMatchDesktopLayout();
 
   const [notFound, setNotFound] = React.useState(false);
   const [fetchError, setFetchError] = React.useState(null);
@@ -1434,15 +1438,15 @@ const ProposalCandidateScreen = ({ candidateId: rawId }) => {
 
   const [isEditDialogOpen, toggleEditDialog] = useSearchParamToggleState(
     "edit",
-    { prefetch: true, replace: true },
+    { replace: true },
   );
   const [isSponsorDialogOpen, toggleSponsorDialog] = useSearchParamToggleState(
     "sponsor",
-    { prefetch: true, replace: true },
+    { replace: true },
   );
   const [isProposeDialogOpen, toggleProposeDialog] = useSearchParamToggleState(
     "propose",
-    { prefetch: true, replace: true },
+    { replace: true },
   );
 
   const cancelCandidate = useCancelProposalCandidate(slug, {
@@ -1464,10 +1468,23 @@ const ProposalCandidateScreen = ({ candidateId: rawId }) => {
 
     const isProposalUpdate = candidate.latestVersion.targetProposalId != null;
 
-    if (!isProposer || isCanceled) return undefined;
+    const proposerActions = [];
+
+    if (!isDesktopLayout && navigator?.share) {
+      proposerActions.push({
+        label: <ShareIcon css={css({ width: "1.7rem" })} />,
+        onSelect: () => {
+          navigator
+            .share({ url: `/candidates/${encodeURIComponent(candidateId)}` })
+            .catch((error) => console.error("Error sharing", error));
+        },
+      });
+    }
+
+    if (!isProposer || isCanceled)
+      return proposerActions.length === 0 ? undefined : proposerActions;
 
     const hasBeenPromoted = candidate.latestVersion.proposalId != null;
-    const proposerActions = [];
 
     if (!hasBeenPromoted)
       proposerActions.push({

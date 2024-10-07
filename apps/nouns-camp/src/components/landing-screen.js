@@ -54,6 +54,7 @@ import * as Tabs from "./tabs.js";
 import Layout, { MainContentContainer } from "./layout.js";
 import ProposalList from "./proposal-list.js";
 import { useVotes, useRevoteCount } from "./browse-accounts-screen.js";
+import useEnsAddress from "@/hooks/ens-address.js";
 
 const ActivityFeed = React.lazy(() => import("./activity-feed.js"));
 
@@ -144,11 +145,14 @@ const BrowseScreen = () => {
 
   const treasuryData = useTreasuryData();
 
+  const eagerMatchingEnsAddress = useEnsAddress(deferredQuery);
+  const matchingEnsAddress = React.useDeferredValue(eagerMatchingEnsAddress);
+
   // const candidateSortStrategies =
   //   connectedAccountAddress == null
   //     ? ["activity", "popularity"]
   //     : ["activity", "popularity", "connected-account-feedback"];
-
+  //
   // const candidateSortStrategy = candidateSortStrategies.includes(
   //   candidateSortStrategy_,
   // )
@@ -218,7 +222,10 @@ const BrowseScreen = () => {
   const searchResultItems = React.useMemo(() => {
     if (deferredQuery === "") return [];
 
-    const matchingAddresses = searchEns(primaryEnsNameByAddress, deferredQuery);
+    const matchingAddresses =
+      deferredQuery.length >= 3
+        ? searchEns(primaryEnsNameByAddress, deferredQuery)
+        : [];
 
     const matchingRecords = searchRecords(
       [
@@ -262,9 +269,24 @@ const BrowseScreen = () => {
       [deferredQuery, ...matchingAddresses],
     );
 
+    if (matchingEnsAddress != null) {
+      matchingRecords.unshift({
+        type: "account",
+        data: { id: matchingEnsAddress },
+      });
+    } else {
+      for (const address of matchingAddresses.toReversed()) {
+        matchingRecords.unshift({
+          type: "account",
+          data: { id: address },
+        });
+      }
+    }
+
     return matchingRecords.map((r) => r.data);
   }, [
     deferredQuery,
+    matchingEnsAddress,
     filteredProposals,
     filteredCandidates,
     filteredProposalUpdateCandidates,
@@ -943,7 +965,7 @@ const useActivityFeedItems = ({ categories }) => {
           setHasFetchedOnce(true);
           hasFetchedActivityFeedOnce = true;
 
-          fetchNounsActivity({
+          await fetchNounsActivity({
             startBlock:
               latestBlockNumber - BigInt(APPROXIMATE_BLOCKS_PER_DAY * 30),
             endBlock:
@@ -1038,15 +1060,20 @@ const defaultSelectedFeedFilterCategories = [
   // "auction-bids",
   // "propdates",
 ];
-const useFeedFilterCategories = () =>
-  useCachedState(
+const useFeedFilterCategories = () => {
+  const [state, setState] = useCachedState(
     "landing-screen:selected-feed-categories",
     defaultSelectedFeedFilterCategories,
   );
+  return [state ?? [], setState];
+};
 
 const Feed = React.memo(() => {
   const [selectedCategories, setSelectedCategories] = useFeedFilterCategories();
-  const feedItems = useActivityFeedItems({ categories: selectedCategories });
+  const deferredSelectedCategories = React.useDeferredValue(selectedCategories);
+  const feedItems = useActivityFeedItems({
+    categories: deferredSelectedCategories,
+  });
 
   return (
     <div
@@ -1069,7 +1096,10 @@ const Feed = React.memo(() => {
 
 const FeedTabContent = React.memo(() => {
   const [selectedCategories, setSelectedCategories] = useFeedFilterCategories();
-  const feedItems = useActivityFeedItems({ categories: selectedCategories });
+  const deferredSelectedCategories = React.useDeferredValue(selectedCategories);
+  const feedItems = useActivityFeedItems({
+    categories: deferredSelectedCategories,
+  });
 
   return (
     <div
@@ -1273,6 +1303,7 @@ const FilterMenu = ({
   items,
   selectedKeys,
   setSelectedKeys,
+  renderTriggerContent,
 }) => (
   <Menu.Root>
     <Menu.Trigger asChild>
@@ -1284,34 +1315,35 @@ const FilterMenu = ({
           <CaretDownIcon style={{ width: "1.1rem", height: "auto" }} />
         }
       >
-        <span
-          data-inline-label={inlineLabel != null}
-          css={(t) =>
-            css({
-              em: {
-                fontStyle: "normal",
-                fontWeight: t.text.weights.emphasis,
-              },
-              '&[data-inline-label="true"]': {
-                fontWeight: t.text.weights.emphasis,
-                ".inline-label": {
-                  fontWeight: t.text.weights.normal,
-                },
-              },
-            })
-          }
-        >
-          {inlineLabel != null && (
-            <span className="inline-label">{inlineLabel}: </span>
-          )}
-          {(() => {
-            if (selectedKeys.size === 0 || selectedKeys.size === items.length)
-              return "Everything";
-            if (selectedKeys.size > 1) return "Custom ";
-            const selectedItems = items.filter((i) => selectedKeys.has(i.key));
-            return selectedItems.map((i) => i.title).join(", ");
-          })()}
-        </span>
+        {(() => {
+          if (renderTriggerContent != null) return renderTriggerContent();
+
+          return (
+            <span
+              data-inline-label={inlineLabel != null}
+              css={(t) =>
+                css({
+                  '&[data-inline-label="true"]': {
+                    fontWeight: t.text.weights.emphasis,
+                    ".inline-label": {
+                      fontWeight: t.text.weights.normal,
+                    },
+                  },
+                })
+              }
+            >
+              {inlineLabel != null && (
+                <span className="inline-label">{inlineLabel}: </span>
+              )}
+              {(() => {
+                const selectedItems = items.filter((i) =>
+                  selectedKeys.has(i.key),
+                );
+                return selectedItems.map((i) => i.title).join(", ");
+              })()}
+            </span>
+          );
+        })()}
       </Button>
     </Menu.Trigger>
     <Menu.Content
@@ -1331,13 +1363,55 @@ const FilterMenu = ({
 
 const FeedFilterMenu = ({ selectedCategories, setSelectedCategories }) => (
   <FilterMenu
-    inlineLabel="Show"
     size="small"
     selectedKeys={new Set(selectedCategories)}
     setSelectedKeys={(keys) => {
       setSelectedCategories([...keys]);
     }}
     items={feedFilterCategoryItems}
+    renderTriggerContent={() => {
+      if (
+        selectedCategories.length === feedFilterCategoryItems.length ||
+        selectedCategories.length === 0
+      )
+        return "Show everything";
+
+      const { included = [], excluded = [] } = arrayUtils.groupBy(
+        (i) => (selectedCategories.includes(i.key) ? "included" : "excluded"),
+        feedFilterCategoryItems,
+      );
+      const stateExcludedItems = excluded.length < included.length;
+      const items = stateExcludedItems ? excluded : included;
+      return (
+        <span
+          css={(t) =>
+            css({
+              em: {
+                fontStyle: "normal",
+                fontWeight: t.text.weights.emphasis,
+              },
+            })
+          }
+        >
+          {stateExcludedItems
+            ? items.length === 1
+              ? "Show: All except"
+              : "Hide"
+            : "Show:"}{" "}
+          {items.map((item, i, items) => (
+            <React.Fragment key={item.key}>
+              {i > 0 && (
+                <>
+                  {items.length !== 2 && ","}{" "}
+                  {i === items.length - 1 && <>and </>}
+                </>
+              )}
+              <em>{item.title}</em>
+            </React.Fragment>
+          ))}
+        </span>
+      );
+    }}
   />
 );
 

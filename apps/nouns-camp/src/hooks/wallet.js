@@ -17,8 +17,10 @@ import {
   useState as useSessionState,
   useActions as useSessionActions,
 } from "@/session-provider";
+import { isAddress } from "viem";
+import useEnsAddress from "./ens-address";
 
-const impersonationAddress =
+const impersonationParam =
   typeof location === "undefined"
     ? null
     : new URLSearchParams(location.search).get("impersonate");
@@ -232,6 +234,14 @@ export const useWallet = () => {
     openDialog();
   };
 
+  const impersonationEnsAddress = useEnsAddress(impersonationParam, {
+    enabled: impersonationParam && !isAddress(impersonationParam),
+  });
+
+  const impersonationAddress = isAddress(impersonationParam)
+    ? impersonationParam
+    : impersonationEnsAddress;
+
   const address = (
     impersonationAddress ?? connectedAccountAddress
   )?.toLowerCase();
@@ -271,6 +281,7 @@ export const useWallet = () => {
     isConnectedToTargetChain: connectedChainId === CHAIN_ID,
     isCanaryAccount: canaryAccounts.includes(address),
     isBetaAccount: betaAccounts.includes(address),
+    isImpersonated: impersonationAddress != null,
   };
 };
 

@@ -2,6 +2,102 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.30] - 2024-10-05
+
+### 🚀 Features
+
+- *(camp)* Add prop navigation to the navbar using <select>
+- *(camp)* Allow impersonation using ens instead of wallet addr
+
+### 🐛 Bug Fixes
+
+- *(camp)* Conditionally show execution ETA if available
+- *(camp)* Correctly match all possible line terminators
+
+### 🚜 Refactor
+
+- *(proposal-screen)* Comment out unused fields
+
+### ◀️ Revert
+
+- *(deps)* Bump @tanstack/react-query from 5.56.2 to 5.59.0 (#673)
+
+## [1.3.0-alpha.29] - 2024-10-02
+
+### ◀️ Revert
+
+- *(store)* Comment out unused fetch functions
+
+## [1.3.0-alpha.28] - 2024-10-02
+
+### 🚀 Features
+
+- *(camp)* Add share icon to prop/candie navbar using the native sharing UI
+- *(camp)* Decrease multicall delay to 50 ms
+- *(camp)* Improve main feed filter menu
+
+### 🐛 Bug Fixes
+
+- *(camp)* Fix `marks` rendering to not create faulty markdown
+- *(camp)* Fix transfer items showing incorrect noun data
+- *(camp)* Add default value for ininitialized cache delay
+- *(camp)* Fix error screen layout on small devices
+- *(camp)* Fetch nonce eagerly so the signature request can be instant
+- *(camp)* Prevent nonce renewal when auth is in progress
+- *(camp)* Ignore update candies when matching proposal <> candidate
+
+### 🚜 Refactor
+
+- *(store)* Comment out unused fetch functions
+
+### ◀️ Revert
+
+- *(deps)* Bump @tanstack/react-query from 5.56.2 to 5.59.0 (#665)
+
+## [1.3.0-alpha.27] - 2024-09-29
+
+### 🚀 Features
+
+- *(camp)* Add limited support for accounts to search
+- *(camp)* Default to bypass next router on search param navigations
+- *(camp)* Bypass app router in update banner to prevent delay
+
+## [1.3.0-alpha.26] - 2024-09-28
+
+### 🚀 Features
+
+- *(camp)* Use tenderly to simulate contract writes during impersonation mode
+- *(camp)* Improve noun transfer parsing
+
+### 🐛 Bug Fixes
+
+- *(api)* Add `runtime` configuration to contract route
+
+## [1.3.0-alpha.25] - 2024-09-26
+
+### 🚜 Refactor
+
+- *(contracts)* Rename `auction-house` to `Lil Nouns Auction`
+
+## [1.3.0-alpha.24] - 2024-09-25
+
+### 🐛 Bug Fixes
+
+- *(camp)* Add missing noun id argument
+- *(contracts)* Update auction house proxy contract address
+
+## [1.3.0-alpha.23] - 2024-09-25
+
+### 🚀 Features
+
+- *(camp)* Improve account and noun preview popovers
+- *(camp)* Remove like action from some feed items
+
+### 🐛 Bug Fixes
+
+- *(camp)* Update noun-transfer hook to decode correct transfer event
+- *(camp)* Update useTransferMeta to use avg sale price for sweep txns
+
 ## [1.3.0-alpha.22] - 2024-09-25
 
 ### 🚀 Features
