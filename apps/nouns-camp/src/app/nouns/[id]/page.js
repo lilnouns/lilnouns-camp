@@ -3,6 +3,8 @@ import { subgraphFetch } from "../../../nouns-subgraph.js";
 import ClientAppProvider from "../../client-app-provider.js";
 import NounScreen from "@/components/noun-screen";
 
+export const runtime = "edge";
+
 const fetchNoun = async (id) => {
   const data = await subgraphFetch({
     query: `{
