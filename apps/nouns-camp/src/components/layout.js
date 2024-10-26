@@ -46,7 +46,7 @@ const Layout = ({
   navigationStack = [],
   actions,
   scrollView = true,
-  hideAuction = false,
+  hideAuction = true,
   children,
   ...props
 }) => (
