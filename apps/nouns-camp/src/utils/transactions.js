@@ -736,6 +736,15 @@ export const resolveAction = (a) => {
               },
             ];
 
+          case "steth":
+            return [
+              {
+                type: "steth-transfer",
+                receiverAddress: a.target,
+                stethAmount: parseUnits(a.amount, 18),
+              },
+            ];
+
           case "usdc":
             return [
               {
