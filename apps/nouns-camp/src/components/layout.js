@@ -632,10 +632,10 @@ const NavBar = ({
                   id: "dao",
                   title: "DAO",
                   children: [
-                    {
-                      id: "navigate-to-auction",
-                      label: "Auction",
-                    },
+                    // {
+                    //   id: "navigate-to-auction",
+                    //   label: "Auction",
+                    // },
                     {
                       id: "navigate-to-proposal-listing",
                       label: "Proposals",
