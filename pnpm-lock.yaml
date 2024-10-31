@@ -181,7 +181,7 @@ importers:
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.13.1
-        version: 1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@37.14.0(@swc/core@1.7.40(@swc/helpers@0.5.13)))(wrangler@3.83.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+        version: 1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@37.14.0(@swc/core@1.7.40(@swc/helpers@0.5.13)))(wrangler@3.84.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       dotenv:
         specifier: 16.4.5
         version: 16.4.5
@@ -201,8 +201,8 @@ importers:
         specifier: 37.14.0
         version: 37.14.0(@swc/core@1.7.40(@swc/helpers@0.5.13))
       wrangler:
-        specifier: 3.83.0
-        version: 3.83.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+        specifier: 3.84.0
+        version: 3.84.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   packages/common:
     dependencies:
@@ -7768,8 +7768,8 @@ packages:
     resolution: {integrity: sha512-U8uCCl2x9TK3WANvmBavymRzxbfFYG+tAu+fgx3zxQy3qdagQqBLwJVrdyO1TBfUXvfKveMKJZhpvUYoOjM+4g==}
     engines: {node: '>=18.17'}
 
-  unenv-nightly@2.0.0-20241018-011344-e666fcf:
-    resolution: {integrity: sha512-D00bYn8rzkCBOlLx+k1iHQlc69jvtJRT7Eek4yIGQ6461a2tUBjngGZdRpqsoXAJCz/qBW0NgPting7Zvg+ysg==}
+  unenv-nightly@2.0.0-20241024-111401-d4156ac:
+    resolution: {integrity: sha512-xJO1hfY+Te+/XnfCYrCbFbRcgu6XEODND1s5wnVbaBCkuQX7JXF7fHEXPrukFE2j8EOH848P8QN19VO47XN8hw==}
 
   unenv@1.10.0:
     resolution: {integrity: sha512-wY5bskBQFL9n3Eca5XnhH6KbUo/tfvkwm9OpcdCvLaeA7piBNbavbOKJySEwQ1V0RH6HvNlSAFRTpvTqgKRQXQ==}
@@ -8112,8 +8112,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@3.83.0:
-    resolution: {integrity: sha512-qDzdUuTngKqmm2OJUZm7Gk4+Hv37F2nNNAHuhIgItEIhxBdOVDsgKmvpd+f41MFxyuGg3fbGWYANHI+0V2Z5yw==}
+  wrangler@3.84.0:
+    resolution: {integrity: sha512-EA8oh7YQmZ3kD+a5MId9reHKGgXpodmsPWMLriE5gT5YmG9is66n0AA2tyLzQZKZXmgbo6JyGxvCDPcLeb/X0w==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -9231,7 +9231,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@37.14.0(@swc/core@1.7.40(@swc/helpers@0.5.13)))(wrangler@3.83.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
+  '@cloudflare/next-on-pages@1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@37.14.0(@swc/core@1.7.40(@swc/helpers@0.5.13)))(wrangler@3.84.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
     dependencies:
       acorn: 8.12.1
       ast-types: 0.14.2
@@ -9246,7 +9246,7 @@ snapshots:
       pcre-to-regexp: 1.1.0
       semver: 7.6.3
       vercel: 37.14.0(@swc/core@1.7.40(@swc/helpers@0.5.13))
-      wrangler: 3.83.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      wrangler: 3.84.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -13255,7 +13255,7 @@ snapshots:
 
   acorn-walk@8.3.4:
     dependencies:
-      acorn: 8.12.1
+      acorn: 8.14.0
 
   acorn@8.12.1: {}
 
@@ -16054,7 +16054,7 @@ snapshots:
   miniflare@3.20241022.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
-      acorn: 8.12.1
+      acorn: 8.14.0
       acorn-walk: 8.3.4
       capnp-ts: 0.7.0
       exit-hook: 2.2.1
@@ -17673,7 +17673,7 @@ snapshots:
 
   undici@6.19.8: {}
 
-  unenv-nightly@2.0.0-20241018-011344-e666fcf:
+  unenv-nightly@2.0.0-20241024-111401-d4156ac:
     dependencies:
       defu: 6.1.4
       ohash: 1.1.4
@@ -18076,7 +18076,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20241022.0
       '@cloudflare/workerd-windows-64': 1.20241022.0
 
-  wrangler@3.83.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
+  wrangler@3.84.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@cloudflare/workers-shared': 0.7.0
@@ -18094,7 +18094,7 @@ snapshots:
       resolve.exports: 2.0.2
       selfsigned: 2.4.1
       source-map: 0.6.1
-      unenv: unenv-nightly@2.0.0-20241018-011344-e666fcf
+      unenv: unenv-nightly@2.0.0-20241024-111401-d4156ac
       workerd: 1.20241022.0
       xxhash-wasm: 1.0.2
     optionalDependencies:
