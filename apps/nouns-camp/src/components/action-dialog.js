@@ -42,6 +42,7 @@ import { buildEtherscanLink } from "../utils/etherscan.js";
 const decimalsByCurrency = {
   eth: 18,
   weth: 18,
+  steth: 18,
   usdc: 6,
 };
 
@@ -203,6 +204,7 @@ const parseAmount = (amount, currency) => {
   switch (currency.toLowerCase()) {
     case "eth":
     case "weth":
+    case "steth":
     case "usdc":
       return parseUnits(amount.toString(), decimalsByCurrency[currency]);
     default:
@@ -825,6 +827,7 @@ const formConfigByActionType = {
             setCurrency={(currency) => setState({ currency })}
             currencyOptions={[
               { value: "eth", label: "ETH" },
+              { value: "steth", label: "stETH" },
               { value: "usdc", label: "USDC" },
             ]}
           />
