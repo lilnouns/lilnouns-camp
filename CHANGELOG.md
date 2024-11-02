@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.49] - 2024-11-02
+
+### 🚀 Features
+
+- *(action-dialog)* Add support for stETH currency
+
+## [1.3.0-alpha.48] - 2024-11-02
+
+### 🚀 Features
+
+- Pull changes from upstream (#762)
+- *(camp)* Link to flows.wtf
+
+### 🐛 Bug Fixes
+
+- *(camp)* Link author to warpcast profile page on farcaster comments
+
 ## [1.3.0-alpha.47] - 2024-10-30
 
 ### 🚜 Refactor
