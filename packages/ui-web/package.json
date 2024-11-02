@@ -46,7 +46,7 @@
     "./slate": "./dist/slate/index.js"
   },
   "devDependencies": {
-    "@swc/core": "1.7.40",
+    "@swc/core": "1.7.42",
     "rollup": "4.24.3",
     "rollup-plugin-swc3": "0.12.1"
   },
