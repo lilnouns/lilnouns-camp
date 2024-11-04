@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.50] - 2024-11-04
+
+### 🚀 Features
+
+- *(camp)* Add yet-to-vote column in vote overview
+
+### 🐛 Bug Fixes
+
+- *(camp)* Prevent android from font boosting truncated content
+
 ## [1.3.0-alpha.49] - 2024-11-02
 
 ### 🚀 Features
