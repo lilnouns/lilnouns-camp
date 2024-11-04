@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.51] - 2024-11-04
+
+### 🚀 Features
+
+- *(common)* Add `image-data` with body and accessory data
+- *(camp)* Always sort absent column by attendance
+
+### 🚜 Refactor
+
+- *(common)* Update noun asset handling
+
+### ⚙️ Miscellaneous Tasks
+
+- *(common)* Add json plugin to Rollup config
+
 ## [1.3.0-alpha.50] - 2024-11-04
 
 ### 🚀 Features
