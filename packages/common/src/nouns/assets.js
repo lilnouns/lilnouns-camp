@@ -1,9 +1,7 @@
-import {
-  ImageData,
-  getNounSeedFromBlockHash,
-  getNounData,
-} from "@lilnounsdao/assets";
 import { buildSVG } from "@lilnounsdao/sdk";
+import { default as ImageData } from "./image-data.json";
+import { getPseudorandomPart } from "@lilnounsdao/assets";
+import { keccak256 as solidityKeccak256 } from "@ethersproject/solidity";
 
 const svgCacheBySeed = new Map();
 
@@ -53,3 +51,37 @@ export const buildDataUriFromSeed = (seed, options) => {
   const svgString = buildSvgStringFromSeed(seed, options);
   return buildDataUriFromSvgString(svgString);
 };
+
+export function getNounData(seed) {
+  const {
+    bgcolors,
+    images: { accessories, bodies, glasses, heads },
+  } = ImageData;
+  return {
+    parts: [
+      bodies[seed.body],
+      accessories[seed.accessory],
+      heads[seed.head],
+      glasses[seed.glasses],
+    ],
+    background: bgcolors[seed.background],
+  };
+}
+
+export function getNounSeedFromBlockHash(nounId, blockHash) {
+  const {
+    bgcolors,
+    images: { accessories, bodies, glasses, heads },
+  } = ImageData;
+  const pseudorandomness = solidityKeccak256(
+    ["bytes32", "uint256"],
+    [blockHash, nounId],
+  );
+  return {
+    background: getPseudorandomPart(pseudorandomness, bgcolors.length, 0),
+    body: getPseudorandomPart(pseudorandomness, bodies.length, 48),
+    accessory: getPseudorandomPart(pseudorandomness, accessories.length, 96),
+    head: getPseudorandomPart(pseudorandomness, heads.length, 144),
+    glasses: getPseudorandomPart(pseudorandomness, glasses.length, 192),
+  };
+}
