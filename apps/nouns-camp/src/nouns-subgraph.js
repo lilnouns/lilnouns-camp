@@ -487,6 +487,8 @@ export const subgraphFetch = async ({
   operationName,
   query,
   variables,
+  retries = 3,
+  delay = 1000,
 }) => {
   const isServer = typeof window === "undefined";
 
@@ -499,24 +501,59 @@ export const subgraphFetch = async ({
 
   if (url == null) throw new Error();
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ operationName, query, variables }),
-    // cache: isServer ? "no-cache" : "default",
-  });
-  if (!response.ok) {
-    console.error("Unsuccessful subgraph request", {
-      responseStatus: response.status,
-    });
-    return Promise.reject(new Error(response.status ?? "No response"));
-  }
-  const body = await response.json();
-  if (body.errors != null) {
-    console.error("Unexpected subgraph response", body);
-    return Promise.reject(new Error("subgraph-error"));
-  }
-  return body.data;
+  const makeRequest = async (retryCount) => {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ operationName, query, variables }),
+      });
+
+      if (response.status === 429) {
+        if (retryCount > 0) {
+          const retryAfter = response.headers.get("ratelimit-retry");
+          const waitTime = retryAfter ? parseInt(retryAfter, 10) * 1000 : delay;
+
+          console.warn(
+            `429 error received. Retrying after ${waitTime}ms...`,
+            `Retries left: ${retryCount - 1}`,
+          );
+
+          await new Promise((resolve) => setTimeout(resolve, waitTime));
+          return makeRequest(retryCount - 1);
+        } else {
+          console.error("Exceeded max retries for 429 error");
+          return Promise.reject(new Error("Too many requests"));
+        }
+      }
+
+      if (!response.ok) {
+        console.error("Unsuccessful subgraph request", {
+          responseStatus: response.status,
+        });
+        return Promise.reject(new Error(response.status ?? "No response"));
+      }
+
+      const body = await response.json();
+      if (body.errors != null) {
+        console.error("Unexpected subgraph response", body);
+        return Promise.reject(new Error("subgraph-error"));
+      }
+
+      return body.data;
+    } catch (error) {
+      if (retryCount > 0) {
+        console.warn(`Error encountered: ${error.message}. Retrying...`);
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        return makeRequest(retryCount - 1);
+      } else {
+        console.error("Exceeded max retries due to error");
+        return Promise.reject(error);
+      }
+    }
+  };
+
+  return makeRequest(retries);
 };
 
 export const parsedSubgraphFetch = async (options) => {
