@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.53] - 2024-11-07
+
+### 🚜 Refactor
+
+- *(store)* Update subgraph query fields
+- *(config)* Migrate to ES module syntax
+
 ## [1.3.0-alpha.52] - 2024-11-07
 
 ### 🚀 Features
