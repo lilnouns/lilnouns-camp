@@ -538,37 +538,11 @@ const createStore = ({ initialState, publicClient }) =>
     //
     //   const data = await subgraphFetch({
     //     query: `
-    //       ${CANDIDATE_CONTENT_SIGNATURE_FIELDS}
+    //       ${FULL_PROPOSAL_CANDIDATE_FIELDS}
     //       ${CANDIDATE_FEEDBACK_FIELDS}
     //       query {
     //         proposalCandidate(id: ${JSON.stringify(id)}) {
-    //           id
-    //           slug
-    //           proposer
-    //           canceledTimestamp
-    //           createdTimestamp
-    //           lastUpdatedTimestamp
-    //           createdBlock
-    //           canceledBlock
-    //           lastUpdatedBlock
-    //           createdTransactionHash
-    //           canceledTransactionHash
-    //           latestVersion {
-    //             id
-    //             content {
-    //               title
-    //               description
-    //               targets
-    //               values
-    //               signatures
-    //               calldatas
-    //               matchingProposalIds
-    //               proposalIdToUpdate
-    //               contentSignatures {
-    //                 ...CandidateContentSignatureFields
-    //               }
-    //             }
-    //           }
+    //           ...FullProposalCandidateFields
     //           versions {
     //             id
     //             createdBlock

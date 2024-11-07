@@ -69,6 +69,9 @@ updates:
           - 'next'
           - 'eslint-config-next'
           - '@next/*'
+      serwist:
+        patterns:
+          - '@serwist/*'
       next-on-page:
         patterns:
           - '@cloudflare/next-on-pages'
@@ -96,7 +99,7 @@ updates:
       - dependency-name: "zustand"
         update-types:
           - "version-update:semver-major"
-      - dependency-name: "@serwist/next"
+      - dependency-name: "@serwist/*"
         update-types:
           - "version-update:semver-major"
       - dependency-name: "@sentry/nextjs"

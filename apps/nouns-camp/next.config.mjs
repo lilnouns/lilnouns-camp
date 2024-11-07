@@ -1,8 +1,10 @@
-const { readFileSync } = require("node:fs");
-const path = require("node:path");
-const dotenv = require("dotenv");
-const webpack = require("webpack");
-const { withSentryConfig } = require("@sentry/nextjs");
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import dotenv from "dotenv";
+import webpack from "webpack";
+import { withSentryConfig } from "@sentry/nextjs";
+import serwist from "@serwist/next";
 
 // `next lint` runs this file
 const isLintJob = process.env.CI_LINT != null;
@@ -12,6 +14,7 @@ const assertEnvironment = () => {
   // Skip this check in CI lint jobs
   if (isLintJob) return;
 
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
   const templateFile = readFileSync(path.join(__dirname, ".env.template"));
   const whitelistedKeys = Object.keys(dotenv.parse(templateFile));
 
@@ -22,8 +25,8 @@ const assertEnvironment = () => {
   // Assert that any public keys are defined in the whitelist
   for (const key of Object.keys(process.env)) {
     if (key.startsWith("NEXT_PUBLIC_VERCEL_")) continue; // Variables injected by Vercel are fine
-  //   if (key.startsWith("NEXT_PUBLIC_") && !whitelistedKeys.includes(key))
-  //     throw new Error(`${key} is not allowed`);
+    // if (key.startsWith("NEXT_PUBLIC_") && !whitelistedKeys.includes(key))
+    //   throw new Error(`${key} is not allowed`);
   }
 };
 
@@ -34,7 +37,7 @@ try {
   console.warn("Incomplete environment", e);
 }
 
-const withSerwist = require("@serwist/next").default({
+const withSerwist = serwist({
   swSrc: "src/app/service-worker.js",
   swDest: "public/service-worker.js",
   swUrl: "/service-worker.js",
@@ -95,7 +98,7 @@ const ignoredModules = [
   "encoding",
 ];
 
-module.exports = withSentry(
+export default withSentry(
   withSerwist({
     reactStrictMode: true,
     compiler: {
