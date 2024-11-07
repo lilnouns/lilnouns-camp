@@ -521,7 +521,7 @@ const NavBar = ({
                     },
                   ];
             return (
-              <React.Fragment key={item.key ?? item.to}>
+              <React.Fragment key={item.key ?? item.to ?? index}>
                 {index > 0 && (
                   <span
                     data-index={index}

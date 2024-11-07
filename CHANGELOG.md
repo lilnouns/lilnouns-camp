@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.52] - 2024-11-07
+
+### 🚀 Features
+
+- *(camp)* Add context menus to feed items
+
+### 🐛 Bug Fixes
+
+- *(layout)* Safeguard against missing keys
+
 ## [1.3.0-alpha.51] - 2024-11-04
 
 ### 🚀 Features

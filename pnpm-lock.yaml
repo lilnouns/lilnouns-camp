@@ -81,10 +81,10 @@ importers:
         version: 1.1.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@sentry/nextjs':
         specifier: 7.119.2
-        version: 7.119.2(next@14.2.16(@babel/core@7.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19))
+        version: 7.119.2(next@14.2.16(@babel/core@7.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19))
       '@serwist/next':
         specifier: 8.4.4
-        version: 8.4.4(next@14.2.16(@babel/core@7.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19))
+        version: 8.4.4(next@14.2.16(@babel/core@7.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19))
       '@serwist/precaching':
         specifier: 9.0.9
         version: 9.0.9(typescript@4.9.5)
@@ -98,14 +98,14 @@ importers:
         specifier: workspace:0.0.0
         version: link:../../packages/ui-web
       '@tanstack/react-query':
-        specifier: 5.59.16
-        version: 5.59.16(react@18.3.1)
+        specifier: 5.59.20
+        version: 5.59.20(react@18.3.1)
       '@vercel/analytics':
         specifier: 1.3.2
         version: 1.3.2(next@14.2.16(@babel/core@7.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@vercel/edge-config':
-        specifier: 1.3.0
-        version: 1.3.0
+        specifier: 1.4.0
+        version: 1.4.0
       '@vercel/kv':
         specifier: 3.0.0
         version: 3.0.0
@@ -174,14 +174,14 @@ importers:
         version: 2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8)
       wagmi:
         specifier: 2.12.12
-        version: 2.12.12(@tanstack/query-core@5.59.16)(@tanstack/react-query@5.59.16(react@18.3.1))(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.9)(@babel/preset-env@7.25.4(@babel/core@7.25.9))(bufferutil@4.0.8)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@4.9.5)(utf-8-validate@5.0.10)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
+        version: 2.12.12(@tanstack/query-core@5.59.20)(@tanstack/react-query@5.59.20(react@18.3.1))(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.9)(@babel/preset-env@7.25.4(@babel/core@7.25.9))(bufferutil@4.0.8)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@4.9.5)(utf-8-validate@5.0.10)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
       zustand:
         specifier: 4.5.5
         version: 4.5.5(immer@10.1.1)(react@18.3.1)
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.13.1
-        version: 1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@37.14.0(@swc/core@1.7.42(@swc/helpers@0.5.13)))(wrangler@3.84.1(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+        version: 1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@37.14.0(@swc/core@1.9.1(@swc/helpers@0.5.13)))(wrangler@3.85.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       dotenv:
         specifier: 16.4.5
         version: 16.4.5
@@ -199,10 +199,10 @@ importers:
         version: 1.13.5(eslint@8.57.1)
       vercel:
         specifier: 37.14.0
-        version: 37.14.0(@swc/core@1.7.42(@swc/helpers@0.5.13))
+        version: 37.14.0(@swc/core@1.9.1(@swc/helpers@0.5.13))
       wrangler:
-        specifier: 3.84.1
-        version: 3.84.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+        specifier: 3.85.0
+        version: 3.85.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   packages/common:
     dependencies:
@@ -217,14 +217,14 @@ importers:
         specifier: 6.1.0
         version: 6.1.0(rollup@4.24.0)
       '@swc/core':
-        specifier: 1.7.42
-        version: 1.7.42(@swc/helpers@0.5.13)
+        specifier: 1.9.1
+        version: 1.9.1(@swc/helpers@0.5.13)
       rollup:
         specifier: '>=4.22.4'
         version: 4.24.0
       rollup-plugin-swc3:
         specifier: 0.12.1
-        version: 0.12.1(@swc/core@1.7.42(@swc/helpers@0.5.13))(rollup@4.24.0)
+        version: 0.12.1(@swc/core@1.9.1(@swc/helpers@0.5.13))(rollup@4.24.0)
       vitest:
         specifier: ^2.1.4
         version: 2.1.4(@edge-runtime/vm@3.2.0)(@types/node@22.8.4)(terser@5.36.0)
@@ -236,14 +236,14 @@ importers:
         version: link:../common
     devDependencies:
       '@swc/core':
-        specifier: 1.7.42
-        version: 1.7.42(@swc/helpers@0.5.13)
+        specifier: 1.9.1
+        version: 1.9.1(@swc/helpers@0.5.13)
       rollup:
         specifier: '>=4.22.4'
         version: 4.24.0
       rollup-plugin-swc3:
         specifier: 0.12.1
-        version: 0.12.1(@swc/core@1.7.42(@swc/helpers@0.5.13))(rollup@4.24.0)
+        version: 0.12.1(@swc/core@1.9.1(@swc/helpers@0.5.13))(rollup@4.24.0)
 
 packages:
 
@@ -3315,68 +3315,68 @@ packages:
   '@stablelib/x25519@1.0.3':
     resolution: {integrity: sha512-KnTbKmUhPhHavzobclVJQG5kuivH+qDLpe84iRqX3CLrKp881cF160JvXJ+hjn1aMyCwYOKeIZefIH/P5cJoRw==}
 
-  '@swc/core-darwin-arm64@1.7.42':
-    resolution: {integrity: sha512-fWhaCs2+8GDRIcjExVDEIfbptVrxDqG8oHkESnXgymmvqTWzWei5SOnPNMS8Q+MYsn/b++Y2bDxkcwmq35Bvxg==}
+  '@swc/core-darwin-arm64@1.9.1':
+    resolution: {integrity: sha512-2/ncHSCdAh5OHem1fMITrWEzzl97OdMK1PHc9CkxSJnphLjRubfxB5sbc5tDhcO68a5tVy+DxwaBgDec3PXnOg==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@swc/core-darwin-x64@1.7.42':
-    resolution: {integrity: sha512-ZaVHD2bijrlkCyD7NDzLmSK849Jgcx+6DdL4x1dScoz1slJ8GTvLtEu0JOUaaScQwA+cVlhmrmlmi9ssjbRLGQ==}
+  '@swc/core-darwin-x64@1.9.1':
+    resolution: {integrity: sha512-4MDOFC5zmNqRJ9RGFOH95oYf27J9HniLVpB1pYm2gGeNHdl2QvDMtx2QTuMHQ6+OTn/3y1BHYuhBGp7d405oLA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [darwin]
 
-  '@swc/core-linux-arm-gnueabihf@1.7.42':
-    resolution: {integrity: sha512-iF0BJj7hVTbY/vmbvyzVTh/0W80+Q4fbOYschdUM3Bsud39TA+lSaPOefOHywkNH58EQ1z3EAxYcJOWNES7GFQ==}
+  '@swc/core-linux-arm-gnueabihf@1.9.1':
+    resolution: {integrity: sha512-eVW/BjRW8/HpLe3+1jRU7w7PdRLBgnEEYTkHJISU8805/EKT03xNZn6CfaBpKfeAloY4043hbGzE/NP9IahdpQ==}
     engines: {node: '>=10'}
     cpu: [arm]
     os: [linux]
 
-  '@swc/core-linux-arm64-gnu@1.7.42':
-    resolution: {integrity: sha512-xGu8j+DOLYTLkVmsfZPJbNPW1EkiWgSucT0nOlz77bLxImukt/0+HVm2hOwHSKuArQ8C3cjahAMY3b/s4VH2ww==}
+  '@swc/core-linux-arm64-gnu@1.9.1':
+    resolution: {integrity: sha512-8m3u1v8R8NgI/9+cHMkzk14w87blSy3OsQPWPfhOL+XPwhyLPvat+ahQJb2nZmltjTgkB4IbzKFSfbuA34LmNA==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
 
-  '@swc/core-linux-arm64-musl@1.7.42':
-    resolution: {integrity: sha512-qtW3JNO7i1yHEko59xxz+jY38+tYmB96JGzj6XzygMbYJYZDYbrOpXQvKbMGNG3YeTDan7Fp2jD0dlKf7NgDPA==}
+  '@swc/core-linux-arm64-musl@1.9.1':
+    resolution: {integrity: sha512-hpT0sQAZnW8l02I289yeyFfT9llGO9PzKDxUq8pocKtioEHiElRqR53juCWoSmzuWi+6KX7zUJ0NKCBrc8pmDg==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
 
-  '@swc/core-linux-x64-gnu@1.7.42':
-    resolution: {integrity: sha512-F9WY1TN+hhhtiEzZjRQziNLt36M5YprMeOBHjsLVNqwgflzleSI7ulgnlQECS8c8zESaXj3ksGduAoJYtPC1cA==}
+  '@swc/core-linux-x64-gnu@1.9.1':
+    resolution: {integrity: sha512-sGFdpdAYusk/ropHiwtXom2JrdaKPxl8MqemRv6dvxZq1Gm/GdmOowxdXIPjCgBGMgoXVcgNviH6CgiO5q+UtA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
 
-  '@swc/core-linux-x64-musl@1.7.42':
-    resolution: {integrity: sha512-7YMdOaYKLMQ8JGfnmRDwidpLFs/6ka+80zekeM0iCVO48yLrJR36G0QGXzMjKsXI0BPhq+mboZRRENK4JfQnEA==}
+  '@swc/core-linux-x64-musl@1.9.1':
+    resolution: {integrity: sha512-YtNLNwIWs0Z2+XgBs6+LrCIGtfCDtNr4S4b6Q5HDOreEIGzSvhkef8eyBI5L+fJ2eGov4b7iEo61C4izDJS5RA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
 
-  '@swc/core-win32-arm64-msvc@1.7.42':
-    resolution: {integrity: sha512-C5CYWaIZEyqPl5W/EwcJ/mLBJFHVoUEa/IwWi0b4q2fCXcSCktQGwKXOQ+d67GneiZoiq0HasgcdMmMpGS9YRQ==}
+  '@swc/core-win32-arm64-msvc@1.9.1':
+    resolution: {integrity: sha512-qSxD3uZW2vSiHqUt30vUi0PB92zDh9bjqh5YKpfhhVa7h1vt/xXhlid8yMvSNToTfzhRrTEffOAPUr7WVoyQUA==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [win32]
 
-  '@swc/core-win32-ia32-msvc@1.7.42':
-    resolution: {integrity: sha512-3j47seZ5pO62mbrqvPe1iwhe2BXnM5q7iB+n2xgA38PCGYt0mnaJafqmpCXm/uYZOCMqSNynaoOWCMMZm4sqtA==}
+  '@swc/core-win32-ia32-msvc@1.9.1':
+    resolution: {integrity: sha512-C3fPEwyX/WRPlX6zIToNykJuz1JkZX0sk8H1QH2vpnKuySUkt/Ur5K2FzLgSWzJdbfxstpgS151/es0VGAD+ZA==}
     engines: {node: '>=10'}
     cpu: [ia32]
     os: [win32]
 
-  '@swc/core-win32-x64-msvc@1.7.42':
-    resolution: {integrity: sha512-FXl9MdeUogZLGDcLr6QIRdDVkpG0dkN4MLM4dwQ5kcAk+XfKPrQibX6M2kcfhsCx+jtBqtK7hRFReRXPWJZGbA==}
+  '@swc/core-win32-x64-msvc@1.9.1':
+    resolution: {integrity: sha512-2XZ+U1AyVsOAXeH6WK1syDm7+gwTjA8fShs93WcbxnK7HV+NigDlvr4124CeJLTHyh3fMh1o7+CnQnaBJhlysQ==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [win32]
 
-  '@swc/core@1.7.42':
-    resolution: {integrity: sha512-iQrRk3SKndQZ4ptJv1rzeQSiCYQIhMjiO97QXOlCcCoaazOLKPnLnXzU4Kv0FuBFyYfG2FE94BoR0XI2BN02qw==}
+  '@swc/core@1.9.1':
+    resolution: {integrity: sha512-OnPc+Kt5oy3xTvr/KCUOqE9ptJcWbyQgAUr1ydh9EmbBcmJTaO1kfQCxm/axzJi6sKeDTxL9rX5zvLOhoYIaQw==}
     engines: {node: '>=10'}
     peerDependencies:
       '@swc/helpers': '*'
@@ -3393,14 +3393,14 @@ packages:
   '@swc/helpers@0.5.5':
     resolution: {integrity: sha512-KGYxvIOXcceOAbEk4bi/dVLEK9z8sZ0uBB3Il5b1rhfClSpcX0yfRO0KmTkqR2cnQDymwLB+25ZyMzICg/cm/A==}
 
-  '@swc/types@0.1.13':
-    resolution: {integrity: sha512-JL7eeCk6zWCbiYQg2xQSdLXQJl8Qoc9rXmG2cEKvHe3CKwMHwHGpfOb8frzNLmbycOo6I51qxnLnn9ESf4I20Q==}
+  '@swc/types@0.1.14':
+    resolution: {integrity: sha512-PbSmTiYCN+GMrvfjrMo9bdY+f2COnwbdnoMw7rqU/PI5jXpKjxOGZ0qqZCImxnT81NkNsKnmEpvu+hRXLBeCJg==}
 
-  '@tanstack/query-core@5.59.16':
-    resolution: {integrity: sha512-crHn+G3ltqb5JG0oUv6q+PMz1m1YkjpASrXTU+sYWW9pLk0t2GybUHNRqYPZWhxgjPaVGC4yp92gSFEJgYEsPw==}
+  '@tanstack/query-core@5.59.20':
+    resolution: {integrity: sha512-e8vw0lf7KwfGe1if4uPFhvZRWULqHjFcz3K8AebtieXvnMOz5FSzlZe3mTLlPuUBcydCnBRqYs2YJ5ys68wwLg==}
 
-  '@tanstack/react-query@5.59.16':
-    resolution: {integrity: sha512-MuyWheG47h6ERd4PKQ6V8gDyBu3ThNG22e1fRVwvq6ap3EqsFhyuxCAwhNP/03m/mLg+DAb0upgbPaX6VB+CkQ==}
+  '@tanstack/react-query@5.59.20':
+    resolution: {integrity: sha512-Zly0egsK0tFdfSbh5/mapSa+Zfc3Et0Zkar7Wo5sQkFzWyB3p3uZWOHR2wrlAEEV2L953eLuDBtbgFvMYiLvUw==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -3576,8 +3576,8 @@ packages:
   '@vercel/edge-config-fs@0.1.0':
     resolution: {integrity: sha512-NRIBwfcS0bUoUbRWlNGetqjvLSwgYH/BqKqDN7vK1g32p7dN96k0712COgaz6VFizAm9b0g6IG6hR6+hc0KCPg==}
 
-  '@vercel/edge-config@1.3.0':
-    resolution: {integrity: sha512-cOS/3y6X6kej3XcVxEClIWrzRdElunfVuCz6OKkOvD8wApk6jaPn0pFqiFUSfaFngHvhvXAnXkreNEaMWdkFuw==}
+  '@vercel/edge-config@1.4.0':
+    resolution: {integrity: sha512-69Wg5gw9DzwnyUmnjToSeLRm1nm8mCPgN0kflX8EHRHyqvzH80wPem5A8rI2LXPb2Y9tJNoqN3vXPcQhS2Wh5g==}
     engines: {node: '>=14.6'}
     peerDependencies:
       '@opentelemetry/api': ^1.7.0
@@ -8118,8 +8118,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@3.84.1:
-    resolution: {integrity: sha512-w27/QpIk2qz6aMIVi9T8cDcXMvh/RXjcL+vf4o5J2GpQAE4U7wTCNHyaY9H3oTJWRN97KqCAEbiHBNtTKoUJEw==}
+  wrangler@3.85.0:
+    resolution: {integrity: sha512-r5YCWUaF4ApLnloNE6jHHgRYdFzYHoajTlC1tns42UzQ2Ls63VAqD3b0cxOqzDUfmlSb3skpmu0B0Ssi3QWPAg==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -9234,7 +9234,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@37.14.0(@swc/core@1.7.42(@swc/helpers@0.5.13)))(wrangler@3.84.1(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
+  '@cloudflare/next-on-pages@1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@37.14.0(@swc/core@1.9.1(@swc/helpers@0.5.13)))(wrangler@3.85.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
     dependencies:
       acorn: 8.12.1
       ast-types: 0.14.2
@@ -9248,8 +9248,8 @@ snapshots:
       package-manager-manager: 0.2.0
       pcre-to-regexp: 1.1.0
       semver: 7.6.3
-      vercel: 37.14.0(@swc/core@1.7.42(@swc/helpers@0.5.13))
-      wrangler: 3.84.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      vercel: 37.14.0(@swc/core@1.9.1(@swc/helpers@0.5.13))
+      wrangler: 3.85.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -12053,7 +12053,7 @@ snapshots:
       '@sentry/utils': 7.119.2
       localforage: 1.10.0
 
-  '@sentry/nextjs@7.119.2(next@14.2.16(@babel/core@7.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19))':
+  '@sentry/nextjs@7.119.2(next@14.2.16(@babel/core@7.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19))':
     dependencies:
       '@rollup/plugin-commonjs': 24.0.0(rollup@4.24.0)
       '@sentry/core': 7.119.2
@@ -12071,7 +12071,7 @@ snapshots:
       rollup: 4.24.0
       stacktrace-parser: 0.1.10
     optionalDependencies:
-      webpack: 5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19)
+      webpack: 5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -12169,15 +12169,15 @@ snapshots:
       '@serwist/routing': 8.4.4
       '@serwist/strategies': 8.4.4
 
-  '@serwist/next@8.4.4(next@14.2.16(@babel/core@7.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19))':
+  '@serwist/next@8.4.4(next@14.2.16(@babel/core@7.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19))':
     dependencies:
       '@serwist/build': 8.4.4
-      '@serwist/webpack-plugin': 8.4.4(webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19))
+      '@serwist/webpack-plugin': 8.4.4(webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19))
       '@serwist/window': 8.4.4
-      clean-webpack-plugin: 4.0.0(webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19))
+      clean-webpack-plugin: 4.0.0(webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19))
       fast-glob: 3.3.2
       next: 14.2.16(@babel/core@7.25.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      webpack: 5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19)
+      webpack: 5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19)
 
   '@serwist/precaching@8.4.4':
     dependencies:
@@ -12205,12 +12205,12 @@ snapshots:
     optionalDependencies:
       typescript: 4.9.5
 
-  '@serwist/webpack-plugin@8.4.4(webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19))':
+  '@serwist/webpack-plugin@8.4.4(webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19))':
     dependencies:
       '@serwist/build': 8.4.4
       fast-json-stable-stringify: 2.1.0
       upath: 2.0.1
-      webpack: 5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19)
+      webpack: 5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19)
 
   '@serwist/window@8.4.4':
     dependencies:
@@ -12324,51 +12324,51 @@ snapshots:
       '@stablelib/random': 1.0.2
       '@stablelib/wipe': 1.0.1
 
-  '@swc/core-darwin-arm64@1.7.42':
+  '@swc/core-darwin-arm64@1.9.1':
     optional: true
 
-  '@swc/core-darwin-x64@1.7.42':
+  '@swc/core-darwin-x64@1.9.1':
     optional: true
 
-  '@swc/core-linux-arm-gnueabihf@1.7.42':
+  '@swc/core-linux-arm-gnueabihf@1.9.1':
     optional: true
 
-  '@swc/core-linux-arm64-gnu@1.7.42':
+  '@swc/core-linux-arm64-gnu@1.9.1':
     optional: true
 
-  '@swc/core-linux-arm64-musl@1.7.42':
+  '@swc/core-linux-arm64-musl@1.9.1':
     optional: true
 
-  '@swc/core-linux-x64-gnu@1.7.42':
+  '@swc/core-linux-x64-gnu@1.9.1':
     optional: true
 
-  '@swc/core-linux-x64-musl@1.7.42':
+  '@swc/core-linux-x64-musl@1.9.1':
     optional: true
 
-  '@swc/core-win32-arm64-msvc@1.7.42':
+  '@swc/core-win32-arm64-msvc@1.9.1':
     optional: true
 
-  '@swc/core-win32-ia32-msvc@1.7.42':
+  '@swc/core-win32-ia32-msvc@1.9.1':
     optional: true
 
-  '@swc/core-win32-x64-msvc@1.7.42':
+  '@swc/core-win32-x64-msvc@1.9.1':
     optional: true
 
-  '@swc/core@1.7.42(@swc/helpers@0.5.13)':
+  '@swc/core@1.9.1(@swc/helpers@0.5.13)':
     dependencies:
       '@swc/counter': 0.1.3
-      '@swc/types': 0.1.13
+      '@swc/types': 0.1.14
     optionalDependencies:
-      '@swc/core-darwin-arm64': 1.7.42
-      '@swc/core-darwin-x64': 1.7.42
-      '@swc/core-linux-arm-gnueabihf': 1.7.42
-      '@swc/core-linux-arm64-gnu': 1.7.42
-      '@swc/core-linux-arm64-musl': 1.7.42
-      '@swc/core-linux-x64-gnu': 1.7.42
-      '@swc/core-linux-x64-musl': 1.7.42
-      '@swc/core-win32-arm64-msvc': 1.7.42
-      '@swc/core-win32-ia32-msvc': 1.7.42
-      '@swc/core-win32-x64-msvc': 1.7.42
+      '@swc/core-darwin-arm64': 1.9.1
+      '@swc/core-darwin-x64': 1.9.1
+      '@swc/core-linux-arm-gnueabihf': 1.9.1
+      '@swc/core-linux-arm64-gnu': 1.9.1
+      '@swc/core-linux-arm64-musl': 1.9.1
+      '@swc/core-linux-x64-gnu': 1.9.1
+      '@swc/core-linux-x64-musl': 1.9.1
+      '@swc/core-win32-arm64-msvc': 1.9.1
+      '@swc/core-win32-ia32-msvc': 1.9.1
+      '@swc/core-win32-x64-msvc': 1.9.1
       '@swc/helpers': 0.5.13
 
   '@swc/counter@0.1.3': {}
@@ -12382,15 +12382,15 @@ snapshots:
       '@swc/counter': 0.1.3
       tslib: 2.8.0
 
-  '@swc/types@0.1.13':
+  '@swc/types@0.1.14':
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@tanstack/query-core@5.59.16': {}
+  '@tanstack/query-core@5.59.20': {}
 
-  '@tanstack/react-query@5.59.16(react@18.3.1)':
+  '@tanstack/react-query@5.59.20(react@18.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.59.16
+      '@tanstack/query-core': 5.59.20
       react: 18.3.1
 
   '@tootallnate/once@2.0.0': {}
@@ -12582,7 +12582,7 @@ snapshots:
 
   '@vercel/edge-config-fs@0.1.0': {}
 
-  '@vercel/edge-config@1.3.0':
+  '@vercel/edge-config@1.4.0':
     dependencies:
       '@vercel/edge-config-fs': 0.1.0
 
@@ -12663,7 +12663,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@vercel/node@3.2.24(@swc/core@1.7.42(@swc/helpers@0.5.13))':
+  '@vercel/node@3.2.24(@swc/core@1.9.1(@swc/helpers@0.5.13))':
     dependencies:
       '@edge-runtime/node-utils': 2.3.0
       '@edge-runtime/primitives': 4.1.0
@@ -12682,7 +12682,7 @@ snapshots:
       node-fetch: 2.6.9
       path-to-regexp: 6.3.0
       ts-morph: 12.0.0
-      ts-node: 10.9.1(@swc/core@1.7.42(@swc/helpers@0.5.13))(@types/node@16.18.11)(typescript@4.9.5)
+      ts-node: 10.9.1(@swc/core@1.9.1(@swc/helpers@0.5.13))(@types/node@16.18.11)(typescript@4.9.5)
       typescript: 4.9.5
       undici: 6.19.8
     transitivePeerDependencies:
@@ -12781,13 +12781,13 @@ snapshots:
       loupe: 3.1.2
       tinyrainbow: 1.2.0
 
-  '@wagmi/connectors@5.1.11(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(@wagmi/core@2.13.5(@tanstack/query-core@5.59.16)(immer@10.1.1)(react@18.3.1)(typescript@4.9.5)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.9)(@babel/preset-env@7.25.4(@babel/core@7.25.9))(bufferutil@4.0.8)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@4.9.5)(utf-8-validate@5.0.10)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)':
+  '@wagmi/connectors@5.1.11(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(@wagmi/core@2.13.5(@tanstack/query-core@5.59.20)(immer@10.1.1)(react@18.3.1)(typescript@4.9.5)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.9)(@babel/preset-env@7.25.4(@babel/core@7.25.9))(bufferutil@4.0.8)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@4.9.5)(utf-8-validate@5.0.10)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)':
     dependencies:
       '@coinbase/wallet-sdk': 4.0.4
       '@metamask/sdk': 0.28.4(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.9)(@babel/preset-env@7.25.4(@babel/core@7.25.9))(bufferutil@4.0.8)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(utf-8-validate@5.0.10)
       '@safe-global/safe-apps-provider': 0.18.3(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8)
       '@safe-global/safe-apps-sdk': 9.1.0(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8)
-      '@wagmi/core': 2.13.5(@tanstack/query-core@5.59.16)(immer@10.1.1)(react@18.3.1)(typescript@4.9.5)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))
+      '@wagmi/core': 2.13.5(@tanstack/query-core@5.59.20)(immer@10.1.1)(react@18.3.1)(typescript@4.9.5)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))
       '@walletconnect/ethereum-provider': 2.16.1(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10)
       '@walletconnect/modal': 2.6.2(react@18.3.1)
       cbw-sdk: '@coinbase/wallet-sdk@3.9.3'
@@ -12820,14 +12820,14 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@wagmi/core@2.13.5(@tanstack/query-core@5.59.16)(immer@10.1.1)(react@18.3.1)(typescript@4.9.5)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))':
+  '@wagmi/core@2.13.5(@tanstack/query-core@5.59.20)(immer@10.1.1)(react@18.3.1)(typescript@4.9.5)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))':
     dependencies:
       eventemitter3: 5.0.1
       mipd: 0.0.7(typescript@4.9.5)
       viem: 2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8)
       zustand: 4.4.1(immer@10.1.1)(react@18.3.1)
     optionalDependencies:
-      '@tanstack/query-core': 5.59.16
+      '@tanstack/query-core': 5.59.20
       typescript: 4.9.5
     transitivePeerDependencies:
       - '@types/react'
@@ -13721,10 +13721,10 @@ snapshots:
 
   cjs-module-lexer@1.2.3: {}
 
-  clean-webpack-plugin@4.0.0(webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19)):
+  clean-webpack-plugin@4.0.0(webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19)):
     dependencies:
       del: 4.1.1
-      webpack: 5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19)
+      webpack: 5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19)
 
   cli-cursor@3.1.0:
     dependencies:
@@ -14520,7 +14520,7 @@ snapshots:
       debug: 4.3.7
       enhanced-resolve: 5.17.1
       eslint: 8.57.1
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.30.0)(eslint@8.57.1))(eslint@8.57.1)
       fast-glob: 3.3.2
       get-tsconfig: 4.8.1
       is-bun-module: 1.2.1
@@ -14533,7 +14533,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.30.0)(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       debug: 4.3.7
     optionalDependencies:
@@ -14555,7 +14555,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.30.0)(eslint@8.57.1))(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
@@ -16984,12 +16984,12 @@ snapshots:
     dependencies:
       rollup-plugin-inject: 3.0.2
 
-  rollup-plugin-swc3@0.12.1(@swc/core@1.7.42(@swc/helpers@0.5.13))(rollup@4.24.0):
+  rollup-plugin-swc3@0.12.1(@swc/core@1.9.1(@swc/helpers@0.5.13))(rollup@4.24.0):
     dependencies:
       '@dual-bundle/import-meta-resolve': 4.1.0
       '@fastify/deepmerge': 2.0.0
       '@rollup/pluginutils': 5.1.2(rollup@4.24.0)
-      '@swc/core': 1.7.42(@swc/helpers@0.5.13)
+      '@swc/core': 1.9.1(@swc/helpers@0.5.13)
       get-tsconfig: 4.8.1
       rollup: 4.24.0
       rollup-preserve-directives: 1.1.2(rollup@4.24.0)
@@ -17476,16 +17476,16 @@ snapshots:
     dependencies:
       rimraf: 2.6.3
 
-  terser-webpack-plugin@5.3.10(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19)(webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19)):
+  terser-webpack-plugin@5.3.10(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19)(webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
       terser: 5.36.0
-      webpack: 5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19)
+      webpack: 5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19)
     optionalDependencies:
-      '@swc/core': 1.7.42(@swc/helpers@0.5.13)
+      '@swc/core': 1.9.1(@swc/helpers@0.5.13)
       esbuild: 0.17.19
 
   terser@5.36.0:
@@ -17561,7 +17561,7 @@ snapshots:
       '@ts-morph/common': 0.11.1
       code-block-writer: 10.1.1
 
-  ts-node@10.9.1(@swc/core@1.7.42(@swc/helpers@0.5.13))(@types/node@16.18.11)(typescript@4.9.5):
+  ts-node@10.9.1(@swc/core@1.9.1(@swc/helpers@0.5.13))(@types/node@16.18.11)(typescript@4.9.5):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
@@ -17579,7 +17579,7 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     optionalDependencies:
-      '@swc/core': 1.7.42(@swc/helpers@0.5.13)
+      '@swc/core': 1.9.1(@swc/helpers@0.5.13)
 
   ts-toolbelt@6.15.5: {}
 
@@ -17811,14 +17811,14 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vercel@37.14.0(@swc/core@1.7.42(@swc/helpers@0.5.13)):
+  vercel@37.14.0(@swc/core@1.9.1(@swc/helpers@0.5.13)):
     dependencies:
       '@vercel/build-utils': 8.4.12
       '@vercel/fun': 1.1.0
       '@vercel/go': 3.2.0
       '@vercel/hydrogen': 1.0.9
       '@vercel/next': 4.3.18
-      '@vercel/node': 3.2.24(@swc/core@1.7.42(@swc/helpers@0.5.13))
+      '@vercel/node': 3.2.24(@swc/core@1.9.1(@swc/helpers@0.5.13))
       '@vercel/python': 4.3.1
       '@vercel/redwood': 2.1.8
       '@vercel/remix-builder': 2.2.13
@@ -17914,11 +17914,11 @@ snapshots:
 
   vlq@1.0.1: {}
 
-  wagmi@2.12.12(@tanstack/query-core@5.59.16)(@tanstack/react-query@5.59.16(react@18.3.1))(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.9)(@babel/preset-env@7.25.4(@babel/core@7.25.9))(bufferutil@4.0.8)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@4.9.5)(utf-8-validate@5.0.10)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8):
+  wagmi@2.12.12(@tanstack/query-core@5.59.20)(@tanstack/react-query@5.59.20(react@18.3.1))(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.9)(@babel/preset-env@7.25.4(@babel/core@7.25.9))(bufferutil@4.0.8)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@4.9.5)(utf-8-validate@5.0.10)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8):
     dependencies:
-      '@tanstack/react-query': 5.59.16(react@18.3.1)
-      '@wagmi/connectors': 5.1.11(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(@wagmi/core@2.13.5(@tanstack/query-core@5.59.16)(immer@10.1.1)(react@18.3.1)(typescript@4.9.5)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.9)(@babel/preset-env@7.25.4(@babel/core@7.25.9))(bufferutil@4.0.8)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@4.9.5)(utf-8-validate@5.0.10)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
-      '@wagmi/core': 2.13.5(@tanstack/query-core@5.59.16)(immer@10.1.1)(react@18.3.1)(typescript@4.9.5)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))
+      '@tanstack/react-query': 5.59.20(react@18.3.1)
+      '@wagmi/connectors': 5.1.11(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(@wagmi/core@2.13.5(@tanstack/query-core@5.59.20)(immer@10.1.1)(react@18.3.1)(typescript@4.9.5)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8)))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.9)(@babel/preset-env@7.25.4(@babel/core@7.25.9))(bufferutil@4.0.8)(react@18.3.1)(typescript@4.9.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.24.0)(typescript@4.9.5)(utf-8-validate@5.0.10)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
+      '@wagmi/core': 2.13.5(@tanstack/query-core@5.59.20)(immer@10.1.1)(react@18.3.1)(typescript@4.9.5)(viem@2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8))
       react: 18.3.1
       use-sync-external-store: 1.2.0(react@18.3.1)
       viem: 2.21.8(bufferutil@4.0.8)(typescript@4.9.5)(utf-8-validate@5.0.10)(zod@3.23.8)
@@ -17979,7 +17979,7 @@ snapshots:
 
   webpack-sources@3.2.3: {}
 
-  webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19):
+  webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19):
     dependencies:
       '@types/estree': 1.0.6
       '@webassemblyjs/ast': 1.12.1
@@ -18001,7 +18001,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19)(webpack@5.94.0(@swc/core@1.7.42(@swc/helpers@0.5.13))(esbuild@0.17.19))
+      terser-webpack-plugin: 5.3.10(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19)(webpack@5.94.0(@swc/core@1.9.1(@swc/helpers@0.5.13))(esbuild@0.17.19))
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     transitivePeerDependencies:
@@ -18093,7 +18093,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20241022.0
       '@cloudflare/workerd-windows-64': 1.20241022.0
 
-  wrangler@3.84.1(bufferutil@4.0.8)(utf-8-validate@5.0.10):
+  wrangler@3.85.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@cloudflare/workers-shared': 0.7.0
