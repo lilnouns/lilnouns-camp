@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.55] - 2024-11-07
+
+### 🚀 Features
+
+- *(camp)* Display the year on relevant dates
+- *(nouns-subgraph)* Add retry logic for API requests
+
+### 🐛 Bug Fixes
+
+- *(camp)* Don’t show explorer links on events without a tx hash
+
 ## [1.3.0-alpha.54] - 2024-11-07
 
 ### 🐛 Bug Fixes
