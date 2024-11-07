@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.54] - 2024-11-07
+
+### 🐛 Bug Fixes
+
+- *(next-config)* Disable `swcMinify` for builds
+
+### 🚜 Refactor
+
+- *(service-worker)* Use `Serwist` class for SW setup
+
+### ⚙️ Miscellaneous Tasks
+
+- *(nouns-camp)* Comment out `swcMinify` config
+
 ## [1.3.0-alpha.53] - 2024-11-07
 
 ### 🚜 Refactor
