@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.56] - 2024-11-08
+
+### 🐛 Bug Fixes
+
+- *(activity-feed)* Filter out zero address transfers
+
 ## [1.3.0-alpha.55] - 2024-11-07
 
 ### 🚀 Features
