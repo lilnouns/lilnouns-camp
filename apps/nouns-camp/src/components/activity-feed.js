@@ -1574,10 +1574,17 @@ const NounTransferItem = ({ item, isOnScreen }) => {
     transfers: nounTransfers = [],
   } = transferMeta;
 
+  const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
+
   const transfers = nounTransfers.filter((t) => {
     const isTreasuryToAuctionHouseTransfer =
       t.from === treasuryAddress && t.to === auctionHouseAddress;
-    return !isTreasuryToAuctionHouseTransfer && t.from !== auctionHouseAddress;
+    return (
+      !isTreasuryToAuctionHouseTransfer &&
+      t.from !== auctionHouseAddress &&
+      t.from !== ZERO_ADDRESS &&
+      t.to !== ZERO_ADDRESS
+    );
   });
 
   const nouns = arrayUtils.unique(nounIds ?? transfers.map((t) => t.nounId));
