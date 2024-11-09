@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.57] - 2024-11-09
+
+### ⚙️ Miscellaneous Tasks
+
+- *(nouns-camp)* Update `start` script log level
+- *(nouns-camp)* Disable worker minification
+- *(build)* Update `build` script for better profiling
+
 ## [1.3.0-alpha.56] - 2024-11-08
 
 ### 🐛 Bug Fixes
