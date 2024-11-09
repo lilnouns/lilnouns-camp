@@ -99,9 +99,6 @@ updates:
       - dependency-name: "zustand"
         update-types:
           - "version-update:semver-major"
-      - dependency-name: "@serwist/*"
-        update-types:
-          - "version-update:semver-major"
       - dependency-name: "@sentry/nextjs"
         update-types:
           - "version-update:semver-major"

@@ -1,5 +1,5 @@
 {
-  "version": "1.3.0-alpha.56",
+  "version": "1.3.0-alpha.57",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
@@ -7,7 +7,7 @@
     "prestart": "pnpm run build",
     "start": "pnpm run --recursive --parallel --if-present start",
     "build": "turbo build --filter='./packages/*'",
-    "postbuild": "[ \"$CF_PAGES\" ] && cd apps/nouns-camp && pnpm next-on-pages || true",
+    "postbuild": "[ \"$CF_PAGES\" ] && cd apps/nouns-camp && pnpm next-on-pages --disable-worker-minification || true",
     "lint": "turbo lint",
     "format": "pnpm run --recursive --if-present format",
     "test": "pnpm run --recursive --if-present test"
