@@ -131,8 +131,8 @@ importers:
         specifier: 4.1.1
         version: 4.1.1
       marked:
-        specifier: 14.1.4
-        version: 14.1.4
+        specifier: 15.0.0
+        version: 15.0.0
       next:
         specifier: 14.2.17
         version: 14.2.17(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -6082,8 +6082,8 @@ packages:
   makeerror@1.0.12:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
 
-  marked@14.1.4:
-    resolution: {integrity: sha512-vkVZ8ONmUdPnjCKc5uTRvmkRbx4EAi2OkTOXmfTDhZz3OFqMNBM1oTTWwTr4HY4uAEojhzPf+Fy8F1DWa3Sndg==}
+  marked@15.0.0:
+    resolution: {integrity: sha512-0mouKmBROJv/WSHJBPZZyYofUgawMChnD5je/g+aOBXsHDjb/IsnTQj7mnhQZu+qPJmRQ0ecX3mLGEUm3BgwYA==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -15600,7 +15600,7 @@ snapshots:
     dependencies:
       tmpl: 1.0.5
 
-  marked@14.1.4: {}
+  marked@15.0.0: {}
 
   marky@1.2.5: {}
 
