@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.58] - 2024-11-12
+
+### 🐛 Bug Fixes
+
+- *(nouns-subgraph)* Handle 520 errors with retries
+
 ## [1.3.0-alpha.57] - 2024-11-09
 
 ### ⚙️ Miscellaneous Tasks
