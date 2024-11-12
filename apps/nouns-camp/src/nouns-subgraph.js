@@ -527,6 +527,20 @@ export const subgraphFetch = async ({
         }
       }
 
+      if (response.status === 520) {
+        if (retryCount > 0) {
+          console.warn(
+            `520 error received. Retrying after ${delay}ms...`,
+            `Retries left: ${retryCount - 1}`,
+          );
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          return makeRequest(retryCount - 1);
+        } else {
+          console.error("Exceeded max retries for 520 error");
+          return Promise.reject(new Error("Unknown error (520)"));
+        }
+      }
+
       if (!response.ok) {
         console.error("Unsuccessful subgraph request", {
           responseStatus: response.status,

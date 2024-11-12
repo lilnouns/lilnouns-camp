@@ -26,8 +26,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-json": "6.1.0",
-    "@swc/core": "1.9.1",
-    "rollup": "4.24.4",
+    "@swc/core": "1.9.2",
+    "rollup": "4.25.0",
     "rollup-plugin-swc3": "0.12.1",
     "vitest": "^2.1.4"
   }
