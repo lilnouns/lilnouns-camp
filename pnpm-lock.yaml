@@ -122,8 +122,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0
       iron-session:
-        specifier: 8.0.3
-        version: 8.0.3
+        specifier: 8.0.4
+        version: 8.0.4
       is-hotkey:
         specifier: 0.2.0
         version: 0.2.0
@@ -5607,8 +5607,8 @@ packages:
   invariant@2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
 
-  iron-session@8.0.3:
-    resolution: {integrity: sha512-WtDX0griBliMoR6hGoU3SlefW+VSbfHrIVqURQ0Nbg/Pd+nj7VDsKV+sx0FHjyUCaO02YoYV5v+kW0PqvFJISQ==}
+  iron-session@8.0.4:
+    resolution: {integrity: sha512-9ivNnaKOd08osD0lJ3i6If23GFS2LsxyMU8Gf/uBUEgm8/8CC1hrrCHFDpMo3IFbpBgwoo/eairRsaD3c5itxA==}
 
   iron-webcrypto@1.2.1:
     resolution: {integrity: sha512-feOM6FaSr6rEABp/eDfVseKyTMDt+KGpeB35SkVn9Tyn0CqvVsY3EwI0v5i8nMHyJnzCIQf7nsy3p41TPkJZhg==}
@@ -15077,7 +15077,7 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
-  iron-session@8.0.3:
+  iron-session@8.0.4:
     dependencies:
       cookie: 0.7.2
       iron-webcrypto: 1.2.1
