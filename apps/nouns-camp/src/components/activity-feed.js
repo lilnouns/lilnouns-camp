@@ -2063,7 +2063,7 @@ const FeedItemActionDropdown = ({ context, item }) => {
     })();
 
     const bottomSectionActionKeys = (() => {
-      if (["vote", "feedback"].includes(item.type))
+      if (["vote", "feedback-post"].includes(item.type))
         return ["open-block-explorer", "copy-link"];
 
       switch (itemCategory) {
@@ -2187,7 +2187,7 @@ const FeedItemActionDropdown = ({ context, item }) => {
         break;
 
       case "copy-link": {
-        if (!["vote", "feedback"].includes(item.type)) throw new Error();
+        if (!["vote", "feedback-post"].includes(item.type)) throw new Error();
 
         const pathname =
           item.candidateId != null
