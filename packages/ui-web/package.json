@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@swc/core": "1.9.2",
-    "rollup": "4.25.0",
+    "rollup": "4.26.0",
     "rollup-plugin-swc3": "0.12.1"
   },
   "peerDependencies": {
