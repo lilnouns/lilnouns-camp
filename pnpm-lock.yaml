@@ -38,7 +38,7 @@ importers:
   apps/nouns-camp:
     dependencies:
       '@cloudflare/pages-plugin-vercel-og':
-        specifier: ^0.1.2
+        specifier: 0.1.2
         version: 0.1.2
       '@emotion/cache':
         specifier: 11.13.1
@@ -110,7 +110,7 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       '@vercel/og':
-        specifier: ^0.6.3
+        specifier: 0.6.3
         version: 0.6.3
       abitype:
         specifier: 1.0.6
@@ -226,7 +226,7 @@ importers:
         specifier: 0.12.1
         version: 0.12.1(@swc/core@1.9.2(@swc/helpers@0.5.15))(rollup@4.26.0)
       vitest:
-        specifier: ^2.1.5
+        specifier: 2.1.5
         version: 2.1.5(@edge-runtime/vm@3.2.0)(@types/node@22.9.0)(terser@5.36.0)
 
   packages/ui-web:
