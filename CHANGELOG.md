@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-alpha.60] - 2024-11-14
+
+### ◀️ Revert
+
+- *(proposals)* Simplify `fetchProposal` by removing `chainId`
+
 ## [1.3.0-alpha.59] - 2024-11-14
 
 ### 🚀 Features
