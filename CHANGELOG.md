@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0-beta.3] - 2024-11-16
+
+### 🚀 Features
+
+- *(camp)* Extract separate hook for scroll-to-element functionality
+
+### 🐛 Bug Fixes
+
+- *(nouns-subgraph)* Increase wait time on retries
+
 ## [1.3.0-beta.2] - 2024-11-14
 
 ### 🐛 Bug Fixes

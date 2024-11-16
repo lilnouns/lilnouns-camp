@@ -512,7 +512,9 @@ export const subgraphFetch = async ({
       if (response.status === 429) {
         if (retryCount > 0) {
           const retryAfter = response.headers.get("ratelimit-retry");
-          const waitTime = retryAfter ? parseInt(retryAfter, 10) * 1000 : delay;
+          const waitTime = retryAfter
+            ? parseInt(retryAfter, 10) * 1000
+            : delay * (retries - retryCount + 1);
 
           console.warn(
             `429 error received. Retrying after ${waitTime}ms...`,
@@ -529,11 +531,12 @@ export const subgraphFetch = async ({
 
       if (response.status === 520) {
         if (retryCount > 0) {
+          const waitTime = delay * (retries - retryCount + 1);
           console.warn(
-            `520 error received. Retrying after ${delay}ms...`,
+            `520 error received. Retrying after ${waitTime}ms...`,
             `Retries left: ${retryCount - 1}`,
           );
-          await new Promise((resolve) => setTimeout(resolve, delay));
+          await new Promise((resolve) => setTimeout(resolve, waitTime));
           return makeRequest(retryCount - 1);
         } else {
           console.error("Exceeded max retries for 520 error");
@@ -557,8 +560,11 @@ export const subgraphFetch = async ({
       return body.data;
     } catch (error) {
       if (retryCount > 0) {
-        console.warn(`Error encountered: ${error.message}. Retrying...`);
-        await new Promise((resolve) => setTimeout(resolve, delay));
+        const waitTime = delay * (retries - retryCount + 1);
+        console.warn(
+          `Error encountered: ${error.message}. Retrying after ${waitTime}ms...`,
+        );
+        await new Promise((resolve) => setTimeout(resolve, waitTime));
         return makeRequest(retryCount - 1);
       } else {
         console.error("Exceeded max retries due to error");

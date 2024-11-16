@@ -16,8 +16,8 @@
     "eslint-config-next": "14.2.18",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-next-on-pages": "1.13.5",
-    "vercel": "39.0.1",
-    "wrangler": "3.86.1"
+    "vercel": "39.0.2",
+    "wrangler": "3.87.0"
   },
   "dependencies": {
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
@@ -40,7 +40,7 @@
     "@serwist/sw": "9.0.10",
     "@shades/common": "workspace:0.0.0",
     "@shades/ui-web": "workspace:0.0.0",
-    "@tanstack/react-query": "5.60.2",
+    "@tanstack/react-query": "5.60.5",
     "@vercel/analytics": "1.4.0",
     "@vercel/edge-config": "1.4.0",
     "@vercel/kv": "3.0.0",
