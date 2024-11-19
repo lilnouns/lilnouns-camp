@@ -16,7 +16,7 @@
     "eslint-config-next": "14.2.18",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-next-on-pages": "1.13.5",
-    "vercel": "39.0.2",
+    "vercel": "39.0.3",
     "wrangler": "3.87.0"
   },
   "dependencies": {
@@ -51,7 +51,7 @@
     "iron-session": "8.0.4",
     "is-hotkey": "0.2.0",
     "lodash.throttle": "4.1.1",
-    "marked": "15.0.0",
+    "marked": "15.0.1",
     "next": "14.2.18",
     "qrcode": "1.5.4",
     "react": "18.3.1",
