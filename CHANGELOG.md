@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.0] - 2024-11-19
+
+### 🐛 Bug Fixes
+
+- *(camp)* Disable frames for votes
+- *(camp)* Increase font size and padding for vote og:image
+
+### 🚜 Refactor
+
+- *(api)* Comment out unused feedback queries
+
 ## [1.3.0-beta.3] - 2024-11-16
 
 ### 🚀 Features
