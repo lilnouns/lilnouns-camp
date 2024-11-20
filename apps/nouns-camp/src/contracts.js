@@ -33,6 +33,7 @@ const addressByIdentifierByChainId = {
       "0x536218f9e9eb48863970252233c8f271f554c2d0",
     "chainlink-usdc-eth-price-feed":
       "0x986b5e1e1755e3c2440e960477f25201b0a8bbd4",
+    "nftx-vault": "0x18222a762bf67024193de25e1cdc7aa6e614c695",
 
     // Nouns contracts
     dao: DAO_LOGIC_PROXY_CONTRACT,
@@ -72,6 +73,7 @@ const addressByIdentifierByChainId = {
     "token-buyer": "0x821176470cfef1db78f1e2dbae136f73c36ddd48",
     "stream-factory": "0xb78ccf3bd015f209fb9b2d3d132fd8784df78df5",
     "prop-house-nouns-house": "0x0",
+    "nftx-vault": "0x0",
   },
 };
 
@@ -104,6 +106,7 @@ const metaByIdentifier = {
     name: "Lido: Withdrawal Queue",
   },
   "prop-house": { name: "Prop House" },
+  "nftx-vault": { name: "NFTX Vault" },
 
   // Nouns contracts
   dao: {
