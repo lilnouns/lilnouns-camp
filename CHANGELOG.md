@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.2] - 2024-11-20
+
+### 🚀 Features
+
+- *(contracts)* Add NFTX pool addresses
+
 ## [1.4.0-alpha.1] - 2024-11-20
 
 ### 🚀 Features
