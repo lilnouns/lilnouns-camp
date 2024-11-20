@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.1] - 2024-11-20
+
+### 🚀 Features
+
+- *(contracts)* Add NFTX vault addresses
+
 ## [1.4.0-alpha.0] - 2024-11-19
 
 ### 🐛 Bug Fixes
