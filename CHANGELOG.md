@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.4] - 2024-11-27
+
+### ◀️ Revert
+
+- *(deps-dev)* Bump vercel from 39.1.1 to 39.1.2 (#838)
+
 ## [1.4.0-alpha.3] - 2024-11-25
 
 ### 🐛 Bug Fixes
