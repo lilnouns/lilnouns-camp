@@ -1,6 +1,7 @@
 import { isAddress as isEthereumAccountAddress } from "viem";
 import { useEnsName } from "wagmi";
 import { truncateAddress } from "../../utils/ethereum.js";
+import { useNNSName } from "./nns-name";
 
 const useAccountDisplayName = (
   accountAddress,
@@ -8,6 +9,8 @@ const useAccountDisplayName = (
 ) => {
   const isAddress =
     accountAddress != null && isEthereumAccountAddress(accountAddress);
+
+  const { data: nnsName } = useNNSName(accountAddress);
 
   const { data: ensName } = useEnsName({
     address: accountAddress,
@@ -22,7 +25,7 @@ const useAccountDisplayName = (
   if (accountAddress != null && !isAddress)
     console.warn(`Invalid address "${accountAddress}"`);
 
-  return ensName ?? truncatedAddress;
+  return nnsName ?? ensName ?? truncatedAddress;
 };
 
 export default useAccountDisplayName;
