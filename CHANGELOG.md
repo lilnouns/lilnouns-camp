@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.7] - 2024-11-28
+
+### 🐛 Bug Fixes
+
+- *(hooks)* Filter auctions with proceeds
+
 ## [1.4.0-alpha.6] - 2024-11-28
 
 ### 🚀 Features
