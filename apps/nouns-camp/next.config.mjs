@@ -115,6 +115,10 @@ export default withSentry(
           source: "/subgraphs/propdates",
           destination: process.env.PROPDATES_SUBGRAPH_URL,
         },
+        {
+          source: "/resolvers/nns",
+          destination: process.env.NNS_RESOLVER_URL,
+        }
       ];
     },
     headers() {

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.6] - 2024-11-28
+
+### 🚀 Features
+
+- *(nouns-camp)* Add new redirect for NNS resolver
+
+### 🐛 Bug Fixes
+
+- *(ethereum-react)* Update NNS API endpoint
+
 ## [1.4.0-alpha.5] - 2024-11-28
 
 ### 🚀 Features
