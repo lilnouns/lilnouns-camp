@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 async function fetchNNSName(address) {
-  const res = await fetch(`https://api.nns.xyz/resolve`, {
+  const res = await fetch(`/resolvers/nns`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
