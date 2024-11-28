@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0-alpha.4",
+  "version": "1.4.0-alpha.5",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "prettier": "3.4.1",
-    "turbo": "2.3.2",
+    "turbo": "2.3.3",
     "typescript": "5.7.2"
   },
   "engines": {

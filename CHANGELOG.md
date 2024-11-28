@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.5] - 2024-11-28
+
+### 🚀 Features
+
+- *(ethereum-react)* Add `useNNSName` hook
+- *(hooks)* Add NNS name lookup in `useAccountDisplayName`
+
+### ◀️ Revert
+
+- *(deps-dev)* Bump vercel from 39.1.1 to 39.1.2 (#845)
+
 ## [1.4.0-alpha.4] - 2024-11-27
 
 ### ◀️ Revert
