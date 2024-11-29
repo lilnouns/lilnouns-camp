@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.9] - 2024-11-29
+
+### 🚀 Features
+
+- *(common)* Export `useNNSName` hook
+
+### 🚜 Refactor
+
+- *(proposal-list)* Update `useNNSName` import path
+
 ## [1.4.0-alpha.8] - 2024-11-29
 
 ### 🚀 Features
