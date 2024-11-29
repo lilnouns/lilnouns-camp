@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.8] - 2024-11-29
+
+### 🚀 Features
+
+- *(proposal-list)* Integrate NNS name resolution
+
 ## [1.4.0-alpha.7] - 2024-11-28
 
 ### 🐛 Bug Fixes
