@@ -118,7 +118,11 @@ export default withSentry(
         {
           source: "/resolvers/nns",
           destination: process.env.NNS_RESOLVER_URL,
-        }
+        },
+        {
+          source: "/subgraphs/flows",
+          destination: process.env.FLOWS_SUBGRAPH_URL,
+        },
       ];
     },
     headers() {
