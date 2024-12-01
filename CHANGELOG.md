@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.10] - 2024-12-01
+
+### 🚀 Features
+
+- *(camp)* Add flows.wtf activity (#95)
+
+### 🐛 Bug Fixes
+
+- *(flows-subgraph)* Add early return in `fetchFlowVotes`
+
+### 🚜 Refactor
+
+- *(landing-screen)* Comment out unused category
+
 ## [1.4.0-alpha.9] - 2024-11-29
 
 ### 🚀 Features
