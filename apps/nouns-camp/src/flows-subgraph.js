@@ -44,6 +44,8 @@ const subgraphFetch = async (query) => {
 };
 
 export const fetchFlowVotes = async (startTimestamp, endTimestamp) => {
+  return [];
+  // eslint-disable-next-line no-unreachable
   if (CHAIN_ID !== 1) return [];
 
   // For now we ignore votes on specific projects, just top level flows
