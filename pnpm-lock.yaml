@@ -114,8 +114,8 @@ importers:
         specifier: 0.6.4
         version: 0.6.4
       abitype:
-        specifier: 1.0.6
-        version: 1.0.6(typescript@4.9.5)(zod@3.23.8)
+        specifier: 1.0.7
+        version: 1.0.7(typescript@4.9.5)(zod@3.23.8)
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -3769,6 +3769,17 @@ packages:
 
   abitype@1.0.6:
     resolution: {integrity: sha512-MMSqYh4+C/aVqI2RQaWqbvI4Kxo5cQV40WQ4QFtDnNzCkqChm8MuENhElmynZlO0qUy/ObkEUaXtKqYnx1Kp3A==}
+    peerDependencies:
+      typescript: '>=5.0.4'
+      zod: ^3 >=3.22.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      zod:
+        optional: true
+
+  abitype@1.0.7:
+    resolution: {integrity: sha512-ZfYYSktDQUwc2eduYu8C4wOs+RDPmnRYMh7zNfzeMtGGgb0U+6tLGjixUic6mXf5xKKCcgT5Qp6cv39tOARVFw==}
     peerDependencies:
       typescript: '>=5.0.4'
       zod: ^3 >=3.22.0
@@ -12920,6 +12931,11 @@ snapshots:
       typescript: 4.9.5
       zod: 3.23.8
 
+  abitype@1.0.7(typescript@4.9.5)(zod@3.23.8):
+    optionalDependencies:
+      typescript: 4.9.5
+      zod: 3.23.8
+
   abort-controller@3.0.0:
     dependencies:
       event-target-shim: 5.0.1
@@ -15996,7 +16012,7 @@ snapshots:
       '@noble/hashes': 1.5.0
       '@scure/bip32': 1.5.0
       '@scure/bip39': 1.4.0
-      abitype: 1.0.6(typescript@4.9.5)(zod@3.23.8)
+      abitype: 1.0.7(typescript@4.9.5)(zod@3.23.8)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 4.9.5
