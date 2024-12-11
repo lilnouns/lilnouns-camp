@@ -108,8 +108,8 @@ const ProposeScreen = ({ draftId, startNavigationTransition }) => {
     typeof payerTopUpValueData === "bigint"
       ? executorEthBalance > payerTopUpValueData
         ? payerTopUpValueData
-        : 0n
-      : 0n;
+        : executorEthBalance
+      : executorEthBalance;
 
   const submit = async () => {
     // const buildCandidateSlug = (title) => {

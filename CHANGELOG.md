@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.14] - 2024-12-11
+
+### 🐛 Bug Fixes
+
+- *(camp)* Use same roundness on callouts as other UI elements
+- *(propose-screen)* Adjust `payerTopUpValueData` fallback logic
+
 ## [1.4.0-alpha.13] - 2024-12-10
 
 ### 🐛 Bug Fixes
