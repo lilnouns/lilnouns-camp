@@ -2,7 +2,7 @@
   "name": "nouns-camp",
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "next build --profile --debug",
+    "build": "next build",
     "prestart": "next-on-pages --disable-worker-minification",
     "start": "wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat --log-level=info",
     "format": "prettier . --write",
