@@ -17,7 +17,7 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-next-on-pages": "1.13.7",
     "vercel": "39.1.1",
-    "wrangler": "3.95.0"
+    "wrangler": "3.96.0"
   },
   "dependencies": {
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
@@ -32,9 +32,9 @@
     "@nouns/assets": "0.9.0",
     "@nouns/contracts": "0.3.0",
     "@nouns/sdk": "0.4.0",
-    "@radix-ui/react-toolbar": "1.1.0",
-    "@radix-ui/react-tooltip": "1.1.4",
-    "@sentry/nextjs": "7.120.1",
+    "@radix-ui/react-toolbar": "1.1.1",
+    "@radix-ui/react-tooltip": "1.1.5",
+    "@sentry/nextjs": "7.120.2",
     "@serwist/next": "9.0.11",
     "@serwist/precaching": "9.0.11",
     "@serwist/sw": "9.0.11",
@@ -51,7 +51,7 @@
     "iron-session": "8.0.4",
     "is-hotkey": "0.2.0",
     "lodash.throttle": "4.1.1",
-    "marked": "15.0.3",
+    "marked": "15.0.4",
     "next": "14.2.20",
     "qrcode": "1.5.4",
     "react": "19.0.0",
