@@ -21,6 +21,7 @@
     "elliptic": ">=6.6.0",
     "follow-redirects": ">=1.15.6",
     "ip": ">=1.1.9",
+    "nanoid": ">=3.3.8",
     "path-to-regexp": ">=6.3.0",
     "rollup": ">=4.22.4",
     "secp256k1": ">=5.0.1",
