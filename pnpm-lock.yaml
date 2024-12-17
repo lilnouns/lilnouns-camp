@@ -13,7 +13,6 @@ overrides:
   elliptic: '>=6.6.0'
   follow-redirects: '>=1.15.6'
   ip: '>=1.1.9'
-  nanoid: '>=3.3.8'
   path-to-regexp: '>=6.3.0'
   rollup: '>=4.22.4'
   secp256k1: '>=5.0.1'
@@ -6245,9 +6244,9 @@ packages:
     resolution: {integrity: sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==}
     hasBin: true
 
-  nanoid@5.0.9:
-    resolution: {integrity: sha512-Aooyr6MXU6HpvvWXKoVoXwKMs/KyVakWwg7xQfv5/S/RIgJMy0Ifa45H9qqYy7pTCszrHzP21Uk4PZq2HpEM8Q==}
-    engines: {node: ^18 || >=20}
+  nanoid@3.3.7:
+    resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
   natural-compare@1.4.0:
@@ -15755,7 +15754,7 @@ snapshots:
 
   mustache@4.2.0: {}
 
-  nanoid@5.0.9: {}
+  nanoid@3.3.7: {}
 
   natural-compare@1.4.0: {}
 
@@ -16137,13 +16136,13 @@ snapshots:
 
   postcss@8.4.31:
     dependencies:
-      nanoid: 5.0.9
+      nanoid: 3.3.7
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
   postcss@8.4.47:
     dependencies:
-      nanoid: 5.0.9
+      nanoid: 3.3.7
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -17682,7 +17681,7 @@ snapshots:
       esbuild: 0.17.19
       itty-time: 1.0.6
       miniflare: 3.20241205.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      nanoid: 5.0.9
+      nanoid: 3.3.7
       path-to-regexp: 6.3.0
       resolve: 1.22.8
       selfsigned: 2.4.1
