@@ -2,7 +2,7 @@
   "name": "nouns-camp",
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "next build --profile --debug",
+    "build": "next build",
     "prestart": "next-on-pages --disable-worker-minification",
     "start": "wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat --log-level=info",
     "format": "prettier . --write",
@@ -17,7 +17,7 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-next-on-pages": "1.13.7",
     "vercel": "39.1.1",
-    "wrangler": "3.96.0"
+    "wrangler": "3.97.0"
   },
   "dependencies": {
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
@@ -33,14 +33,14 @@
     "@nouns/contracts": "0.3.0",
     "@nouns/sdk": "0.4.0",
     "@radix-ui/react-toolbar": "1.1.1",
-    "@radix-ui/react-tooltip": "1.1.5",
+    "@radix-ui/react-tooltip": "1.1.6",
     "@sentry/nextjs": "7.120.2",
     "@serwist/next": "9.0.11",
     "@serwist/precaching": "9.0.11",
     "@serwist/sw": "9.0.11",
     "@shades/common": "workspace:0.0.0",
     "@shades/ui-web": "workspace:0.0.0",
-    "@tanstack/react-query": "5.62.7",
+    "@tanstack/react-query": "5.62.8",
     "@vercel/analytics": "1.4.1",
     "@vercel/edge-config": "1.4.0",
     "@vercel/kv": "3.0.0",
