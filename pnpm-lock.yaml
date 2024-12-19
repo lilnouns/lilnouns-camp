@@ -7943,6 +7943,7 @@ packages:
   wrangler@3.97.0:
     resolution: {integrity: sha512-NkFAigqZWe4NOK0gYROcpvdugaYJE/JRFrIZ+c5Q5/uie+25WH8OVbRvvmiXhWVhso56cZs2W2TPmAxT/sgHkw==}
     engines: {node: '>=16.17.0'}
+    deprecated: Downgrade to 3.96.0
     hasBin: true
     peerDependencies:
       '@cloudflare/workers-types': ^4.20241205.0
