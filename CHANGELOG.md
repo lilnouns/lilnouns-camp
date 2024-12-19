@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.16] - 2024-12-19
+
+### ⚙️ Miscellaneous Tasks
+
+- *(camp)* Update `build` script to remove flags
+
+### ◀️ Revert
+
+- *(deps)* Add `nanoid` to resolutions
+
 ## [1.4.0-alpha.15] - 2024-12-17
 
 ### 🐛 Bug Fixes
