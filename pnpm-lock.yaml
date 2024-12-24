@@ -114,8 +114,8 @@ importers:
         specifier: 0.6.4
         version: 0.6.4
       abitype:
-        specifier: 1.0.7
-        version: 1.0.7(typescript@4.9.5)(zod@3.23.8)
+        specifier: 1.0.8
+        version: 1.0.8(typescript@4.9.5)(zod@3.23.8)
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -3765,8 +3765,8 @@ packages:
       zod:
         optional: true
 
-  abitype@1.0.7:
-    resolution: {integrity: sha512-ZfYYSktDQUwc2eduYu8C4wOs+RDPmnRYMh7zNfzeMtGGgb0U+6tLGjixUic6mXf5xKKCcgT5Qp6cv39tOARVFw==}
+  abitype@1.0.8:
+    resolution: {integrity: sha512-ZeiI6h3GnW06uYDLx0etQtX/p8E24UaHHBj57RSjK7YBFe7iuVn07EDpOeP451D06sF27VOz9JJPlIKJmXgkEg==}
     peerDependencies:
       typescript: '>=5.0.4'
       zod: ^3 >=3.22.0
@@ -12932,7 +12932,7 @@ snapshots:
       typescript: 4.9.5
       zod: 3.23.8
 
-  abitype@1.0.7(typescript@4.9.5)(zod@3.23.8):
+  abitype@1.0.8(typescript@4.9.5)(zod@3.23.8):
     optionalDependencies:
       typescript: 4.9.5
       zod: 3.23.8
@@ -16043,7 +16043,7 @@ snapshots:
       '@noble/hashes': 1.5.0
       '@scure/bip32': 1.5.0
       '@scure/bip39': 1.4.0
-      abitype: 1.0.7(typescript@4.9.5)(zod@3.23.8)
+      abitype: 1.0.8(typescript@4.9.5)(zod@3.23.8)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 4.9.5
