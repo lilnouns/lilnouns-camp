@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.19] - 2025-01-07
+
+### 🐛 Bug Fixes
+
+- *(camp)* Keep filters visible even if no feed items
+
 ## [1.4.0-alpha.18] - 2024-12-25
 
 ### 🐛 Bug Fixes
