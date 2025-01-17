@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.20] - 2025-01-17
+
+### 🚀 Features
+
+- *(camp)* Add underline support using <ins> (#99)
+
+### 🐛 Bug Fixes
+
+- *(camp)* Upgrade nouns-assets to include new gnars accessory
+
 ## [1.4.0-alpha.19] - 2025-01-07
 
 ### 🐛 Bug Fixes
