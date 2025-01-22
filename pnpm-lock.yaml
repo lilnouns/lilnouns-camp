@@ -63,8 +63,8 @@ importers:
         specifier: 14.2.23
         version: 14.2.23(next@14.2.23(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       '@noble/ed25519':
-        specifier: 2.2.2
-        version: 2.2.2
+        specifier: 2.2.3
+        version: 2.2.3
       '@nouns/assets':
         specifier: 0.10.0
         version: 0.10.0
@@ -1860,8 +1860,8 @@ packages:
     resolution: {integrity: sha512-TlaHRXDehJuRNR9TfZDNQ45mMEd5dwUwmicsafcIX4SsNiqnCHKjE/1alYPd/lDRVhxdhUAlv8uEhMCI5zjIJQ==}
     engines: {node: ^14.21.3 || >=16}
 
-  '@noble/ed25519@2.2.2':
-    resolution: {integrity: sha512-8dbNnAGY8497RMEes5MWzjZkKRLWToKwenlrqzHTWVKyOaEzLqU2iPaVJGRvkyEcJL6CmuqSt0paPFB2aR6WwA==}
+  '@noble/ed25519@2.2.3':
+    resolution: {integrity: sha512-iHV8eI2mRcUmOx159QNrU8vTpQ/Xm70yJ2cTk3Trc86++02usfqFoNl6x0p3JN81ZDS/1gx6xiK0OwrgqCT43g==}
 
   '@noble/hashes@1.4.0':
     resolution: {integrity: sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==}
@@ -10283,7 +10283,7 @@ snapshots:
     dependencies:
       '@noble/hashes': 1.5.0
 
-  '@noble/ed25519@2.2.2': {}
+  '@noble/ed25519@2.2.3': {}
 
   '@noble/hashes@1.4.0': {}
 
