@@ -2,6 +2,138 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.21] - 2025-01-26
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [1.4.0-alpha.20] - 2025-01-17
+
+### 🚀 Features
+
+- *(camp)* Add underline support using <ins> (#99)
+
+### 🐛 Bug Fixes
+
+- *(camp)* Upgrade nouns-assets to include new gnars accessory
+
+## [1.4.0-alpha.19] - 2025-01-07
+
+### 🐛 Bug Fixes
+
+- *(camp)* Keep filters visible even if no feed items
+
+## [1.4.0-alpha.18] - 2024-12-25
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [1.4.0-alpha.17] - 2024-12-24
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [1.4.0-alpha.16] - 2024-12-19
+
+### ⚙️ Miscellaneous Tasks
+
+- *(camp)* Update `build` script to remove flags
+
+### ◀️ Revert
+
+- *(deps)* Add `nanoid` to resolutions
+
+## [1.4.0-alpha.15] - 2024-12-17
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [1.4.0-alpha.14] - 2024-12-11
+
+### 🐛 Bug Fixes
+
+- *(camp)* Use same roundness on callouts as other UI elements
+- *(propose-screen)* Adjust `payerTopUpValueData` fallback logic
+
+## [1.4.0-alpha.13] - 2024-12-10
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [1.4.0-alpha.12] - 2024-12-09
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [1.4.0-alpha.11] - 2024-12-08
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [1.4.0-alpha.10] - 2024-12-01
+
+### 🚀 Features
+
+- *(camp)* Add flows.wtf activity (#95)
+
+### 🐛 Bug Fixes
+
+- *(flows-subgraph)* Add early return in `fetchFlowVotes`
+
+### 🚜 Refactor
+
+- *(landing-screen)* Comment out unused category
+
+## [1.4.0-alpha.9] - 2024-11-29
+
+### 🚀 Features
+
+- *(common)* Export `useNNSName` hook
+
+### 🚜 Refactor
+
+- *(proposal-list)* Update `useNNSName` import path
+
+## [1.4.0-alpha.8] - 2024-11-29
+
+### 🚀 Features
+
+- *(proposal-list)* Integrate NNS name resolution
+
+## [1.4.0-alpha.7] - 2024-11-28
+
+### 🐛 Bug Fixes
+
+- *(hooks)* Filter auctions with proceeds
+
+## [1.4.0-alpha.6] - 2024-11-28
+
+### 🚀 Features
+
+- *(nouns-camp)* Add new redirect for NNS resolver
+
+### 🐛 Bug Fixes
+
+- *(ethereum-react)* Update NNS API endpoint
+
+## [1.4.0-alpha.5] - 2024-11-28
+
+### 🚀 Features
+
+- *(ethereum-react)* Add `useNNSName` hook
+- *(hooks)* Add NNS name lookup in `useAccountDisplayName`
+
+### ◀️ Revert
+
+- *(deps-dev)* Bump vercel from 39.1.1 to 39.1.2 (#845)
+
 ## [1.4.0-alpha.4] - 2024-11-27
 
 ### ◀️ Revert
