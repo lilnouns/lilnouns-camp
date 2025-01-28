@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.22] - 2025-01-28
+
+### 🚀 Features
+
+- *(common)* Make cache store synchronous
+
+### 🐛 Bug Fixes
+
+- *(camp)* Prevent flows graph issues from breaking the feed
+- *(common)* Correctly pass previous state
+
 ## [1.4.0-alpha.21] - 2025-01-26
 
 ### 🐛 Bug Fixes
