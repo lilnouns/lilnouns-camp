@@ -121,7 +121,7 @@ export default withSentry(
         },
         {
           source: "/resolvers/uns",
-          destination: process.env.UNS_RESOLVER_URL,
+          destination: '/api/resolvers/uns',
         },
         {
           source: "/subgraphs/flows",
