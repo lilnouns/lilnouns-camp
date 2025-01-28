@@ -120,6 +120,10 @@ export default withSentry(
           destination: process.env.NNS_RESOLVER_URL,
         },
         {
+          source: "/resolvers/uns",
+          destination: process.env.UNS_RESOLVER_URL,
+        },
+        {
           source: "/subgraphs/flows",
           destination: process.env.FLOWS_SUBGRAPH_URL,
         },
@@ -162,7 +166,7 @@ export default withSentry(
           ]),
         ),
       },
-      instrumentationHook: process.env.NODE_ENV === 'production',
+      instrumentationHook: process.env.NODE_ENV === "production",
     },
   }),
 );
