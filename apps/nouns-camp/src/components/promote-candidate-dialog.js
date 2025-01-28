@@ -430,7 +430,7 @@ const SignatureItemContent = ({ signature }) => {
           })
         }
       >
-        {votingPower} {votingPower === 1 ? "noun" : "nouns"}
+        {votingPower} {votingPower === 1 ? "lil noun" : "lil nouns"}
       </div>
     </div>
   );
