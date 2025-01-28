@@ -47,7 +47,7 @@ const NounsPreviewPopoverTrigger = React.forwardRef(
             css={css({ userSelect: "text" })}
             {...props}
           >
-            {nounIds.length} nouns
+            {nounIds.length} lil nouns
           </InlineButton>
         </button>
       );
