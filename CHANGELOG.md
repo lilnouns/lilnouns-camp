@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.24] - 2025-01-28
+
+### 🚀 Features
+
+- *(nouns-preview)* Update text to `lil nouns` in UI
+
+### 🐛 Bug Fixes
+
+- *(account-dialog)* Update label for user-owned nouns
+- *(nouns-camp)* Update noun references to `lil nouns`
+
 ## [1.4.0-alpha.23] - 2025-01-28
 
 ### 🚜 Refactor
