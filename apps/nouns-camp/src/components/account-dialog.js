@@ -201,7 +201,7 @@ const Content = ({ titleProps, dismiss }) => {
           </dd>
           {hasNouns && (
             <>
-              <dt>Your nouns</dt>
+              <dt>Your lil nouns</dt>
               <dd data-block>
                 <NounList
                   contextAccount={accountAddress}
