@@ -1,6 +1,6 @@
 {
   "name": "Lil Nouns Camp",
-  "description": "A Nouns governance client",
+  "description": "A Lil Nouns governance client",
   "short_name": "Camp",
   "display": "standalone",
   "start_url": "/",

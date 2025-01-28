@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
   // Can’t notFound() here since we might be on a testnet
   if (noun == null) nextNotFound();
 
-  const title = `Noun ${params.id}`;
+  const title = `Lil Noun ${params.id}`;
 
   return {
     title,

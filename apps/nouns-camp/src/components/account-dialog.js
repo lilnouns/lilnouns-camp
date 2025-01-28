@@ -212,7 +212,7 @@ const Content = ({ titleProps, dismiss }) => {
           )}
           {nounsDelegatedToAccount.length > 0 && (
             <>
-              <dt>Nouns delegated to you</dt>
+              <dt>Lil Nouns delegated to you</dt>
               <dd data-block>
                 <NounList
                   contextAccount={accountAddress}
@@ -302,7 +302,7 @@ export const NounList = ({ contextAccount, items }) => {
                     })
                   }
                 >
-                  Noun {n.id}
+                  Lil Noun {n.id}
                 </button>
               </NounPreviewPopoverTrigger>
               {isDelegated && (

@@ -1835,7 +1835,7 @@ export const VoteDistributionToolTipContent = ({ votes, delegates }) => {
         />
         <div>
           <h1>
-            {voteCount} {voteCount === 1 ? "noun" : "nouns"}
+            {voteCount} {voteCount === 1 ? "lil noun" : "lil nouns"}
           </h1>
           <div data-vote-grid>
             <span>{formatPercentage(votes.for, voteCount)}</span>

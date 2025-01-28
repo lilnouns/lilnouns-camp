@@ -1863,7 +1863,7 @@ const NounTransferItem = ({ item, isOnScreen }) => {
         </>
       );
 
-    // Nouns withdrawn from fork escrow
+    // Lil Nouns withdrawn from fork escrow
     case "fork-escrow-withdrawal":
       return (
         <>

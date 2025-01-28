@@ -642,7 +642,7 @@ const Content = ({ proposalId, titleProps, dismiss }) => {
                         <>
                           {" "}
                           {"\u00B7"} {votingPower}{" "}
-                          {votingPower === 1 ? "noun" : "nouns"}, {votes.length}{" "}
+                          {votingPower === 1 ? "lil noun" : "lil nouns"}, {votes.length}{" "}
                           {votes.length === 1 ? "voter" : "voters"}
                         </>
                       )}

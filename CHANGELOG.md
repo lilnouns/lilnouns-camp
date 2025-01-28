@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.23] - 2025-01-28
+
+### 🚜 Refactor
+
+- *(nouns-camp)* Rename `Nouns` references to `Lil Nouns`
+
 ## [1.4.0-alpha.22] - 2025-01-28
 
 ### 🚀 Features

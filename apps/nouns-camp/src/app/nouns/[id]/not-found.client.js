@@ -11,7 +11,7 @@ export default function NotFound() {
     <ClientAppProvider>
       <ErrorScreen
         title="Not found"
-        description={`Noun "${params.id}" does not exist.`}
+        description={`Lil Noun "${params.id}" does not exist.`}
         imageSrc="https://media1.tenor.com/m/3hjyPqYx4pEAAAAC/nouns-nounsdao.gif"
         linkHref="/auction"
         linkLabel="Back to safety"

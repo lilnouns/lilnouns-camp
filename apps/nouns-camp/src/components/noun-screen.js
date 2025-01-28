@@ -179,8 +179,8 @@ const NounsSelect = ({ selectedNounId, currentAuctionNounId, ...props }) => {
           .map((_, i) => ({
             label:
               i === parseInt(currentAuctionNounId)
-                ? `Noun ${i} (Auction)`
-                : `Noun ${i}`,
+                ? `Lil Noun ${i} (Auction)`
+                : `Lil Noun ${i}`,
             value: String(i),
           }))
           .toReversed();
@@ -191,7 +191,7 @@ const NounsSelect = ({ selectedNounId, currentAuctionNounId, ...props }) => {
       options={options}
       renderSelectedOption={() => (
         <>
-          Noun {selectedNounId}
+          Lil Noun {selectedNounId}
           <CaretDownIcon
             style={{
               display: "inline-block",

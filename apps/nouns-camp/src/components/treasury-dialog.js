@@ -440,7 +440,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
               ),
             },
             {
-              label: "Nouns",
+              label: "Lil Nouns",
               value: (() => {
                 return (
                   <>
@@ -458,7 +458,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                     {/*{balances["fork-escrow"].nouns > 0 && (
                       <span data-small>
                         (Includes {balances["fork-escrow"].nouns.toString()}{" "}
-                        Nouns held in{" "}
+                        Lil Nouns held in{" "}
                         <EtherscanLink address={forkEscrowAddress}>
                           The Fork Escrow
                         </EtherscanLink>
@@ -506,12 +506,12 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                 {auctionNounIds == null ? (
                   "..."
                 ) : auctionNounIds.length === 1 ? (
-                  <>1 settled auction (Noun {auctionNounIds[0]})</>
+                  <>1 settled auction (Lil Noun {auctionNounIds[0]})</>
                 ) : (
                   <>
                     {auctionNounIds.length} settled auctions
                     <div css={(t) => css({ color: t.colors.textDimmed })}>
-                      Noun {auctionNounIds[0]} to{" "}
+                      Lil Noun {auctionNounIds[0]} to{" "}
                       {auctionNounIds[auctionNounIds.length - 1]}
                     </div>
                   </>
@@ -606,7 +606,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                           const count = asset.tokens.length;
                           return (
                             <>
-                              {count} {count === 1 ? "Noun" : "Nouns"}
+                              {count} {count === 1 ? "Lil Noun" : "Lil Nouns"}
                             </>
                           );
                         }

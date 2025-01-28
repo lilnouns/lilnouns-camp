@@ -315,7 +315,7 @@ const AuctionDialog = ({ isOpen, close }) => {
                         className="trigger"
                         isLoading={nounId == null && option == null}
                       >
-                        Noun {nounId ?? option?.value}
+                        Lil Noun {nounId ?? option?.value}
                       </Button>
                     )}
                     css={(t) =>
@@ -1281,7 +1281,7 @@ const NounsSelect = ({ selectedNounId, auctionNounId, ...props }) => {
     auctionNounId == null
       ? []
       : Array.from({ length: auctionNounId + 1 })
-          .map((_, i) => ({ label: `Noun ${i}`, value: String(i) }))
+          .map((_, i) => ({ label: `Lil Noun ${i}`, value: String(i) }))
           .toReversed();
 
   return <NativeSelect value={selectedNounId} options={options} {...props} />;
