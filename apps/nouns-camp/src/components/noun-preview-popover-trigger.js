@@ -95,7 +95,7 @@ const NounPreviewPopoverTrigger = React.forwardRef(
             css={css({ userSelect: "text" })}
             {...props}
           >
-            Noun {nounId}
+            Lil Noun {nounId}
           </InlineButton>
         </button>
       );
@@ -577,7 +577,7 @@ const NounPreview = React.forwardRef(({ nounId, contextAccount }, ref) => {
                       })
                     }
                   >
-                    Noun {nounId}
+                    Lil Noun {nounId}
                   </h2>
 
                   {auction?.startTimestamp != null && (

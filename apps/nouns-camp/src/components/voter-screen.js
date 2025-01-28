@@ -292,7 +292,7 @@ const VotingPowerCallout = ({ voterAddress }) => {
       {hasVotingPower && (
         <p>
           <span css={(t) => css({ fontWeight: t.text.weights.smallHeader })}>
-            {voteCount} {voteCount === 1 ? "noun" : "nouns"} represented
+            {voteCount} {voteCount === 1 ? "lil noun" : "lil nouns"} represented
           </span>{" "}
           (~{votePowerQuorumPercentage}% of quorum)
         </p>

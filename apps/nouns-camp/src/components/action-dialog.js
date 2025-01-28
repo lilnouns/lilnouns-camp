@@ -897,7 +897,7 @@ const formConfigByActionType = {
     Component: StreamingPaymentActionForm,
   },
   // "treasury-noun-transfer": {
-  //   title: "Noun transfer",
+  //   title: "Lil Noun transfer",
   //   initialState: ({ action }) => ({
   //     nounId: action?.nounId || "",
   //     receiverQuery: action?.target ?? "",
@@ -946,7 +946,7 @@ const formConfigByActionType = {
   //     return (
   //       <>
   //         <div>
-  //           <Label htmlFor="nounId">Noun</Label>
+  //           <Label htmlFor="nounId">Lil Noun</Label>
   //           <div
   //             style={{
   //               display: "grid",
@@ -991,9 +991,9 @@ const formConfigByActionType = {
   //             }
   //           >
   //             {hasRequiredInputs && isUnavailableNoun && (
-  //               <>Noun {state.nounId} is not available. </>
+  //               <>Lil Noun {state.nounId} is not available. </>
   //             )}
-  //             See list of Nouns available in the{" "}
+  //             See list of Lil Nouns available in the{" "}
   //             <a
   //               href={`/voters/${state.treasuryAddress}`}
   //               target="_blank"

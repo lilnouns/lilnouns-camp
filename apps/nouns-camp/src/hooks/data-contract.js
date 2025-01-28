@@ -492,7 +492,7 @@ export const useSignProposalCandidate = () => {
 
     return signTypedDataAsync({
       domain: {
-        name: "Nouns DAO",
+        name: "Lil Nouns DAO",
         chainId: CHAIN_ID,
         verifyingContract: resolveIdentifier("dao").address,
       },

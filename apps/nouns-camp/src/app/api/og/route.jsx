@@ -144,7 +144,7 @@ const RequestedAmounts = ({ amounts }) => (
 
           case "nouns":
             return tokens.length === 1 ? (
-              <>Noun {tokens[0]}</>
+              <>Lil Noun {tokens[0]}</>
             ) : (
               <>{tokens.length} nouns</>
             );

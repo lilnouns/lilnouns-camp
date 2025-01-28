@@ -261,7 +261,7 @@ const AccountPreview = React.forwardRef(({ accountAddress, close }, ref) => {
                 ) : (
                   <>
                     {representedNouns.length}{" "}
-                    {representedNouns.length === 1 ? "noun" : "nouns"}
+                    {representedNouns.length === 1 ? "lil noun" : "lil nouns"}
                   </>
                 )}
                 {delegatedRepresentedNouns.length > 0 &&
@@ -318,7 +318,7 @@ const AccountPreview = React.forwardRef(({ accountAddress, close }, ref) => {
                 ) : representedNouns.length > 0 ? (
                   <>
                     {ownedNouns.length}{" "}
-                    {ownedNouns.length === 1 ? "noun" : "nouns"}
+                    {ownedNouns.length === 1 ? "lil noun" : "lil nouns"}
                   </>
                 ) : (
                   <>

@@ -36,7 +36,7 @@ const addressByIdentifierByChainId = {
     "nftx-pool": "0x688c3e4658b5367da06fd629e41879beab538e37",
     "nftx-vault": "0x18222a762bf67024193de25e1cdc7aa6e614c695",
 
-    // Nouns contracts
+    // Lil Nouns contracts
     dao: DAO_LOGIC_PROXY_CONTRACT,
     executor: DAO_EXECUTOR_PROXY_CONTRACT,
     data: DAO_DATA_PROXY_CONTRACT,
@@ -63,7 +63,7 @@ const addressByIdentifierByChainId = {
     "nftx-pool": "0x0",
     "nftx-vault": "0x0",
 
-    // Nouns contracts
+    // Lil Nouns contracts
     dao: "0xa7c37f79ff5e6f932147fc69724b6ed432ca6aa7",
     executor: "0xe54f098b1880c536e0083720922b8a365fb403dc",
     data: "0xa7c37f79ff5e6f932147fc69724b6ed432ca6aa7",
@@ -111,45 +111,45 @@ const metaByIdentifier = {
   "nftx-pool": { name: "NFTX Pool" },
   "nftx-vault": { name: "NFTX Vault" },
 
-  // Nouns contracts
+  // Lil Nouns contracts
   dao: {
-    name: "Nouns DAO Governance",
+    name: "Lil Nouns DAO Governance",
     description: "NounsDAOProxy",
   },
   data: {
-    name: "Nouns DAO Candidates",
+    name: "Lil Nouns DAO Candidates",
     description: "NounsDAODataProxy",
   },
-  executor: { name: "Nouns DAO Treasury" },
+  executor: { name: "Lil Nouns DAO Treasury" },
   token: {
-    name: "Nouns Token",
+    name: "Lil Nouns Token",
   },
   "auction-house": {
     name: "Lil Nouns Auction",
     description: "NounsAuctionHouseProxy",
   },
   "auction-house-admin": {
-    name: "Nouns Auction House Admin",
+    name: "Lil Nouns Auction House Admin",
     description: "NounsAuctionHouseProxyAdmin",
   },
   descriptor: {
-    name: "Nouns Art",
+    name: "Lil Nouns Art",
     description: "NounsDescriptorV2",
   },
-  "fork-escrow": { name: "Nouns DAO Fork Escrow" },
+  "fork-escrow": { name: "Lil Nouns DAO Fork Escrow" },
   "token-buyer": {
-    name: "Nouns DAO Token Buyer",
+    name: "Lil Nouns DAO Token Buyer",
   },
   payer: {
-    name: "Nouns DAO Payer",
+    name: "Lil Nouns DAO Payer",
   },
   "stream-factory": {
-    name: "Nouns Stream Factory",
+    name: "Lil Nouns Stream Factory",
   },
   "client-incentives-rewards-proxy": {
-    name: "Nouns Client Incentives Rewards Proxy",
+    name: "Lil Nouns Client Incentives Rewards Proxy",
   },
-  "executor-v1": { name: "Nouns DAO Treasury v1" },
+  "executor-v1": { name: "Lil Nouns DAO Treasury v1" },
 };
 
 export const resolveIdentifier = (identifier, { chainId = CHAIN_ID } = {}) => {

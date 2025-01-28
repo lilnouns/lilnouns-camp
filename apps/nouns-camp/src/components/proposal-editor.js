@@ -855,7 +855,7 @@ const ActionListItem = ({
           <>
             This funds the stream with the requested USDC amount, via the{" "}
             <AddressDisplayNameWithTooltip address={daoPayerContract.address}>
-              Nouns Payer Contract
+              Lil Nouns Payer Contract
             </AddressDisplayNameWithTooltip>
             .
           </>
