@@ -46,6 +46,7 @@ import VotesTagGroup from "./votes-tag-group.js";
 import { buildEtherscanLink } from "../utils/etherscan.js";
 import { isAddress } from "viem";
 import { useNNSName } from "@shades/common/ethereum-react";
+import { useUNSName } from "@shades/common/ethereum-react";
 
 const isDebugSession =
   typeof location !== "undefined" &&
@@ -898,8 +899,9 @@ const AccountListItem = React.memo(
       enabled: hasBeenOnScreen,
     });
     const { data: nnsName } = useNNSName(accountAddress);
+    const { data: unsName } = useUNSName(accountAddress);
     const truncatedAddress = ethereumUtils.truncateAddress(accountAddress);
-    const displayName = nnsName ?? ensName ?? truncatedAddress;
+    const displayName = nnsName ?? unsName ?? ensName ?? truncatedAddress;
     const votingPower = delegate?.nounsRepresented.length;
 
     const { open: openDelegationDialog } = useDialog("delegation");
