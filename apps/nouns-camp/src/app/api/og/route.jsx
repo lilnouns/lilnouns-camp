@@ -146,7 +146,7 @@ const RequestedAmounts = ({ amounts }) => (
             return tokens.length === 1 ? (
               <>Lil Noun {tokens[0]}</>
             ) : (
-              <>{tokens.length} nouns</>
+              <>{tokens.length} lil nouns</>
             );
 
           default:
