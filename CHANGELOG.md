@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.27] - 2025-01-29
+
+### 🚀 Features
+
+- *(camp)* Add cache support for votes (#98)
+
+### 🐛 Bug Fixes
+
+- *(ui-web)* Prevent close getting called multiple times on swipe down
+
 ## [1.4.0-alpha.26] - 2025-01-29
 
 ### 🚀 Features
