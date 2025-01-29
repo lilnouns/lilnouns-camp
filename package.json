@@ -39,11 +39,11 @@
     "node": ">=22.0.0",
     "pnpm": ">=10.0.0"
   },
-  "packageManager": "pnpm@9.15.3",
   "funding": [
     {
       "type": "custom",
       "url": "https://ud.me/nekofar.crypto"
     }
-  ]
+  ],
+  "packageManager": "pnpm@10.0.0"
 }
