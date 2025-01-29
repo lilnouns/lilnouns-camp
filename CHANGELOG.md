@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.25] - 2025-01-29
+
+### 🐛 Bug Fixes
+
+- *(nouns-camp)* Disable webpack cache setting
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* Update Node.js versions in matrix to 22.x, 23.x
+
 ## [1.4.0-alpha.24] - 2025-01-28
 
 ### 🚀 Features

@@ -134,6 +134,8 @@ export default withSentry(
       ];
     },
     webpack(config) {
+      config.cache = false; // Disables PackFileCacheStrategy
+
       config.resolve.fallback = {
         ...config.resolve.fallback,
         ...Object.fromEntries(ignoredModules.map((m) => [m, false])),
