@@ -90,6 +90,12 @@ updates:
       - dependency-name: "next"
         update-types:
           - "version-update:semver-major"
+      - dependency-name: "react"
+        update-types:
+          - "version-update:semver-major"
+      - dependency-name: "react-dom"
+        update-types:
+          - "version-update:semver-major"
       - dependency-name: "vercel"
         update-types:
           - "version-update:semver-patch"
