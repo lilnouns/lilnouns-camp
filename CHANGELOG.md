@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.26] - 2025-01-29
+
+### 🚀 Features
+
+- *(common)* Add `useUNSName` hook for UNS name resolution
+- *(common)* Add UNS support to `useAccountDisplayName`
+- *(common)* Add `useUNSName` hook export
+- *(next)* Add UNS resolver to rewrites
+- *(proposal-list)* Add `useUNSName` support in displayName
+- *(api)* Add proxy endpoint for UNS resolver
+
 ## [1.4.0-alpha.25] - 2025-01-29
 
 ### 🐛 Bug Fixes
