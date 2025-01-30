@@ -1221,6 +1221,36 @@ const formConfigByActionType = {
       />
     ),
   },
+  "nftx-pool-claim-rewards": {
+    title: "Claim NFTX pool rewards",
+    selectable: false,
+    initialState: ({ action }) => ({
+      vaultId: action?.vaultId ?? 558n,
+    }),
+    hasRequiredInputs: ({ state }) =>
+      state.vaultId != null && parseFloat(state.vaultId) > 0,
+    buildAction: ({ state }) => ({
+      type: "nftx-pool-claim-rewards",
+      vaultId: state.vaultId,
+    }),
+    Component: ({ state, setState }) => (
+      <>
+        <Input
+          type="number"
+          value={state.vaultId}
+          onChange={(e) => {
+            try {
+              const n = BigInt(e.target.value);
+              setState({ vaultId: n.toString() });
+            } catch (e) {
+              // Ignore
+            }
+          }}
+          placeholder="0"
+        />
+      </>
+    ),
+  },
 };
 
 const actionTypes = Object.keys(formConfigByActionType);
