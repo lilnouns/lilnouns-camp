@@ -1,4 +1,4 @@
-import { decodeEventLog } from "viem";
+import { parseEventLogs } from "viem";
 import React from "react";
 import { useReadContract, useSimulateContract } from "wagmi";
 import { CHAIN_ID /*CAMP_CLIENT_ID*/ } from "../constants/env.js";
@@ -403,9 +403,7 @@ export const useCreateProposal = () => {
     });
 
     const receipt = await publicClient.waitForTransactionReceipt({ hash });
-    const eventLog = receipt.logs[1];
-    // const eventLog = receipt.logs.find((l) => l.address === contractAddress);
-    const decodedEvent = decodeEventLog({
+    const matchingLogs = parseEventLogs({
       abi: [
         {
           inputs: [
@@ -425,9 +423,17 @@ export const useCreateProposal = () => {
           type: "event",
         },
       ],
-      data: eventLog.data,
-      topics: eventLog.topics,
+      eventName: "ProposalCreatedWithRequirements",
+      logs: receipt.logs,
     });
+
+    if (matchingLogs.length === 0)
+      throw new Error("No ProposalCreatedWithRequirements event found");
+
+    if (matchingLogs.length > 1)
+      throw new Error("Multiple ProposalCreatedWithRequirements events found");
+
+    const decodedEvent = matchingLogs[0];
     return decodedEvent.args;
   };
 };
@@ -489,11 +495,7 @@ export const useCreateProposalWithSignatures = () => {
       signatures: true,
     });
     const receipt = await publicClient.waitForTransactionReceipt({ hash });
-    const eventLog = receipt.logs[1];
-  // const eventLog = receipt.logs.filter(
-  //   (l) => l.address === contractAddress,
-  // )[1]; // ProposalCreatedWithRequirements is the second log
-    const decodedEvent = decodeEventLog({
+    const matchingLogs = parseEventLogs({
       abi: [
         {
           inputs: [
@@ -508,9 +510,17 @@ export const useCreateProposalWithSignatures = () => {
           type: "event",
         },
       ],
-      data: eventLog.data,
-      topics: eventLog.topics,
+      eventName: "ProposalCreatedWithRequirements",
+      logs: receipt.logs,
     });
+
+    if (matchingLogs.length === 0)
+      throw new Error("No ProposalCreatedWithRequirements event found");
+
+    if (matchingLogs.length > 1)
+      throw new Error("Multiple ProposalCreatedWithRequirements events found");
+
+    const decodedEvent = matchingLogs[0];
     return decodedEvent.args;
   };
 };
