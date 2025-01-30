@@ -1,4 +1,4 @@
-import { decodeEventLog } from "viem";
+import { parseEventLogs } from "viem";
 import React from "react";
 import { useReadContract, useSimulateContract } from "wagmi";
 import { CHAIN_ID /*CAMP_CLIENT_ID*/ } from "../constants/env.js";
@@ -277,11 +277,7 @@ export const useCastProposalVote = (
   } = useSimulate({
     abi: [
       {
-        inputs: [
-          { type: "uint256" },
-          { type: "uint8" },
-          // { type: "uint32" },
-        ],
+        inputs: [{ type: "uint256" }, { type: "uint8" }/*, { type: "uint32" }*/],
         name: "castRefundableVote",
         outputs: [],
         type: "function",
@@ -388,14 +384,7 @@ export const useCreateProposal = () => {
         },
       ],
       functionName: "propose",
-      args: [
-        targets,
-        values,
-        signatures,
-        calldatas,
-        description,
-        // clientId,
-      ],
+      args: [targets, values, signatures, calldatas, description/*, clientId*/],
     });
     registerEvent("Proposal successfully created", {
       account: accountAddress,
@@ -403,9 +392,7 @@ export const useCreateProposal = () => {
     });
 
     const receipt = await publicClient.waitForTransactionReceipt({ hash });
-    const eventLog = receipt.logs[1];
-    // const eventLog = receipt.logs.find((l) => l.address === contractAddress);
-    const decodedEvent = decodeEventLog({
+    const matchingLogs = parseEventLogs({
       abi: [
         {
           inputs: [
@@ -425,9 +412,17 @@ export const useCreateProposal = () => {
           type: "event",
         },
       ],
-      data: eventLog.data,
-      topics: eventLog.topics,
+      eventName: "ProposalCreatedWithRequirements",
+      logs: receipt.logs,
     });
+
+    if (matchingLogs.length === 0)
+      throw new Error("No ProposalCreatedWithRequirements event found");
+
+    if (matchingLogs.length > 1)
+      throw new Error("Multiple ProposalCreatedWithRequirements events found");
+
+    const decodedEvent = matchingLogs[0];
     return decodedEvent.args;
   };
 };
@@ -489,28 +484,32 @@ export const useCreateProposalWithSignatures = () => {
       signatures: true,
     });
     const receipt = await publicClient.waitForTransactionReceipt({ hash });
-    const eventLog = receipt.logs[1];
-  // const eventLog = receipt.logs.filter(
-  //   (l) => l.address === contractAddress,
-  // )[1]; // ProposalCreatedWithRequirements is the second log
-    const decodedEvent = decodeEventLog({
+    const matchingLogs = parseEventLogs({
       abi: [
         {
           inputs: [
             { name: "id", type: "uint256" },
-                // { name: "signers", type: "address[]" },
-                // { name: "updatePeriodEndBlock", type: "uint256" },
+            // { name: "signers", type: "address[]" },
+            // { name: "updatePeriodEndBlock", type: "uint256" },
             { name: "proposalThreshold", type: "uint256" },
             { name: "quorumVotes", type: "uint256" },
-                // { indexed: true, name: "clientId", type: "uint32" },
+            // { indexed: true, name: "clientId", type: "uint32" },
           ],
           name: "ProposalCreatedWithRequirements",
           type: "event",
         },
       ],
-      data: eventLog.data,
-      topics: eventLog.topics,
+      eventName: "ProposalCreatedWithRequirements",
+      logs: receipt.logs,
     });
+
+    if (matchingLogs.length === 0)
+      throw new Error("No ProposalCreatedWithRequirements event found");
+
+    if (matchingLogs.length > 1)
+      throw new Error("Multiple ProposalCreatedWithRequirements events found");
+
+    const decodedEvent = matchingLogs[0];
     return decodedEvent.args;
   };
 };
