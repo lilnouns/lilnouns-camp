@@ -699,6 +699,18 @@ const ActionSummary = ({ action: a }) => {
         />
       );
 
+    case "nftx-vault-redeem":
+      return (
+        <TransactionExplanation
+          transaction={{
+            type: "nftx-vault-redeem",
+            tokenAmount: a.tokenAmount,
+            nounIds: a.nounIds,
+            receiverAddress: a.receiverAddress,
+          }}
+        />
+      );
+
     default:
       throw new Error(`Unknown action type: "${a.type}"`);
   }
@@ -894,6 +906,7 @@ const ActionListItem = ({
       case "payer-top-up":
       case "treasury-noun-transfer":
       case "escrow-noun-transfer":
+      case "nftx-vault-redeem":
         return null;
 
       case "unparsed-function-call":
