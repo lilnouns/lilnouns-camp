@@ -277,11 +277,7 @@ export const useCastProposalVote = (
   } = useSimulate({
     abi: [
       {
-        inputs: [
-          { type: "uint256" },
-          { type: "uint8" },
-          // { type: "uint32" },
-        ],
+        inputs: [{ type: "uint256" }, { type: "uint8" }/*, { type: "uint32" }*/],
         name: "castRefundableVote",
         outputs: [],
         type: "function",
@@ -388,14 +384,7 @@ export const useCreateProposal = () => {
         },
       ],
       functionName: "propose",
-      args: [
-        targets,
-        values,
-        signatures,
-        calldatas,
-        description,
-        // clientId,
-      ],
+      args: [targets, values, signatures, calldatas, description/*, clientId*/],
     });
     registerEvent("Proposal successfully created", {
       account: accountAddress,
@@ -500,11 +489,11 @@ export const useCreateProposalWithSignatures = () => {
         {
           inputs: [
             { name: "id", type: "uint256" },
-                // { name: "signers", type: "address[]" },
-                // { name: "updatePeriodEndBlock", type: "uint256" },
+            // { name: "signers", type: "address[]" },
+            // { name: "updatePeriodEndBlock", type: "uint256" },
             { name: "proposalThreshold", type: "uint256" },
             { name: "quorumVotes", type: "uint256" },
-                // { indexed: true, name: "clientId", type: "uint32" },
+            // { indexed: true, name: "clientId", type: "uint32" },
           ],
           name: "ProposalCreatedWithRequirements",
           type: "event",
