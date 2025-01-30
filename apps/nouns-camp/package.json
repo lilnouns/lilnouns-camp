@@ -64,7 +64,7 @@
     "slate-react": "0.112.1",
     "tinykeys": "3.0.0",
     "use-debounce": "10.0.4",
-    "viem": "2.21.45",
+    "viem": "2.22.17",
     "wagmi": "2.14.9",
     "zustand": "4.5.6"
   }
