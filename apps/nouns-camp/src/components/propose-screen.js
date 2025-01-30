@@ -13,7 +13,7 @@ import Dialog from "@shades/ui-web/dialog";
 import DialogHeader from "@shades/ui-web/dialog-header";
 import DialogFooter from "@shades/ui-web/dialog-footer";
 import { resolveAction as resolveActionTransactions } from "../utils/transactions.js";
-import { useWallet } from "../hooks/wallet.js";
+import { useWallet } from "@/hooks/wallet";
 import {
   useCollection as useDrafts,
   useSingleItem as useDraft,
@@ -22,16 +22,16 @@ import {
   useCreateProposal,
   useProposalThreshold,
   useActiveProposalId,
-} from "../hooks/dao-contract.js";
-import { useActions /*, useAccountProposalCandidates*/ } from "../store.js";
-import { useNavigate, useSearchParams } from "../hooks/navigation.js";
-import { useTokenBuyerEthNeeded } from "../hooks/misc-contracts.js";
+} from "@/hooks/dao-contract";
+import { useActions /*, useAccountProposalCandidates*/ } from "@/store";
+import { useNavigate, useSearchParams } from "@/hooks/navigation";
+import { useTokenBuyerEthNeeded } from "@/hooks/misc-contracts";
 import {
   // useCreateProposalCandidate,
   useProposalCandidateCreateCost,
-} from "../hooks/data-contract.js";
-import { useCurrentVotes } from "../hooks/token-contract.js";
-import { useDialog } from "../hooks/global-dialogs.js";
+} from "@/hooks/data-contract";
+import { useCurrentVotes } from "@/hooks/token-contract";
+import { useDialog } from "@/hooks/global-dialogs";
 import {
   isNodeEmpty as isRichTextEditorNodeEmpty,
   toMessageBlocks as richTextToMessageBlocks,
@@ -151,7 +151,8 @@ const ProposeScreen = ({ draftId, startNavigationTransition }) => {
         "hasNftxVaultRedeem",
         hasNftxVaultRedeem,
         "hasNoNftxPoolClaimReward",
-        hasNoNftxPoolClaimReward,);
+        hasNoNftxPoolClaimReward,
+      );
       if (hasNftxVaultRedeem && hasNoNftxPoolClaimReward) {
         transactions.push({
           type: "nftx-pool-claim-rewards",

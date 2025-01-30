@@ -44,7 +44,7 @@ import {
   UnparsedFunctionCallCodeBlock,
   AddressDisplayNameWithTooltip,
 } from "./transaction-list.js";
-import { useActionBundleSimulation } from "../hooks/simulation.js";
+import { useActionBundleSimulation } from "@/hooks/simulation";
 
 const LazyActionDialog = React.lazy(() => import("./action-dialog.js"));
 

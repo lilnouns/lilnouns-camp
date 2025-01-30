@@ -26,9 +26,9 @@ import Select from "@shades/ui-web/select";
 import Dialog from "@shades/ui-web/dialog";
 import DialogHeader from "@shades/ui-web/dialog-header";
 import { resolveIdentifier as getContractWithIdentifier } from "../contracts.js";
-import { createSignature } from "../utils/transactions.js";
+import { createSignature } from "@/utils/transactions";
 import usePublicClient from "../hooks/public-client.js";
-import { fetchContractInfo } from "../hooks/etherscan-contract-info.js";
+import { fetchContractInfo } from "@/hooks/etherscan-contract-info";
 import useEthToUsdRate, {
   Provider as EthToUsdRateProvider,
 } from "../hooks/eth-to-usd-rate.js";
@@ -37,7 +37,7 @@ import AddressInput from "./address-input.js";
 // import { useTotalSupply } from "../hooks/token-contract.js";
 // import NounAvatar from "./noun-avatar.js";
 // import { subgraphFetch } from "../nouns-subgraph.js";
-import { buildEtherscanLink } from "../utils/etherscan.js";
+import { buildEtherscanLink } from "@/utils/etherscan";
 
 const decimalsByCurrency = {
   eth: 18,

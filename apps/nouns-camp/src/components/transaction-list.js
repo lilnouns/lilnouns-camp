@@ -21,7 +21,7 @@ import FormattedDateWithTooltip from "./formatted-date-with-tooltip.js";
 import NounPreviewPopoverTrigger from "./noun-preview-popover-trigger.js";
 import Link from "@shades/ui-web/link";
 import Spinner from "@shades/ui-web/spinner";
-import { buildEtherscanLink } from "../utils/etherscan.js";
+import { buildEtherscanLink } from "@/utils/etherscan";
 
 const decimalsByCurrency = {
   eth: 18,
