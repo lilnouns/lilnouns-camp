@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.28] - 2025-01-30
+
+### 🚀 Features
+
+- *(camp)* Add api and utils for Farcaster replies
+
+### 🐛 Bug Fixes
+
+- *(api)* Add `runtime` configuration for edge deployment
+
+### ⚙️ Miscellaneous Tasks
+
+- *(nouns-camp)* Update `start` script with new flags
+
 ## [1.4.0-alpha.27] - 2025-01-29
 
 ### 🚀 Features
