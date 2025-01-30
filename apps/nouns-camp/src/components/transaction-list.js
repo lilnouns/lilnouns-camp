@@ -138,6 +138,7 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
       case "stream":
       case "treasury-noun-transfer":
       case "escrow-noun-transfer":
+      case "nftx-vault-redeem":
         return null;
 
       default:
@@ -232,6 +233,7 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
       case "stream":
       case "treasury-noun-transfer":
       case "escrow-noun-transfer":
+      case "nftx-vault-redeem":
         return null;
 
       default:
@@ -252,6 +254,7 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
       case "weth-stream-funding":
       case "treasury-noun-transfer":
       case "escrow-noun-transfer":
+      case "nftx-vault-redeem":
         return (
           <FunctionCallCodeBlock
             target={t.target}
@@ -764,6 +767,20 @@ export const TransactionExplanation = ({ transaction: t }) => {
               </React.Fragment>
             );
           })}{" "}
+          to{" "}
+          <em>
+            <AddressDisplayNameWithTooltip address={t.receiverAddress} />
+          </em>
+        </>
+      );
+
+    case "nftx-vault-redeem":
+      return (
+        <>
+          Transfer{" "}
+          <strong>
+            {t.tokenAmount} lil {t.tokenAmount > 1 ? "nouns" : "noun"}
+          </strong>{" "}
           to{" "}
           <em>
             <AddressDisplayNameWithTooltip address={t.receiverAddress} />
