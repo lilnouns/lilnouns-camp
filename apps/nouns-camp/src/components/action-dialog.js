@@ -1022,6 +1022,94 @@ const formConfigByActionType = {
   //     );
   //   },
   // },
+  "nftx-vault-redeem": {
+    title: "Lil Noun transfer",
+    initialState: ({ action }) => ({
+      tokenAmount: action?.tokenAmount ?? "",
+      receiverQuery: action?.receiverAddress ?? "",
+    }),
+    useStateMiddleware: ({ state }) => {
+      const ensCache = useEnsCache();
+      const receiverQuery = state.receiverQuery?.trim();
+      const ensAddress = ensCache.resolve(receiverQuery);
+      const receiverAddress = isAddress(receiverQuery)
+        ? receiverQuery
+        : (ensAddress ?? "");
+      const { address: nftxVaultAddress } =
+        getContractWithIdentifier("nftx-vault");
+      const nounIds = [];
+      const maxTokenAmount = 50;
+      return {
+        ...state,
+        receiverAddress,
+        nftxVaultAddress,
+        maxTokenAmount,
+        nounIds,
+      };
+    },
+    hasRequiredInputs: ({ state }) =>
+      state.tokenAmount !== "" &&
+      parseFloat(state.tokenAmount) > 0 &&
+      state.receiverAddress != null &&
+      isAddress(state.receiverAddress) &&
+      state.nftxVaultAddress != null,
+    buildAction: ({ state }) => ({
+      type: "nftx-vault-redeem",
+      target: state.nftxVaultAddress,
+      receiverAddress: state.receiverAddress,
+      nounIds: state.nounIds,
+      tokenAmount: state.tokenAmount,
+    }),
+    Component: ({ state, setState }) => {
+      useCustomCacheEnsAddress(state.receiverQuery.trim(), {
+        enabled: state.receiverQuery.trim().split(".").slice(-1)[0].length > 0,
+      });
+      return (
+        <>
+          <div>
+            <Label htmlFor="tokenAmount">Lil Noun</Label>
+            <div>
+              <Input
+                type="number"
+                min={1}
+                max={50}
+                value={state.tokenAmount}
+                onChange={(e) => {
+                  try {
+                    const n = BigInt(e.target.value);
+                    const truncatedN =
+                      n > state.maxTokenAmount
+                        ? state.maxTokenAmount
+                        : n < 1
+                          ? 1
+                          : n;
+                    setState({ tokenAmount: truncatedN.toString() });
+                  } catch (e) {
+                    // Ignore
+                  }
+                }}
+                placeholder="1"
+              />
+            </div>
+          </div>
+
+          <AddressInput
+            label="Receiver account"
+            value={state.receiverQuery}
+            onChange={(maybeAddress) => {
+              setState({ receiverQuery: maybeAddress });
+            }}
+            placeholder="0x..., vitalik.eth"
+            hint={
+              !isAddress(state.receiverQuery)
+                ? "Specify an Ethereum account address or ENS name"
+                : null
+            }
+          />
+        </>
+      );
+    },
+  },
   "custom-transaction": {
     title: "Custom transaction",
     initialState: ({ action }) => {
