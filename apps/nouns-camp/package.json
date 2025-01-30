@@ -4,7 +4,7 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "prestart": "next-on-pages --disable-worker-minification",
-    "start": "wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat --log-level=debug --compatibility-date=2025-01-30",
+    "start": "wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat --log-level=info --compatibility-date=2025-01-30",
     "format": "prettier . --write",
     "lint": "next lint && prettier . --check",
     "test": "vitest"
