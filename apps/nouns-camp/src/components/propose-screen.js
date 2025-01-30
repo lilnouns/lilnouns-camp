@@ -141,6 +141,24 @@ const ProposeScreen = ({ draftId, startNavigationTransition }) => {
           value: payerTopUpValue,
         });
 
+      const hasNftxVaultRedeem = transactions.some(
+        (tx) => tx.type === "nftx-vault-redeem",
+      );
+      const hasNoNftxPoolClaimReward = !transactions.some(
+        (tx) => tx.type === "nftx-pool-claim-rewards",
+      );
+      console.log(
+        "hasNftxVaultRedeem",
+        hasNftxVaultRedeem,
+        "hasNoNftxPoolClaimReward",
+        hasNoNftxPoolClaimReward,);
+      if (hasNftxVaultRedeem && hasNoNftxPoolClaimReward) {
+        transactions.push({
+          type: "nftx-pool-claim-rewards",
+          vaultId: 558n,
+        });
+      }
+
       if (transactions.length > 10) {
         alert(
           `A proposal can at max include 10 transactions (currently ${transactions.length})`,
