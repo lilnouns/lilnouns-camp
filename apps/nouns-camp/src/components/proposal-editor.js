@@ -688,6 +688,13 @@ const ActionSummary = ({ action: a }) => {
         />
       );
 
+    case "nftx-pool-claim-rewards":
+      return (
+        <TransactionExplanation
+          transaction={{ type: "nftx-pool-claim-rewards", vaultId: a.vaultId }}
+        />
+      );
+
     case "treasury-noun-transfer":
       return (
         <TransactionExplanation
@@ -724,6 +731,7 @@ const TransactionCodeBlock = ({ transaction, isSimulationRunning }) => {
     case "payer-top-up":
     case "unparsed-function-call":
     case "unparsed-payable-function-call":
+    case "nftx-pool-claim-rewards":
       return (
         <UnparsedFunctionCallCodeBlock
           transaction={t}
@@ -841,6 +849,7 @@ const ActionListItem = ({
   const daoTokenBuyerContract = useContract("token-buyer");
   const daoPayerContract = useContract("payer");
   const wethTokenContract = useContract("weth-token");
+  const nftxPoolContract = useContract("nftx-pool");
 
   const [isExpanded, setExpanded] = React.useState(
     a.type === "custom-transaction",
@@ -907,6 +916,7 @@ const ActionListItem = ({
       case "treasury-noun-transfer":
       case "escrow-noun-transfer":
       case "nftx-vault-redeem":
+      case "nftx-pool-claim-rewards":
         return null;
 
       case "unparsed-function-call":
@@ -954,6 +964,24 @@ const ActionListItem = ({
             address={daoTokenBuyerContract.address}
           >
             DAO Token Buyer
+          </AddressDisplayNameWithTooltip>
+          .
+        </div>
+      )}
+      {a.type === "nftx-pool-claim-rewards" && (
+        <div
+          css={(t) =>
+            css({
+              a: { color: "currentcolor" },
+              fontSize: t.text.sizes.small,
+              color: t.colors.textDimmed,
+              padding: "0.4rem 0",
+            })
+          }
+        >
+          This transaction is automatically added to claim the rewards from the{" "}
+          <AddressDisplayNameWithTooltip address={nftxPoolContract.address}>
+            NFTX Pool
           </AddressDisplayNameWithTooltip>
           .
         </div>
