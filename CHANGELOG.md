@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.29] - 2025-01-30
+
+### 🐛 Bug Fixes
+
+- *(common)* Make cache store serialize and parse values by default
+- *(camp)* Fix event decoding on prop and candie creation (#100)
+
+### 🚜 Refactor
+
+- *(hooks)* Clean up commented-out code in dao contract
+- *(api)* Update import paths and fix runtime string
+
+### ⚙️ Miscellaneous Tasks
+
+- *(nouns-camp)* Update `start` log level to `info`
+
 ## [1.4.0-alpha.28] - 2025-01-30
 
 ### 🚀 Features
