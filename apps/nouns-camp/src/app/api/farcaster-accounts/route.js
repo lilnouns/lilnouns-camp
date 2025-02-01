@@ -33,7 +33,7 @@ export async function GET(request) {
     { accounts: [] /*accountsWithKeyData*/ },
     {
       headers: {
-        "Cache-Control": `max-age=${cacheTime}, s-max-age${cacheTime}`,
+        "Cache-Control": `max-age=${cacheTime}, s-maxage${cacheTime}`,
       },
     },
   );
