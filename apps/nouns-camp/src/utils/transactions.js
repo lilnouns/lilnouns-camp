@@ -12,7 +12,7 @@ import {
   array as arrayUtils,
   ethereum as ethereumUtils,
 } from "@shades/common/utils";
-import { resolveAddress, resolveIdentifier } from "../contracts.js";
+import { resolveAddress, resolveIdentifier } from "@/contracts";
 
 const decimalsByCurrency = {
   eth: 18,
@@ -261,7 +261,10 @@ export const parse = (data) => {
       };
     }
 
-    if (target === nftxVaultContract.address && signature === "redeemTo(uint256,uint256[],address)") {
+    if (
+      target === nftxVaultContract.address &&
+      signature === "redeemTo(uint256,uint256[],address)"
+    ) {
       return {
         type: "nftx-vault-redeem",
         target,
@@ -270,8 +273,8 @@ export const parse = (data) => {
         functionInputTypes,
         tokenAmount: functionInputs[0],
         nounIds: functionInputs[1],
-        receiverAddress: functionInputs[2]
-      }
+        receiverAddress: functionInputs[2],
+      };
     }
 
     if (value > 0)
@@ -304,6 +307,7 @@ export const unparse = (transactions) => {
   const nounsTokenBuyerContract = resolveIdentifier("token-buyer");
   const nounsStreamFactoryContract = resolveIdentifier("stream-factory");
   const nftxVaultContract = resolveIdentifier("nftx-vault");
+  const nftxPoolContract = resolveIdentifier("nftx-pool");
 
   return transactions.reduce(
     (acc, t) => {
@@ -463,9 +467,18 @@ export const unparse = (transactions) => {
             signature: "redeemTo(uint256,uint256[],address)",
             calldata: encodeAbiParameters(
               [{ type: "uint256" }, { type: "uint256[]" }, { type: "address" }],
-              [t.tokenAmount, t.nounIds, t.receiverAddress]
-            )
-          })
+              [t.tokenAmount, t.nounIds, t.receiverAddress],
+            ),
+          });
+        }
+
+        case "nftx-pool-claim-rewards": {
+          return append({
+            target: nftxPoolContract.address,
+            value: "",
+            signature: "claimRewards(uint256)",
+            calldata: encodeAbiParameters([{ type: "uint256" }], [t.vaultId]),
+          });
         }
 
         case "function-call":
@@ -555,7 +568,10 @@ export const extractAmounts = (parsedTransactions) => {
     BigInt(0),
   );
 
-  const nftxVaultRedeems = parsedTransactions.filter((t) => t.type === "nftx-vault-redeem").map((t) => t.nounIds).flat();
+  const nftxVaultRedeems = parsedTransactions
+    .filter((t) => t.type === "nftx-vault-redeem")
+    .map((t) => t.nounIds)
+    .flat();
 
   return [
     { currency: "eth", amount: ethAmount },
@@ -569,7 +585,7 @@ export const extractAmounts = (parsedTransactions) => {
     {
       currency: "lilnouns",
       tokens: nftxVaultRedeems,
-    }
+    },
   ].filter((e) => e.amount > 0 || e.tokens?.length > 0);
 };
 
@@ -756,6 +772,7 @@ export const buildActions = (transactions) => {
 export const resolveAction = (a) => {
   const nounsTokenBuyerContract = resolveIdentifier("token-buyer");
   const nftxVaultContract = resolveIdentifier("nftx-vault");
+  const nftxPoolContract = resolveIdentifier("nftx-pool");
 
   const getParsedTransactions = () => {
     switch (a.type) {
@@ -860,8 +877,17 @@ export const resolveAction = (a) => {
             target: nftxVaultContract.address,
             tokenAmount: a.tokenAmount,
             nounIds: a.nounIds,
-            receiverAddress: a.receiverAddress
-          }
+            receiverAddress: a.receiverAddress,
+          },
+        ];
+
+      case "nftx-pool-claim-rewards":
+        return [
+          {
+            type: "nftx-pool-claim-rewards",
+            target: nftxPoolContract,
+            vaultId: a.vaultId,
+          },
         ];
 
       case "custom-transaction": {

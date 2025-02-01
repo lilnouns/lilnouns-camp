@@ -13,7 +13,7 @@ import Dialog from "@shades/ui-web/dialog";
 import DialogHeader from "@shades/ui-web/dialog-header";
 import DialogFooter from "@shades/ui-web/dialog-footer";
 import { resolveAction as resolveActionTransactions } from "../utils/transactions.js";
-import { useWallet } from "../hooks/wallet.js";
+import { useWallet } from "@/hooks/wallet";
 import {
   useCollection as useDrafts,
   useSingleItem as useDraft,
@@ -22,16 +22,16 @@ import {
   useCreateProposal,
   useProposalThreshold,
   useActiveProposalId,
-} from "../hooks/dao-contract.js";
-import { useActions /*, useAccountProposalCandidates*/ } from "../store.js";
-import { useNavigate, useSearchParams } from "../hooks/navigation.js";
-import { useTokenBuyerEthNeeded } from "../hooks/misc-contracts.js";
+} from "@/hooks/dao-contract";
+import { useActions /*, useAccountProposalCandidates*/ } from "@/store";
+import { useNavigate, useSearchParams } from "@/hooks/navigation";
+import { useTokenBuyerEthNeeded } from "@/hooks/misc-contracts";
 import {
   // useCreateProposalCandidate,
   useProposalCandidateCreateCost,
-} from "../hooks/data-contract.js";
-import { useCurrentVotes } from "../hooks/token-contract.js";
-import { useDialog } from "../hooks/global-dialogs.js";
+} from "@/hooks/data-contract";
+import { useCurrentVotes } from "@/hooks/token-contract";
+import { useDialog } from "@/hooks/global-dialogs";
 import {
   isNodeEmpty as isRichTextEditorNodeEmpty,
   toMessageBlocks as richTextToMessageBlocks,
@@ -140,6 +140,18 @@ const ProposeScreen = ({ draftId, startNavigationTransition }) => {
           type: "payer-top-up",
           value: payerTopUpValue,
         });
+
+      // Check if we have a vault redeem and lack a pool claim reward.
+      const nftxRedeemExists = transactions.some(
+        (tx) => tx.type === "nftx-vault-redeem",
+      );
+      const nftxRewardMissing = !transactions.some(
+        (tx) => tx.type === "nftx-pool-claim-rewards",
+      );
+
+      if (nftxRedeemExists && nftxRewardMissing) {
+        transactions.push({ type: "nftx-pool-claim-rewards", vaultId: 558 });
+      }
 
       if (transactions.length > 10) {
         alert(
@@ -252,6 +264,9 @@ const ProposeScreen = ({ draftId, startNavigationTransition }) => {
           setActions={setActions}
           proposerId={connectedAccountAddress}
           payerTopUpValue={usdcSumValue > 0 ? payerTopUpValue : 0}
+          nftxRedeemExists={
+            draft.actions.some((a) => a.type === "nftx-vault-redeem")
+          }
           containerHeight={`calc(100vh - ${theme.navBarHeight})`}
           onSubmit={() => {
             setShowSubmitDialog(true);

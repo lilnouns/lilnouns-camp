@@ -59,9 +59,9 @@ const addressByIdentifierByChainId = {
     "usdc-token": "0xebcc972b6b3eb15c0592be1871838963d0b94278",
     "steth-token": "0x3e3fe7dbc6b4c189e7128855dd526361c49b40af",
     "wsteth-token": "0xb82381a3fbd3fafa77b3a7be693342618240067b",
-    "$nouns-token": "0x0",
-    "nftx-pool": "0x0",
-    "nftx-vault": "0x000000000000000000000000000000000000dEaD",
+    "$nouns-token": "0x0000000000000000000000000000000000000001",
+    "nftx-pool": "0x0000000000000000000000000000000000000002",
+    "nftx-vault": "0x0000000000000000000000000000000000000003",
 
     // Lil Nouns contracts
     dao: "0xa7c37f79ff5e6f932147fc69724b6ed432ca6aa7",

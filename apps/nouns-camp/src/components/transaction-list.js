@@ -21,7 +21,7 @@ import FormattedDateWithTooltip from "./formatted-date-with-tooltip.js";
 import NounPreviewPopoverTrigger from "./noun-preview-popover-trigger.js";
 import Link from "@shades/ui-web/link";
 import Spinner from "@shades/ui-web/spinner";
-import { buildEtherscanLink } from "../utils/etherscan.js";
+import { buildEtherscanLink } from "@/utils/etherscan";
 
 const decimalsByCurrency = {
   eth: 18,
@@ -139,6 +139,7 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
       case "treasury-noun-transfer":
       case "escrow-noun-transfer":
       case "nftx-vault-redeem":
+      case "nftx-pool-claim-rewards":
         return null;
 
       default:
@@ -221,6 +222,14 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
           </>
         );
 
+      case "nftx-pool-claim-rewards":
+        return (
+          <>
+          This transaction claims rewards from the{" "}
+            <AddressDisplayNameWithTooltip address={t.target} />.
+          </>
+        )
+
       case "function-call":
       case "payable-function-call":
       case "proxied-payable-function-call":
@@ -269,6 +278,7 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
 
       case "transfer":
       case "payer-top-up":
+      case "nftx-pool-claim-rewards":
         return (
           <UnparsedFunctionCallCodeBlock
             transaction={t}
@@ -660,6 +670,18 @@ export const TransactionExplanation = ({ transaction: t }) => {
           </em>
         </>
       );
+    }
+
+    case "nftx-pool-claim-rewards": {
+      const { address: nftxPoolAddress } = resolveContractIdentifier("nftx-pool");
+      return (
+        <>
+          Claim rewards from the{" "}
+          <em>
+            <AddressDisplayNameWithTooltip address={nftxPoolAddress} />
+          </em>
+        </>
+      )
     }
 
     case "stream": {

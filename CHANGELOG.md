@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.33] - 2025-02-01
+
+### 🚀 Features
+
+- *(components)* Add NFTX pool claim rewards action
+- *(proposal-editor)* Add NFTX pool claim rewards action
+- *(propose-screen)* Add NFTX pool claim rewards transaction
+- *(transaction-list)* Add support for NFTX pool claim rewards
+- *(transactions)* Add support for NFTX pool claim rewards
+- *(action-dialog)* Make NFTX pool claim rewards selectable
+- *(action-dialog)* Disable input field in NFTX pool component
+- *(propose-screen)* Add `nftxRedeemExists` prop to actions
+- *(proposal-editor)* Add `nftxRedeemExists` to actions
+
+### 🐛 Bug Fixes
+
+- *(contracts)* Update token and pool addresses
+- *(action-dialog)* Remove incorrect bigint suffix from `vaultId`
+- *(propose-screen)* Remove console logs and update `vaultId` type
+- *(action-dialog)* Set NFTX  pool claim rewards non-selectable
+- *(treasury)* Update `nouns` contract to NFTX vault
+
+### 🚜 Refactor
+
+- *(propose-screen)* Rename variables for clarity
+
 ## [1.4.0-alpha.32] - 2025-02-01
 
 ### 🚜 Refactor
