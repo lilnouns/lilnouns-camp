@@ -64,6 +64,7 @@ export const parse = (data) => {
   const wethTokenContract = resolveIdentifier("weth-token");
   const stethTokenContract = resolveIdentifier("steth-token");
   const usdcTokenContract = resolveIdentifier("usdc-token");
+  const nftxVaultContract = resolveIdentifier("nftx-vault");
 
   const transactions = data.targets.map((target, i) => ({
     target: target.toLowerCase(),
@@ -260,6 +261,19 @@ export const parse = (data) => {
       };
     }
 
+    if (target === nftxVaultContract.address && signature === "redeemTo(uint256,uint256[],address)") {
+      return {
+        type: "nftx-vault-redeem",
+        target,
+        functionName,
+        functionInputs,
+        functionInputTypes,
+        tokenAmount: functionInputs[0],
+        nounIds: functionInputs[1],
+        receiverAddress: functionInputs[2]
+      }
+    }
+
     if (value > 0)
       return {
         type: "payable-function-call",
@@ -289,6 +303,7 @@ export const unparse = (transactions) => {
   const nounsPayerContract = resolveIdentifier("payer");
   const nounsTokenBuyerContract = resolveIdentifier("token-buyer");
   const nounsStreamFactoryContract = resolveIdentifier("stream-factory");
+  const nftxVaultContract = resolveIdentifier("nftx-vault");
 
   return transactions.reduce(
     (acc, t) => {
@@ -441,6 +456,18 @@ export const unparse = (transactions) => {
           });
         }
 
+        case "nftx-vault-redeem": {
+          return append({
+            target: nftxVaultContract.address,
+            value: "",
+            signature: "redeemTo(uint256,uint256[],address)",
+            calldata: encodeAbiParameters(
+              [{ type: "uint256" }, { type: "uint256[]" }, { type: "address" }],
+              [t.tokenAmount, t.nounIds, t.receiverAddress]
+            )
+          })
+        }
+
         case "function-call":
         case "payable-function-call":
         case "weth-approval": {
@@ -528,6 +555,8 @@ export const extractAmounts = (parsedTransactions) => {
     BigInt(0),
   );
 
+  const nftxVaultRedeems = parsedTransactions.filter((t) => t.type === "nftx-vault-redeem").map((t) => t.nounIds).flat();
+
   return [
     { currency: "eth", amount: ethAmount },
     { currency: "weth", amount: wethAmount },
@@ -537,6 +566,10 @@ export const extractAmounts = (parsedTransactions) => {
       currency: "nouns",
       tokens: [...treasuryNounTransferNounIds, ...escrowNounTransferNounIds],
     },
+    {
+      currency: "lilnouns",
+      tokens: nftxVaultRedeems,
+    }
   ].filter((e) => e.amount > 0 || e.tokens?.length > 0);
 };
 
@@ -722,6 +755,7 @@ export const buildActions = (transactions) => {
 
 export const resolveAction = (a) => {
   const nounsTokenBuyerContract = resolveIdentifier("token-buyer");
+  const nftxVaultContract = resolveIdentifier("nftx-vault");
 
   const getParsedTransactions = () => {
     switch (a.type) {
@@ -817,6 +851,17 @@ export const resolveAction = (a) => {
             target: nounsTokenBuyerContract,
             value: parseEther(a.amount),
           },
+        ];
+
+      case "nftx-vault-redeem":
+        return [
+          {
+            type: "nftx-vault-redeem",
+            target: nftxVaultContract.address,
+            tokenAmount: a.tokenAmount,
+            nounIds: a.nounIds,
+            receiverAddress: a.receiverAddress
+          }
         ];
 
       case "custom-transaction": {
