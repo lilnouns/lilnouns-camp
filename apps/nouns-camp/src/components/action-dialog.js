@@ -1223,7 +1223,7 @@ const formConfigByActionType = {
   },
   "nftx-pool-claim-rewards": {
     title: "Claim NFTX pool rewards",
-    selectable: true,
+    selectable: false,
     initialState: ({ action }) => ({
       vaultId: action?.vaultId ?? 558,
     }),
