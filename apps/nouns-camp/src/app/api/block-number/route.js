@@ -13,7 +13,7 @@ const publicClient = createPublicClient({
   chain,
   transport: http(getJsonRpcUrl(chain.id), {
     fetchOptions: {
-      cache: "no-cache",
+      cache: "no-store",
     },
   }),
 });
