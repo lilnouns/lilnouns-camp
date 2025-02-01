@@ -147,16 +147,10 @@ const ProposeScreen = ({ draftId, startNavigationTransition }) => {
       const hasNoNftxPoolClaimReward = !transactions.some(
         (tx) => tx.type === "nftx-pool-claim-rewards",
       );
-      console.log(
-        "hasNftxVaultRedeem",
-        hasNftxVaultRedeem,
-        "hasNoNftxPoolClaimReward",
-        hasNoNftxPoolClaimReward,
-      );
       if (hasNftxVaultRedeem && hasNoNftxPoolClaimReward) {
         transactions.push({
           type: "nftx-pool-claim-rewards",
-          vaultId: 558n,
+          vaultId: 558,
         });
       }
 
