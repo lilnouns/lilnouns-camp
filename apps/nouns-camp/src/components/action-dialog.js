@@ -1247,6 +1247,7 @@ const formConfigByActionType = {
             }
           }}
           placeholder="0"
+          disabled
         />
       </>
     ),
