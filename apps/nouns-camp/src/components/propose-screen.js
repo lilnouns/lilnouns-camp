@@ -264,6 +264,9 @@ const ProposeScreen = ({ draftId, startNavigationTransition }) => {
           setActions={setActions}
           proposerId={connectedAccountAddress}
           payerTopUpValue={usdcSumValue > 0 ? payerTopUpValue : 0}
+          nftxRedeemExists={
+            draft.actions.some((a) => a.type === "nftx-vault-redeem")
+          }
           containerHeight={`calc(100vh - ${theme.navBarHeight})`}
           onSubmit={() => {
             setShowSubmitDialog(true);
