@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.35] - 2025-02-01
+
+### 🐛 Bug Fixes
+
+- *(treasury)* Use `formatUnits` for balance calculation
+
 ## [1.4.0-alpha.34] - 2025-02-01
 
 ### 🐛 Bug Fixes
