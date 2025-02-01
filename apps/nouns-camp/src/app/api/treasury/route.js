@@ -78,7 +78,7 @@ export async function GET() {
               { key: "wsteth", contract: "wsteth-token" },
               CHAIN_ID === 1 ? { key: "reth", contract: "reth-token" } : null,
               CHAIN_ID === 1 ? { key: "oeth", contract: "oeth-token" } : null,
-              { key: "nouns", contract: "token" },
+              { key: "nouns", contract: "nftx-vault" },
             ]
               .filter(Boolean)
               .map(async ({ key, contract }) => {
