@@ -1225,7 +1225,7 @@ const formConfigByActionType = {
     title: "Claim NFTX pool rewards",
     selectable: true,
     initialState: ({ action }) => ({
-      vaultId: action?.vaultId ?? 558n,
+      vaultId: action?.vaultId ?? 558,
     }),
     hasRequiredInputs: ({ state }) =>
       state.vaultId != null && parseFloat(state.vaultId) > 0,
