@@ -1,4 +1,4 @@
-import { createPublicClient, http } from "viem";
+import { createPublicClient, http, formatUnits } from "viem";
 import { object as objectUtils } from "@shades/common/utils";
 import { CHAIN_ID } from "../../../constants/env.js";
 import { resolveIdentifier as resolveContractIdentifier } from "../../../contracts.js";
@@ -87,7 +87,7 @@ export async function GET() {
                   account: executorAddress,
                 });
                 if (key === "nouns") {
-                  balance = Math.floor(Number(balance) / 1.04 / 10 ** 18);
+                  balance = Math.floor(formatUnits(balance, 18) / 1.04);
                 }
                 return [key, balance];
               }),
