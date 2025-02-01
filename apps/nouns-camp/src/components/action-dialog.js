@@ -26,9 +26,9 @@ import Select from "@shades/ui-web/select";
 import Dialog from "@shades/ui-web/dialog";
 import DialogHeader from "@shades/ui-web/dialog-header";
 import { resolveIdentifier as getContractWithIdentifier } from "../contracts.js";
-import { createSignature } from "../utils/transactions.js";
+import { createSignature } from "@/utils/transactions";
 import usePublicClient from "../hooks/public-client.js";
-import { fetchContractInfo } from "../hooks/etherscan-contract-info.js";
+import { fetchContractInfo } from "@/hooks/etherscan-contract-info";
 import useEthToUsdRate, {
   Provider as EthToUsdRateProvider,
 } from "../hooks/eth-to-usd-rate.js";
@@ -37,7 +37,7 @@ import AddressInput from "./address-input.js";
 // import { useTotalSupply } from "../hooks/token-contract.js";
 // import NounAvatar from "./noun-avatar.js";
 // import { subgraphFetch } from "../nouns-subgraph.js";
-import { buildEtherscanLink } from "../utils/etherscan.js";
+import { buildEtherscanLink } from "@/utils/etherscan";
 
 const decimalsByCurrency = {
   eth: 18,
@@ -1219,6 +1219,37 @@ const formConfigByActionType = {
         currencyOptions={[{ value: "eth", label: "ETH" }]}
         disabled
       />
+    ),
+  },
+  "nftx-pool-claim-rewards": {
+    title: "Claim NFTX pool rewards",
+    selectable: false,
+    initialState: ({ action }) => ({
+      vaultId: action?.vaultId ?? 558,
+    }),
+    hasRequiredInputs: ({ state }) =>
+      state.vaultId != null && parseFloat(state.vaultId) > 0,
+    buildAction: ({ state }) => ({
+      type: "nftx-pool-claim-rewards",
+      vaultId: state.vaultId,
+    }),
+    Component: ({ state, setState }) => (
+      <>
+        <Input
+          type="number"
+          value={state.vaultId}
+          onChange={(e) => {
+            try {
+              const n = BigInt(e.target.value);
+              setState({ vaultId: n.toString() });
+            } catch (e) {
+              // Ignore
+            }
+          }}
+          placeholder="0"
+          disabled
+        />
+      </>
     ),
   },
 };
