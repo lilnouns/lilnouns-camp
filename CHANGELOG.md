@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.31] - 2025-02-01
+
+### 🚀 Features
+
+- *(camp)* Cache current block number on the edge
+- *(camp)* Amend Cache-Control header syntax in multiple files
+- *(camp)* Add tiny swr
+
+### 🐛 Bug Fixes
+
+- *(camp)* Move block-number api to edge
+- *(camp)* Opt out of Vercel’s data cache
+- *(camp)* GcTime -> staleTime
+- *(nouns-camp)* Update fetch `cache` option to `no-store`
+
 ## [1.4.0-alpha.30] - 2025-02-01
 
 ### 🚀 Features
