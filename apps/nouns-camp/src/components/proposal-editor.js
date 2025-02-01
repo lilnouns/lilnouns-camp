@@ -117,6 +117,7 @@ const ProposalEditor = ({
   deleteLabel,
   note,
   payerTopUpValue,
+  nftxRedeemExists,
   scrollContainerRef,
   background,
 }) => {
@@ -129,6 +130,10 @@ const ProposalEditor = ({
         payerTopUpValue > 0 && {
           type: "payer-top-up",
           amount: formatEther(payerTopUpValue),
+        },
+        nftxRedeemExists && {
+          type: "nftx-pool-claim-rewards",
+          vaultId: 558,
         },
       ].filter(Boolean),
     [actions, payerTopUpValue],
