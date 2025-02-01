@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.34] - 2025-02-01
+
+### 🐛 Bug Fixes
+
+- *(api)* Adjust `nouns` balance calculation in treasury
+
 ## [1.4.0-alpha.33] - 2025-02-01
 
 ### 🚀 Features
