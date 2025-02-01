@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.32] - 2025-02-01
+
+### 🚜 Refactor
+
+- *(nouns-camp)* Comment out cache setting in `http` transport
+
 ## [1.4.0-alpha.31] - 2025-02-01
 
 ### 🚀 Features
