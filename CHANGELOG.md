@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.30] - 2025-02-01
+
+### 🚀 Features
+
+- *(components)* Add NFTX vault redeem to action dialog
+- *(proposal-editor)* Add support for NFTX vault redeem
+- *(transaction-list)* Add support for NFTX vault redeem
+- *(transactions)* Add support for NFTX vault redeem type
+
+### 🐛 Bug Fixes
+
+- *(contracts)* Update Sepolia NFTTx vault address
+
 ## [1.4.0-alpha.29] - 2025-01-30
 
 ### 🐛 Bug Fixes
