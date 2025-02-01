@@ -82,10 +82,13 @@ export async function GET() {
             ]
               .filter(Boolean)
               .map(async ({ key, contract }) => {
-                const balance = await balanceOf({
+                let balance = await balanceOf({
                   contract,
                   account: executorAddress,
                 });
+                if (key === "nouns") {
+                  balance = Math.floor(Number(balance) / 1.04 / 10 ** 18);
+                }
                 return [key, balance];
               }),
           ]),
