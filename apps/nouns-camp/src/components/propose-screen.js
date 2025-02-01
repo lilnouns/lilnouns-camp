@@ -141,17 +141,16 @@ const ProposeScreen = ({ draftId, startNavigationTransition }) => {
           value: payerTopUpValue,
         });
 
-      const hasNftxVaultRedeem = transactions.some(
+      // Check if we have a vault redeem and lack a pool claim reward.
+      const nftxRedeemExists = transactions.some(
         (tx) => tx.type === "nftx-vault-redeem",
       );
-      const hasNoNftxPoolClaimReward = !transactions.some(
+      const nftxRewardMissing = !transactions.some(
         (tx) => tx.type === "nftx-pool-claim-rewards",
       );
-      if (hasNftxVaultRedeem && hasNoNftxPoolClaimReward) {
-        transactions.push({
-          type: "nftx-pool-claim-rewards",
-          vaultId: 558,
-        });
+
+      if (nftxRedeemExists && nftxRewardMissing) {
+        transactions.push({ type: "nftx-pool-claim-rewards", vaultId: 558 });
       }
 
       if (transactions.length > 10) {
