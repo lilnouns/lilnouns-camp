@@ -24,9 +24,9 @@ import {
   useCreateProposal,
   useProposalThreshold,
   useActiveProposalId,
-} from "../hooks/dao-contract.js";
-import { useActions/*, useAccountProposalCandidates*/ } from "../store.js";
-import { useNavigate, useSearchParams } from "../hooks/navigation.js";
+} from "@/hooks/dao-contract";
+import { useActions/*, useAccountProposalCandidates*/ } from "@/store";
+import { useNavigate, useSearchParams } from "@/hooks/navigation";
 import {
   // useCreateProposalCandidate,
   useProposalCandidateCreateCost,
