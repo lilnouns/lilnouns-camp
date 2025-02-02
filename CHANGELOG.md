@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.38] - 2025-02-02
+
+### 🚜 Refactor
+
+- *(landing-screen)* Comment out `new topic` functionality
+- *(layout)* Comment out `open-flows` menu option
+
 ## [1.4.0-alpha.37] - 2025-02-02
 
 ### 🚀 Features
