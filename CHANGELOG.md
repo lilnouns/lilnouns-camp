@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.37] - 2025-02-02
+
+### 🚀 Features
+
+- Upgrade and sync with upstream (#963)
+
+### 🚜 Refactor
+
+- *(store)* Comment out unused feed cases
+
 ## [1.4.0-alpha.36] - 2025-02-02
 
 ### 🚜 Refactor
