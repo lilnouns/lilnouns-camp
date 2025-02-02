@@ -631,7 +631,7 @@ const BrowseScreen = () => {
             );
           })()}
         </Tabs.Item>
-        {topics.length > 0 && (
+        {/*{topics.length > 0 && (
           <Tabs.Item key="topics" title="Topics">
             <div
               css={css({
@@ -707,7 +707,7 @@ const BrowseScreen = () => {
               );
             })()}
           </Tabs.Item>
-        )}
+        )}*/}
         {/*<Tabs.Item key="candidates" title="Candidates">
           <div
             css={css({
