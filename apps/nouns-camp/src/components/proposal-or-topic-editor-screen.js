@@ -4,7 +4,7 @@ import { formatEther, parseUnits } from "viem";
 import { css, useTheme } from "@emotion/react";
 import { /*useFetch,*/ useLatestCallback } from "@shades/common/react";
 import {
-  invariant,
+  // invariant,
   message as messageUtils,
   function as functionUtils,
 } from "@shades/common/utils";
@@ -314,7 +314,7 @@ const Content = ({ draftId, startNavigationTransition }) => {
               onDelete={discard}
               hasPendingSubmit={hasPendingRequest}
               submitLabel="Start discussion topic"
-              submitDisabled={hasPendingRequest || !hasRequiredInput}
+              submitDisabled={hasPendingRequest /*|| !hasRequiredInput*/}
               sidebarContent={
                 <>
                   <p>
