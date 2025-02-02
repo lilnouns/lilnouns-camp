@@ -105,6 +105,7 @@ const ProposalEditor = ({
   setTitle,
   setBody,
   setActions,
+  turnIntoTopic,
   proposerId,
   onSubmit,
   onDelete,
@@ -136,7 +137,7 @@ const ProposalEditor = ({
           vaultId: 558,
         },
       ].filter(Boolean),
-    [actions, payerTopUpValue],
+    [actions, nftxRedeemExists, payerTopUpValue],
   );
 
   const maybeActionTransactions = useActionTransactions(
@@ -164,7 +165,7 @@ const ProposalEditor = ({
     !isTitleEmpty &&
     !isBodyEmpty &&
     maybeActionTransactions != null &&
-    maybeActionTransactions.length > 0 &&
+    // maybeActionTransactions.length > 0 &&
     maybeActionTransactions.length <= MAX_TRANSACTION_COUNT;
 
   const enableSubmit = hasRequiredInput && !disabled && !submitDisabled;
@@ -209,20 +210,43 @@ const ProposalEditor = ({
                   }
                 >
                   {!hasPendingSubmit && (
-                    <p>
-                      <Link
-                        type="button"
-                        component="button"
-                        onClick={() => {
-                          setShowMarkdownPreview((s) => !s);
-                        }}
-                        underline
-                        color="currentColor"
-                        hoverColor="currentColor"
-                      >
-                        View raw markdown
-                      </Link>
-                    </p>
+                    <>
+                      <p>
+                        <Link
+                          type="button"
+                          component="button"
+                          onClick={() => {
+                            setShowMarkdownPreview((s) => !s);
+                          }}
+                          underline
+                          variant="dimmed"
+                        >
+                          View raw markdown
+                        </Link>
+                      </p>
+                      {turnIntoTopic != null && (
+                        <p>
+                          <Link
+                            type="button"
+                            component="button"
+                            onClick={() => {
+                              if (
+                                actions.length > 0 &&
+                                !confirm(
+                                  "This will remove all actions, are you sure you wish to continue?",
+                                )
+                              )
+                                return;
+                              turnIntoTopic();
+                            }}
+                            underline
+                            variant="dimmed"
+                          >
+                            Turn into discussion topic
+                          </Link>
+                        </p>
+                      )}
+                    </>
                   )}
                   {note != null && <p>{note}</p>}
                 </div>
@@ -1131,7 +1155,7 @@ const MarkdownEditor = ({ value, onChange, ...props }) => (
   />
 );
 
-const MarkdownPreviewDialog = ({ isOpen, close, title, body }) => {
+export const MarkdownPreviewDialog = ({ isOpen, close, title, body }) => {
   const description = React.useMemo(() => {
     if (!isOpen) return null;
     const bodyMarkdown =
@@ -1202,10 +1226,8 @@ const ProposalContentEditor = ({
   setBody,
   proposerId,
   disabled,
-  // editorRef,
   scrollContainerRef,
 }) => {
-  // const editor = editorRef.current;
   const editorRef = React.useRef();
   const editor = editorRef.current;
 
@@ -1528,7 +1550,7 @@ const SidebarContent = ({
               <Link
                 type="button"
                 component="button"
-                color={(t) => t.colors.textNormal}
+                variant="inherit"
                 size="small"
                 onClick={() => {
                   if (!confirm("Are you sure you wish to clear all actions?"))
@@ -1621,7 +1643,7 @@ const SidebarContent = ({
   );
 };
 
-const EditorRenderError = ({ body }) => (
+export const EditorRenderError = ({ body }) => (
   <>
     <div
       css={(t) =>
