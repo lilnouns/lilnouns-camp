@@ -136,10 +136,10 @@ const defaultActions = [
             id: "new-proposal",
             label: "Proposal",
           },
-          {
-            id: "new-discussion-topic",
-            label: "Discussion topic",
-          },
+          // {
+          //   id: "new-discussion-topic",
+          //   label: "Discussion topic",
+          // },
         ],
       },
     ],
@@ -317,9 +317,9 @@ const NavBar = ({
       case "new-proposal":
         navigate("/new");
         break;
-      case "new-discussion-topic":
-        navigate("/new?topic=1");
-        break;
+      // case "new-discussion-topic":
+      //   navigate("/new?topic=1");
+      //   break;
       case "open-account-dialog":
         openAccountDialog();
         break;
@@ -685,10 +685,10 @@ const NavBar = ({
                     //   id: "navigate-to-candidate-listing",
                     //   label: "Candidates",
                     // },
-                    {
-                      id: "navigate-to-topic-listing",
-                      label: "Discussion topics",
-                    },
+                    // {
+                    //   id: "navigate-to-topic-listing",
+                    //   label: "Discussion topics",
+                    // },
                     {
                       id: "navigate-to-account-listing",
                       label: "Voters",
@@ -712,18 +712,18 @@ const NavBar = ({
                         </>
                       ),
                     },
-                    {
-                      id: "open-flows",
-                      textValue: "Flows",
-                      label: (
-                        <>
-                          <span style={{ flex: 1, marginRight: "0.8rem" }}>
-                            Flows
-                          </span>
-                          {"\u2197"}
-                        </>
-                      ),
-                    },
+                    // {
+                    //   id: "open-flows",
+                    //   textValue: "Flows",
+                    //   label: (
+                    //     <>
+                    //       <span style={{ flex: 1, marginRight: "0.8rem" }}>
+                    //         Flows
+                    //       </span>
+                    //       {"\u2197"}
+                    //     </>
+                    //   ),
+                    // },
                   ],
                 };
                 const settingsSection = {

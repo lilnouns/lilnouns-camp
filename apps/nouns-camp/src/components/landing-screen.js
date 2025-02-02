@@ -205,13 +205,13 @@ const createDigestSections = ({
       sort: sortProposalsByStartsSoon,
       truncationThreshold: 2,
     },
-    {
-      key: "topics:new",
-      title: "New topics",
-      description: "Created within the last 3 days",
-      sort: sortCandidatesReverseChronological,
-      truncationThreshold: 2,
-    },
+    // {
+    //   key: "topics:new",
+    //   title: "New topics",
+    //   description: "Created within the last 3 days",
+    //   sort: sortCandidatesReverseChronological,
+    //   truncationThreshold: 2,
+    // },
     {
       key: "topics:active",
       title: "Recently active topics",
@@ -870,10 +870,10 @@ const BrowseScreen = () => {
                     id: "new-proposal",
                     label: "Proposal",
                   },
-                  {
-                    id: "new-discussion-topic",
-                    label: "Discussion topic",
-                  },
+                  // {
+                  //   id: "new-discussion-topic",
+                  //   label: "Discussion topic",
+                  // },
                 ],
               },
             ],
