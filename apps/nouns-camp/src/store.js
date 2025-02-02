@@ -2385,18 +2385,18 @@ export const useMainFeedItems = (categories, { enabled = true }) => {
                 switch (category) {
                   case "auction-excluding-bids":
                     return buildAuctionFeed(s, { excludeBids: true });
-                  case "auction-bids":
-                    return buildAuctionFeed(s, { bidsOnly: true });
+                  // case "auction-bids":
+                  //   return buildAuctionFeed(s, { bidsOnly: true });
                   case "noun-representation":
                     return buildNounsTokenRepresentationFeed(s);
                   case "proposals":
                     return buildProposalItems();
-                  case "candidates":
-                    return buildCandidateItems();
-                  case "propdates":
-                    return buildPropdateItems();
-                  case "flow-votes":
-                    return buildFlowVotesFeed(s);
+                  // case "candidates":
+                  //   return buildCandidateItems();
+                  // case "propdates":
+                  //   return buildPropdateItems();
+                  // case "flow-votes":
+                  //   return buildFlowVotesFeed(s);
                   default:
                     console.error(`Unrecognized category: "${category}"`);
                 }
