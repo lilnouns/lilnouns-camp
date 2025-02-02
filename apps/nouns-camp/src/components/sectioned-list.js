@@ -124,7 +124,6 @@ const SectionedList = ({
                 ":hover": { color: t.colors.textDimmedModifierHover },
               },
               ".caret-container": {
-                // width: "1.6rem",
                 float: "right",
                 height: "1.4rem",
                 marginLeft: "0.3em",
@@ -139,9 +138,7 @@ const SectionedList = ({
                 "&[data-collapsed]": {
                   float: "left",
                   margin: "0 0.3em 0 0",
-                  svg: {
-                    transform: "rotate(-90deg)",
-                  },
+                  svg: { transform: "rotate(-90deg)" },
                 },
                 "@media(min-width: 600px)": {
                   position: "absolute",
@@ -149,6 +146,7 @@ const SectionedList = ({
                   display: "flex",
                   margin: 0,
                   width: "1.4rem",
+                  "&[data-collapsed]": { margin: 0 },
                 },
               },
             },
