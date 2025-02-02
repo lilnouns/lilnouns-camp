@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.36] - 2025-02-02
+
+### 🚜 Refactor
+
+- *(landing-screen)* Comment out unused feed filters
+
 ## [1.4.0-alpha.35] - 2025-02-01
 
 ### 🐛 Bug Fixes
