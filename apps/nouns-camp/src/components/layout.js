@@ -712,18 +712,18 @@ const NavBar = ({
                         </>
                       ),
                     },
-                    {
-                      id: "open-flows",
-                      textValue: "Flows",
-                      label: (
-                        <>
-                          <span style={{ flex: 1, marginRight: "0.8rem" }}>
-                            Flows
-                          </span>
-                          {"\u2197"}
-                        </>
-                      ),
-                    },
+                    // {
+                    //   id: "open-flows",
+                    //   textValue: "Flows",
+                    //   label: (
+                    //     <>
+                    //       <span style={{ flex: 1, marginRight: "0.8rem" }}>
+                    //         Flows
+                    //       </span>
+                    //       {"\u2197"}
+                    //     </>
+                    //   ),
+                    // },
                   ],
                 };
                 const settingsSection = {
