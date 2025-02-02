@@ -137,7 +137,7 @@ const ProposalEditor = ({
           vaultId: 558,
         },
       ].filter(Boolean),
-    [actions, payerTopUpValue],
+    [actions, nftxRedeemExists, payerTopUpValue],
   );
 
   const maybeActionTransactions = useActionTransactions(
