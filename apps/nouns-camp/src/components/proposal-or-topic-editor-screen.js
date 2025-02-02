@@ -41,6 +41,8 @@ import Layout from "./layout.js";
 import Callout from "./callout.js";
 import ProposalEditor from "./proposal-editor.js";
 import TopicEditor from "./topic-editor.js";
+import { useTokenBuyerEthNeeded } from "@/hooks/misc-contracts";
+import useTreasuryData from "@/hooks/treasury-data";
 
 const Content = ({ draftId, startNavigationTransition }) => {
   const navigate = useNavigate();
@@ -345,9 +347,9 @@ const Content = ({ draftId, startNavigationTransition }) => {
             setActions={setActions}
             proposerId={connectedAccountAddress}
             payerTopUpValue={usdcSumValue > 0 ? payerTopUpValue : 0}
-          nftxRedeemExists={
-            draft.actions.some((a) => a.type === "nftx-vault-redeem")
-          }
+            nftxRedeemExists={
+              draft.actions.some((a) => a.type === "nftx-vault-redeem")
+            }
             containerHeight={`calc(100vh - ${theme.navBarHeight})`}
             onSubmit={() => {
               setShowSubmitDialog(true);
@@ -462,8 +464,7 @@ const SubmitDialog = ({
             <p>
               Your voting power ({votingPower}) does not meet the required
               proposal threshold ({proposalThreshold + 1}
-              ).{" "}
-              {/*Consider{" "}
+              ).{/* Consider{" "}
               <Link
                 underline
                 component="button"
