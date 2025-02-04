@@ -266,9 +266,8 @@ const Content = ({ draftId, startNavigationTransition }) => {
   const discard = () => {
     if (!confirm("Are you sure you wish to discard this draft?")) return;
 
-    deleteDraft(draftId).then(() => {
-      navigate("/", { replace: true });
-    });
+    deleteDraft(draftId);
+    navigate("/", { replace: true });
   };
 
   return (
@@ -636,9 +635,8 @@ export default function ProposalOfTopicEditorScreen({ draftId }) {
       return;
     }
 
-    createDraft({ type: targetType }).then((d) => {
-      navigate(`/new/${d.id}?${newSearchParams}`, { replace: true });
-    });
+    const draft = createDraft({ type: targetType });
+    navigate(`/new/${draft.id}?${newSearchParams}`, { replace: true });
   }, [
     draftId,
     targetType,
