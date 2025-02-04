@@ -43,6 +43,7 @@ import ProposalEditor from "./proposal-editor.js";
 import TopicEditor from "./topic-editor.js";
 import { useTokenBuyerEthNeeded } from "@/hooks/misc-contracts";
 import useTreasuryData from "@/hooks/treasury-data";
+// import { createTopicTransactions } from "@/utils/candidates.js";
 
 const Content = ({ draftId, startNavigationTransition }) => {
   const navigate = useNavigate();
@@ -179,15 +180,23 @@ const Content = ({ draftId, startNavigationTransition }) => {
             case "proposal":
               return createProposal({ description, transactions });
 
-            // case "candidate":
-            // case "topic": {
-            //   if (submitTargetType === "topic")
-            //     invariant(
-            //       transactions.length === 0,
-            //       "Topics should not have transactions",
-            //     );
+            // case "candidate": {
             //   const slug = buildCandidateSlug(draft.name.trim());
             //   await createCandidate({ slug, description, transactions });
+            //   return { slug };
+            // }
+            //
+            // case "topic": {
+            //   invariant(
+            //     transactions.length === 0,
+            //     "Topics should not have transactions",
+            //   );
+            //   const slug = buildCandidateSlug(draft.name.trim());
+            //   await createCandidate({
+            //     slug,
+            //     description,
+            //     transactions: createTopicTransactions(),
+            //   });
             //   return { slug };
             // }
 
