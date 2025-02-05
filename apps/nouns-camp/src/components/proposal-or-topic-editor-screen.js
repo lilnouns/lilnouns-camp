@@ -43,6 +43,7 @@ import ProposalEditor from "./proposal-editor.js";
 import TopicEditor from "./topic-editor.js";
 import { useTokenBuyerEthNeeded } from "@/hooks/misc-contracts";
 import useTreasuryData from "@/hooks/treasury-data";
+// import { createTopicTransactions } from "@/utils/candidates.js";
 
 const Content = ({ draftId, startNavigationTransition }) => {
   const navigate = useNavigate();
@@ -179,15 +180,23 @@ const Content = ({ draftId, startNavigationTransition }) => {
             case "proposal":
               return createProposal({ description, transactions });
 
-            // case "candidate":
-            // case "topic": {
-            //   if (submitTargetType === "topic")
-            //     invariant(
-            //       transactions.length === 0,
-            //       "Topics should not have transactions",
-            //     );
+            // case "candidate": {
             //   const slug = buildCandidateSlug(draft.name.trim());
             //   await createCandidate({ slug, description, transactions });
+            //   return { slug };
+            // }
+            //
+            // case "topic": {
+            //   invariant(
+            //     transactions.length === 0,
+            //     "Topics should not have transactions",
+            //   );
+            //   const slug = buildCandidateSlug(draft.name.trim());
+            //   await createCandidate({
+            //     slug,
+            //     description,
+            //     transactions: createTopicTransactions(),
+            //   });
             //   return { slug };
             // }
 
@@ -266,9 +275,8 @@ const Content = ({ draftId, startNavigationTransition }) => {
   const discard = () => {
     if (!confirm("Are you sure you wish to discard this draft?")) return;
 
-    deleteDraft(draftId).then(() => {
-      navigate("/", { replace: true });
-    });
+    deleteDraft(draftId);
+    navigate("/", { replace: true });
   };
 
   return (
@@ -636,9 +644,8 @@ export default function ProposalOfTopicEditorScreen({ draftId }) {
       return;
     }
 
-    createDraft({ type: targetType }).then((d) => {
-      navigate(`/new/${d.id}?${newSearchParams}`, { replace: true });
-    });
+    const draft = createDraft({ type: targetType });
+    navigate(`/new/${draft.id}?${newSearchParams}`, { replace: true });
   }, [
     draftId,
     targetType,

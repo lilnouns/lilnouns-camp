@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.39] - 2025-02-05
+
+### 🚀 Features
+
+- *(camp)* Remove support for signal selection for now
+
+### 🐛 Bug Fixes
+
+- *(camp)* Make whole draft api synchronous
+- *(camp)* Match topics against a dummy action pattern
+- *(camp)* Don’t show signaling on topic comments
+- *(camp)* Clear inline reply form after successful submit
+
 ## [1.4.0-alpha.38] - 2025-02-02
 
 ### 🚜 Refactor
