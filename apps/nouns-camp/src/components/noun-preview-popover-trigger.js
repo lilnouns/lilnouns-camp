@@ -676,7 +676,7 @@ const NounPreview = React.forwardRef(({ nounId, contextAccount }, ref) => {
 
                       case "open-probe":
                         window.open(
-                          `https://probe.wtf/nouns/${nounId}`,
+                          `https://probe.wtf/lils/${nounId}`,
                           "_blank",
                         );
                         break;
