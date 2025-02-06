@@ -649,9 +649,9 @@ const NounPreview = React.forwardRef(({ nounId, contextAccount }, ref) => {
                   })}
                   items={[
                     { id: "open-etherscan", label: "Etherscan" },
-                    { id: "open-nounswap", label: "NounSwap" },
+                    // { id: "open-nounswap", label: "NounSwap" },
                     { id: "open-probe", label: "Probe" },
-                    { id: "open-nouns-terminal", label: "Nouns Terminal" },
+                    // { id: "open-nouns-terminal", label: "Nouns Terminal" },
                   ]}
                   onAction={(key) => {
                     switch (key) {
@@ -667,12 +667,12 @@ const NounPreview = React.forwardRef(({ nounId, contextAccount }, ref) => {
                         break;
                       }
 
-                      case "open-nounswap":
-                        window.open(
-                          `https://nounswap.wtf?nounId=${nounId}`,
-                          "_blank",
-                        );
-                        break;
+                      // case "open-nounswap":
+                      //   window.open(
+                      //     `https://nounswap.wtf?nounId=${nounId}`,
+                      //     "_blank",
+                      //   );
+                      //   break;
 
                       case "open-probe":
                         window.open(
@@ -681,12 +681,12 @@ const NounPreview = React.forwardRef(({ nounId, contextAccount }, ref) => {
                         );
                         break;
 
-                      case "open-nouns-terminal":
-                        window.open(
-                          `https://nouns.sh/noun/${nounId}`,
-                          "_blank",
-                        );
-                        break;
+                      // case "open-nouns-terminal":
+                      //   window.open(
+                      //     `https://nouns.sh/noun/${nounId}`,
+                      //     "_blank",
+                      //   );
+                      //   break;
                     }
                   }}
                 >
