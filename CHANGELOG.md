@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.40] - 2025-02-06
+
+### 🚀 Features
+
+- *(camp)* Optimistically populate cast replies on submit
+- *(camp)* Add support for inline cast reply likes
+- *(camp)* Use large action form variant for topics
+
+### 🐛 Bug Fixes
+
+- *(camp)* Pick matching farcaster account delegate with most voting power
+- *(camp)* Correctly pick avatar to display for cast items
+- *(camp)* Improve support value handling in Proposal Action Form
+- *(camp)* Correctly direct to topic path from feed
+
 ## [1.4.0-alpha.39] - 2025-02-05
 
 ### 🚀 Features
