@@ -1030,11 +1030,6 @@ const ActionListItem = ({
               openEditDialog();
             }}
             disabled={disabled}
-            css={(t) =>
-              css({
-                color: t.colors.textDimmed,
-              })
-            }
           >
             Edit
           </Button>
@@ -1046,11 +1041,6 @@ const ActionListItem = ({
           onClick={() => {
             setExpanded((s) => !s);
           }}
-          css={(t) =>
-            css({
-              color: t.colors.textDimmed,
-            })
-          }
           iconRight={
             <CaretDownIcon
               style={{
