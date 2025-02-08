@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.41] - 2025-02-08
+
+### 🐛 Bug Fixes
+
+- *(nouns-camp)* Update `open-probe` URL to use `lils` path
+- *(camp)* Add missing `getServerSnapshot`
+- *(camp)* `0` is the correct default value for `value`
+
+### 🚜 Refactor
+
+- *(nouns-camp)* Comment out unused actions
+- *(nouns-camp)* Comment out unused external links
+
 ## [1.4.0-alpha.40] - 2025-02-06
 
 ### 🚀 Features
