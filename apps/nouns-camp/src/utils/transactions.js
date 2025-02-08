@@ -413,7 +413,7 @@ export const unparse = (transactions) => {
         case "treasury-noun-transfer":
           return append({
             target: nounsTokenContract.address,
-            value: "",
+            value: "0",
             signature: !t.safe
               ? "transferFrom(address,address,uint256)"
               : "safeTransferFrom(address,address,uint256)",
@@ -426,7 +426,7 @@ export const unparse = (transactions) => {
         case "escrow-noun-transfer":
           return append({
             target: nounsGovernanceContract.address,
-            value: "",
+            value: "0",
             signature:
               "withdrawDAONounsFromEscrowIncreasingTotalSupply(uint256[],address)",
             calldata: encodeAbiParameters(
