@@ -7,4 +7,5 @@ dist
 .turbo
 .wrangler
 .DS_Store
+.aider*
 dist/
