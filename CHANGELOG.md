@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.42] - 2025-02-13
+
+### 🚀 Features
+
+- *(common)* Make cached state hook clean up automatically
+
+### 🐛 Bug Fixes
+
+- *(camp)* Make cached posts clear correctly
+- *(camp)* Fix action serialization issues
+- *(camp)* Correctly show reply actions for casts in the main feed
+
+### ⚙️ Miscellaneous Tasks
+
+- Update .gitignore
+
 ## [1.4.0-alpha.41] - 2025-02-08
 
 ### 🐛 Bug Fixes
