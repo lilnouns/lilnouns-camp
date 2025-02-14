@@ -17,7 +17,7 @@
     "eslint-config-prettier": "10.0.1",
     "eslint-plugin-next-on-pages": "1.13.7",
     "vercel": "39.1.1",
-    "wrangler": "3.107.3"
+    "wrangler": "3.109.0"
   },
   "dependencies": {
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
