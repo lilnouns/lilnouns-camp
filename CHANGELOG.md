@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.45] - 2025-02-15
+
+### ◀️ Revert
+
+- *(deps)* Add `nanoid` to resolutions`
+
 ## [1.4.0-alpha.44] - 2025-02-15
 
 ### 🐛 Bug Fixes
