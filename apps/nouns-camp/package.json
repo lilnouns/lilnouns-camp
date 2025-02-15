@@ -17,7 +17,7 @@
     "eslint-config-prettier": "10.0.1",
     "eslint-plugin-next-on-pages": "1.13.7",
     "vercel": "39.1.1",
-    "wrangler": "3.107.3"
+    "wrangler": "3.109.1"
   },
   "dependencies": {
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
@@ -51,7 +51,7 @@
     "iron-session": "8.0.4",
     "is-hotkey": "0.2.0",
     "lodash.throttle": "4.1.1",
-    "marked": "15.0.6",
+    "marked": "15.0.7",
     "next": "14.2.23",
     "qrcode": "1.5.4",
     "react": "18.3.1",
