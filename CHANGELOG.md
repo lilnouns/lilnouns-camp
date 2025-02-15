@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.43] - 2025-02-15
+
+### 🚀 Features
+
+- *(camp)* Add nested replies to normalized state
+- *(camp)* Incorporate cast replies into displayed comment and participant counts
+
+### 🐛 Bug Fixes
+
+- *(camp)* Fix broken reply/repost href creation
+- *(camp)* Just fix, there is no understand
+
+### 🚜 Refactor
+
+- *(camp)* Simplify the syntax of `setState` function
+
 ## [1.4.0-alpha.42] - 2025-02-13
 
 ### 🚀 Features
