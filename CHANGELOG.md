@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.46] - 2025-02-15
+
+### 🚀 Features
+
+- *(camp)* Show voting bar on active proposals in digest
+
+### 🐛 Bug Fixes
+
+- *(camp)* Don’t show candidate score for topics
+
 ## [1.4.0-alpha.45] - 2025-02-15
 
 ### ◀️ Revert
