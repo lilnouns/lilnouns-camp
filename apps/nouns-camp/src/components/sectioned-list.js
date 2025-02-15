@@ -73,7 +73,6 @@ const SectionedList = ({
   cacheKey,
   items,
   sortStrategy,
-  showCandidateScore = false,
   isLoading,
   forcePlaceholder,
   getItemProps,
@@ -396,7 +395,7 @@ const SectionedList = ({
                   ) : item.slug != null ? (
                     <CandidateOrTopicListItem
                       candidateId={item.id}
-                      showScoreStack={showCandidateScore}
+                      showScoreStack={parentItem?.showScoreStack}
                       {...props}
                     />
                   ) : item.proposerId != null ? (
@@ -719,7 +718,7 @@ const ProposalListItem = React.memo(
 );
 
 const CandidateOrTopicListItem = React.memo(
-  ({ candidateId, showScoreStack }) => {
+  ({ candidateId, showScoreStack = false }) => {
     const containerRef = React.useRef();
     const hasBeenOnScreenRef = React.useRef(false);
 
