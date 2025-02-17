@@ -799,7 +799,7 @@ const NavBar = ({
                         },
                         {
                           id: "open-drafts-dialog",
-                          label: "Proposal & topic drafts",
+                          label: "Proposal & drafts",
                         },
                         !hasVerifiedFarcasterAccount
                           ? null
