@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.47] - 2025-02-17
+
+### 🐛 Bug Fixes
+
+- *(camp)* Fix topic browse screen not showing any data
+- *(contracts)* Update `DAO_DATA_PROXY_CONTRACT` addresses
+
 ## [1.4.0-alpha.46] - 2025-02-15
 
 ### 🚀 Features
