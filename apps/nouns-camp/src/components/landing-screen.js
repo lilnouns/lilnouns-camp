@@ -876,11 +876,11 @@ const BrowseScreen = () => {
                 children: [
                   {
                     id: "new-proposal",
-                    label: "Proposal",
+                    title: "Proposal",
                   },
                   // {
                   //   id: "new-discussion-topic",
-                  //   label: "Discussion topic",
+                  //   title: "Discussion topic",
                   // },
                 ],
               },
