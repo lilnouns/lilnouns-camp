@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.49] - 2025-02-19
+
+### 🐛 Bug Fixes
+
+- *(auction)* Update redirect URL to new domain
+
 ## [1.4.0-alpha.48] - 2025-02-17
 
 ### 🐛 Bug Fixes
