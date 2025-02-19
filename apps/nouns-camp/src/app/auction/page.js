@@ -15,7 +15,7 @@ export const runtime = "edge";
 export default function Page() {
   useEffect(() => {
     // Temporary redirect to main site
-    window.location.href = "https://lilnouns.wtf";
+    window.location.href = "https://lilnouns.auction";
   }, []);
 
   return (
