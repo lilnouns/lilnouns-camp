@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.51] - 2025-02-20
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
 ## [1.4.0-alpha.50] - 2025-02-20
 
 ### 🚜 Refactor
