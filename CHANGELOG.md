@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.50] - 2025-02-20
+
+### 🚜 Refactor
+
+- *(proposal-screen)* Comment out `edit` menu item
+
 ## [1.4.0-alpha.49] - 2025-02-19
 
 ### 🐛 Bug Fixes
