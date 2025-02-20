@@ -51,7 +51,6 @@ const Layout = ({
   navigationStack = [],
   actions,
   scrollView = true,
-  hideAuction = true,
   children,
   ...props
 }) => (
@@ -725,22 +724,22 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                   id: "dao",
                   title: "DAO",
                   children: [
-                    {
-                      id: "navigate-to-auction",
-                      label: "Auction",
-                    },
+                    // {
+                    //   id: "navigate-to-auction",
+                    //   label: "Auction",
+                    // },
                     {
                       id: "navigate-to-proposal-listing",
                       label: "Proposals",
                     },
-                    {
-                      id: "navigate-to-candidate-listing",
-                      label: "Candidates",
-                    },
-                    {
-                      id: "navigate-to-topic-listing",
-                      label: "Discussion topics",
-                    },
+                    // {
+                    //   id: "navigate-to-candidate-listing",
+                    //   label: "Candidates",
+                    // },
+                    // {
+                    //   id: "navigate-to-topic-listing",
+                    //   label: "Discussion topics",
+                    // },
                     {
                       id: "navigate-to-account-listing",
                       label: "Voters",
@@ -757,18 +756,18 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                       title: "Farcaster",
                       iconRight: <span>{"\u2197"}</span>,
                     },
-                    {
-                      id: "open-flows",
-                      textValue: "Flows",
-                      label: (
-                        <>
-                          <span style={{ flex: 1, marginRight: "0.8rem" }}>
-                            Flows
-                          </span>
-                          {"\u2197"}
-                        </>
-                      ),
-                    },
+                    // {
+                    //   id: "open-flows",
+                    //   textValue: "Flows",
+                    //   label: (
+                    //     <>
+                    //       <span style={{ flex: 1, marginRight: "0.8rem" }}>
+                    //         Flows
+                    //       </span>
+                    //       {"\u2197"}
+                    //     </>
+                    //   ),
+                    // },
                   ],
                 };
                 const settingsSection = {
