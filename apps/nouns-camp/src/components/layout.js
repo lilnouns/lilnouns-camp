@@ -406,9 +406,9 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
           "_blank",
         );
         break;
-      case "navigate-to-auction":
-        navigate("/auction");
-        break;
+      // case "navigate-to-auction":
+      //   navigate("/auction");
+      //   break;
       case "navigate-to-proposal-listing":
         navigate("/proposals");
         break;
