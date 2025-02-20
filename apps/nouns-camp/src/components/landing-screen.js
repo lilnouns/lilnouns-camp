@@ -858,7 +858,7 @@ const BrowseScreen = () => {
         actions={[
           { extends: "create-menu", desktopOnly: false },
           { extends: "treasury-dialog-trigger", desktopOnly: false },
-          { extends: "auction-dialog-trigger", desktopOnly: false },
+          // { extends: "auction-dialog-trigger", desktopOnly: false },
         ]}
       >
         <div css={css({ padding: "0 1.6rem" })}>

@@ -9,7 +9,7 @@ import * as DropdownMenu from "@shades/ui-web/dropdown-menu";
 import {
   CaretDown as CaretDownIcon,
   DotsHorizontal as DotsIcon,
-  // ChatBubbles as ChatBubblesIcon,
+  ChatBubbles as ChatBubblesIcon,
   Document as DocumentIcon,
 } from "@shades/ui-web/icons";
 import { CHAIN_ID } from "@/constants/env";
@@ -27,11 +27,11 @@ import {
 import { useDialog } from "@/hooks/global-dialogs";
 import { useConnectedFarcasterAccounts } from "@/hooks/farcaster";
 import useAccountDisplayName from "@/hooks/account-display-name";
-import {
-  useAuctionData,
-  useLazySeed,
-  useNounImageDataUri,
-} from "@/components/auction-dialog";
+// import {
+//   useAuctionData,
+//   useLazySeed,
+//   useNounImageDataUri,
+// } from "@/components/auction-dialog";
 import AccountAvatar from "@/components/account-avatar";
 import LogoSymbol from "@/components/logo-symbol";
 import { formatEther } from "viem";
@@ -139,95 +139,95 @@ const TreasuryDialogTrigger = React.forwardRef((props, ref) => {
   );
 });
 
-const AuctionDialogTrigger = React.forwardRef((props, ref) => {
-  const { auction } = useAuctionData();
-  const { open: openDialog, preload: preloadDialog } = useDialog("auction");
-
-  React.useEffect(() => {
-    preloadDialog();
-  }, [preloadDialog]);
-
-  return (
-    <Button
-      ref={ref}
-      {...props}
-      onClick={() => openDialog()}
-      icon={
-        <>
-          <AuctionNounImage
-            className="noun-image"
-            style={{
-              display: "block",
-              width: "2.4rem",
-              height: "2.4rem",
-              borderRadius: "0.4rem",
-            }}
-          />
-          <svg className="progress-outline" viewBox="0 0 32 32">
-            <rect width="30" height="30" rx="7" x="1" y="1" pathLength="99" />
-          </svg>
-        </>
-      }
-      css={(t) =>
-        css({
-          display: "flex",
-          marginLeft: "0.4rem",
-          marginRight: "0.8rem",
-          borderRadius: "0.6rem",
-          position: "relative",
-          overflow: "visible",
-          "&:focus-visible": {
-            boxShadow: "none",
-            ".progress-outline rect": {
-              stroke: t.colors.primary,
-            },
-          },
-          ".noun-image": {
-            background: t.colors.backgroundModifierNormal,
-          },
-          ".progress-outline": {
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            width: "calc(100% + 0.4rem)",
-            height: "calc(100% + 0.4rem)",
-            transform: "translateX(-50%) translateY(-50%)",
-            pointerEvents: "none",
-          },
-          ".progress-outline rect": {
-            fill: "none",
-            stroke: t.colors.primaryTransparentStrong,
-            strokeWidth: 2,
-            strokeDasharray:
-              "calc(var(--progress) * 100) calc((1 - var(--progress)) * 100)",
-            strokeDashoffset: "-9",
-            transition: "stroke-dashoffset 1s linear, stroke 0.1s ease-out",
-          },
-          "@media(hover: hover)": {
-            cursor: "pointer",
-            ":not([disabled]):hover": {
-              background: "none",
-              ".progress-outline rect": {
-                stroke: t.colors.primary,
-              },
-            },
-          },
-        })
-      }
-      style={{
-        "--progress": (() => {
-          if (auction == null) return 0;
-          const now = Date.now();
-          const start = auction.startTimestamp.getTime();
-          const end = auction.endTimestamp.getTime();
-          const duration = end - start;
-          const elapsed = Math.max(0, now - start);
-          return elapsed / duration;
-        })(),
-      }}
-    />
-  );
-});
+// const AuctionDialogTrigger = React.forwardRef((props, ref) => {
+//   const { auction } = useAuctionData();
+//   const { open: openDialog, preload: preloadDialog } = useDialog("auction");
+//
+//   React.useEffect(() => {
+//     preloadDialog();
+//   }, [preloadDialog]);
+//
+//   return (
+//     <Button
+//       ref={ref}
+//       {...props}
+//       onClick={() => openDialog()}
+//       icon={
+//         <>
+//           <AuctionNounImage
+//             className="noun-image"
+//             style={{
+//               display: "block",
+//               width: "2.4rem",
+//               height: "2.4rem",
+//               borderRadius: "0.4rem",
+//             }}
+//           />
+//           <svg className="progress-outline" viewBox="0 0 32 32">
+//             <rect width="30" height="30" rx="7" x="1" y="1" pathLength="99" />
+//           </svg>
+//         </>
+//       }
+//       css={(t) =>
+//         css({
+//           display: "flex",
+//           marginLeft: "0.4rem",
+//           marginRight: "0.8rem",
+//           borderRadius: "0.6rem",
+//           position: "relative",
+//           overflow: "visible",
+//           "&:focus-visible": {
+//             boxShadow: "none",
+//             ".progress-outline rect": {
+//               stroke: t.colors.primary,
+//             },
+//           },
+//           ".noun-image": {
+//             background: t.colors.backgroundModifierNormal,
+//           },
+//           ".progress-outline": {
+//             position: "absolute",
+//             top: "50%",
+//             left: "50%",
+//             width: "calc(100% + 0.4rem)",
+//             height: "calc(100% + 0.4rem)",
+//             transform: "translateX(-50%) translateY(-50%)",
+//             pointerEvents: "none",
+//           },
+//           ".progress-outline rect": {
+//             fill: "none",
+//             stroke: t.colors.primaryTransparentStrong,
+//             strokeWidth: 2,
+//             strokeDasharray:
+//               "calc(var(--progress) * 100) calc((1 - var(--progress)) * 100)",
+//             strokeDashoffset: "-9",
+//             transition: "stroke-dashoffset 1s linear, stroke 0.1s ease-out",
+//           },
+//           "@media(hover: hover)": {
+//             cursor: "pointer",
+//             ":not([disabled]):hover": {
+//               background: "none",
+//               ".progress-outline rect": {
+//                 stroke: t.colors.primary,
+//               },
+//             },
+//           },
+//         })
+//       }
+//       style={{
+//         "--progress": (() => {
+//           if (auction == null) return 0;
+//           const now = Date.now();
+//           const start = auction.startTimestamp.getTime();
+//           const end = auction.endTimestamp.getTime();
+//           const duration = end - start;
+//           const elapsed = Math.max(0, now - start);
+//           return elapsed / duration;
+//         })(),
+//       }}
+//     />
+//   );
+// });
 
 const predefinedActions = {
   "create-menu": {
@@ -278,10 +278,10 @@ const predefinedActions = {
     desktopOnly: true,
     component: TreasuryDialogTrigger,
   },
-  "auction-dialog-trigger": {
-    key: "auction-dialog-trigger",
-    component: AuctionDialogTrigger,
-  },
+  // "auction-dialog-trigger": {
+  //   key: "auction-dialog-trigger",
+  //   component: AuctionDialogTrigger,
+  // },
 };
 
 const resolvePredefinedAction = (actionId) => {
@@ -305,7 +305,7 @@ const resolveAction = (action) => {
 const defaultActionIds = [
   "create-menu",
   "treasury-dialog-trigger",
-  "auction-dialog-trigger",
+  // "auction-dialog-trigger",
 ];
 
 const NavBar = ({ navigationStack, actions: customActions }) => {
@@ -1019,13 +1019,13 @@ export const MainContentContainer = ({
   </div>
 );
 
-const AuctionNounImage = (props) => {
-  const { auction } = useAuctionData();
-  const seed = useLazySeed(auction?.nounId);
-  const imageDataUri = useNounImageDataUri(seed);
-  if (imageDataUri == null) return <div {...props} />;
-  return <img src={imageDataUri} {...props} />;
-};
+// const AuctionNounImage = (props) => {
+//   const { auction } = useAuctionData();
+//   const seed = useLazySeed(auction?.nounId);
+//   const imageDataUri = useNounImageDataUri(seed);
+//   if (imageDataUri == null) return <div {...props} />;
+//   return <img src={imageDataUri} {...props} />;
+// };
 
 const NoggleImage = () => (
   <svg
