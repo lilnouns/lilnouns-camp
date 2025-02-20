@@ -2305,7 +2305,7 @@ const AdminDropdown = React.memo(({ proposalId }) => {
           }
         }}
       >
-        <DropdownMenu.Item key="edit">Edit proposal</DropdownMenu.Item>
+        {/*<DropdownMenu.Item key="edit">Edit proposal</DropdownMenu.Item>*/}
         <DropdownMenu.Item danger key="cancel">
           Cancel proposal
         </DropdownMenu.Item>
