@@ -922,16 +922,16 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                   id: "external",
                   title: "Other clients",
                   children: [
-                    {
-                      id: "open-nounswap",
-                      title: "NounSwap",
-                      iconRight: <span>{"\u2197"}</span>,
-                    },
-                    {
-                      id: "open-nouns-game",
-                      title: "nouns.game",
-                      iconRight: <span>{"\u2197"}</span>,
-                    },
+                    // {
+                    //   id: "open-nounswap",
+                    //   title: "NounSwap",
+                    //   iconRight: <span>{"\u2197"}</span>,
+                    // },
+                    // {
+                    //   id: "open-nouns-game",
+                    //   title: "nouns.game",
+                    //   iconRight: <span>{"\u2197"}</span>,
+                    // },
                   ],
                 },
               ]}
@@ -963,19 +963,19 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                       .catch((error) => console.error("Error sharing", error));
                     break;
 
-                  case "open-nouns-game":
-                    window.open(
-                      `https://nouns.game/vote/${proposalId}`,
-                      "_blank",
-                    );
-                    break;
+                  // case "open-nouns-game":
+                  //   window.open(
+                  //     `https://nouns.game/vote/${proposalId}`,
+                  //     "_blank",
+                  //   );
+                  //   break;
 
-                  case "open-nounswap":
-                    window.open(
-                      `https://nounswap.wtf/vote/${proposalId}`,
-                      "_blank",
-                    );
-                    break;
+                  // case "open-nounswap":
+                  //   window.open(
+                  //     `https://nounswap.wtf/vote/${proposalId}`,
+                  //     "_blank",
+                  //   );
+                  //   break;
 
                   default:
                     throw new Error();
