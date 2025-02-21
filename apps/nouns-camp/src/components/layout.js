@@ -605,7 +605,7 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                     },
                   ];
             return (
-              <React.Fragment key={item.key ?? item.to ?? index}>
+              <React.Fragment key={item.key ?? item.to}>
                 {index > 0 && (
                   <span
                     data-index={index}
@@ -724,27 +724,18 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                   id: "dao",
                   title: "DAO",
                   children: [
-                    // {
-                    //   id: "navigate-to-auction",
-                    //   label: "Auction",
-                    // },
-                    {
-                      id: "navigate-to-proposal-listing",
-                      label: "Proposals",
-                    },
+                    // { id: "navigate-to-auction", title: "Auction" },
+                    { id: "navigate-to-proposal-listing", title: "Proposals" },
                     // {
                     //   id: "navigate-to-candidate-listing",
-                    //   label: "Candidates",
+                    //   title: "Candidates",
                     // },
                     // {
                     //   id: "navigate-to-topic-listing",
-                    //   label: "Discussion topics",
+                    //   title: "Discussion topics",
                     // },
-                    {
-                      id: "navigate-to-account-listing",
-                      label: "Voters",
-                    },
-                    { id: "open-treasury-dialog", label: "Treasury" },
+                    { id: "navigate-to-account-listing", title: "Voters" },
+                    { id: "open-treasury-dialog", title: "Treasury" },
                   ],
                 };
                 const externalSection = {
@@ -758,15 +749,8 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                     },
                     // {
                     //   id: "open-flows",
-                    //   textValue: "Flows",
-                    //   label: (
-                    //     <>
-                    //       <span style={{ flex: 1, marginRight: "0.8rem" }}>
-                    //         Flows
-                    //       </span>
-                    //       {"\u2197"}
-                    //     </>
-                    //   ),
+                    //   title: "Flows",
+                    //   iconRight: <span>{"\u2197"}</span>,
                     // },
                   ],
                 };
