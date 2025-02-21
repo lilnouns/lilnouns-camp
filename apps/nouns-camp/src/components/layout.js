@@ -829,7 +829,7 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                         },
                         {
                           id: "open-drafts-dialog",
-                          title: "Proposal & drafts",
+                          title: "Proposal drafts",
                         },
                         !hasVerifiedFarcasterAccount
                           ? null
