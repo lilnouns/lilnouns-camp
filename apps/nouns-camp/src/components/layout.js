@@ -2,12 +2,15 @@ import React from "react";
 import { css, keyframes } from "@emotion/react";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
+import { invariant } from "@shades/common/utils";
 import { useMatchMedia } from "@shades/common/react";
 import Button from "@shades/ui-web/button";
 import * as DropdownMenu from "@shades/ui-web/dropdown-menu";
 import {
   CaretDown as CaretDownIcon,
   DotsHorizontal as DotsIcon,
+  // ChatBubbles as ChatBubblesIcon,
+  Document as DocumentIcon,
 } from "@shades/ui-web/icons";
 import { CHAIN_ID } from "@/constants/env";
 import {
@@ -24,13 +27,15 @@ import {
 import { useDialog } from "@/hooks/global-dialogs";
 import { useConnectedFarcasterAccounts } from "@/hooks/farcaster";
 import useAccountDisplayName from "@/hooks/account-display-name";
-import {
-  useAuctionData,
-  useLazySeed,
-  useNounImageDataUri,
-} from "@/components/auction-dialog";
+// import {
+//   useAuctionData,
+//   useLazySeed,
+//   useNounImageDataUri,
+// } from "@/components/auction-dialog";
 import AccountAvatar from "@/components/account-avatar";
 import LogoSymbol from "@/components/logo-symbol";
+import { formatEther } from "viem";
+import useTreasuryData from "@/hooks/treasury-data";
 
 const flipAnimation = keyframes({
   "0%,52%,100%": {
@@ -46,7 +51,6 @@ const Layout = ({
   navigationStack = [],
   actions,
   scrollView = true,
-  hideAuction = true,
   children,
   ...props
 }) => (
@@ -65,11 +69,7 @@ const Layout = ({
     }
     {...props}
   >
-    <NavBar
-      navigationStack={navigationStack}
-      actions={actions}
-      hideAuction={hideAuction}
-    />
+    <NavBar navigationStack={navigationStack} actions={actions} />
     <div
       css={css({
         position: "relative",
@@ -114,31 +114,157 @@ const Layout = ({
   </div>
 );
 
-const defaultActions = [
-  // {
-  //   label: "Propose",
-  //   buttonProps: {
-  //     component: NextLink,
-  //     href: "/new",
-  //     prefetch: true,
-  //   },
-  //   desktopOnly: true,
-  // },
-  {
+const TreasuryDialogTrigger = React.forwardRef((props, ref) => {
+  const { open: openDialog, preload: preloadDialog } = useDialog("treasury");
+  const data = useTreasuryData();
+
+  React.useEffect(() => {
+    preloadDialog();
+  }, [preloadDialog]);
+
+  return (
+    <Button ref={ref} {...props} onClick={() => openDialog()}>
+      <span data-desktop-only>Treasury </span>
+      {data == null ? (
+        "..."
+      ) : (
+        <>
+          {"Ξ"}{" "}
+          {Math.round(
+            parseFloat(formatEther(data.totals.eth)),
+          ).toLocaleString()}
+        </>
+      )}
+    </Button>
+  );
+});
+
+// const AuctionDialogTrigger = React.forwardRef((props, ref) => {
+//   const { auction } = useAuctionData();
+//   const { open: openDialog, preload: preloadDialog } = useDialog("auction");
+//
+//   React.useEffect(() => {
+//     preloadDialog();
+//   }, [preloadDialog]);
+//
+//   return (
+//     <Button
+//       ref={ref}
+//       {...props}
+//       onClick={() => openDialog()}
+//       icon={
+//         <>
+//           <AuctionNounImage
+//             className="noun-image"
+//             style={{
+//               display: "block",
+//               width: "2.4rem",
+//               height: "2.4rem",
+//               borderRadius: "0.4rem",
+//             }}
+//           />
+//           <svg className="progress-outline" viewBox="0 0 32 32">
+//             <rect width="30" height="30" rx="7" x="1" y="1" pathLength="99" />
+//           </svg>
+//         </>
+//       }
+//       css={(t) =>
+//         css({
+//           display: "flex",
+//           marginLeft: "0.4rem",
+//           marginRight: "0.8rem",
+//           borderRadius: "0.6rem",
+//           position: "relative",
+//           overflow: "visible",
+//           "&:focus-visible": {
+//             boxShadow: "none",
+//             ".progress-outline rect": {
+//               stroke: t.colors.primary,
+//             },
+//           },
+//           ".noun-image": {
+//             background: t.colors.backgroundModifierNormal,
+//           },
+//           ".progress-outline": {
+//             position: "absolute",
+//             top: "50%",
+//             left: "50%",
+//             width: "calc(100% + 0.4rem)",
+//             height: "calc(100% + 0.4rem)",
+//             transform: "translateX(-50%) translateY(-50%)",
+//             pointerEvents: "none",
+//           },
+//           ".progress-outline rect": {
+//             fill: "none",
+//             stroke: t.colors.primaryTransparentStrong,
+//             strokeWidth: 2,
+//             strokeDasharray:
+//               "calc(var(--progress) * 100) calc((1 - var(--progress)) * 100)",
+//             strokeDashoffset: "-9",
+//             transition: "stroke-dashoffset 1s linear, stroke 0.1s ease-out",
+//           },
+//           "@media(hover: hover)": {
+//             cursor: "pointer",
+//             ":not([disabled]):hover": {
+//               background: "none",
+//               ".progress-outline rect": {
+//                 stroke: t.colors.primary,
+//               },
+//             },
+//           },
+//         })
+//       }
+//       style={{
+//         "--progress": (() => {
+//           if (auction == null) return 0;
+//           const now = Date.now();
+//           const start = auction.startTimestamp.getTime();
+//           const end = auction.endTimestamp.getTime();
+//           const duration = end - start;
+//           const elapsed = Math.max(0, now - start);
+//           return elapsed / duration;
+//         })(),
+//       }}
+//     />
+//   );
+// });
+
+const predefinedActions = {
+  "create-menu": {
+    key: "create-menu",
     type: "dropdown",
     label: "New",
     placement: "bottom start",
+    desktopOnly: true,
     items: [
       {
         id: "-",
         children: [
           {
             id: "new-proposal",
-            label: "Proposal",
+            title: "Proposal",
+            description: "Draft a new proposal",
+            icon: (
+              <DocumentIcon
+                aria-hidden="true"
+                role="graphics-symbol"
+                style={{ width: "1.6rem", height: "auto" }}
+              />
+            ),
           },
           // {
           //   id: "new-discussion-topic",
-          //   label: "Discussion topic",
+          //   title: "Discussion topic",
+          //   description: "Start a discussion thread (onchain)",
+          //   icon: (
+          //     <ChatBubblesIcon
+          //       style={{
+          //         width: "1.6rem",
+          //         height: "auto",
+          //         transform: "translateY(1px)",
+          //       }}
+          //     />
+          //   ),
           // },
         ],
       },
@@ -147,21 +273,44 @@ const defaultActions = [
       iconRight: <CaretDownIcon style={{ width: "0.9rem", height: "auto" }} />,
     },
   },
+  "treasury-dialog-trigger": {
+    key: "treasury-dialog-trigger",
+    desktopOnly: true,
+    component: TreasuryDialogTrigger,
+  },
+  // "auction-dialog-trigger": {
+  //   key: "auction-dialog-trigger",
+  //   component: AuctionDialogTrigger,
+  // },
+};
+
+const resolvePredefinedAction = (actionId) => {
+  invariant(
+    predefinedActions[actionId] != null,
+    `Unknown predefined action: ${actionId}`,
+  );
+  return predefinedActions[actionId];
+};
+const resolveAction = (action) => {
+  if (typeof action !== "object") return resolvePredefinedAction(action);
+
+  if (action.extends != null) {
+    const baseAction = resolvePredefinedAction(action.extends);
+    return { ...baseAction, ...action };
+  }
+
+  return action;
+};
+
+const defaultActionIds = [
+  "create-menu",
+  "treasury-dialog-trigger",
+  // "auction-dialog-trigger",
 ];
 
-const NavBar = ({
-  navigationStack,
-  actions: actions_,
-  hideAuction = false,
-}) => {
-  let actions = actions_ ?? defaultActions;
-  const pathname = usePathname();
-  const navigate = useNavigate();
+const NavBar = ({ navigationStack, actions: customActions }) => {
+  const unresolvedActions = customActions ?? defaultActionIds;
 
-  const isDesktop = useMatchMedia("(min-width: 600px)");
-
-  const { open: openAuctionDialog, preload: preloadAuctionDialog } =
-    useDialog("auction");
   const { open: openTreasuryDialog } = useDialog("treasury");
   const { open: openAccountDialog } = useDialog("account");
   const { open: openProposalDraftsDialog } = useDialog("drafts");
@@ -173,16 +322,14 @@ const NavBar = ({
   );
   const { open: openFarcasterSetupDialog } = useDialog("farcaster-setup");
 
-  const { auction } = useAuctionData();
-  const auctionProgress = (() => {
-    if (auction == null) return 0;
-    const now = Date.now();
-    const start = auction.startTimestamp.getTime();
-    const end = auction.endTimestamp.getTime();
-    const duration = end - start;
-    const elapsed = Math.max(0, now - start);
-    return elapsed / duration;
-  })();
+  const isDesktop = useMatchMedia("(min-width: 600px)");
+
+  const actions = unresolvedActions
+    .map(resolveAction)
+    .filter((action) => isDesktop || !action.desktopOnly);
+
+  const pathname = usePathname();
+  const navigate = useNavigate();
 
   const {
     address: connectedWalletAccountAddress,
@@ -220,97 +367,6 @@ const NavBar = ({
 
   const hasStreams =
     useAccountStreams(connectedWalletAccountAddress).length > 0;
-
-  if (!hideAuction) {
-    actions = [
-      ...actions,
-      {
-        key: "auction-dialog",
-        component: "button",
-        onSelect: () => {
-          openAuctionDialog();
-        },
-        buttonProps: {
-          style: {
-            "--progress": auctionProgress,
-          },
-          css: (t) =>
-            css({
-              display: "flex",
-              marginLeft: "0.4rem",
-              marginRight: "0.8rem",
-              borderRadius: "0.6rem",
-              position: "relative",
-              overflow: "visible",
-              "&:focus-visible": {
-                boxShadow: "none",
-                ".progress-outline rect": {
-                  stroke: t.colors.primary,
-                },
-              },
-              ".noun-image": {
-                background: t.colors.backgroundModifierNormal,
-              },
-              ".progress-outline": {
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                width: "calc(100% + 0.4rem)",
-                height: "calc(100% + 0.4rem)",
-                transform: "translateX(-50%) translateY(-50%)",
-                pointerEvents: "none",
-              },
-              ".progress-outline rect": {
-                fill: "none",
-                // stroke: t.colors.borderNormal,
-                stroke: t.colors.primaryTransparentStrong,
-                strokeWidth: 2,
-                strokeDasharray:
-                  "calc(var(--progress) * 100) calc((1 - var(--progress)) * 100)",
-                strokeDashoffset: "-9",
-                transition: "stroke-dashoffset 1s linear, stroke 0.1s ease-out",
-              },
-              "@media(hover: hover)": {
-                cursor: "pointer",
-                ":not([disabled]):hover": {
-                  background: "none",
-                  ".progress-outline rect": {
-                    stroke: t.colors.primary,
-                  },
-                },
-              },
-            }),
-          icon: (
-            <>
-              <AuctionNounImage
-                className="noun-image"
-                style={{
-                  display: "block",
-                  width: "2.4rem",
-                  height: "2.4rem",
-                  borderRadius: "0.4rem",
-                }}
-              />
-              <svg className="progress-outline" viewBox="0 0 32 32">
-                <rect
-                  width="30"
-                  height="30"
-                  rx="7"
-                  x="1"
-                  y="1"
-                  pathLength="99"
-                />
-              </svg>
-            </>
-          ),
-        },
-      },
-    ];
-  }
-
-  const visibleActions = isDesktop
-    ? actions
-    : actions.filter((a) => !a.desktopOnly);
 
   const handleDropDownAction = async (key) => {
     switch (key) {
@@ -350,9 +406,9 @@ const NavBar = ({
           "_blank",
         );
         break;
-      case "navigate-to-auction":
-        navigate("/auction");
-        break;
+      // case "navigate-to-auction":
+      //   navigate("/auction");
+      //   break;
       case "navigate-to-proposal-listing":
         navigate("/proposals");
         break;
@@ -400,10 +456,6 @@ const NavBar = ({
         break;
     }
   };
-
-  React.useEffect(() => {
-    if (!hideAuction) preloadAuctionDialog();
-  }, [hideAuction, preloadAuctionDialog]);
 
   return (
     <>
@@ -553,7 +605,7 @@ const NavBar = ({
                     },
                   ];
             return (
-              <React.Fragment key={item.key ?? item.to ?? index}>
+              <React.Fragment key={item.key ?? item.to}>
                 {index > 0 && (
                   <span
                     data-index={index}
@@ -571,15 +623,14 @@ const NavBar = ({
                 <Component
                   {...componentProps}
                   data-index={index}
+                  data-image={item.image || undefined}
                   // data-disabled={pathname === item.to}
                   data-desktop-only={item.desktopOnly}
                   css={(t) =>
                     css({
-                      display: "inline-flex",
-                      alignItems: "center",
+                      display: "inline-block",
                       height: "2.8rem",
                       minWidth: "2.8rem",
-
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       fontSize: t.fontSizes.base,
@@ -587,16 +638,16 @@ const NavBar = ({
                       padding: "0.3rem 0.5rem",
                       borderRadius: "0.4rem",
                       textDecoration: "none",
-                      '&[data-index="0"]': { minWidth: "max-content" },
+                      '&[data-index="0"]': {
+                        display: "inline-flex",
+                        alignItems: "center",
+                        minWidth: "max-content",
+                      },
                       '&[data-disabled="true"]': { pointerEvents: "none" },
                       "@media(hover: hover)": {
                         cursor: "pointer",
                         ":hover": {
                           background: t.colors.backgroundModifierHover,
-                          // ".flippable-container": {
-                          //   animation: "none",
-                          //   transform: "rotate3d(0.4,1,0,180deg)",
-                          // },
                         },
                       },
                     })
@@ -635,7 +686,7 @@ const NavBar = ({
           <ul>
             {[
               ...actions,
-              visibleActions.length > 0 && { type: "separator" },
+              actions.length > 0 && { type: "separator" },
               connectedWalletAccountAddress == null
                 ? {
                     onSelect: () => {
@@ -673,27 +724,18 @@ const NavBar = ({
                   id: "dao",
                   title: "DAO",
                   children: [
-                    // {
-                    //   id: "navigate-to-auction",
-                    //   label: "Auction",
-                    // },
-                    {
-                      id: "navigate-to-proposal-listing",
-                      label: "Proposals",
-                    },
+                    // { id: "navigate-to-auction", title: "Auction" },
+                    { id: "navigate-to-proposal-listing", title: "Proposals" },
                     // {
                     //   id: "navigate-to-candidate-listing",
-                    //   label: "Candidates",
+                    //   title: "Candidates",
                     // },
                     // {
                     //   id: "navigate-to-topic-listing",
-                    //   label: "Discussion topics",
+                    //   title: "Discussion topics",
                     // },
-                    {
-                      id: "navigate-to-account-listing",
-                      label: "Voters",
-                    },
-                    { id: "open-treasury-dialog", label: "Treasury" },
+                    { id: "navigate-to-account-listing", title: "Voters" },
+                    { id: "open-treasury-dialog", title: "Treasury" },
                   ],
                 };
                 const externalSection = {
@@ -702,27 +744,13 @@ const NavBar = ({
                   children: [
                     {
                       id: "open-warpcast",
-                      textValue: "Farcaster",
-                      label: (
-                        <>
-                          <span style={{ flex: 1, marginRight: "0.8rem" }}>
-                            Farcaster
-                          </span>
-                          {"\u2197"}
-                        </>
-                      ),
+                      title: "Farcaster",
+                      iconRight: <span>{"\u2197"}</span>,
                     },
                     // {
                     //   id: "open-flows",
-                    //   textValue: "Flows",
-                    //   label: (
-                    //     <>
-                    //       <span style={{ flex: 1, marginRight: "0.8rem" }}>
-                    //         Flows
-                    //       </span>
-                    //       {"\u2197"}
-                    //     </>
-                    //   ),
+                    //   title: "Flows",
+                    //   iconRight: <span>{"\u2197"}</span>,
                     // },
                   ],
                 };
@@ -730,30 +758,16 @@ const NavBar = ({
                   id: "settings",
                   title: "Camp",
                   children: [
-                    { id: "open-settings-dialog", label: "Settings" },
+                    { id: "open-settings-dialog", title: "Settings" },
                     {
                       id: "open-camp-changelog",
-                      textValue: "Changelog",
-                      label: (
-                        <>
-                          <span style={{ flex: 1, marginRight: "0.8rem" }}>
-                            Changelog
-                          </span>
-                          {"\u2197"}
-                        </>
-                      ),
+                      title: "Changelog",
+                      iconRight: <span>{"\u2197"}</span>,
                     },
                     {
                       id: "open-camp-github",
-                      textValue: "Github",
-                      label: (
-                        <>
-                          <span style={{ flex: 1, marginRight: "0.8rem" }}>
-                            GitHub
-                          </span>
-                          {"\u2197"}
-                        </>
-                      ),
+                      title: "GitHub",
+                      iconRight: <span>{"\u2197"}</span>,
                     },
                   ],
                 };
@@ -767,7 +781,7 @@ const NavBar = ({
                       settingsSection,
                       loggedInAccountAddress != null && {
                         id: "disconnect",
-                        children: [{ id: "sign-out", label: "Log out" }],
+                        children: [{ id: "sign-out", title: "Log out" }],
                       },
                     ].filter(Boolean),
                     buttonProps: {
@@ -787,31 +801,31 @@ const NavBar = ({
                       children: [
                         {
                           id: "open-account-dialog",
-                          label: "Account",
+                          title: "Account",
                         },
                         (hasNouns || hasVotingPower) && {
                           id: "open-delegation-dialog",
-                          label: "Manage delegation",
+                          title: "Manage delegation",
                         },
                         hasStreams && {
                           id: "open-streams-dialog",
-                          label: "Streams",
+                          title: "Streams",
                         },
                         {
                           id: "open-drafts-dialog",
-                          label: "Proposal & drafts",
+                          title: "Proposal drafts",
                         },
                         !hasVerifiedFarcasterAccount
                           ? null
                           : !hasFarcasterAccountKey
                             ? {
                                 id: "setup-farcaster",
-                                label: "Setup Farcaster",
+                                title: "Setup Farcaster",
                               }
                             : !isConnectedWalletAccountAuthenticated
                               ? {
                                   id: "sign-in",
-                                  label: "Authenticate account",
+                                  title: "Authenticate account",
                                 }
                               : null,
                       ].filter(Boolean),
@@ -824,11 +838,11 @@ const NavBar = ({
                       children: [
                         loggedInAccountAddress != null && {
                           id: "sign-out",
-                          label: "Log out",
+                          title: "Log out",
                         },
                         connectedWalletAccountAddress != null && {
                           id: "disconnect-wallet",
-                          label: "Disconnect wallet",
+                          title: "Disconnect wallet",
                         },
                       ].filter(Boolean),
                     },
@@ -868,61 +882,54 @@ const NavBar = ({
               })(),
             ]
               .filter(Boolean)
-              .map((a, i) =>
-                a.type === "separator" ? (
-                  <li key={i} role="separator" aria-orientation="vertical" />
-                ) : a.type === "dropdown" ? (
+              .map((a, i) => {
+                if (a.type === "separator")
+                  return (
+                    <li key={i} role="separator" aria-orientation="vertical" />
+                  );
+
+                const [ButtonComponent, buttonProps] = [
+                  a.component ?? Button,
+                  {
+                    variant: a.buttonVariant ?? "transparent",
+                    size: "small",
+                    children: a.label,
+                    ...a.buttonProps,
+                  },
+                ];
+
+                return (
                   <li key={a.key ?? i} data-desktop-only={a.desktopOnly}>
-                    <DropdownMenu.Root placement={a.placement ?? "bottom"}>
-                      <DropdownMenu.Trigger asChild>
-                        <Button
-                          variant={a.buttonVariant ?? "transparent"}
-                          size="small"
-                          {...a.buttonProps}
+                    {a.type === "dropdown" ? (
+                      <DropdownMenu.Root placement={a.placement ?? "bottom"}>
+                        <DropdownMenu.Trigger asChild>
+                          <ButtonComponent {...buttonProps} />
+                        </DropdownMenu.Trigger>
+                        <DropdownMenu.Content
+                          css={css({
+                            width: "min-content",
+                            minWidth: "min-content",
+                            maxWidth: "calc(100vw - 2rem)",
+                          })}
+                          items={a.items}
+                          onAction={handleDropDownAction}
                         >
-                          {a.label}
-                        </Button>
-                      </DropdownMenu.Trigger>
-                      <DropdownMenu.Content
-                        css={css({
-                          width: "min-content",
-                          minWidth: "min-content",
-                          maxWidth: "calc(100vw - 2rem)",
-                        })}
-                        items={a.items}
-                        onAction={handleDropDownAction}
-                      >
-                        {(item) => (
-                          <DropdownMenu.Section
-                            title={item.title}
-                            items={item.children}
-                          >
-                            {(item) => (
-                              <DropdownMenu.Item
-                                primary={item.primary}
-                                textValue={item.textValue}
-                              >
-                                {item.label}
-                              </DropdownMenu.Item>
-                            )}
-                          </DropdownMenu.Section>
-                        )}
-                      </DropdownMenu.Content>
-                    </DropdownMenu.Root>
+                          {(item) => (
+                            <DropdownMenu.Section
+                              title={item.title}
+                              items={item.children}
+                            >
+                              {(item) => <DropdownMenu.Item {...item} />}
+                            </DropdownMenu.Section>
+                          )}
+                        </DropdownMenu.Content>
+                      </DropdownMenu.Root>
+                    ) : (
+                      <ButtonComponent {...buttonProps} onClick={a.onSelect} />
+                    )}
                   </li>
-                ) : (
-                  <li key={a.key ?? i} data-desktop-only={a.desktopOnly}>
-                    <Button
-                      variant={a.buttonVariant ?? "transparent"}
-                      size="small"
-                      onClick={a.onSelect}
-                      {...a.buttonProps}
-                    >
-                      {a.label}
-                    </Button>
-                  </li>
-                ),
-              )}
+                );
+              })}
           </ul>
         </div>
       </div>
@@ -996,13 +1003,13 @@ export const MainContentContainer = ({
   </div>
 );
 
-const AuctionNounImage = (props) => {
-  const { auction } = useAuctionData();
-  const seed = useLazySeed(auction?.nounId);
-  const imageDataUri = useNounImageDataUri(seed);
-  if (imageDataUri == null) return <div {...props} />;
-  return <img src={imageDataUri} {...props} />;
-};
+// const AuctionNounImage = (props) => {
+//   const { auction } = useAuctionData();
+//   const seed = useLazySeed(auction?.nounId);
+//   const imageDataUri = useNounImageDataUri(seed);
+//   if (imageDataUri == null) return <div {...props} />;
+//   return <img src={imageDataUri} {...props} />;
+// };
 
 const NoggleImage = () => (
   <svg
