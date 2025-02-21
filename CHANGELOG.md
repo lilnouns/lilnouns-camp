@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.54] - 2025-02-21
+
+### 🚀 Features
+
+- *(camp)* Digest truncation and threshold tweaks
+
+### 🐛 Bug Fixes
+
+- *(camp)* Only show the most recent update per proposal to sponsors
+- *(camp)* Position voting bar correctly for wider items
+- *(camp)* No truncation for ongoing props
+
 ## [1.4.0-alpha.53] - 2025-02-21
 
 ### 🐛 Bug Fixes
