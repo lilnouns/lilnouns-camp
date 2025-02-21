@@ -57,8 +57,8 @@ import useEnsAddress from "@/hooks/ens-address.js";
 
 const ActivityFeed = React.lazy(() => import("./activity-feed.js"));
 
-const DIGEST_NEW_THRESHOLD_IN_DAYS = 7;
-const DIGEST_ACTIVE_THRESHOLD_IN_DAYS = 7;
+const DIGEST_NEW_THRESHOLD_IN_DAYS = 14;
+const DIGEST_ACTIVE_THRESHOLD_IN_DAYS = 14;
 
 const BROWSE_LIST_PAGE_ITEM_COUNT = 20;
 
