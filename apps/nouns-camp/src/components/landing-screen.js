@@ -57,8 +57,8 @@ import useEnsAddress from "@/hooks/ens-address.js";
 
 const ActivityFeed = React.lazy(() => import("./activity-feed.js"));
 
-const DIGEST_NEW_THRESHOLD_IN_DAYS = 3;
-const DIGEST_ACTIVE_THRESHOLD_IN_DAYS = 5;
+const DIGEST_NEW_THRESHOLD_IN_DAYS = 7;
+const DIGEST_ACTIVE_THRESHOLD_IN_DAYS = 7;
 
 const BROWSE_LIST_PAGE_ITEM_COUNT = 20;
 
@@ -184,7 +184,14 @@ const createDigestSections = ({
       title: "Missing your signature",
       description:
         "Pending updates of sponsored proposals that you need to sign",
-      sort: sortCandidatesChronological,
+      sort: (cs) => {
+        const updatesByTargetProposalId = arrayUtils.groupBy(
+          (c) => c.latestVersion?.targetProposalId ?? "-",
+          sortCandidatesReverseChronological(cs),
+        );
+        // If there’s multiple updates for the same proposal, only show the latest one
+        return Object.values(updatesByTargetProposalId).map(([first]) => first);
+      },
     },
     {
       key: "proposals:awaiting-vote",
@@ -197,7 +204,6 @@ const createDigestSections = ({
       title: "Ongoing proposals",
       description: "Currently voting",
       sort: sortProposalsByEndsSoon,
-      truncationThreshold: 2,
       showVotingBar: true,
     },
     {
@@ -210,7 +216,7 @@ const createDigestSections = ({
     // {
     //   key: "topics:new",
     //   title: "New topics",
-    //   description: "Created within the last 3 days",
+    //   description: `Created within the last ${DIGEST_NEW_THRESHOLD_IN_DAYS} days`,
     //   sort: sortCandidatesReverseChronological,
     //   truncationThreshold: 2,
     // },
@@ -223,7 +229,7 @@ const createDigestSections = ({
     {
       key: "candidates:new",
       title: "New candidates",
-      description: "Created within the last 3 days",
+      description: `Created within the last ${DIGEST_NEW_THRESHOLD_IN_DAYS} days`,
       sort: sortCandidatesReverseChronological,
       truncationThreshold: 2,
     },
@@ -237,7 +243,8 @@ const createDigestSections = ({
       key: "proposals:recently-concluded",
       title: "Recently concluded proposals",
       sort: sortProposalsReverseChrononological,
-      truncationThreshold: 8,
+      // truncationThreshold: 8,
+      showVotingBar: true,
     },
   ].map(({ key, sort, ...sectionProps }) => {
     const items = itemsBySectionKey[key] ?? [];
