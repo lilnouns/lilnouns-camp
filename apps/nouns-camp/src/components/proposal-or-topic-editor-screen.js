@@ -112,20 +112,16 @@ const Content = ({ draftId, startNavigationTransition }) => {
     }
   }, BigInt(0));
 
-  const payerTopUpValueData = useTokenBuyerEthNeeded(usdcSumValue);
+  const payerTopUpValueData = useTokenBuyerEthNeeded(usdcSumValue) ?? 0n;
   const treasuryData = useTreasuryData();
-  const executorEthBalance = treasuryData?.balances.executor.eth;
-  const payerUsdcBalance = treasuryData?.balances.payer.usdc;
+  const executorEthBalance = treasuryData?.balances.executor.eth ?? 0n;
+  const payerUsdcBalance = treasuryData?.balances.payer.usdc ?? 0n;
   const payerTopUpValue =
-    typeof executorEthBalance === "bigint" &&
-    typeof payerTopUpValueData === "bigint" &&
-    typeof payerUsdcBalance === "bigint"
-      ? payerUsdcBalance > payerTopUpValueData
+    payerUsdcBalance > usdcSumValue
         ? 0n
         : executorEthBalance > payerTopUpValueData
           ? payerTopUpValueData
           : executorEthBalance
-      : 0n;
 
   const submit = async () => {
     // const buildCandidateSlug = (title) => {
