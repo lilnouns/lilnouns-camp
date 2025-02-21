@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.53] - 2025-02-21
+
+### 🐛 Bug Fixes
+
+- *(proposal-editor)* Handle nullish values for balances
+
 ## [1.4.0-alpha.52] - 2025-02-21
 
 ### 🚜 Refactor
