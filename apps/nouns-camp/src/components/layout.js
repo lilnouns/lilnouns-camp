@@ -9,7 +9,7 @@ import * as DropdownMenu from "@shades/ui-web/dropdown-menu";
 import {
   CaretDown as CaretDownIcon,
   DotsHorizontal as DotsIcon,
-  ChatBubbles as ChatBubblesIcon,
+  // ChatBubbles as ChatBubblesIcon,
   Document as DocumentIcon,
 } from "@shades/ui-web/icons";
 import { CHAIN_ID } from "@/constants/env";
