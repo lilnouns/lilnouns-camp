@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.52] - 2025-02-21
+
+### 🚜 Refactor
+
+- *(proposal-editor)* Improve payer top-up logic
+
 ## [1.4.0-alpha.51] - 2025-02-20
 
 ### 🐛 Bug Fixes

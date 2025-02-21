@@ -25,7 +25,7 @@ import {
   useProposalThreshold,
   useActiveProposalId,
 } from "@/hooks/dao-contract";
-import { useActions/*, useAccountProposalCandidates*/ } from "@/store";
+import { useActions /*, useAccountProposalCandidates*/ } from "@/store";
 import { useNavigate, useSearchParams } from "@/hooks/navigation";
 import {
   // useCreateProposalCandidate,
@@ -115,13 +115,17 @@ const Content = ({ draftId, startNavigationTransition }) => {
   const payerTopUpValueData = useTokenBuyerEthNeeded(usdcSumValue);
   const treasuryData = useTreasuryData();
   const executorEthBalance = treasuryData?.balances.executor.eth;
+  const payerUsdcBalance = treasuryData?.balances.payer.usdc;
   const payerTopUpValue =
     typeof executorEthBalance === "bigint" &&
-    typeof payerTopUpValueData === "bigint"
-      ? executorEthBalance > payerTopUpValueData
-        ? payerTopUpValueData
-        : executorEthBalance
-      : executorEthBalance;
+    typeof payerTopUpValueData === "bigint" &&
+    typeof payerUsdcBalance === "bigint"
+      ? payerUsdcBalance > payerTopUpValueData
+        ? 0n
+        : executorEthBalance > payerTopUpValueData
+          ? payerTopUpValueData
+          : executorEthBalance
+      : 0n;
 
   const submit = async () => {
     // const buildCandidateSlug = (title) => {
@@ -355,9 +359,9 @@ const Content = ({ draftId, startNavigationTransition }) => {
             setActions={setActions}
             proposerId={connectedAccountAddress}
             payerTopUpValue={usdcSumValue > 0 ? payerTopUpValue : 0}
-            nftxRedeemExists={
-              draft.actions.some((a) => a.type === "nftx-vault-redeem")
-            }
+            nftxRedeemExists={draft.actions.some(
+              (a) => a.type === "nftx-vault-redeem",
+            )}
             containerHeight={`calc(100vh - ${theme.navBarHeight})`}
             onSubmit={() => {
               setShowSubmitDialog(true);
@@ -472,7 +476,8 @@ const SubmitDialog = ({
             <p>
               Your voting power ({votingPower}) does not meet the required
               proposal threshold ({proposalThreshold + 1}
-              ).{/* Consider{" "}
+              ).
+              {/* Consider{" "}
               <Link
                 underline
                 component="button"
