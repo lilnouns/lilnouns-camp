@@ -243,7 +243,7 @@ const predefinedActions = {
           {
             id: "new-proposal",
             title: "Proposal",
-            description: "Draft a new proposal or candidate",
+            description: "Draft a new proposal",
             icon: (
               <DocumentIcon
                 aria-hidden="true"
