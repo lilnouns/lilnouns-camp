@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.55] - 2025-02-21
+
+### 🚀 Features
+
+- *(camp)* Add local cache support for ongoing prop and candie edits
+
 ## [1.4.0-alpha.54] - 2025-02-21
 
 ### 🚀 Features
