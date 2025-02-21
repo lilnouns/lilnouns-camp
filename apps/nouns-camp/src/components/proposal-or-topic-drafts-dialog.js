@@ -53,7 +53,7 @@ const Content = ({ titleProps, dismiss }) => {
       })}
     >
       <DialogHeader
-        title="Proposal & drafts"
+        title="Proposal drafts"
         subtitle={hasDrafts ? info : null}
         titleProps={titleProps}
         dismiss={dismiss}

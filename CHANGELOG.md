@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.56] - 2025-02-21
+
+### 🚀 Features
+
+- Pull changes from upstream (#1001)
+
+### 🚜 Refactor
+
+- *(landing-screen)* Update thresholds to 14 days
+
 ## [1.4.0-alpha.55] - 2025-02-21
 
 ### 🚀 Features

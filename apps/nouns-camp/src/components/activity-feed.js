@@ -58,6 +58,7 @@ import {
 import { FormattedEthWithConditionalTooltip } from "./transaction-list.js";
 import { buildEtherscanLink } from "../utils/etherscan.js";
 import ProposalActionForm from "./proposal-action-form.js";
+import { getClientData } from "@/client.js";
 
 const BODY_TRUNCATION_HEIGHT_THRESHOLD = 135;
 
@@ -2203,13 +2204,7 @@ const FeedItemActionDropdown = ({
     if (item.external)
       return {
         ...item,
-        textValue: item.label,
-        label: (
-          <>
-            <span style={{ flex: 1, marginRight: "0.8rem" }}>{item.label}</span>
-            {"\u2197"}
-          </>
-        ),
+        iconRight: <span>{"\u2197"}</span>,
       };
     return item;
   }, []);
@@ -2426,6 +2421,8 @@ const FeedItemActionDropdown = ({
     }
   };
 
+  if (actionItems.length === 0) return null;
+
   return (
     <DropdownMenu.Root placement="bottom end">
       <DropdownMenu.Trigger asChild>
@@ -2454,13 +2451,33 @@ const FeedItemActionDropdown = ({
         })}
         items={actionItems}
         onAction={handleAction}
+        footerNote={(() => {
+          if (
+            item.type !== "vote" ||
+            item.clientId == null ||
+            item.clientId === 0
+          )
+            return null;
+
+          const { name, url } = getClientData(item.clientId) ?? {};
+
+          if (name == null)
+            return <>Vote submitted with client ID {`"${item.clientId}"`}</>;
+
+          return (
+            <div css={css({ a: { color: "inherit" } })}>
+              Vote submitted from{" "}
+              <a href={url} rel="noreferrer" target="_blank">
+                {name}
+              </a>
+            </div>
+          );
+        })()}
       >
         {(item) => (
           <DropdownMenu.Section items={item.children}>
             {(item) => (
-              <DropdownMenu.Item textValue={item.textValue}>
-                {item.label}
-              </DropdownMenu.Item>
+              <DropdownMenu.Item {...item}>{item.label}</DropdownMenu.Item>
             )}
           </DropdownMenu.Section>
         )}

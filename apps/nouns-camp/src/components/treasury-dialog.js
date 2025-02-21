@@ -448,7 +448,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                       underline
                       component={NextLink}
                       href={`/voters/${treasuryAddress}`}
-                      style={{ fontStyle: "normal" }}
+                      style={{ color: "inherit", fontStyle: "normal" }}
                     >
                       {Number(
                         balances.executor
