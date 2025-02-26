@@ -17,7 +17,7 @@
     "eslint-config-prettier": "10.0.1",
     "eslint-plugin-next-on-pages": "1.13.8",
     "vercel": "39.1.1",
-    "wrangler": "3.109.2"
+    "wrangler": "3.109.3"
   },
   "dependencies": {
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
@@ -35,12 +35,12 @@
     "@radix-ui/react-toolbar": "1.1.2",
     "@radix-ui/react-tooltip": "1.1.8",
     "@sentry/nextjs": "7.120.3",
-    "@serwist/next": "9.0.11",
-    "@serwist/precaching": "9.0.11",
-    "@serwist/sw": "9.0.11",
+    "@serwist/next": "9.0.12",
+    "@serwist/precaching": "9.0.12",
+    "@serwist/sw": "9.0.12",
     "@shades/common": "workspace:0.0.0",
     "@shades/ui-web": "workspace:0.0.0",
-    "@tanstack/react-query": "5.66.8",
+    "@tanstack/react-query": "5.66.9",
     "@vercel/analytics": "1.5.0",
     "@vercel/edge-config": "1.4.0",
     "@vercel/kv": "3.0.0",
