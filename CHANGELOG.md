@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.57] - 2025-02-26
+
+### 🐛 Bug Fixes
+
+- *(browse-accounts-screen)* Exclude additional addresses
+
 ## [1.4.0-alpha.56] - 2025-02-21
 
 ### 🚀 Features
