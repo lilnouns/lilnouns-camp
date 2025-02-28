@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.58] - 2025-02-28
+
+### 🐛 Bug Fixes
+
+- *(browse-accounts-screen)* Exclude `NFTx Vault` from results
+
 ## [1.4.0-alpha.57] - 2025-02-26
 
 ### 🐛 Bug Fixes
