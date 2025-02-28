@@ -289,7 +289,8 @@ const BrowseAccountsScreen = () => {
         a.id !== treasuryAddress &&
         a.id !== forkEscrowAddress &&
         a.id !== "0x0000000000000000000000000000000000000000" && // Burn Address
-        a.id !== "0x0bc3807ec262cb779b38d65b38158acc3bfede10", // Nouns Treasury
+        a.id !== "0x0bc3807ec262cb779b38d65b38158acc3bfede10" && // Nouns Treasury
+        a.id !== "0x18222a762bf67024193de25e1cdc7aa6e614c695", // NFTx Vault
     );
 
     const sort = (accounts) => {
