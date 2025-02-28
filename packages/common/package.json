@@ -21,7 +21,7 @@
     "./empty-module": "./dist/empty-module.js"
   },
   "dependencies": {
-    "@ethersproject/solidity": "5.7.0",
+    "@ethersproject/solidity": "5.8.0",
     "reselect": "5.1.1"
   },
   "devDependencies": {
