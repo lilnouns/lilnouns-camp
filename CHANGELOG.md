@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.60] - 2025-03-01
+
+### 🐛 Bug Fixes
+
+- *(utils)* Update `EXECUTION_GRACE_PERIOD_IN_MILLIS` value
+
 ## [1.4.0-alpha.59] - 2025-02-28
 
 ### 🐛 Bug Fixes
