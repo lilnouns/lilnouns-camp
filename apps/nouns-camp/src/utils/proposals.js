@@ -1,4 +1,4 @@
-export const EXECUTION_GRACE_PERIOD_IN_MILLIS = 1000 * 60 * 60 * 24 * 21; // 21 days
+export const EXECUTION_GRACE_PERIOD_IN_MILLIS = 1000 * 60 * 60 * 24 * 14; // 14 days
 
 const isDefeated = (proposal) =>
   proposal.forVotes <= proposal.againstVotes ||
