@@ -23,6 +23,7 @@ import {
   useAccountProposals,
   // useAccountProposalCandidates,
   // useAccountSponsoredProposals,
+  // useAccountTopics,
   useActions,
   useDelegate,
   useDelegateFetch,
@@ -49,7 +50,6 @@ import AccountPreviewPopoverTrigger from "./account-preview-popover-trigger.js";
 
 const ActivityFeed = React.lazy(() => import("./activity-feed.js"));
 
-const VOTER_LIST_PAGE_ITEM_COUNT = 20;
 const FEED_PAGE_ITEM_COUNT = 30;
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -623,18 +623,6 @@ const VoterHeader = ({ accountAddress }) => {
                         id: "open-etherscan",
                         label: "Etherscan",
                       },
-                      // {
-                      //   id: "open-mogu",
-                      //   label: "Mogu",
-                      // },
-                      // {
-                      //   id: "open-agora",
-                      //   label: "Agora",
-                      // },
-                      // {
-                      //   id: "open-nounskarma",
-                      //   label: "NounsKarma",
-                      // },
                       {
                         id: "open-rainbow",
                         label: "Rainbow",
@@ -678,27 +666,6 @@ const VoterHeader = ({ accountAddress }) => {
                         "_blank",
                       );
                       break;
-
-                    // case "open-mogu":
-                    //   window.open(
-                    //     `https://mmmogu.com/address/${accountAddress}`,
-                    //     "_blank",
-                    //   );
-                    //   break;
-                    //
-                    // case "open-agora":
-                    //   window.open(
-                    //     `https://lilnounsagora.com/delegate/${accountAddress}`,
-                    //     "_blank",
-                    //   );
-                    //   break;
-                    //
-                    // case "open-nounskarma":
-                    //   window.open(
-                    //     `https://nounskarma.xyz/player/${accountAddress}`,
-                    //     "_blank",
-                    //   );
-                    //   break;
 
                     case "open-rainbow":
                       window.open(
@@ -786,12 +753,14 @@ const VoterHeader = ({ accountAddress }) => {
 const VoterMainSection = ({ voterAddress }) => {
   const isDesktopLayout = useMatchDesktopLayout();
 
-  const [page, setPage] = React.useState(1);
   const delegate = useDelegate(voterAddress);
 
   const proposals = useAccountProposals(voterAddress);
-  // const candidates = useAccountProposalCandidates(voterAddress);
+  // const candidates = useAccountProposalCandidates(voterAddress, {
+  //   includeTopics: false,
+  // });
   // const sponsoredProposals = useAccountSponsoredProposals(voterAddress);
+  // const topics = useAccountTopics(voterAddress);
 
   const [hasFetchedData, setHasFetchedData] = React.useState(
     () => proposals.length > 0,
@@ -820,6 +789,10 @@ const VoterMainSection = ({ voterAddress }) => {
   // const sponsoredTabTitle = sponsoredProposals.length
   //   ? `Sponsored (${sponsoredProposals.length})`
   //   : "Sponsored";
+
+  // const topicsTabTitle = topics?.length
+  //   ? `Topics (${topics?.length})`
+  //   : "Topics";
 
   return (
     <>
@@ -891,29 +864,15 @@ const VoterMainSection = ({ voterAddress }) => {
                       forcePlaceholder={
                         !hasFetchedData && proposals.length === 0
                       }
-                      items={arrayUtils
-                        .sortBy(
-                          {
-                            value: (p) => Number(p.id),
-                            order: "desc",
-                          },
-                          proposals,
-                        )
-                        .slice(0, VOTER_LIST_PAGE_ITEM_COUNT * page)}
+                      items={arrayUtils.sortBy(
+                        {
+                          value: (p) => Number(p.id),
+                          order: "desc",
+                        },
+                        proposals,
+                      )}
                     />
                   </div>
-                  {proposals.length > VOTER_LIST_PAGE_ITEM_COUNT * page && (
-                    <div css={{ textAlign: "center", padding: "3.2rem 0" }}>
-                      <Button
-                        size="small"
-                        onClick={() => {
-                          setPage((p) => p + 1);
-                        }}
-                      >
-                        Show more
-                      </Button>
-                    </div>
-                  )}
                 </div>
               </Tabs.Item>
               {/*<Tabs.Item key="candidates" title={candidatesTabTitle}>
@@ -930,29 +889,15 @@ const VoterMainSection = ({ voterAddress }) => {
                       forcePlaceholder={
                         !hasFetchedData && candidates.length === 0
                       }
-                      items={arrayUtils
-                        .sortBy(
-                          {
-                            value: (p) => p.lastUpdatedTimestamp,
-                            order: "desc",
-                          },
-                          candidates,
-                        )
-                        .slice(0, VOTER_LIST_PAGE_ITEM_COUNT * page)}
+                      items={arrayUtils.sortBy(
+                        {
+                          value: (p) => p.lastUpdatedTimestamp,
+                          order: "desc",
+                        },
+                        candidates,
+                      )}
                     />
                   </div>
-                  {candidates.length > VOTER_LIST_PAGE_ITEM_COUNT * page && (
-                    <div css={{ textAlign: "center", padding: "3.2rem 0" }}>
-                      <Button
-                        size="small"
-                        onClick={() => {
-                          setPage((p) => p + 1);
-                        }}
-                      >
-                        Show more
-                      </Button>
-                    </div>
-                  )}
                 </div>
               </Tabs.Item>*/}
               {/*<Tabs.Item key="sponsored" title={sponsoredTabTitle}>
@@ -969,30 +914,38 @@ const VoterMainSection = ({ voterAddress }) => {
                       forcePlaceholder={
                         !hasFetchedData && sponsoredProposals.length === 0
                       }
-                      items={arrayUtils
-                        .sortBy(
-                          {
-                            value: (p) => p.lastUpdatedTimestamp,
-                            order: "desc",
-                          },
-                          sponsoredProposals,
-                        )
-                        .slice(0, VOTER_LIST_PAGE_ITEM_COUNT * page)}
+                      items={arrayUtils.sortBy(
+                        {
+                          value: (p) => p.lastUpdatedTimestamp,
+                          order: "desc",
+                        },
+                        sponsoredProposals,
+                      )}
                     />
                   </div>
-                  {sponsoredProposals.length >
-                    VOTER_LIST_PAGE_ITEM_COUNT * page && (
-                    <div css={{ textAlign: "center", padding: "3.2rem 0" }}>
-                      <Button
-                        size="small"
-                        onClick={() => {
-                          setPage((p) => p + 1);
-                        }}
-                      >
-                        Show more
-                      </Button>
-                    </div>
+                </div>
+              </Tabs.Item>
+              <Tabs.Item key="topics" title={topicsTabTitle}>
+                <div>
+                  {hasFetchedData && topics.length === 0 && (
+                    <Tabs.EmptyPlaceholder
+                      title="No topics"
+                      description="This account has not created any topics"
+                      css={css({ padding: "6.4rem 0" })}
+                    />
                   )}
+                  <div style={{ marginTop: "2rem" }}>
+                    <ProposalList
+                      forcePlaceholder={!hasFetchedData && topics.length === 0}
+                      items={arrayUtils.sortBy(
+                        {
+                          value: (p) => p.lastUpdatedTimestamp,
+                          order: "desc",
+                        },
+                        topics,
+                      )}
+                    />
+                  </div>
                 </div>
               </Tabs.Item>*/}
             </Tabs.Root>
