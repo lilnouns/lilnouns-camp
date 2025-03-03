@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.61] - 2025-03-03
+
+### 🚀 Features
+
+- *(camp)* Update client info for Nouns 95
+- *(camp)* Add development instructions
+- *(camp)* Add mobile DevTools for development and preview
+- *(camp)* Always show reply input in boxed activity feed
+- *(camp)* Implement topics tab in voter profile UI
+
+### 🐛 Bug Fixes
+
+- *(camp)* Don’t include empty replies in submitted reason
+- *(camp)* Exclude empty replies when formatting replies in topic screen
+
+### 🚜 Refactor
+
+- *(camp)* Simplify voter screen by removing pagination logic
+- *(camp)* Clean up voter screen by removing unused external links and constants
+
+### 📚 Documentation
+
+- *(camp)* Add CLAUDE.md with development commands and code style guidelines
+- Add root-level CLAUDE.md with workspace commands
+- Add git workflow guidelines to root CLAUDE.md
+
+### 🧪 Testing
+
+- *(camp)* Add test for votes and feedbacks utils
+
 ## [1.4.0-alpha.60] - 2025-03-01
 
 ### 🐛 Bug Fixes
