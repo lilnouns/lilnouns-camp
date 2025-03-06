@@ -1,4 +1,4 @@
-import { fetchContractSimulation } from "../../tenderly-utils";
+import { fetchContractSimulation } from "@/app/api/tenderly-utils";
 
 export const runtime = 'edge';
 
