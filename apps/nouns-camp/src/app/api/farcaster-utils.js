@@ -1,4 +1,4 @@
-import { kv } from "@vercel/kv";
+// import { kv } from "@vercel/kv";
 import { hexToBytes } from "viem";
 import {
   FarcasterNetwork,
@@ -34,9 +34,9 @@ const fetchAccounts = async (fids) => {
   return parseNeynarUsers(users);
 };
 
-export const getAccountKey = (fid) => kv.get(`fid:${fid}:account-key`);
+// export const getAccountKey = (fid) => kv.get(`fid:${fid}:account-key`);
 
-export const deleteAccountKey = (fid) => kv.del(`fid:${fid}:account-key`);
+// export const deleteAccountKey = (fid) => kv.del(`fid:${fid}:account-key`);
 
 export const fetchAccount = async (fid) => {
   const [account] = await fetchAccounts([fid]);
