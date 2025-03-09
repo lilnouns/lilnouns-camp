@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.65] - 2025-03-09
+
+### 🚀 Features
+
+- *(camp)* Add UI and E2E testing infrastructure
+
+### 📚 Documentation
+
+- Update CLAUDE.md files with improved formatting and pnpm commands
+- Rename CLAUDE.md to AI-CONTEXT.md for AI assistants
+
+### ◀️ Revert
+
+- *(deps)* Bump react-aria-components from 1.6.0 to 1.7.0 (#1035)
+- *(deps)* Bump react-stately from 3.35.0 to 3.36.0 (#1034)
+- *(deps)* Bump react-aria from 3.37.0 to 3.38.0 (#1033)
+
 ## [1.4.0-alpha.64] - 2025-03-09
 
 ### 🐛 Bug Fixes
