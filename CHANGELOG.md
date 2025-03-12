@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.67] - 2025-03-12
+
+### 🐛 Bug Fixes
+
+- *(camp)* Handle multi-level URL encoding in candidate IDs
+
+### ⚙️ Miscellaneous Tasks
+
+- *(camp)* Implement a linting adjustment
+
 ## [1.4.0-alpha.66] - 2025-03-09
 
 ### 🐛 Bug Fixes
