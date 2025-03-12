@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0-alpha.66",
+  "version": "1.4.0-alpha.67",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
