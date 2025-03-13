@@ -9,7 +9,7 @@
 // import {
 //   getAccountKeyForFid,
 //   deleteAccountKeyForFid,
-// } from "../farcaster-account-key-utils";
+// } from "@/app/api/farcaster-account-key-utils";
 
 export const runtime = "edge";
 
