@@ -8,4 +8,5 @@ dist
 .wrangler
 .DS_Store
 .aider*
-dist/
+CLAUDE.md
+.goosehints
