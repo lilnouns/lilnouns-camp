@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.69] - 2025-03-17
+
+### 🚀 Features
+
+- *(camp)* Add subgraph query tool
+
+### 🐛 Bug Fixes
+
+- *(camp)* Improve reply parsing with better quote handling
+- *(camp)* Add temporary farcaster reply workaround
+
+### 🚜 Refactor
+
+- *(camp)* Rename React component files from .js to .jsx
+
+### ⚙️ Miscellaneous Tasks
+
+- Update gitignore and add LLM guidelines to README
+
 ## [1.4.0-alpha.68] - 2025-03-13
 
 ### 🐛 Bug Fixes
