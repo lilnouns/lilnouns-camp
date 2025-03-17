@@ -1,6 +1,6 @@
 // import { kv } from "@vercel/kv";
 // import { isAddress } from "viem";
-// import { fetchAccountsWithVerifiedAddress } from "../farcaster-utils.js";
+// import { fetchAccountsWithVerifiedAddress } from "@/app/api/farcaster-utils";
 
 export const runtime = "edge";
 

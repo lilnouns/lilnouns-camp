@@ -5,13 +5,13 @@ import {
   markdown as markdownUtils,
   message as messageUtils,
 } from "@shades/common/utils";
-import metaConfig from "../../../metadata-config.js";
+import metaConfig from "@/metadata-config";
 import { getStateFromCookie as getWagmiStateFromCookie } from "../../../wagmi-config.js";
-import { subgraphFetch, parseProposal } from "../../../nouns-subgraph.js";
+import { subgraphFetch, parseProposal } from "@/nouns-subgraph";
 import { mainnet } from "../../../chains.js";
-import { Hydrater as StoreHydrater } from "../../../store.js";
-import ClientAppProvider from "../../client-app-provider.js";
-import ProposalScreen from "../../../components/proposal-screen.js";
+import { Hydrater as StoreHydrater } from "@/store";
+import ClientAppProvider from "@/app/client-app-provider";
+import ProposalScreen from "@/components/proposal-screen";
 
 export const runtime = "edge";
 

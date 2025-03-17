@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0-alpha.68",
+  "version": "1.4.0-alpha.69",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
@@ -13,6 +13,8 @@
     "test": "pnpm run --recursive --if-present test"
   },
   "resolutions": {
+    "@babel/helpers": ">=7.26.10",
+    "@babel/runtime": ">=7.26.10",
     "@babel/traverse": ">=7.23.2",
     "@coinbase/wallet-sdk": ">=4.3.0",
     "@vercel/kv": ">=3.0.0",
