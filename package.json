@@ -13,6 +13,7 @@
     "test": "pnpm run --recursive --if-present test"
   },
   "resolutions": {
+    "@babel/helpers": ">=7.26.10",
     "@babel/runtime": ">=7.26.10",
     "@babel/traverse": ">=7.23.2",
     "@coinbase/wallet-sdk": ">=4.3.0",
