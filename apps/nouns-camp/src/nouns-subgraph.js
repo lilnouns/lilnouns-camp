@@ -213,7 +213,7 @@ export const parseProposalVote = (v) => ({
   votes: v.votes == null ? undefined : Number(v.votes),
   voterId: v.voter?.id,
   proposalId: v.proposal?.id,
-  clientId: v.clientId == null ? undefined : Number(v.clientId),
+  clientId: Number(v.clientId),
 });
 
 const parseProposalVersion = (v) => ({
@@ -516,11 +516,11 @@ export const subgraphFetch = async ({
 
   const makeRequest = async (retryCount) => {
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ operationName, query, variables }),
-      });
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ operationName, query, variables }),
+  });
 
       if (response.status === 429) {
         if (retryCount > 0) {
@@ -557,20 +557,18 @@ export const subgraphFetch = async ({
         }
       }
 
-      if (!response.ok) {
-        console.error("Unsuccessful subgraph request", {
-          responseStatus: response.status,
-        });
-        return Promise.reject(new Error(response.status ?? "No response"));
-      }
-
-      const body = await response.json();
-      if (body.errors != null) {
-        console.error("Unexpected subgraph response", body);
-        return Promise.reject(new Error("subgraph-error"));
-      }
-
-      return body.data;
+  if (!response.ok) {
+    console.error("Unsuccessful subgraph request", {
+      responseStatus: response.status,
+    });
+    return Promise.reject(new Error(response.status ?? "No response"));
+  }
+  const body = await response.json();
+  if (body.errors != null) {
+    console.error("Unexpected subgraph response", body);
+    return Promise.reject(new Error("subgraph-error"));
+  }
+  return body.data;
     } catch (error) {
       if (retryCount > 0) {
         const waitTime = delay * (retries - retryCount + 1);
