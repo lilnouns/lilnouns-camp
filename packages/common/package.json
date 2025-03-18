@@ -7,7 +7,7 @@
     "build": "rollup -c",
     "format": "prettier . --write",
     "lint": "eslint . && prettier . --check",
-    "test": "vitest"
+    "test": "vitest run"
   },
   "exports": {
     "./app": "./dist/app.js",
