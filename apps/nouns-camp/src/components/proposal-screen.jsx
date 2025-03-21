@@ -1554,6 +1554,10 @@ export const ProposalBody = React.memo(({ markdownText, ...props }) => {
                 ".image > img": {
                   background: "unset",
                 },
+                '.image[data-inline="true"]': {
+                  display: "inline-block",
+                  margin: 0,
+                },
               })}
             />
           </React.Suspense>
