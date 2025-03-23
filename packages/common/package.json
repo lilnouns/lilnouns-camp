@@ -7,7 +7,7 @@
     "build": "rollup -c",
     "format": "prettier . --write",
     "lint": "eslint . && prettier . --check",
-    "test": "vitest"
+    "test": "vitest run"
   },
   "exports": {
     "./app": "./dist/app.js",
@@ -26,8 +26,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-json": "6.1.0",
-    "@swc/core": "1.11.5",
-    "rollup": "4.35.0",
+    "@swc/core": "1.11.11",
+    "rollup": "4.36.0",
     "rollup-plugin-swc3": "0.12.1",
     "vitest": "3.0.8"
   }
