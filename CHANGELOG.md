@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.70] - 2025-03-23
+
+### 🚀 Features
+
+- Pull changes from upstream (#1078)
+
+### 🚜 Refactor
+
+- *(nouns-subgraph)* Simplify error handling and parsing
+
+### ⚙️ Miscellaneous Tasks
+
+- *(script)* Update `test` script to use `vitest run`
+
 ## [1.4.0-alpha.69] - 2025-03-17
 
 ### 🚀 Features
