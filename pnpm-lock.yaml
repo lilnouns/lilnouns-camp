@@ -115,8 +115,8 @@ importers:
         specifier: '>=3.0.0'
         version: 3.0.0
       '@vercel/og':
-        specifier: 0.6.5
-        version: 0.6.5
+        specifier: 0.6.8
+        version: 0.6.8
       abitype:
         specifier: 1.0.8
         version: 1.0.8(typescript@5.8.2)(zod@3.24.2)
@@ -3305,8 +3305,8 @@ packages:
   '@vercel/node@3.2.26':
     resolution: {integrity: sha512-nN6S3srh4u/5TNFf7k9efw2RHhy135ETAnrQxgOpdnshqhe/n5Q/CcJy1eB6ZewAs6VJsHJU5TOZ+SO72+pg/w==}
 
-  '@vercel/og@0.6.5':
-    resolution: {integrity: sha512-GFXtgid3+TcVHTd668a10vGpzAh4Ty/yBZPRxKf1UicI8Vi8EthfvSxcaLW0KvQBBe1+d7TcjecLZHRT8JzQ4g==}
+  '@vercel/og@0.6.8':
+    resolution: {integrity: sha512-e4kQK9mP8ntpo3dACWirGod/hHv4qO5JMj9a/0a2AZto7b4persj5YP7t1Er372gTtYFTYxNhMx34jRvHooglw==}
     engines: {node: '>=16'}
 
   '@vercel/python@4.5.1':
@@ -6508,8 +6508,8 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  satori@0.12.1:
-    resolution: {integrity: sha512-0SbjchvDrDbeXeQgxWVtSWxww7qcFgk3DtSE2/blHOSlLsSHwIqO2fCrtVa/EudJ7Eqno8A33QNx56rUyGbLuw==}
+  satori@0.12.2:
+    resolution: {integrity: sha512-3C/laIeE6UUe9A+iQ0A48ywPVCCMKCNSTU5Os101Vhgsjd3AAxGNjyq0uAA8kulMPK5n0csn8JlxPN9riXEjLA==}
     engines: {node: '>=16'}
 
   saxes@6.0.0:
@@ -11289,10 +11289,10 @@ snapshots:
       - encoding
       - supports-color
 
-  '@vercel/og@0.6.5':
+  '@vercel/og@0.6.8':
     dependencies:
       '@resvg/resvg-wasm': 2.4.0
-      satori: 0.12.1
+      satori: 0.12.2
       yoga-wasm-web: 0.3.3
 
   '@vercel/python@4.5.1': {}
@@ -15336,7 +15336,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  satori@0.12.1:
+  satori@0.12.2:
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
       css-background-parser: 0.1.0
