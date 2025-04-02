@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.72] - 2025-04-02
+
+### 🚀 Features
+
+- *(camp)* Enable pull to refresh on mobile
+- *(camp)* Allow text selection on topic replies
+- *(camp)* Allow clicking on logo to refresh home to default state (#107)
+
+### 🐛 Bug Fixes
+
+- *(camp)* Activate debounces by adding wait time (#108)
+- *(camp)* Fix issues around imperonation simulation
+- *(camp)* Re-enable transaction length validation check
+
 ## [1.4.0-alpha.71] - 2025-03-31
 
 ### 📚 Documentation
