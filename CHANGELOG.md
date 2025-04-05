@@ -2,7 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.4.0-alpha.73] - 2025-04-03
+## [1.4.0-alpha.74] - 2025-04-05
+
+### 🚀 Features
+
+- *(camp)* Add client activity report generation tool for kicks
+
+### 🐛 Bug Fixes
+
+- *(camp)* Escape candidate ids
+- *(camp)* Include topics in search sources
+
+## [1.4.0-alpha.73] - 2025-04-04
 
 ### 🐛 Bug Fixes
 
