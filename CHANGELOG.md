@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.75] - 2025-04-08
+
+### 🐛 Bug Fixes
+
+- *(camp)* Fix null update mmessages
+
 ## [1.4.0-alpha.74] - 2025-04-05
 
 ### 🚀 Features
