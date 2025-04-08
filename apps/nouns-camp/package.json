@@ -64,7 +64,7 @@
     "iron-session": "8.0.4",
     "is-hotkey": "0.2.0",
     "lodash.throttle": "4.1.1",
-    "marked": "15.0.7",
+    "marked": "15.0.8",
     "next": "14.2.27",
     "qrcode": "1.5.4",
     "react": "18.3.1",
