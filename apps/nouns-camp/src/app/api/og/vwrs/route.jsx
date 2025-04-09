@@ -40,9 +40,9 @@ const fetchVoteOrFeedbackPost = async (id) => {
           ...VoteFields
         }
 
-      # proposalFeedback(id: "${id}") {
-      #   ...ProposalFeedbackFields
-      # }
+        proposalFeedback(id: "${id}") {
+          ...ProposalFeedbackFields
+        }
       #
       # candidateFeedback(id: "${id}") {
       #   ...CandidateFeedbackFields
