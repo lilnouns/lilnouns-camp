@@ -1214,14 +1214,14 @@ const createStore = ({ initialState, publicClient }) =>
             #   proposal { id }
             # }
 
-            # proposalFeedbacks(
-            #   where: {
-            #     proposal_in: [${proposals.map((p) => `"${p.id}"`)}]
-            #   },
-            #   first: 1000
-            # ) {
-            #   ...ProposalFeedbackFields
-            # }
+              proposalFeedbacks(
+                where: {
+                  proposal_in: [${proposals.map((p) => `"${p.id}"`)}]
+                },
+                first: 1000
+              ) {
+                ...ProposalFeedbackFields
+              }
 
             # candidateFeedbacks(
             #   where: {
@@ -1319,13 +1319,13 @@ const createStore = ({ initialState, publicClient }) =>
                 # ) {
                 #   ...CandidateFeedbackFields
                 # }
-                # proposalFeedbacks(
-                #   skip: ${skip},
-                #   first: ${first},
-                #   where: { voter: "${id}" }
-                # ) {
-                #   ...ProposalFeedbackFields
-                # }
+                  proposalFeedbacks(
+                    skip: ${skip},
+                    first: ${first},
+                    where: { voter: "${id}" }
+                  ) {
+                    ...ProposalFeedbackFields
+                  }
                   nouns(where: { owner: "${id}" }) {
                     id
                     seed {
@@ -1523,15 +1523,15 @@ const createStore = ({ initialState, publicClient }) =>
               # ) {
               #   ...CandidateFeedbackFields
               # }
-              # proposalFeedbacks(
-              #   where: {
-              #     createdBlock_gte: ${startBlock},
-              #     createdBlock_lte: ${endBlock}
-              #   },
-              #   first: 1000
-              # ) {
-              #   ...ProposalFeedbackFields
-              # }
+                proposalFeedbacks(
+                  where: {
+                    createdBlock_gte: ${startBlock},
+                    createdBlock_lte: ${endBlock}
+                  },
+                  first: 1000
+                ) {
+                  ...ProposalFeedbackFields
+                }
                 votes(
                   where: {
                     blockNumber_gte: ${startBlock},
@@ -1606,11 +1606,10 @@ const createStore = ({ initialState, publicClient }) =>
       },
       fetchVoterActivity: async (voterAddress_, { startBlock, endBlock }) => {
         const voterAddress = voterAddress_.toLowerCase();
-        const { proposalFeedbacks, candidateFeedbacks } = {
-          proposalFeedbacks: [],
+        const { candidateFeedbacks } = {
           candidateFeedbacks: [],
         };
-        const { votes /*, proposalFeedbacks, candidateFeedbacks*/ } =
+        const { votes, proposalFeedbacks /*, candidateFeedbacks*/ } =
           await subgraphFetch({
             query: `
               ${CANDIDATE_FEEDBACK_FIELDS}
@@ -1629,16 +1628,16 @@ const createStore = ({ initialState, publicClient }) =>
               # ) {
               #   ...CandidateFeedbackFields
               # }
-              # proposalFeedbacks(
-              #   where: {
-              #     voter: "${voterAddress}",
-              #     createdBlock_gte: ${startBlock},
-              #     createdBlock_lte: ${endBlock}
-              #   },
-              #   first: 1000
-              # ) {
-              #   ...ProposalFeedbackFields
-              # }
+                proposalFeedbacks(
+                  where: {
+                    voter: "${voterAddress}",
+                    createdBlock_gte: ${startBlock},
+                    createdBlock_lte: ${endBlock}
+                  },
+                  first: 1000
+                ) {
+                  ...ProposalFeedbackFields
+                }
                 votes(
                   where: {
                     voter: "${voterAddress}",
