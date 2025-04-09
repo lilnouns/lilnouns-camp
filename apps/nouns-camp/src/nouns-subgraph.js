@@ -99,7 +99,7 @@ export const FULL_PROPOSAL_FIELDS = `
     proposer { id }
   # signers { id }
     votes { ...VoteFields }
-  # feedbackPosts { ...ProposalFeedbackFields }
+    feedbackPosts { ...ProposalFeedbackFields }
   }`;
 
 const CANDIDATE_CONTENT_SIGNATURE_FIELDS = `
