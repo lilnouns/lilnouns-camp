@@ -45,7 +45,7 @@
     "@nouns/contracts": "0.3.0",
     "@nouns/sdk": "0.4.0",
     "@radix-ui/react-toolbar": "1.1.2",
-    "@radix-ui/react-tooltip": "1.1.8",
+    "@radix-ui/react-tooltip": "1.2.0",
     "@sentry/nextjs": "7.120.3",
     "@serwist/next": "9.0.13",
     "@serwist/precaching": "9.0.13",
