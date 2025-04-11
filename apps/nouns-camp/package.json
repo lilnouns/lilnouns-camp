@@ -21,7 +21,7 @@
     "@vitejs/plugin-react": "4.3.4",
     "@vitest/coverage-v8": "3.1.1",
     "@vitest/ui": "3.1.1",
-    "dotenv": "16.4.7",
+    "dotenv": "16.5.0",
     "eslint": "8.57.1",
     "eslint-config-next": "14.2.28",
     "eslint-config-prettier": "10.1.1",
