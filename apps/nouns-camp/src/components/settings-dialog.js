@@ -74,9 +74,9 @@ const Content = ({ titleProps, dismiss }) => {
 
   const [theme, setTheme] = useSetting("theme");
   const [zoom, setZoom] = useSetting("zoom");
-  const [farcasterFilter, setFarcasterFilter] = useSetting(
-    "farcaster-cast-filter",
-  );
+  // const [farcasterFilter, setFarcasterFilter] = useSetting(
+  //   "farcaster-cast-filter",
+  // );
   const [xmasOptOut, setXmasOptOut] = useSetting("xmas-effects-opt-out");
 
   const [searchParams] = useSearchParams();
@@ -105,11 +105,11 @@ const Content = ({ titleProps, dismiss }) => {
           state: zoom,
           setState: setZoom,
         },
-        {
-          key: "farcaster-cast-filter",
-          state: farcasterFilter,
-          setState: setFarcasterFilter,
-        },
+        // {
+        //   key: "farcaster-cast-filter",
+        //   state: farcasterFilter,
+        //   setState: setFarcasterFilter,
+        // },
         config["xmas-effects"] && {
           key: "xmas-effects-opt-out",
           state: xmasOptOut,
