@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.76] - 2025-04-12
+
+### 🐛 Bug Fixes
+
+- *(contracts)* Update `data` address for Lil Nouns DAO on Sepolia
+- *(api)* Enable `proposalFeedback` query in `vwrs` route
+- *(nouns-subgraph)* Uncomment `feedbackPosts` in query
+- *(contracts)* Update Lil Nouns `data` contract address
+- *(contracts)* Update `DAO_DATA_PROXY_CONTRACT` address
+- *(hooks)* Prioritize ENS name in account display name
+
+### 🚜 Refactor
+
+- *(store)* Uncomment `proposalFeedbacks` queries
+- *(activity-feed)* Comment out unused like actions
+- *(proposal-screen)* Comment out unsupported action
+- *(settings-dialog)* Comment out unused filter logic
+
 ## [1.4.0-alpha.75] - 2025-04-08
 
 ### 🐛 Bug Fixes
