@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.77] - 2025-04-12
+
+### 🚀 Features
+
+- Pull changes from upstream (#1121)
+
 ## [1.4.0-alpha.76] - 2025-04-12
 
 ### 🐛 Bug Fixes
