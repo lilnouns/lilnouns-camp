@@ -28,7 +28,7 @@ const useAccountDisplayName = (
   if (accountAddress != null && !isAddress)
     console.warn(`Invalid address "${accountAddress}"`);
 
-  return nnsName ?? unsName ?? ensName ?? truncatedAddress;
+  return ensName ?? unsName ?? nnsName ?? truncatedAddress;
 };
 
 export default useAccountDisplayName;

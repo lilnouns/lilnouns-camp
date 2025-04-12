@@ -200,8 +200,8 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
 
   const possibleFormActions =
     !hasCastVote && isVotingOngoing
-      ? ["vote", "onchain-comment", "farcaster-comment"]
-      : ["onchain-comment", "farcaster-comment"];
+      ? ["vote", "onchain-comment"/*, "farcaster-comment"*/]
+      : ["onchain-comment"/*, "farcaster-comment"*/];
 
   const submitProposalCast = useSubmitProposalCast(proposalId);
 
