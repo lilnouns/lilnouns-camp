@@ -879,6 +879,7 @@ const ActionListItem = ({
   const daoPayerContract = useContract("payer");
   const wethTokenContract = useContract("weth-token");
   const nftxPoolContract = useContract("nftx-pool");
+  const treasuryContract = useContract("executor");
 
   const [isExpanded, setExpanded] = React.useState(
     a.type === "custom-transaction",
@@ -929,6 +930,15 @@ const ActionListItem = ({
           <>
             After the deposit is done, the funds are transfered to the stream
             contract.
+          </>
+        );
+
+      case "usdc-transfer":
+        return (
+          <>
+            USDC is transfered from the{" "}
+            <AddressDisplayNameWithTooltip address={treasuryContract.address} />
+            .
           </>
         );
 
