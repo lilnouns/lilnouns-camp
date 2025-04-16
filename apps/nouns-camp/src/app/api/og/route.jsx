@@ -152,7 +152,7 @@ const RequestedAmounts = ({ amounts }) => (
           case "lilnouns":
             return (
               <>
-                {Number(amount)} lil noun{amount > 1 && "s"}
+                {Number(amount)} lil {amount > 1 ? "nouns" : "noun"}
               </>
             );
 
