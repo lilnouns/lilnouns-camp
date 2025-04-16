@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.78] - 2025-04-16
+
+### 🚀 Features
+
+- *(camp)* Add usdc transfer from treasury support
+
+### 🐛 Bug Fixes
+
+- *(camp)* Bundle simulation was running on every editor change
+- *(transaction-list)* Ensure `tokenAmount` is a string
+
 ## [1.4.0-alpha.77] - 2025-04-12
 
 ### 🚀 Features
