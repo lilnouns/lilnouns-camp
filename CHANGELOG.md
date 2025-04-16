@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.80] - 2025-04-16
+
+### 🐛 Bug Fixes
+
+- *(transaction-list)* Ensure token amount is a number
+- *(proposal-screen)* Correct pluralization logic for lil nouns
+
 ## [1.4.0-alpha.79] - 2025-04-16
 
 ### 🚀 Features
