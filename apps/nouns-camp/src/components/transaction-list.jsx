@@ -823,11 +823,12 @@ export const TransactionExplanation = ({ transaction: t }) => {
       );
 
     case "nftx-vault-redeem":
+      console.log(t);
       return (
         <>
           Transfer{" "}
           <strong>
-            {t.tokenAmount} lil {t.tokenAmount > 1 ? "nouns" : "noun"}
+            {t.tokenAmount.toString()} lil {t.tokenAmount > 1 ? "nouns" : "noun"}
           </strong>{" "}
           to{" "}
           <em>
