@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.79] - 2025-04-16
+
+### 🚀 Features
+
+- *(proposal-screen)* Add support for `lilnouns`
+- *(api)* Add support for `lilnouns` case in `og` route
+
+### 🐛 Bug Fixes
+
+- *(transaction-list)* Remove unnecessary console log
+
 ## [1.4.0-alpha.78] - 2025-04-16
 
 ### 🚀 Features
