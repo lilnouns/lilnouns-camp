@@ -599,8 +599,7 @@ export const extractAmounts = (parsedTransactions) => {
 
   const nftxVaultRedeems = parsedTransactions
     .filter((t) => t.type === "nftx-vault-redeem")
-    .map((t) => t.nounIds)
-    .flat();
+    .reduce((sum, t) => sum + BigInt(t.tokenAmount), BigInt(0));
 
   return [
     { currency: "eth", amount: ethAmount },
@@ -613,7 +612,7 @@ export const extractAmounts = (parsedTransactions) => {
     },
     {
       currency: "lilnouns",
-      tokens: nftxVaultRedeems,
+      amount: nftxVaultRedeems,
     },
   ].filter((e) => e.amount > 0 || e.tokens?.length > 0);
 };

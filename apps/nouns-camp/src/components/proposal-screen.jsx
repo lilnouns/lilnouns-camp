@@ -200,8 +200,8 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
 
   const possibleFormActions =
     !hasCastVote && isVotingOngoing
-      ? ["vote", "onchain-comment"/*, "farcaster-comment"*/]
-      : ["onchain-comment"/*, "farcaster-comment"*/];
+      ? ["vote", "onchain-comment" /*, "farcaster-comment"*/]
+      : ["onchain-comment" /*, "farcaster-comment"*/];
 
   const submitProposalCast = useSubmitProposalCast(proposalId);
 
@@ -1197,6 +1197,8 @@ export const ProposalHeader = ({
             return sum + usdcToEth(amount);
           case "nouns":
             return sum;
+          case "lilnouns":
+            return sum;
           default:
             throw new Error();
         }
@@ -1619,6 +1621,13 @@ const RequestedAmounts = ({ amounts }) => (
               />
             ) : (
               <>{tokens.length} nouns</>
+            );
+
+          case "lilnouns":
+            return (
+              <>
+                {Number(amount)} lil noun{amount > 1 && "s"}
+              </>
             );
 
           default:
