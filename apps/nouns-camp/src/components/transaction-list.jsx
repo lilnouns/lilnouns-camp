@@ -827,7 +827,7 @@ export const TransactionExplanation = ({ transaction: t }) => {
         <>
           Transfer{" "}
           <strong>
-            {t.tokenAmount.toString()} lil {t.tokenAmount > 1 ? "nouns" : "noun"}
+            {Number(t.tokenAmount)} lil {t.tokenAmount > 1 ? "nouns" : "noun"}
           </strong>{" "}
           to{" "}
           <em>
