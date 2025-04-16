@@ -149,6 +149,13 @@ const RequestedAmounts = ({ amounts }) => (
               <>{tokens.length} lil nouns</>
             );
 
+          case "lilnouns":
+            return (
+              <>
+                {Number(amount)} lil noun{amount > 1 && "s"}
+              </>
+            );
+
           default:
             throw new Error();
         }
