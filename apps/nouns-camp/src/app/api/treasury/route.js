@@ -157,7 +157,11 @@ export async function GET() {
             "https://api.coingecko.com/api/v3/simple/price?ids=origin-ether&vs_currencies=eth",
           );
 
-          if (!res.ok) throw new Error();
+          if (!res.ok) {
+            throw new Error(
+              `Failed to fetch from ${res.url}: ${res.status} ${res.statusText}`,
+            );
+          }
 
           const data = await res.json();
           const oethPriceInEth = data["origin-ether"].eth;
@@ -168,26 +172,35 @@ export async function GET() {
         return ["convertionRates", { rethEth, usdcEth, oethEth }];
       })(),
       (async () => {
-        const res = await fetch(
-          "https://eth-api.lido.fi/v1/protocol/steth/apr/sma",
-        );
-        if (!res.ok) throw new Error();
+        const url = "https://eth-api.lido.fi/v1/protocol/steth/apr/sma";
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(
+            `Failed to fetch from ${url}: ${res.status} ${res.statusText}`,
+          );
+        }
         const { data } = await res.json();
         return ["lidoApr", data.smaApr / 100];
       })(),
       (async () => {
-        const res = await fetch(
-          "https://api.rocketpool.net/api/mainnet/payload",
-        );
-        if (!res.ok) throw new Error();
+        const url = "https://api.rocketpool.net/api/mainnet/payload";
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(
+            `Failed to fetch from ${url}: ${res.status} ${res.statusText}`,
+          );
+        }
         const { rethAPR } = await res.json();
         return ["rocketPoolApr", Number(rethAPR) / 100];
       })(),
       (async () => {
-        const res = await fetch(
-          "https://analytics.ousd.com/api/v2/oeth/apr/trailing",
-        );
-        if (!res.ok) throw new Error();
+        const url = "https://analytics.ousd.com/api/v2/oeth/apr/trailing";
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(
+            `Failed to fetch from ${url}: ${res.status} ${res.statusText}`,
+          );
+        }
         const { apy } = await res.json();
         return ["originEtherApr", Number(apy) / 100];
       })(),
