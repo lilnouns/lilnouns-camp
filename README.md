@@ -17,7 +17,7 @@
 
 ### Description
 
-Lil Nouns Camp is a fork of Nouns Camp. You can fork it and use it under the obligation of the GPL v3 license. 
+Lil Nouns Camp is a fork of Nouns Camp. You can fork it and use it under the obligation of the GPL v3 license.
 
 ## Development
 
