@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.81] - 2025-04-21
+
+### 🚀 Features
+
+- *(common)* Add new accessory data for nouns
+
 ## [1.4.0-alpha.80] - 2025-04-16
 
 ### 🐛 Bug Fixes
