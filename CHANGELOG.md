@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.82] - 2025-04-21
+
+### 🐛 Bug Fixes
+
+- *(api)* Improve error handling for fetch requests
+
+### 📚 Documentation
+
+- *(readme)* Fix typo in project description
+
 ## [1.4.0-alpha.81] - 2025-04-21
 
 ### 🚀 Features
