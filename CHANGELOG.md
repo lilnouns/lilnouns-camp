@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.83] - 2025-04-22
+
+### 🐛 Bug Fixes
+
+- *(api)* Update `treasury` APR endpoint and response parsing
+
 ## [1.4.0-alpha.82] - 2025-04-21
 
 ### 🐛 Bug Fixes
