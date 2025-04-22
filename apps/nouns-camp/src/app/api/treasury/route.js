@@ -194,15 +194,15 @@ export async function GET() {
         return ["rocketPoolApr", Number(rethAPR) / 100];
       })(),
       (async () => {
-        const url = "https://analytics.ousd.com/api/v2/oeth/apr/trailing";
+        const url = "https://api.originprotocol.com/api/v2/oeth/apr/trailing/30";
         const res = await fetch(url);
         if (!res.ok) {
           throw new Error(
             `Failed to fetch from ${url}: ${res.status} ${res.statusText}`,
           );
         }
-        const { apy } = await res.json();
-        return ["originEtherApr", Number(apy) / 100];
+        const { apr } = await res.json();
+        return ["originEtherApr", Number(apr) / 100];
       })(),
     ]),
   );
