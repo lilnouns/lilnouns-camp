@@ -410,6 +410,9 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
       case "open-camp-changelog":
         window.open("https://warpcast.com/~/channel/lilnouns", "_blank");
         break;
+      // case "open-camp-discord":
+      //   window.open("https://discord.gg/EvAzqBTF8x", "_blank");
+      //   break;
       case "open-camp-github":
         window.open(
           "https://github.com/lilnouns/lilnouns-camp",
@@ -784,6 +787,11 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                     title: "Changelog",
                     iconRight: <span>{"\u2197"}</span>,
                   },
+                  // {
+                  //   id: "open-camp-discord",
+                  //   title: "Discord",
+                  //   iconRight: <span>{"\u2197"}</span>,
+                  // },
                   {
                     id: "open-camp-github",
                     title: "GitHub",
