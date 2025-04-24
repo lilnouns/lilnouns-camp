@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.84] - 2025-04-24
+
+### 🚀 Features
+
+- *(camp)* Add camp discord server link
+- *(assets)* Add new `body-lilac` and `glasses-lavender`
+
+### 🐛 Bug Fixes
+
+- *(camp)* Add mandatory query param reaction_type to neynar `/reactions` request
+
 ## [1.4.0-alpha.83] - 2025-04-22
 
 ### 🐛 Bug Fixes
