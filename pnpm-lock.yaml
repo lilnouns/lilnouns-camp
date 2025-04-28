@@ -192,7 +192,7 @@ importers:
     devDependencies:
       '@cloudflare/next-on-pages':
         specifier: 1.13.1
-        version: 1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@39.1.1(@swc/core@1.11.22(@swc/helpers@0.5.17)))(wrangler@4.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+        version: 1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@39.1.1(@swc/core@1.11.22(@swc/helpers@0.5.17)))(wrangler@4.13.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@playwright/test':
         specifier: 1.52.0
         version: 1.52.0
@@ -236,8 +236,8 @@ importers:
         specifier: 3.1.2
         version: 3.1.2(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@16.18.11)(@vitest/ui@3.1.2)(jiti@1.21.6)(jsdom@26.1.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))(terser@5.39.0)(yaml@2.7.0)
       wrangler:
-        specifier: 4.13.1
-        version: 4.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+        specifier: 4.13.2
+        version: 4.13.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   packages/common:
     dependencies:
@@ -3814,6 +3814,9 @@ packages:
   bn.js@5.2.1:
     resolution: {integrity: sha512-eXRvHzWyYPBuB4NBy0cmYQjGitUrtqwbvlzP3G6VFnNRbsZQIxQ10PbKKHt8gZ/HW/D/747aDl+QkDqg3KQLMQ==}
 
+  bn.js@5.2.2:
+    resolution: {integrity: sha512-v2YAxEmKaBLahNwE1mjp4WON6huMNeuDvagFZW+ASCuA/ku0bXR9hSMw0XpiqMoA3+rmnyck/tPRSFQkoC9Cuw==}
+
   bowser@2.11.0:
     resolution: {integrity: sha512-AlcaJBi/pqqJBIQ8U9Mcpc9i8Aqxn88Skv5d+xBX006BY5u8N3mGLHa5Lgppa7L/HfwgwLgZ6NYs+Ag6uUmJRA==}
 
@@ -5760,8 +5763,8 @@ packages:
     engines: {node: '>=16.13'}
     hasBin: true
 
-  miniflare@4.20250424.0:
-    resolution: {integrity: sha512-eROPDAx4KCIFtfRyRV9d3FJaF94UjW57gRUZz7gk2wyyOuHYVVJnWWyWrZfvRqzd4WfoJLDZlczhlZ9aZgJ2cQ==}
+  miniflare@4.20250424.1:
+    resolution: {integrity: sha512-CqBzp8DPO76DLRBSx5/1GM200B5SbfpkNA9n/IxFGY7n6YNc1ypPYy/J0tQqj7vOA62jyD/3kPVbUXxbPKe5SQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -7459,8 +7462,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.13.1:
-    resolution: {integrity: sha512-ofF1QAoRYwmg/8ukoW6235ig2oGw187ETDN99ATIf+i0RZ+iYc+5ykzNxomY+T7fvRHKs+xh3at3LdFlwTdPQQ==}
+  wrangler@4.13.2:
+    resolution: {integrity: sha512-CryA3MRzjNceFVef78ymqhxXrIYQoYKQIPITvvd/Yn3SX4UAADZOOrztatNcgRAyXssjdGH4JRw7fKoSnOaOog==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -7767,7 +7770,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/next-on-pages@1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@39.1.1(@swc/core@1.11.22(@swc/helpers@0.5.17)))(wrangler@4.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
+  '@cloudflare/next-on-pages@1.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(vercel@39.1.1(@swc/core@1.11.22(@swc/helpers@0.5.17)))(wrangler@4.13.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
     dependencies:
       acorn: 8.14.0
       ast-types: 0.14.2
@@ -7782,7 +7785,7 @@ snapshots:
       pcre-to-regexp: 1.1.0
       semver: 7.6.3
       vercel: 39.1.1(@swc/core@1.11.22(@swc/helpers@0.5.17))
-      wrangler: 4.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      wrangler: 4.13.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -7828,7 +7831,7 @@ snapshots:
 
   '@coinbase/wallet-sdk@3.9.3':
     dependencies:
-      bn.js: 5.2.1
+      bn.js: 5.2.2
       buffer: 6.0.3
       clsx: 1.2.1
       eth-block-tracker: 7.1.0
@@ -12172,6 +12175,8 @@ snapshots:
 
   bn.js@5.2.1: {}
 
+  bn.js@5.2.2: {}
+
   bowser@2.11.0: {}
 
   brace-expansion@1.1.11:
@@ -14433,7 +14438,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  miniflare@4.20250424.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
+  miniflare@4.20250424.1(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       acorn: 8.14.0
@@ -16528,13 +16533,13 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250424.0
       '@cloudflare/workerd-windows-64': 1.20250424.0
 
-  wrangler@4.13.1(bufferutil@4.0.8)(utf-8-validate@5.0.10):
+  wrangler@4.13.2(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.1(unenv@2.0.0-rc.15)(workerd@1.20250424.0)
       blake3-wasm: 2.1.5
       esbuild: 0.25.2
-      miniflare: 4.20250424.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      miniflare: 4.20250424.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       path-to-regexp: 8.2.0
       unenv: 2.0.0-rc.15
       workerd: 1.20250424.0
