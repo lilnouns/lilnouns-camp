@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.85] - 2025-05-01
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
 ## [1.4.0-alpha.84] - 2025-04-24
 
 ### 🚀 Features
