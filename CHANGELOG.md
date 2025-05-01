@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.86] - 2025-05-01
+
+### 🚀 Features
+
+- *(common)* Add `head-green-snake` image resource
+
 ## [1.4.0-alpha.85] - 2025-05-01
 
 ### 🐛 Bug Fixes
