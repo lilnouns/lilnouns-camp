@@ -41,8 +41,6 @@ import createEmojiPlugin from "./slate/plugins/emojis.js";
 import createInlineLinksPlugin from "./slate/plugins/inline-links.js";
 import createImagesPlugin from "./slate/plugins/images.js";
 import createHeadingsPlugin from "./slate/plugins/headings.js";
-import createUserMentionsPlugin from "./slate/plugins/user-mentions.js";
-import createChannelLinksPlugin from "./slate/plugins/channel-link.js";
 import { search, mergePlugins, fromMessageBlocks } from "./slate/utils.js";
 
 const FormDialog = React.lazy(() => import("./form-dialog.js"));
@@ -425,8 +423,6 @@ const RichTextEditor = React.forwardRef(
     const { editor, handlers, customElementsByNodeType } = React.useMemo(() => {
       const { middleware, elements, handlers } = mergePlugins(
         [
-          createUserMentionsPlugin,
-          createChannelLinksPlugin,
           createInlineLinksPlugin,
           createEmojiPlugin,
           createSensibleVoidsPlugin,
@@ -1222,7 +1218,7 @@ export const Toolbar = ({ disabled: disabled_, onFocus, onBlur, ...props }) => {
             justifyContent: "center",
             width: "2.6rem",
             height: "2.6rem",
-            borderRadius: "0.3rem",
+            borderRadius: "0.4rem",
             color: t.colors.textNormal,
             ":disabled": { color: t.colors.textMuted },
             "@media(hover: hover)": {

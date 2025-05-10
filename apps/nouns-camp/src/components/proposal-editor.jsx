@@ -492,7 +492,7 @@ const FloatingToolbar = ({
             css={(t) =>
               css({
                 padding: "0.3rem",
-                borderRadius: "0.3rem",
+                borderRadius: "0.6rem",
                 background: t.colors.popoverBackground,
                 boxShadow: t.shadows.elevationHigh,
               })
@@ -569,7 +569,7 @@ const FixedBottomToolbar = ({ isVisible = false, onFocus, onBlur }) => {
             "[data-box]": {
               pointerEvents: "auto",
               padding: "0.3rem",
-              borderRadius: "0.3rem",
+              borderRadius: "0.6rem",
               background: t.colors.popoverBackground,
               boxShadow: t.shadows.elevationLow,
               transition: "0.1s opacity ease-out",
@@ -1407,7 +1407,7 @@ const ProposalContentEditor = ({
                 css={(t) =>
                   css({
                     padding: "1.6rem",
-                    borderRadius: "0.3rem",
+                    borderRadius: "0.6rem",
                     background: t.colors.backgroundSecondary,
                     border: 0,
                     width: "100%",
@@ -1650,7 +1650,7 @@ export const EditorRenderError = ({ body }) => (
         css({
           padding: "2.4rem",
           background: t.colors.backgroundSecondary,
-          borderRadius: "0.3rem",
+          borderRadius: "0.6rem",
           details: {
             fontSize: t.text.sizes.small,
             userSelect: "text",

@@ -14,6 +14,29 @@ const fixUrl = (url) => {
   }
 };
 
+const matchYouTubeUrl = (url) => {
+  // This regex extracts YouTube video IDs from URLs:
+  // - Matches youtube.com/watch?v=, youtube.com/embed/, youtube.com/shorts/ or youtu.be/ domains
+  // - Supports URLs with additional search parameters (like &t=30s)
+  // - (?:...) creates non-capturing groups for the domain patterns
+  // - The capturing group ([a-zA-Z0-9_-]{11}) extracts the 11-character video ID
+  // - The ID must be exactly 11 characters of letters, numbers, underscores or hyphens
+  const urlRegex =
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:[?&].*)?/;
+  const match = url.match(urlRegex);
+  return match ? match[1] : null;
+};
+
+const matchLoomUrl = (url) => {
+  // This regex extracts Loom video IDs from URLs:
+  // - Matches loom.com/share/ or loom.com/embed/ domains
+  // - Supports URLs with additional search parameters
+  // - The capturing group extracts the UUID-style video ID (alphanumeric with hyphens)
+  const urlRegex = /(?:loom\.com\/(?:share\/|embed\/))([a-f0-9-]+)/;
+  const match = url.match(urlRegex);
+  return match ? match[1] : null;
+};
+
 const commonHtmlEnties = {
   amp: "&",
   apos: "'",
@@ -86,9 +109,53 @@ const parseToken = (token, context = {}) => {
           };
       }
 
+      const nonEmptyChildren = children.filter(
+        (c) => !(c.type === "text" && c.text.trim() === ""),
+      );
+
+      // Match video blocks
+      if (
+        nonEmptyChildren.length === 1 &&
+        nonEmptyChildren[0].type === "link"
+      ) {
+        const linkToken = nonEmptyChildren[0];
+        const children = linkToken.children ?? [{ text: linkToken.label }];
+
+        // Only switch out links that are labeled as links, to not mess with
+        // author expectations too much
+        const isUrlLabeledLink = (() => {
+          const isPlainText =
+            children.length === 1 &&
+            (children[0].type === "text" ||
+              (children[0].type == null && children[0].text != null));
+
+          if (!isPlainText) return false; // Complex label
+
+          try {
+            new URL(children[0].text);
+            return true;
+          } catch (e) {
+            return false;
+          }
+        })();
+
+        const isImageLink =
+          nonEmptyChildren.length === 1 && nonEmptyChildren[0].type === "image";
+
+        if (isUrlLabeledLink || isImageLink) {
+          const youtubeVideoId = matchYouTubeUrl(linkToken.url);
+          if (youtubeVideoId != null)
+            return { type: "video", provider: "youtube", ref: youtubeVideoId };
+
+          const loomVideoId = matchLoomUrl(linkToken.url);
+          if (loomVideoId != null)
+            return { type: "video", provider: "loom", ref: loomVideoId };
+        }
+      }
+
       // Check if paragraph consists of only images or empty text
-      const isImageParagraph = children.every(
-        (t) => t.type === "image" || t.text?.trim() === "",
+      const isImageParagraph = nonEmptyChildren.every(
+        (t) => t.type === "image",
       );
 
       // If it's only images, convert to image grid
@@ -103,6 +170,7 @@ const parseToken = (token, context = {}) => {
         return { type: "paragraph", children };
 
       // Handle mixed content (images and text) by organizing into alternating paragraphs and image grids
+      // TODO: Recursively run processing from above, video etc.
       return children.reduce((nodes, child) => {
         const lastNode = nodes[nodes.length - 1];
         if (child.type === "image") {
@@ -187,6 +255,12 @@ const parseToken = (token, context = {}) => {
     case "blockquote":
       return {
         type: "quote",
+        children: parseChildren(token, parseToken, context),
+      };
+
+    case "aside":
+      return {
+        type: "callout",
         children: parseChildren(token, parseToken, context),
       };
 
@@ -362,21 +436,38 @@ const insExtension = {
   },
   tokenizer(src) {
     const match = src.match(/^<ins>(.*?)<\/ins>/);
+    if (!match) return;
 
-    if (match) {
-      return {
-        type: "ins",
-        raw: match[0],
-        text: match[1],
-        tokens: [{ type: "text", raw: match[1], text: match[1] }],
-      };
-    }
-
-    return;
+    return {
+      type: "ins",
+      raw: match[0],
+      text: match[1],
+      tokens: [{ type: "text", raw: match[1], text: match[1] }],
+    };
   },
 };
 
-marked.use({ extensions: [insExtension] });
+const asideExtension = {
+  name: "aside",
+  level: "block",
+  start(src) {
+    return src.indexOf("<aside>");
+  },
+  tokenizer(src) {
+    const match = src.match(/^<aside>(.*?)<\/aside>/);
+    if (!match) return;
+
+    const token = {
+      type: "aside",
+      raw: match[0],
+      tokens: [],
+    };
+    this.lexer.blockTokens(match[1], token.tokens);
+    return token;
+  },
+};
+
+marked.use({ extensions: [asideExtension, insExtension] });
 
 export const toMessageBlocks = (text, { displayImages = true } = {}) => {
   const tokens = marked.lexer(text);
