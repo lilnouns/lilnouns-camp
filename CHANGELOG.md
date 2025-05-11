@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.87] - 2025-05-11
+
+### 🐛 Bug Fixes
+
+- *(treasury-dialog)* Return null for unsupported currency
+
 ## [1.4.0-alpha.86] - 2025-05-01
 
 ### 🚀 Features
