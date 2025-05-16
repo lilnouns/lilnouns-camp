@@ -81,6 +81,6 @@
     "use-debounce": "10.0.4",
     "viem": "2.22.17",
     "wagmi": "2.14.9",
-    "zustand": "4.5.6"
+    "zustand": "4.5.7"
   }
 }
