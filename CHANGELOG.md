@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.88] - 2025-05-19
+
+### 🚀 Features
+
+- Pull changes from upstream (#1170)
+- *(common)* Add new image asset `head-sock`
+
 ## [1.4.0-alpha.87] - 2025-05-11
 
 ### 🐛 Bug Fixes
