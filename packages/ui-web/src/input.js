@@ -46,7 +46,7 @@ const Input = React.forwardRef(
             background: t.colors.backgroundModifierNormal,
             color: t.colors.textNormal,
             fontWeight: "400",
-            borderRadius: "0.4rem",
+            borderRadius: "0.6rem",
             width: "100%",
             maxWidth: "100%",
             outline: "none",
@@ -106,6 +106,7 @@ const Input = React.forwardRef(
                 color: t.colors.textDimmed,
                 marginTop: "0.7rem",
                 strong: { fontWeight: t.text.weights.emphasis },
+                "p + p": { marginTop: "0.7em" },
               })
             }
           >
