@@ -2439,8 +2439,8 @@ export const useMainFeedItems = (categories, { enabled = true }) => {
                   // case "candidates":
                   //   return buildCandidateItems();
                   // case "topics":
-                    return buildTopicItems();
-                  case "propdates":
+                  //   return buildTopicItems();
+                  // case "propdates":
                   //   return buildPropdateItems();
                   // case "flow-votes":
                   //   return buildFlowVotesFeed(s);
