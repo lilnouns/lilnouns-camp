@@ -208,13 +208,13 @@ const createDigestSections = ({
       sort: sortProposalsByStartsSoon,
       truncationThreshold: 2,
     },
-    // {
-    //   key: "candidates:new",
-    //   title: "New candidates",
-    //   description: `Created within the last ${DIGEST_NEW_THRESHOLD_IN_DAYS} days`,
-    //   sort: sortCandidatesReverseChronological,
-    //   truncationThreshold: 2,
-    // },
+    {
+      key: "candidates:new",
+      title: "New candidates",
+      description: `Created within the last ${DIGEST_NEW_THRESHOLD_IN_DAYS} days`,
+      sort: sortCandidatesReverseChronological,
+      truncationThreshold: 2,
+    },
     {
       key: "candidates:active",
       title: "Recently active candidates",
