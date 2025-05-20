@@ -1082,7 +1082,13 @@ const CandidateOrTopicListItem = React.memo(
 );
 
 const AccountListItem = React.memo(
-  ({ address: accountAddress, votes: votes_, revoteCount }) => {
+  ({
+    address: accountAddress,
+    votes: votes_,
+    revoteCount,
+    executedProposalsCount,
+    totalProposalsCount,
+  }) => {
     const containerRef = React.useRef();
     const hasBeenOnScreenRef = React.useRef(false);
 
@@ -1166,6 +1172,26 @@ const AccountListItem = React.memo(
                     element: revoteCount != null && (
                       <span className="nowrap">
                         {revoteCount} {revoteCount === 1 ? "revote" : "revotes"}
+                      </span>
+                    ),
+                  },
+                  {
+                    key: "executedProposals",
+                    element: executedProposalsCount != null && (
+                      <span className="nowrap">
+                        {executedProposalsCount} succeeded{" "}
+                        {executedProposalsCount === 1
+                          ? "proposal"
+                          : "proposals"}
+                      </span>
+                    ),
+                  },
+                  {
+                    key: "totalProposals",
+                    element: totalProposalsCount != null && (
+                      <span className="nowrap">
+                        {totalProposalsCount} total{" "}
+                        {totalProposalsCount === 1 ? "proposal" : "proposals"}
                       </span>
                     ),
                   },
