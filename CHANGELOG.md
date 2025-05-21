@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.89] - 2025-05-21
+
+### 🚀 Features
+
+- Add command palette
+- Add topics filter to landing page feed
+
+### 🐛 Bug Fixes
+
+- Improve vertical alignment
+- Properly open command palette
+
+### 🚜 Refactor
+
+- *(landing-screen)* Comment out `topics` filter
+- *(landing-screen)* Restore `candidates:new` filter
+- *(store)* Comment out unused cases in the switch
+- *(command-palette)* Comment out unused commands
+- *(command-palette)* Comment out unused candidate action
+
 ## [1.4.0-alpha.88] - 2025-05-19
 
 ### 🚀 Features
