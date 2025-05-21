@@ -92,13 +92,13 @@ const commands = [
     keywords: ["new", "proposal", "create", "start", "proposals"],
     action: (navigate) => navigate("/new"),
   },
-  {
-    id: "create-candidate",
-    category: "proposals",
-    label: "Create Candidate...",
-    keywords: ["new", "candidate", "create", "proposals"],
-    action: (navigate) => navigate("/new"),
-  },
+  // {
+  //   id: "create-candidate",
+  //   category: "proposals",
+  //   label: "Create Candidate...",
+  //   keywords: ["new", "candidate", "create", "proposals"],
+  //   action: (navigate) => navigate("/new"),
+  // },
   // Topics section
   // {
   //   id: "go-to-topics",
