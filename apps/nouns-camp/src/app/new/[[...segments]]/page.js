@@ -1,4 +1,5 @@
 "use client";
+import { use } from "react";
 
 import { useWallet } from "@/hooks/wallet";
 import ClientAppProvider from "@/app/client-app-provider";
@@ -7,7 +8,8 @@ import ConnectWalletScreen from "@/components/connect-wallet-screen";
 
 // export const runtime = "edge";
 
-export default function Page({ params }) {
+export default function Page(props) {
+  const params = use(props.params);
   const draftId = params.segments?.[0];
   return (
     <ClientAppProvider>
