@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.90] - 2025-05-21
+
+### 🚀 Features
+
+- Add passed proposals sorting strategy to /voters
+
+### 🐛 Bug Fixes
+
+- Bust feed filter cache to show topics to everyone
+
 ## [1.4.0-alpha.89] - 2025-05-21
 
 ### 🚀 Features
