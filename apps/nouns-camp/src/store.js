@@ -2218,7 +2218,7 @@ export const useProposalCandidateVotingPower = (candidateId) => {
   const proposerDelegate = useDelegate(candidate.proposerId);
   const activeProposerIds = useProposals({ filter: "active" }).flatMap((p) => [
     p.proposerId,
-    ...p.signers.map((s) => s.id),
+    ...(p.signers?.map((s) => s.id) ?? []),
   ]);
 
   const proposerDelegateNounIds =
@@ -2387,11 +2387,28 @@ export const useMainFeedItems = (categories, { enabled = true }) => {
           );
 
         const buildCandidateItems = () =>
-          Object.keys(s.proposalCandidatesById).flatMap((candidateId) =>
-            buildCandidateFeed(s, candidateId, {
-              casts: castsByCandidateId[candidateId],
-            }),
-          );
+          Object.keys(s.proposalCandidatesById)
+            .filter((candidateId) => {
+              const candidate = s.proposalCandidatesById[candidateId];
+              return candidate.latestVersion?.type !== "topic";
+            })
+            .flatMap((candidateId) =>
+              buildCandidateFeed(s, candidateId, {
+                casts: castsByCandidateId[candidateId],
+              }),
+            );
+
+        const buildTopicItems = () =>
+          Object.keys(s.proposalCandidatesById)
+            .filter((candidateId) => {
+              const candidate = s.proposalCandidatesById[candidateId];
+              return candidate.latestVersion?.type === "topic";
+            })
+            .flatMap((candidateId) =>
+              buildCandidateFeed(s, candidateId, {
+                casts: castsByCandidateId[candidateId],
+              }),
+            );
 
         const buildPropdateItems = () =>
           Object.values(s.propdatesByProposalId).flatMap((propdates) =>
@@ -2405,6 +2422,7 @@ export const useMainFeedItems = (categories, { enabled = true }) => {
                 ...buildNounsTokenRepresentationFeed(s),
                 ...buildProposalItems(),
                 ...buildCandidateItems(),
+                ...buildTopicItems(),
                 ...buildPropdateItems(),
                 ...buildFlowVotesFeed(s),
               ]
@@ -2420,6 +2438,8 @@ export const useMainFeedItems = (categories, { enabled = true }) => {
                     return buildProposalItems();
                   // case "candidates":
                   //   return buildCandidateItems();
+                  // case "topics":
+                  //   return buildTopicItems();
                   // case "propdates":
                   //   return buildPropdateItems();
                   // case "flow-votes":
