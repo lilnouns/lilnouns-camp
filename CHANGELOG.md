@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.91] - 2025-05-23
+
+### 🚀 Features
+
+- *(activity-feed)* Increase ETH decimal precision to 4
+
 ## [1.4.0-alpha.90] - 2025-05-21
 
 ### 🚀 Features
@@ -11,6 +17,11 @@ All notable changes to this project will be documented in this file.
 ### 🐛 Bug Fixes
 
 - Bust feed filter cache to show topics to everyone
+- *(browse-accounts-screen)* Correct grammar in labels
+
+### ⚙️ Miscellaneous Tasks
+
+- *(gitignore)* Update ignored files
 
 ## [1.4.0-alpha.89] - 2025-05-21
 
