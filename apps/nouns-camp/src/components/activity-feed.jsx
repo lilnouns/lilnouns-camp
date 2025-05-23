@@ -1899,7 +1899,7 @@ const NounTransferItem = ({ item, isOnScreen }) => {
                 {" "}
                 for{" "}
                 <FormattedEthWithConditionalTooltip
-                  decimals={2}
+                  decimals={4}
                   truncationDots={false}
                   value={transferMeta.amount}
                 />
@@ -2031,7 +2031,7 @@ const AuctionSettledItem = ({ item }) => {
           {" "}
           for{" "}
           <FormattedEthWithConditionalTooltip
-            decimals={2}
+            decimals={4}
             truncationDots={false}
             value={noun.auction.amount}
           />
