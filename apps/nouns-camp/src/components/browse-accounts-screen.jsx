@@ -129,7 +129,7 @@ const useExecutedProposalsCount = ({ enabled = true, start, end } = {}) => {
             ) {
               id
               proposer { id }
-              signers { id }
+            # signers { id }
             }
           }`,
         });
