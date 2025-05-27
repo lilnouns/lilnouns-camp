@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.92] - 2025-05-27
+
+### 🐛 Bug Fixes
+
+- Display stream cancellation information (#116)
+
 ## [1.4.0-alpha.91] - 2025-05-23
 
 ### 🚀 Features
