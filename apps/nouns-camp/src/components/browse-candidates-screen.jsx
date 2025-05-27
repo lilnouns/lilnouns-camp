@@ -397,7 +397,7 @@ const BrowseCandidatesScreen = ({ candidateType = "proposal" }) => {
               ) {
                 id
                 createdTimestamp
-                signers { id }
+              # signers { id }
               }
             }`,
           });
