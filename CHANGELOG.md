@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.94] - 2025-05-27
+
+### 🚜 Refactor
+
+- *(browse-accounts-screen)* Comment out unused `signers`
+- *(browse-candidates-screen)* Comment out unused `signers`
+
 ## [1.4.0-alpha.93] - 2025-05-27
 
 ### 🚜 Refactor
