@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.95] - 2025-05-30
+
+### 🚀 Features
+
+- Add basic video support to rich text editor
+
 ## [1.4.0-alpha.94] - 2025-05-27
 
 ### 🚜 Refactor
