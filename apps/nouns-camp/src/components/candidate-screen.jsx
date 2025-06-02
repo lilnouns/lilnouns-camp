@@ -104,7 +104,7 @@ const useActiveProposerIds = () => {
   const activeProposals = useProposals({ filter: "active" });
   return activeProposals.flatMap((p) => [
     p.proposerId,
-    ...p.signers.map((s) => s.id),
+    ...(p.signers?.map((s) => s.id) ?? []),
   ]);
 };
 
