@@ -1128,7 +1128,7 @@ const createStore = ({ initialState, publicClient }) =>
         // Populate ENS cache async
         reverseResolveEnsAddresses(client, arrayUtils.unique(accountAddresses));
 
-        (async () => {
+        await (async () => {
           const fetchedCandidateIds = proposalCandidates.map((c) => c.id);
 
           const { proposalCandidateVersions } = await subgraphFetch({
@@ -1136,10 +1136,10 @@ const createStore = ({ initialState, publicClient }) =>
               proposalCandidateVersions(
                 where: {
                   or: [${proposals.map(
-                    (p) => `{
+              (p) => `{
                       content_: { matchingProposalIds_contains: ["${p.id}"] }
                     }`,
-                  )}]
+            )}]
                 },
                 first: 1000
               ) {
