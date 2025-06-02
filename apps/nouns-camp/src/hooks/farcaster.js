@@ -101,8 +101,8 @@ export const useProposalCasts = (
       const searchParams = new URLSearchParams({ proposal: proposalId });
       const res = await fetch(`/api/farcaster-proposal-casts?${searchParams}`);
       const { casts, accounts } = await res.json();
-      const accountsByFid = arrayUtils.indexBy((a) => a.fid, accounts);
-      const castsByHash = arrayUtils.indexBy((c) => c.hash, casts);
+      const accountsByFid = arrayUtils.indexBy((a) => a.fid, accounts ?? []);
+      const castsByHash = arrayUtils.indexBy((c) => c.hash, casts ?? []);
       setState((s) => ({
         ...s,
         accountsByFid: objectUtils.merge(
