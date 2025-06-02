@@ -168,9 +168,9 @@ export const FULL_PROPOSAL_CANDIDATE_FIELDS = `
         calldatas
         matchingProposalIds
         proposalIdToUpdate
-        contentSignatures {
-          ...CandidateContentSignatureFields
-        }
+      # contentSignatures {
+      #   ...CandidateContentSignatureFields
+      # }
       }
     }
   }`;
