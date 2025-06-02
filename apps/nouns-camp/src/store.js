@@ -504,7 +504,7 @@ const createStore = ({ initialState, publicClient }) =>
       return subgraphEntities;
     };
 
-    const fetchProposalsVersions = async  () => Promise.resolve(null)
+    const fetchProposalsVersions = async () => Promise.resolve(null);
     // const fetchProposalsVersions = async (proposalIds) =>
     //   subgraphFetch({
     //     query: `{
@@ -522,67 +522,65 @@ const createStore = ({ initialState, publicClient }) =>
     //     }`,
     //   });
 
-    const fetchCandidatesFeedbackPosts = async  () => Promise.resolve(null)
-    // const fetchCandidatesFeedbackPosts = (candidateIds) =>
-    //   subgraphFetch({
-    //     query: `
-    //       ${CANDIDATE_FEEDBACK_FIELDS}
-    //       query {
-    //         candidateFeedbacks(
-    //           where: {
-    //             candidate_in: [${candidateIds.map((id) => JSON.stringify(id))}]
-    //           },
-    //           first: 1000
-    //         ) {
-    //           ...CandidateFeedbackFields
-    //         }
-    //       }`,
-    //   });
+    const fetchCandidatesFeedbackPosts = (candidateIds) =>
+      subgraphFetch({
+        query: `
+          ${CANDIDATE_FEEDBACK_FIELDS}
+          query {
+            candidateFeedbacks(
+              where: {
+                candidate_in: [${candidateIds.map((id) => JSON.stringify(id))}]
+              },
+              first: 1000
+            ) {
+              ...CandidateFeedbackFields
+            }
+          }`,
+      });
 
-    const fetchProposalCandidate = async  () => Promise.resolve(null)
-    // const fetchProposalCandidate = async (rawId) => {
-    //   const [account, ...slugParts] = rawId.split("-");
-    //   const id = [account.toLowerCase(), ...slugParts].join("-");
-    //
-    //   const data = await subgraphFetch({
-    //     query: `
-    //       ${FULL_PROPOSAL_CANDIDATE_FIELDS}
-    //       ${CANDIDATE_FEEDBACK_FIELDS}
-    //       query {
-    //         proposalCandidate(id: ${JSON.stringify(id)}) {
-    //           ...FullProposalCandidateFields
-    //           versions {
-    //             id
-    //             createdBlock
-    //             createdTimestamp
-    //             updateMessage
-    //             content {
-    //               title
-    //               description
-    //               targets
-    //               values
-    //               signatures
-    //               calldatas
-    //               proposalIdToUpdate
-    //             }
-    //           }
-    //         }
-    //
-    //         candidateFeedbacks(
-    //           where: {
-    //             candidate_: { id: ${JSON.stringify(id)} }
-    //           }
-    //         ) {
-    //           ...CandidateFeedbackFields
-    //         }
-    //       }`,
-    //   });
-    //
-    //   if (data.proposalCandidate == null)
-    //     return Promise.reject(new Error("not-found"));
-    //
-    //   return data.proposalCandidate;
-    // };
+    const fetchProposalCandidate = async (rawId) => {
+      const [account, ...slugParts] = rawId.split("-");
+      const id = [account.toLowerCase(), ...slugParts].join("-");
+
+      const data = await subgraphFetch({
+        query: `
+          ${FULL_PROPOSAL_CANDIDATE_FIELDS}
+          ${CANDIDATE_FEEDBACK_FIELDS}
+          query {
+            proposalCandidate(id: ${JSON.stringify(id)}) {
+              ...FullProposalCandidateFields
+              versions {
+                id
+                createdBlock
+                createdTimestamp
+                updateMessage
+                content {
+                  title
+                  description
+                  targets
+                  values
+                  signatures
+                  calldatas
+                  proposalIdToUpdate
+                }
+              }
+            }
+
+            candidateFeedbacks(
+              where: {
+                candidate_: { id: ${JSON.stringify(id)} }
+              }
+            ) {
+              ...CandidateFeedbackFields
+            }
+          }`,
+      });
+
+      if (data.proposalCandidate == null)
+        return Promise.reject(new Error("not-found"));
+
+      return data.proposalCandidate;
+    };
 
     const fetchProposals = async (ids) => {
       if (ids == null || ids.length === 0) return [];
@@ -792,20 +790,20 @@ const createStore = ({ initialState, publicClient }) =>
             #     id
             #   }
             # }
-            # proposalCandidateVersions(
-            #   where: {
-            #     content_: {
-            #       matchingProposalIds_contains: ["${id}"]
-            #     }
-            #   }
-            # ) {
-            #   id
-            #   createdBlock
-            #   createdTimestamp
-            #   updateMessage
-            #   proposal { id }
-            #   content { matchingProposalIds, proposalIdToUpdate }
-            # }
+              proposalCandidateVersions(
+                where: {
+                  content_: {
+                    matchingProposalIds_contains: ["${id}"]
+                  }
+                }
+              ) {
+                id
+                createdBlock
+                createdTimestamp
+                updateMessage
+                proposal { id }
+                content { matchingProposalIds, proposalIdToUpdate }
+              }
             }`,
         });
 
@@ -1057,8 +1055,7 @@ const createStore = ({ initialState, publicClient }) =>
             }`,
         }),
       fetchBrowseScreenData: async (client, { skip = 0, first = 1000 }) => {
-        const proposalCandidates = []
-        const { proposals/*, proposalCandidates*/ } = await subgraphFetch({
+        const { proposals, proposalCandidates } = await subgraphFetch({
           query: `
             ${FULL_PROPOSAL_CANDIDATE_FIELDS}
             query {
@@ -1101,14 +1098,14 @@ const createStore = ({ initialState, publicClient }) =>
                 signatures
                 calldatas
               }
-           #  proposalCandidates(
-           #    orderBy: createdBlock,
-           #    orderDirection: desc,
-           #    skip: ${skip},
-           #    first: ${first}
-           #  ) {
-           #    ...FullProposalCandidateFields
-           #  }
+              proposalCandidates(
+                orderBy: createdBlock,
+                orderDirection: desc,
+                skip: ${skip},
+                first: ${first}
+              ) {
+                ...FullProposalCandidateFields
+              }
             }`,
         });
 
@@ -1117,7 +1114,7 @@ const createStore = ({ initialState, publicClient }) =>
         for (const p of proposals)
           accountAddresses.push(
             p.proposerId,
-            ...(p.signers ?? []).map((s) => s ? s.id : undefined),
+            ...(p.signers ?? []).map((s) => (s ? s.id : undefined)),
           );
 
         for (const c of proposalCandidates)
@@ -1131,48 +1128,48 @@ const createStore = ({ initialState, publicClient }) =>
         // Populate ENS cache async
         reverseResolveEnsAddresses(client, arrayUtils.unique(accountAddresses));
 
-        // (async () => {
-        //   const fetchedCandidateIds = proposalCandidates.map((c) => c.id);
-        //
-        //   const { proposalCandidateVersions } = await subgraphFetch({
-        //     query: `{
-        //       proposalCandidateVersions(
-        //         where: {
-        //           or: [${proposals.map(
-        //             (p) => `{
-        //               content_: { matchingProposalIds_contains: ["${p.id}"] }
-        //             }`,
-        //           )}]
-        //         },
-        //         first: 1000
-        //       ) {
-        //         content { proposalIdToUpdate, matchingProposalIds }
-        //         proposal { id }
-        //       }
-        //     }`,
-        //   });
-        //
-        //   const missingCandidateIds = arrayUtils.unique(
-        //     proposalCandidateVersions
-        //       .map((v) => v.proposal.id)
-        //       .filter((id) => !fetchedCandidateIds.includes(id)),
-        //   );
-        //
-        //   subgraphFetch({
-        //     query: `
-        //       ${CANDIDATE_FEEDBACK_FIELDS}
-        //       query {
-        //         candidateFeedbacks(
-        //           where: {
-        //             candidate_in: [${missingCandidateIds.map((id) => JSON.stringify(id))}]
-        //           },
-        //           first: 1000
-        //         ) {
-        //           ...CandidateFeedbackFields
-        //         }
-        //       }`,
-        //   });
-        // })();
+        (async () => {
+          const fetchedCandidateIds = proposalCandidates.map((c) => c.id);
+
+          const { proposalCandidateVersions } = await subgraphFetch({
+            query: `{
+              proposalCandidateVersions(
+                where: {
+                  or: [${proposals.map(
+                    (p) => `{
+                      content_: { matchingProposalIds_contains: ["${p.id}"] }
+                    }`,
+                  )}]
+                },
+                first: 1000
+              ) {
+                content { proposalIdToUpdate, matchingProposalIds }
+                proposal { id }
+              }
+            }`,
+          });
+
+          const missingCandidateIds = arrayUtils.unique(
+            proposalCandidateVersions
+              .map((v) => v.proposal.id)
+              .filter((id) => !fetchedCandidateIds.includes(id)),
+          );
+
+          subgraphFetch({
+            query: `
+              ${CANDIDATE_FEEDBACK_FIELDS}
+              query {
+                candidateFeedbacks(
+                  where: {
+                    candidate_in: [${missingCandidateIds.map((id) => JSON.stringify(id))}]
+                  },
+                  first: 1000
+                ) {
+                  ...CandidateFeedbackFields
+                }
+              }`,
+          });
+        })();
 
         // Fetch less urgent data async
         subgraphFetch({
@@ -1202,17 +1199,17 @@ const createStore = ({ initialState, publicClient }) =>
             #   proposal { id }
             # }
 
-            # proposalCandidateVersions(
-            #   where: {
-            #     proposal_in: [${proposalCandidates.map((c) => JSON.stringify(c.id))}]
-            #   }
-            # ) {
-            #   id
-            #   createdBlock
-            #   createdTimestamp
-            #   updateMessage
-            #   proposal { id }
-            # }
+              proposalCandidateVersions(
+                where: {
+                  proposal_in: [${proposalCandidates.map((c) => JSON.stringify(c.id))}]
+                }
+              ) {
+                id
+                createdBlock
+                createdTimestamp
+                updateMessage
+                proposal { id }
+              }
 
               proposalFeedbacks(
                 where: {
@@ -1223,14 +1220,14 @@ const createStore = ({ initialState, publicClient }) =>
                 ...ProposalFeedbackFields
               }
 
-            # candidateFeedbacks(
-            #   where: {
-            #     candidate_in: [${proposalCandidates.map((c) => JSON.stringify(c.id))}]
-            #   },
-            #   first: 1000
-            # ) {
-            #   ...CandidateFeedbackFields
-            # }
+              candidateFeedbacks(
+                where: {
+                  candidate_in: [${proposalCandidates.map((c) => JSON.stringify(c.id))}]
+                },
+                first: 1000
+              ) {
+                ...CandidateFeedbackFields
+              }
             }`,
         });
       },
@@ -1294,15 +1291,15 @@ const createStore = ({ initialState, publicClient }) =>
                     votes { ...VoteFields }
                   }
 
-                # proposalCandidates(
-                #   orderBy: createdBlock,
-                #   orderDirection: desc,
-                #   skip: ${skip},
-                #   first: ${first},
-                #   where: { proposer: "${id}" }
-                # ) {
-                #   ...FullProposalCandidateFields
-                # }
+                  proposalCandidates(
+                    orderBy: createdBlock,
+                    orderDirection: desc,
+                    skip: ${skip},
+                    first: ${first},
+                    where: { proposer: "${id}" }
+                  ) {
+                    ...FullProposalCandidateFields
+                  }
                   votes(
                     orderBy: blockNumber,
                     orderDirection: desc,
@@ -1312,13 +1309,13 @@ const createStore = ({ initialState, publicClient }) =>
                   ) {
                     ...VoteFields
                   }
-                # candidateFeedbacks(
-                #   skip: ${skip},
-                #   first: ${first},
-                #   where: { voter: "${id}" }
-                # ) {
-                #   ...CandidateFeedbackFields
-                # }
+                  candidateFeedbacks(
+                    skip: ${skip},
+                    first: ${first},
+                    where: { voter: "${id}" }
+                  ) {
+                    ...CandidateFeedbackFields
+                  }
                   proposalFeedbacks(
                     skip: ${skip},
                     first: ${first},
@@ -1373,50 +1370,49 @@ const createStore = ({ initialState, publicClient }) =>
           }),
 
           (async () => {
-            return Promise.resolve({ proposalCandidates: null });
             // Fetch signatures, then content IDs, and finally the candidate versions
-            // const { proposalCandidateSignatures } = await subgraphFetch({
-            //   query: `
-            //     query {
-            //       proposalCandidateSignatures(
-            //         where: { signer: "${id.toLowerCase()}" }
-            //       ) {
-            //         content { id }
-            //       }
-            //     } `,
-            // });
-            //
-            // const contentIds = arrayUtils.unique(
-            //   proposalCandidateSignatures.map((s) => s.content.id),
-            // );
-            //
-            // const { proposalCandidateVersions } = await subgraphFetch({
-            //   query: `
-            //     query {
-            //       proposalCandidateVersions(
-            //         where: {
-            //           content_in: [${contentIds.map((id) => `"${id}"`)}]
-            //         }
-            //       ) {
-            //         id
-            //       }
-            //     } `,
-            // });
-            //
-            // return subgraphFetch({
-            //   query: `
-            //     ${FULL_PROPOSAL_CANDIDATE_FIELDS}
-            //     query {
-            //       proposalCandidates(
-            //         where: {
-            //           latestVersion_in: [${proposalCandidateVersions.map((v) => `"${v.id}"`)}]
-            //         }
-            //       ) {
-            //         ...FullProposalCandidateFields
-            //         versions { id }
-            //       }
-            //     }`,
-            // });
+            const { proposalCandidateSignatures } = await subgraphFetch({
+              query: `
+                query {
+                  proposalCandidateSignatures(
+                    where: { signer: "${id.toLowerCase()}" }
+                  ) {
+                    content { id }
+                  }
+                } `,
+            });
+
+            const contentIds = arrayUtils.unique(
+              proposalCandidateSignatures.map((s) => s.content.id),
+            );
+
+            const { proposalCandidateVersions } = await subgraphFetch({
+              query: `
+                query {
+                  proposalCandidateVersions(
+                    where: {
+                      content_in: [${contentIds.map((id) => `"${id}"`)}]
+                    }
+                  ) {
+                    id
+                  }
+                } `,
+            });
+
+            return subgraphFetch({
+              query: `
+                ${FULL_PROPOSAL_CANDIDATE_FIELDS}
+                query {
+                  proposalCandidates(
+                    where: {
+                      latestVersion_in: [${proposalCandidateVersions.map((v) => `"${v.id}"`)}]
+                    }
+                  ) {
+                    ...FullProposalCandidateFields
+                    versions { id }
+                  }
+                }`,
+            });
           })(),
 
           PropdatesSubgraph.fetchPropdatesByAccount(id),
@@ -1427,10 +1423,14 @@ const createStore = ({ initialState, publicClient }) =>
         // Fetch all versions of created proposals
         fetchProposalsVersions(proposals.map((p) => p.id));
         // Fetch feedback for voter's candies (candidates tab)
-        fetchCandidatesFeedbackPosts(proposalCandidates?.map((c) => c.id) ?? []);
+        fetchCandidatesFeedbackPosts(
+          proposalCandidates?.map((c) => c.id) ?? [],
+        );
         // Fetch Candidates the voter has commented on
         fetchProposalCandidates(
-          arrayUtils.unique(candidateFeedbacks?.map((p) => p.candidateId) ?? []),
+          arrayUtils.unique(
+            candidateFeedbacks?.map((p) => p.candidateId) ?? [],
+          ),
         );
         // Fetch relevant noun data
         fetchNounsByIds(
@@ -1446,10 +1446,10 @@ const createStore = ({ initialState, publicClient }) =>
         fetchProposals(
           arrayUtils.unique([
             ...votes.map((p) => p.proposalId),
-            ...proposalFeedbacks?.map((p) => p.proposalId) ?? [],
-            ...sponsoredProposalCandidates?.map(
+            ...(proposalFeedbacks?.map((p) => p.proposalId) ?? []),
+            ...(sponsoredProposalCandidates?.map(
               (c) => c.latestVersion?.proposalId,
-            ) ?? [],
+            ) ?? []),
             ...propdates.map((p) => p.proposalId),
           ]),
         );
@@ -1514,15 +1514,15 @@ const createStore = ({ initialState, publicClient }) =>
                   endBlock
                 # objectionPeriodEndBlock
                 }
-              # candidateFeedbacks(
-              #   where: {
-              #     createdBlock_gte: ${startBlock},
-              #     createdBlock_lte: ${endBlock}
-              #   },
-              #   first: 1000
-              # ) {
-              #   ...CandidateFeedbackFields
-              # }
+                candidateFeedbacks(
+                  where: {
+                    createdBlock_gte: ${startBlock},
+                    createdBlock_lte: ${endBlock}
+                  },
+                  first: 1000
+                ) {
+                  ...CandidateFeedbackFields
+                }
                 proposalFeedbacks(
                   where: {
                     createdBlock_gte: ${startBlock},
@@ -1618,16 +1618,16 @@ const createStore = ({ initialState, publicClient }) =>
               ${TRANSFER_EVENT_FIELDS}
               ${DELEGATION_EVENT_FIELDS}
               query {
-              # candidateFeedbacks(
-              #   where: {
-              #     voter: "${voterAddress}",
-              #     createdBlock_gte: ${startBlock},
-              #     createdBlock_lte: ${endBlock}
-              #   },
-              #   first: 1000
-              # ) {
-              #   ...CandidateFeedbackFields
-              # }
+                candidateFeedbacks(
+                  where: {
+                    voter: "${voterAddress}",
+                    createdBlock_gte: ${startBlock},
+                    createdBlock_lte: ${endBlock}
+                  },
+                  first: 1000
+                ) {
+                  ...CandidateFeedbackFields
+                }
                 proposalFeedbacks(
                   where: {
                     voter: "${voterAddress}",
@@ -2436,8 +2436,8 @@ export const useMainFeedItems = (categories, { enabled = true }) => {
                     return buildNounsTokenRepresentationFeed(s);
                   case "proposals":
                     return buildProposalItems();
-                  // case "candidates":
-                  //   return buildCandidateItems();
+                  case "candidates":
+                    return buildCandidateItems();
                   // case "topics":
                   //   return buildTopicItems();
                   // case "propdates":
