@@ -810,7 +810,7 @@ const createStore = ({ initialState, publicClient }) =>
         if (data.proposal == null)
           return Promise.reject(new Error("not-found"));
 
-        const candidateId = data?.proposalCandidateVersions?.[0]?.proposal?.id;
+        const candidateId = data.proposalCandidateVersions[0]?.proposal.id;
 
         // Fetch candidate async
         if (candidateId != null) fetchProposalCandidate(candidateId);
@@ -1114,7 +1114,7 @@ const createStore = ({ initialState, publicClient }) =>
         for (const p of proposals)
           accountAddresses.push(
             p.proposerId,
-            ...(p.signers ?? []).map((s) => (s ? s.id : undefined)),
+            ...(p.signers ?? []).map((s) => s.id),
           );
 
         for (const c of proposalCandidates)
@@ -1128,7 +1128,7 @@ const createStore = ({ initialState, publicClient }) =>
         // Populate ENS cache async
         reverseResolveEnsAddresses(client, arrayUtils.unique(accountAddresses));
 
-        await (async () => {
+        (async () => {
           const fetchedCandidateIds = proposalCandidates.map((c) => c.id);
 
           const { proposalCandidateVersions } = await subgraphFetch({
@@ -1136,10 +1136,10 @@ const createStore = ({ initialState, publicClient }) =>
               proposalCandidateVersions(
                 where: {
                   or: [${proposals.map(
-              (p) => `{
+                    (p) => `{
                       content_: { matchingProposalIds_contains: ["${p.id}"] }
                     }`,
-            )}]
+                  )}]
                 },
                 first: 1000
               ) {
@@ -1197,12 +1197,12 @@ const createStore = ({ initialState, publicClient }) =>
             #   createdTransactionHash
             #   updateMessage
             #   proposal { id }
-            # }
+            #  }
 
               proposalCandidateVersions(
                 where: {
-                  proposal_in: [${proposalCandidates.map((c) => JSON.stringify(c.id))}]
-                }
+                proposal_in: [${proposalCandidates.map((c) => JSON.stringify(c.id))}]
+              }
               ) {
                 id
                 createdBlock
@@ -1213,8 +1213,8 @@ const createStore = ({ initialState, publicClient }) =>
 
               proposalFeedbacks(
                 where: {
-                  proposal_in: [${proposals.map((p) => `"${p.id}"`)}]
-                },
+                proposal_in: [${proposals.map((p) => `"${p.id}"`)}]
+              },
                 first: 1000
               ) {
                 ...ProposalFeedbackFields
@@ -1222,8 +1222,8 @@ const createStore = ({ initialState, publicClient }) =>
 
               candidateFeedbacks(
                 where: {
-                  candidate_in: [${proposalCandidates.map((c) => JSON.stringify(c.id))}]
-                },
+                candidate_in: [${proposalCandidates.map((c) => JSON.stringify(c.id))}]
+              },
                 first: 1000
               ) {
                 ...CandidateFeedbackFields
@@ -1423,14 +1423,10 @@ const createStore = ({ initialState, publicClient }) =>
         // Fetch all versions of created proposals
         fetchProposalsVersions(proposals.map((p) => p.id));
         // Fetch feedback for voter's candies (candidates tab)
-        fetchCandidatesFeedbackPosts(
-          proposalCandidates?.map((c) => c.id) ?? [],
-        );
+        fetchCandidatesFeedbackPosts(proposalCandidates.map((c) => c.id));
         // Fetch Candidates the voter has commented on
         fetchProposalCandidates(
-          arrayUtils.unique(
-            candidateFeedbacks?.map((p) => p.candidateId) ?? [],
-          ),
+          arrayUtils.unique(candidateFeedbacks.map((p) => p.candidateId)),
         );
         // Fetch relevant noun data
         fetchNounsByIds(
@@ -1446,10 +1442,10 @@ const createStore = ({ initialState, publicClient }) =>
         fetchProposals(
           arrayUtils.unique([
             ...votes.map((p) => p.proposalId),
-            ...(proposalFeedbacks?.map((p) => p.proposalId) ?? []),
-            ...(sponsoredProposalCandidates?.map(
+            ...proposalFeedbacks.map((p) => p.proposalId),
+            ...sponsoredProposalCandidates.map(
               (c) => c.latestVersion?.proposalId,
-            ) ?? []),
+            ),
             ...propdates.map((p) => p.proposalId),
           ]),
         );
@@ -1606,10 +1602,7 @@ const createStore = ({ initialState, publicClient }) =>
       },
       fetchVoterActivity: async (voterAddress_, { startBlock, endBlock }) => {
         const voterAddress = voterAddress_.toLowerCase();
-        const { candidateFeedbacks } = {
-          candidateFeedbacks: [],
-        };
-        const { votes, proposalFeedbacks /*, candidateFeedbacks*/ } =
+        const { votes, proposalFeedbacks, candidateFeedbacks } =
           await subgraphFetch({
             query: `
               ${CANDIDATE_FEEDBACK_FIELDS}
