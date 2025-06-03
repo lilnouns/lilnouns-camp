@@ -70,8 +70,8 @@ export const FULL_PROPOSAL_FIELDS = `
     createdBlock
     createdTimestamp
     createdTransactionHash
-  # lastUpdatedBlock
-  # lastUpdatedTimestamp
+    lastUpdatedBlock
+    lastUpdatedTimestamp
     startBlock
     endBlock
   # updatePeriodEndBlock

@@ -42,8 +42,8 @@ const fetchProposal = async (id) => {
             status
             createdBlock
             createdTimestamp
-          # lastUpdatedBlock
-          # lastUpdatedTimestamp
+            lastUpdatedBlock
+            lastUpdatedTimestamp
             executionETA
             startBlock
             endBlock

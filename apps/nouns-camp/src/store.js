@@ -938,8 +938,8 @@ const createStore = ({ initialState, publicClient }) =>
                   status
                   createdBlock
                   createdTimestamp
-                # lastUpdatedBlock
-                # lastUpdatedTimestamp
+                  lastUpdatedBlock
+                  lastUpdatedTimestamp
                   startBlock
                   endBlock
                 # updatePeriodEndBlock
@@ -1071,8 +1071,8 @@ const createStore = ({ initialState, publicClient }) =>
                 createdBlock
                 createdTimestamp
                 createdTransactionHash
-              # lastUpdatedBlock
-              # lastUpdatedTimestamp
+                lastUpdatedBlock
+                lastUpdatedTimestamp
                 startBlock
                 endBlock
               # updatePeriodEndBlock
@@ -1269,8 +1269,8 @@ const createStore = ({ initialState, publicClient }) =>
                     status
                     createdBlock
                     createdTimestamp
-                  # lastUpdatedBlock
-                  # lastUpdatedTimestamp
+                    lastUpdatedBlock
+                    lastUpdatedTimestamp
                     startBlock
                     endBlock
                   # updatePeriodEndBlock
