@@ -504,23 +504,22 @@ const createStore = ({ initialState, publicClient }) =>
       return subgraphEntities;
     };
 
-    const fetchProposalsVersions = async () => Promise.resolve(null);
-    // const fetchProposalsVersions = async (proposalIds) =>
-    //   subgraphFetch({
-    //     query: `{
-    //       proposalVersions(
-    //         where: {
-    //           proposal_in: [${proposalIds.map((id) => `"${id}"`)}]
-    //         }
-    //       ) {
-    //         createdAt
-    //         createdBlock
-    //         createdTransactionHash
-    //         updateMessage
-    //         proposal { id }
-    //       }
-    //     }`,
-    //   });
+    const fetchProposalsVersions = async (proposalIds) =>
+      subgraphFetch({
+        query: `{
+          proposalVersions(
+            where: {
+              proposal_in: [${proposalIds.map((id) => `"${id}"`)}]
+            }
+          ) {
+            createdAt
+            createdBlock
+            createdTransactionHash
+            updateMessage
+            proposal { id }
+          }
+        }`,
+      });
 
     const fetchCandidatesFeedbackPosts = (candidateIds) =>
       subgraphFetch({
@@ -781,15 +780,15 @@ const createStore = ({ initialState, publicClient }) =>
               proposal(id: "${id}") {
                 ...FullProposalFields
               }
-            # proposalVersions(where: {proposal: "${id}"}) {
-            #   createdAt
-            #   createdBlock
-            #   createdTransactionHash
-            #   updateMessage
-            #   proposal {
-            #     id
-            #   }
-            # }
+              proposalVersions(where: {proposal: "${id}"}) {
+                createdAt
+                createdBlock
+                createdTransactionHash
+                updateMessage
+                proposal {
+                  id
+                }
+              }
               proposalCandidateVersions(
                 where: {
                   content_: {
@@ -1187,17 +1186,17 @@ const createStore = ({ initialState, publicClient }) =>
                 votes { ...VoteFields }
               }
 
-            # proposalVersions(
-            #   where: {
-            #     proposal_in: [${proposals.map((p) => `"${p.id}"`)}]
-            #   }
-            # ) {
-            #   createdAt
-            #   createdBlock
-            #   createdTransactionHash
-            #   updateMessage
-            #   proposal { id }
-            #  }
+              proposalVersions(
+                where: {
+                  proposal_in: [${proposals.map((p) => `"${p.id}"`)}]
+                }
+              ) {
+                createdAt
+                createdBlock
+                createdTransactionHash
+                updateMessage
+                proposal { id }
+               }
 
               proposalCandidateVersions(
                 where: {
