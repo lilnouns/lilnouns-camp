@@ -66,7 +66,7 @@ const addressByIdentifierByChainId = {
     // Lil Nouns contracts
     dao: "0xa7c37f79ff5e6f932147fc69724b6ed432ca6aa7",
     executor: "0xe54f098b1880c536e0083720922b8a365fb403dc",
-    data: "0x42a8cC9b0e99cE36536072d6708edEdE305c641e",
+    data: "0x417CC92Ee44Dd0699dc674683BaFf849a7E99410",
     token: "0x6e48e79f718776cf412a87e047722dbfda5b465d",
     descriptor: "0x852f20f0140a4b5aa29c70bf39c9a85edc2b454e",
     "auction-house": "0x0d8c4d18765ab8808ab6cee4d7a760e8b93ab20c",
