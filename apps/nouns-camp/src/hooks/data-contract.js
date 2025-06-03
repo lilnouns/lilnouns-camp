@@ -249,6 +249,8 @@ export const useUpdateProposalCandidate = (slug, { enabled = true } = {}) => {
 
   const registerEvent = useRegisterEvent();
 
+  const votingPower = useCurrentVotes(accountAddress);
+
   const updateCost = useProposalCandidateUpdateCost({ enabled });
 
   const { writeContractAsync: writeContract } = useWriteContract();
@@ -284,7 +286,8 @@ export const useUpdateProposalCandidate = (slug, { enabled = true } = {}) => {
         },
       ],
       functionName: "updateProposalCandidate",
-      value: updateCost,
+      // value: updateCost,
+      value: votingPower > 0 || targetProposalId > 0 ? 0 : updateCost,
       args: [
         targets,
         values,
