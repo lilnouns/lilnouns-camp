@@ -417,13 +417,21 @@ const ProposalCandidateScreenContent = ({
     <Callout css={(t) => css({ fontSize: t.text.sizes.small })}>
       {isProposalThresholdMet ? (
         <>
-          <p>
+          {/*<p>
             This candidate has met the sponsor threshold ({candidateVotingPower}
             /{proposalThreshold + 1}).
           </p>
           <p>
             Voters can continue to add signatures until the candidate is
             promoted to a proposal.
+          </p>*/}
+          <p>
+            This candidate has met the voting threshold ({candidateVotingPower}/
+            {proposalThreshold + 1}.
+          </p>
+          <p>
+            Holders can delegate their voting power to this proposer to promote
+            a proposal.
           </p>
         </>
       ) : (
@@ -442,7 +450,7 @@ const ProposalCandidateScreenContent = ({
               a proposal.
             </>*/
             <>
-              This candidate needs <em>{missingSponsorVotingPower} more</em>{" "}
+              This candidate proposer needs <em>{missingSponsorVotingPower} more</em>{" "}
               voting power ({candidateVotingPower}/{proposalThreshold + 1}) to
               be promoted to a proposal.
             </>
