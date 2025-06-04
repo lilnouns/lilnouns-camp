@@ -1157,8 +1157,9 @@ const createStore = ({ initialState, publicClient }) =>
               .filter((id) => !fetchedCandidateIds.includes(id)),
           );
 
-          subgraphFetch({
-            query: `
+          if (missingCandidateIds.length > 0) {
+            subgraphFetch({
+              query: `
               ${CANDIDATE_FEEDBACK_FIELDS}
               query {
                 candidateFeedbacks(
@@ -1170,7 +1171,8 @@ const createStore = ({ initialState, publicClient }) =>
                   ...CandidateFeedbackFields
                 }
               }`,
-          });
+            });
+          }
         })();
 
         // Fetch less urgent data async
