@@ -435,11 +435,16 @@ const ProposalCandidateScreenContent = ({
               promote this candidate to a proposal.
             </>
           ) : (
-            <>
+            /*<>
               This candidate requires <em>{missingSponsorVotingPower} more</em>{" "}
               sponsoring {missingSponsorVotingPower === 1 ? "noun" : "nouns"} (
               {candidateVotingPower}/{proposalThreshold + 1}) to be promoted to
               a proposal.
+            </>*/
+            <>
+              This candidate needs <em>{missingSponsorVotingPower} more</em>{" "}
+              voting power ({candidateVotingPower}/{proposalThreshold + 1}) to
+              be promoted to a proposal.
             </>
           )}
         </>
