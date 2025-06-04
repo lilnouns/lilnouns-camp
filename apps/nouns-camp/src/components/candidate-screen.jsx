@@ -439,13 +439,13 @@ const ProposalCandidateScreenContent = ({
           {candidateVotingPower === 0 ? (
             <>
               {proposalThreshold + 1} sponsoring{" "}
-              {proposalThreshold + 1 === 1 ? "noun" : "nouns"} required to
+              {proposalThreshold + 1 === 1 ? "lil noun" : "lil nouns"} required to
               promote this candidate to a proposal.
             </>
           ) : (
             /*<>
               This candidate requires <em>{missingSponsorVotingPower} more</em>{" "}
-              sponsoring {missingSponsorVotingPower === 1 ? "noun" : "nouns"} (
+              sponsoring {missingSponsorVotingPower === 1 ? "lil noun" : "lil nouns"} (
               {candidateVotingPower}/{proposalThreshold + 1}) to be promoted to
               a proposal.
             </>*/
@@ -534,7 +534,7 @@ const ProposalCandidateScreenContent = ({
                       }
                     >
                       {/*<em>{sponsorsVotingPower}</em> sponsoring{" "}
-                      {sponsorsVotingPower === 1 ? "noun" : "nouns"}*/}
+                      {sponsorsVotingPower === 1 ? "lil noun" : "lil nouns"}*/}
                       {validSignatures.length > 1 && (
                         <>
                           {" "}
@@ -1048,7 +1048,7 @@ const ProposalCandidateScreenContent = ({
                           >
                             <em>
                               {proposerVotingPower}{" "}
-                              {proposerVotingPower === 1 ? "noun" : "nouns"}
+                              {proposerVotingPower === 1 ? "lil noun" : "lil nouns"}
                             </em>{" "}
                             controlled by proposer
                           </Callout>
