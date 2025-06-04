@@ -622,7 +622,7 @@ const ProposalCandidateScreenContent = ({
                     )}
                   </div>
                 </Tabs.Item>
-                {!isProposalUpdate && (
+                {/*{!isProposalUpdate && (
                   <Tabs.Item key="sponsors" title="Sponsors">
                     <div style={{ padding: "3.2rem 0 1.6rem" }}>
                       <SponsorsTabMainContent
@@ -632,7 +632,7 @@ const ProposalCandidateScreenContent = ({
                       />
                     </div>
                   </Tabs.Item>
-                )}
+                )}*/}
               </Tabs.Root>
             </div>
           )
