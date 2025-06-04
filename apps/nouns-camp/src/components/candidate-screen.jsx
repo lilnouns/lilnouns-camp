@@ -532,8 +532,8 @@ const ProposalCandidateScreenContent = ({
                         })
                       }
                     >
-                      <em>{sponsorsVotingPower}</em> sponsoring{" "}
-                      {sponsorsVotingPower === 1 ? "noun" : "nouns"}
+                      {/*<em>{sponsorsVotingPower}</em> sponsoring{" "}
+                      {sponsorsVotingPower === 1 ? "noun" : "nouns"}*/}
                       {validSignatures.length > 1 && (
                         <>
                           {" "}
@@ -552,7 +552,7 @@ const ProposalCandidateScreenContent = ({
                         <>
                           <br />
                           <em>{proposerVotingPower}</em>{" "}
-                          {proposerVotingPower === 1 ? "noun" : "nouns"}{" "}
+                          {proposerVotingPower === 1 ? "lil noun" : "lil nouns"}{" "}
                           controlled by proposer
                         </>
                       )}
