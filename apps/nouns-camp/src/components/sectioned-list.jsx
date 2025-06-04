@@ -896,7 +896,8 @@ const CandidateOrTopicListItem = React.memo(
                           })
                         }
                       />
-                      <i>Sponsor threshold met</i>
+                      {/*<i>Sponsor threshold met</i>*/}
+                      <i>Proposing threshold met</i>
                     </span>
                   )}
               </div>

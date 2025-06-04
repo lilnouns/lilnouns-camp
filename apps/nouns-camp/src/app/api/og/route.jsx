@@ -42,8 +42,8 @@ const fetchProposal = async (id) => {
             status
             createdBlock
             createdTimestamp
-          # lastUpdatedBlock
-          # lastUpdatedTimestamp
+            lastUpdatedBlock
+            lastUpdatedTimestamp
             executionETA
             startBlock
             endBlock
@@ -152,7 +152,7 @@ const RequestedAmounts = ({ amounts }) => (
           case "lilnouns":
             return (
               <>
-                {Number(amount)} lil {amount > 1 ? "nouns" : "noun"}
+                {Number(amount)} lil {amount > 1 ? "lil nouns" : "lil noun"}
               </>
             );
 

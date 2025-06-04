@@ -71,20 +71,20 @@ const commands = [
     keywords: ["proposals", "browse", "view", "search", "explore"],
     action: (navigate) => navigate("/proposals"),
   },
-  // {
-  //   id: "go-to-candidates",
-  //   category: "proposals",
-  //   label: "Browse candidates",
-  //   keywords: [
-  //     "proposals",
-  //     "candidates",
-  //     "browse",
-  //     "view",
-  //     "search",
-  //     "explore",
-  //   ],
-  //   action: (navigate) => navigate("/candidates"),
-  // },
+  {
+    id: "go-to-candidates",
+    category: "proposals",
+    label: "Browse candidates",
+    keywords: [
+      "proposals",
+      "candidates",
+      "browse",
+      "view",
+      "search",
+      "explore",
+    ],
+    action: (navigate) => navigate("/candidates"),
+  },
   {
     id: "create-proposal",
     category: "proposals",
@@ -92,13 +92,13 @@ const commands = [
     keywords: ["new", "proposal", "create", "start", "proposals"],
     action: (navigate) => navigate("/new"),
   },
-  // {
-  //   id: "create-candidate",
-  //   category: "proposals",
-  //   label: "Create Candidate...",
-  //   keywords: ["new", "candidate", "create", "proposals"],
-  //   action: (navigate) => navigate("/new"),
-  // },
+  {
+    id: "create-candidate",
+    category: "proposals",
+    label: "Create Candidate...",
+    keywords: ["new", "candidate", "create", "proposals"],
+    action: (navigate) => navigate("/new"),
+  },
   // Topics section
   // {
   //   id: "go-to-topics",

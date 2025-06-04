@@ -104,7 +104,7 @@ const useActiveProposerIds = () => {
   const activeProposals = useProposals({ filter: "active" });
   return activeProposals.flatMap((p) => [
     p.proposerId,
-    ...p.signers.map((s) => s.id),
+    ...(p.signers?.map((s) => s.id) ?? []),
   ]);
 };
 
@@ -417,27 +417,46 @@ const ProposalCandidateScreenContent = ({
     <Callout css={(t) => css({ fontSize: t.text.sizes.small })}>
       {isProposalThresholdMet ? (
         <>
-          <p>
+          {/*<p>
             This candidate has met the sponsor threshold ({candidateVotingPower}
             /{proposalThreshold + 1}).
           </p>
           <p>
             Voters can continue to add signatures until the candidate is
             promoted to a proposal.
+          </p>*/}
+          <p>
+            This candidate has met the proposal threshold ({candidateVotingPower}/
+            {proposalThreshold + 1}).
+          </p>
+          <p>
+            Holders can delegate their voting power to proposers who don&apos;t
+            have enough votes to promote a proposal.
           </p>
         </>
       ) : (
         <>
           {candidateVotingPower === 0 ? (
-            <>
+            /*<>
               {proposalThreshold + 1} sponsoring{" "}
-              {proposalThreshold + 1 === 1 ? "noun" : "nouns"} required to
+              {proposalThreshold + 1 === 1 ? "lil noun" : "lil nouns"} required to
               promote this candidate to a proposal.
+            </>*/
+            <>
+              {proposalThreshold + 1} delegated{" "}
+              {proposalThreshold + 1 === 1 ? "lil noun" : "lil nouns"} required
+              to promote this candidate to a proposal.
             </>
           ) : (
-            <>
+            /*<>
               This candidate requires <em>{missingSponsorVotingPower} more</em>{" "}
-              sponsoring {missingSponsorVotingPower === 1 ? "noun" : "nouns"} (
+              sponsoring {missingSponsorVotingPower === 1 ? "lil noun" : "lil nouns"} (
+              {candidateVotingPower}/{proposalThreshold + 1}) to be promoted to
+              a proposal.
+            </>*/
+            <>
+              This candidate proposer needs{" "}
+              <em>{missingSponsorVotingPower} more</em> voting power (
               {candidateVotingPower}/{proposalThreshold + 1}) to be promoted to
               a proposal.
             </>
@@ -519,8 +538,8 @@ const ProposalCandidateScreenContent = ({
                         })
                       }
                     >
-                      <em>{sponsorsVotingPower}</em> sponsoring{" "}
-                      {sponsorsVotingPower === 1 ? "noun" : "nouns"}
+                      {/*<em>{sponsorsVotingPower}</em> sponsoring{" "}
+                      {sponsorsVotingPower === 1 ? "lil noun" : "lil nouns"}*/}
                       {validSignatures.length > 1 && (
                         <>
                           {" "}
@@ -539,7 +558,7 @@ const ProposalCandidateScreenContent = ({
                         <>
                           <br />
                           <em>{proposerVotingPower}</em>{" "}
-                          {proposerVotingPower === 1 ? "noun" : "nouns"}{" "}
+                          {proposerVotingPower === 1 ? "lil noun" : "lil nouns"}{" "}
                           controlled by proposer
                         </>
                       )}
@@ -609,7 +628,7 @@ const ProposalCandidateScreenContent = ({
                     )}
                   </div>
                 </Tabs.Item>
-                {!isProposalUpdate && (
+                {/*{!isProposalUpdate && (
                   <Tabs.Item key="sponsors" title="Sponsors">
                     <div style={{ padding: "3.2rem 0 1.6rem" }}>
                       <SponsorsTabMainContent
@@ -619,7 +638,7 @@ const ProposalCandidateScreenContent = ({
                       />
                     </div>
                   </Tabs.Item>
-                )}
+                )}*/}
               </Tabs.Root>
             </div>
           )
@@ -1034,7 +1053,9 @@ const ProposalCandidateScreenContent = ({
                           >
                             <em>
                               {proposerVotingPower}{" "}
-                              {proposerVotingPower === 1 ? "noun" : "nouns"}
+                              {proposerVotingPower === 1
+                                ? "lil noun"
+                                : "lil nouns"}
                             </em>{" "}
                             controlled by proposer
                           </Callout>

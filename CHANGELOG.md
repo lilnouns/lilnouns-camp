@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0-alpha.97] - 2025-06-04
+
+### 🚀 Features
+
+- *(layout)* Enable candidate navigation
+- *(landing-screen)* Enable candidate-related features
+- *(proposal-editor)* Enable candidate creation
+- *(store)* Restore and enhance candidate-related queries
+- *(nouns-subgraph)* Comment out `contentSignatures`
+- *(command-palette)* Restore candidate-related actions
+- *(voter-screen)* Restore candidate-related features
+- *(og-api)* Restore `candidateFeedback` query
+
+### 🐛 Bug Fixes
+
+- *(contracts)* Update `data` contract address
+- *(farcaster)* Handle null or undefined arrays
+- *(store)* Ensure `await` correctly wraps async functions
+- *(farcaster)* Ensure safe handling of empty arrays
+- *(candidate-screen)* Handle null or undefined `signers`
+- *(store)* Simplify async handling and query mapping
+- *(nouns-subgraph)* Remove retry mechanism
+- *(nouns-camp)* Update contract address for `data`
+- *(nouns-camp)* Simplify `value` assignment logic
+- *(nouns-camp)* Adjust `value` logic in contract calls
+- *(nouns-subgraph)* Comment out unused signature fields
+- *(nouns-camp)* Restore `lastUpdatedBlock` and `lastUpdatedTimestamp`
+- *(nouns-camp)* Reintroduce `proposalVersions` queries
+- *(nouns-camp)* Update `data` contract address
+- *(nouns-camp)* Handle null fallback for `signer.id`
+- *(nouns-camp)* Update sponsor voting power message
+- *(nouns-camp)* Revise candidate threshold messages
+- *(nouns-camp)* Comment out sponsor voting power message
+- *(nouns-camp)* Comment out unused sponsors tab
+- *(nouns-camp)* Enhance candidate voting power messages
+- *(nouns-camp)* Revise candidate instructions text
+- *(nouns-camp)* Update text for consistent punctuation
+- *(nouns-camp)* Update text to use `lil nouns` consistently
+- *(nouns-camp)* Revise candidate promotion messages
+- *(nouns-camp)* Update proposing threshold message
+- *(nouns-camp)* Update proposal threshold message
+
+### ◀️ Revert
+
+- *(nouns-subgraph)* Remove retry mechanism
+
 ## [1.4.0-alpha.96] - 2025-06-02
 
 ### 🐛 Bug Fixes

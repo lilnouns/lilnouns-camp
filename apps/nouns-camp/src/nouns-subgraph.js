@@ -70,8 +70,8 @@ export const FULL_PROPOSAL_FIELDS = `
     createdBlock
     createdTimestamp
     createdTransactionHash
-  # lastUpdatedBlock
-  # lastUpdatedTimestamp
+    lastUpdatedBlock
+    lastUpdatedTimestamp
     startBlock
     endBlock
   # updatePeriodEndBlock
@@ -103,20 +103,20 @@ export const FULL_PROPOSAL_FIELDS = `
   }`;
 
 const CANDIDATE_CONTENT_SIGNATURE_FIELDS = `
-  fragment CandidateContentSignatureFields on ProposalCandidateSignature {
-    reason
-    canceled
-    createdBlock
-    createdTimestamp
-    createdTransactionHash
-    expirationTimestamp
-    sig
-    signer {
-      id
-      nounsRepresented { id }
-    }
-    content { id }
-  }`;
+# fragment CandidateContentSignatureFields on ProposalCandidateSignature {
+#   reason
+#   canceled
+#   createdBlock
+#   createdTimestamp
+#   createdTransactionHash
+#   expirationTimestamp
+#   sig
+#   signer {
+#     id
+#     nounsRepresented { id }
+#   }
+#   content { id }
+# }`;
 
 export const DELEGATION_EVENT_FIELDS = `
   fragment DelegationEventFields on DelegationEvent {
@@ -168,9 +168,9 @@ export const FULL_PROPOSAL_CANDIDATE_FIELDS = `
         calldatas
         matchingProposalIds
         proposalIdToUpdate
-        contentSignatures {
-          ...CandidateContentSignatureFields
-        }
+      # contentSignatures {
+      #   ...CandidateContentSignatureFields
+      # }
       }
     }
   }`;

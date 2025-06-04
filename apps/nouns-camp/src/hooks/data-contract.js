@@ -180,16 +180,17 @@ export const useCreateProposalCandidate = ({ enabled = true } = {}) => {
         },
       ],
       functionName: "createProposalCandidate",
-      value:
-        CHAIN_ID !== 11155111
-          ? // Free for accounts with voting power and updates
-            // value: votingPower > 0 || targetProposalId > 0 ? 0 : createCost,
-            votingPower > 0 || targetProposalId > 0
-            ? 0
-            : createCost
-          : // Current sepolia deployment don’t have free updates
-            // (TODO: deploy new data contract)
-            createCost,
+      // value:
+      //   CHAIN_ID !== 11155111
+      //     ? // Free for accounts with voting power and updates
+      //       // value: votingPower > 0 || targetProposalId > 0 ? 0 : createCost,
+      //       votingPower > 0 || targetProposalId > 0
+      //       ? 0
+      //       : createCost
+      //     : // Current sepolia deployment don’t have free updates
+      //       // (TODO: deploy new data contract)
+      //       createCost,
+      value: votingPower > 0 || targetProposalId > 0 ? 0 : createCost,
       args: [
         targets,
         values,
@@ -248,6 +249,8 @@ export const useUpdateProposalCandidate = (slug, { enabled = true } = {}) => {
 
   const registerEvent = useRegisterEvent();
 
+  const votingPower = useCurrentVotes(accountAddress);
+
   const updateCost = useProposalCandidateUpdateCost({ enabled });
 
   const { writeContractAsync: writeContract } = useWriteContract();
@@ -283,7 +286,8 @@ export const useUpdateProposalCandidate = (slug, { enabled = true } = {}) => {
         },
       ],
       functionName: "updateProposalCandidate",
-      value: updateCost,
+      // value: updateCost,
+      value: votingPower > 0 || targetProposalId > 0 ? 0 : updateCost,
       args: [
         targets,
         values,

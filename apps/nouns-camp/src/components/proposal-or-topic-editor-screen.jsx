@@ -2,7 +2,7 @@ import React from "react";
 import NextLink from "next/link";
 import { formatEther, parseUnits } from "viem";
 import { css, useTheme } from "@emotion/react";
-import { /*useFetch,*/ useLatestCallback } from "@shades/common/react";
+import { useFetch, useLatestCallback } from "@shades/common/react";
 import {
   // invariant,
   message as messageUtils,
@@ -25,10 +25,10 @@ import {
   useProposalThreshold,
   useActiveProposalId,
 } from "@/hooks/dao-contract";
-import { useActions /*, useAccountProposalCandidates*/ } from "@/store";
+import { useActions, useAccountProposalCandidates } from "@/store";
 import { useNavigate, useSearchParams } from "@/hooks/navigation";
 import {
-  // useCreateProposalCandidate,
+  useCreateProposalCandidate,
   useProposalCandidateCreateCost,
 } from "@/hooks/data-contract";
 import { useCurrentVotes } from "@/hooks/token-contract";
@@ -65,36 +65,36 @@ const Content = ({ draftId, startNavigationTransition }) => {
 
   const {
     fetchProposal,
-    // fetchProposalCandidate,
-    // fetchProposalCandidatesByAccount,
+    fetchProposalCandidate,
+    fetchProposalCandidatesByAccount,
   } = useActions();
 
-  // useFetch(
-  //   () => fetchProposalCandidatesByAccount(connectedAccountAddress),
-  //   [connectedAccountAddress],
-  // );
+  useFetch(
+    () => fetchProposalCandidatesByAccount(connectedAccountAddress),
+    [connectedAccountAddress],
+  );
 
-  // const accountProposalCandidates = useAccountProposalCandidates(
-  //   connectedAccountAddress,
-  // );
+  const accountProposalCandidates = useAccountProposalCandidates(
+    connectedAccountAddress,
+  );
 
   const { open: openDraftsDialog } = useDialog("drafts");
 
-  // const isTitleEmpty = draft.name.trim() === "";
-  // const isBodyEmpty =
-  //   typeof draft.body === "string"
-  //     ? draft.body.trim() === ""
-  //     : draft.body.every(isRichTextEditorNodeEmpty);
+  const isTitleEmpty = draft.name.trim() === "";
+  const isBodyEmpty =
+    typeof draft.body === "string"
+      ? draft.body.trim() === ""
+      : draft.body.every(isRichTextEditorNodeEmpty);
 
-  // const hasRequiredInput =
-  //   submitTargetType === "topic"
-  //     ? !isTitleEmpty && !isBodyEmpty
-  //     : !isTitleEmpty && !isBodyEmpty && draft.actions.length > 0;
+  const hasRequiredInput =
+    submitTargetType === "topic"
+      ? !isTitleEmpty && !isBodyEmpty
+      : !isTitleEmpty && !isBodyEmpty && draft.actions.length > 0;
 
-  // const createCandidate = useCreateProposalCandidate({
-  //   enabled:
-  //     hasRequiredInput && ["candidate", "topic"].includes(submitTargetType),
-  // });
+  const createCandidate = useCreateProposalCandidate({
+    enabled:
+      hasRequiredInput && ["candidate", "topic"].includes(submitTargetType),
+  });
 
   const createProposal = useCreateProposal();
 
@@ -118,22 +118,22 @@ const Content = ({ draftId, startNavigationTransition }) => {
   const payerUsdcBalance = treasuryData?.balances.payer.usdc ?? 0n;
   const payerTopUpValue =
     payerUsdcBalance > usdcSumValue
-        ? 0n
-        : executorEthBalance > payerTopUpValueData
-          ? payerTopUpValueData
-          : executorEthBalance
+      ? 0n
+      : executorEthBalance > payerTopUpValueData
+        ? payerTopUpValueData
+        : executorEthBalance;
 
   const submit = async () => {
-    // const buildCandidateSlug = (title) => {
-    //   const slugifiedTitle = title.toLowerCase().replace(/\s+/g, "-");
-    //   let index = 0;
-    //   while (slugifiedTitle) {
-    //     const slug = [slugifiedTitle, index].filter(Boolean).join("-");
-    //     if (accountProposalCandidates.find((c) => c.slug === slug) == null)
-    //       return slug;
-    //     index += 1;
-    //   }
-    // };
+    const buildCandidateSlug = (title) => {
+      const slugifiedTitle = title.toLowerCase().replace(/\s+/g, "-");
+      let index = 0;
+      while (slugifiedTitle) {
+        const slug = [slugifiedTitle, index].filter(Boolean).join("-");
+        if (accountProposalCandidates.find((c) => c.slug === slug) == null)
+          return slug;
+        index += 1;
+      }
+    };
 
     try {
       const bodyMarkdown =
@@ -180,12 +180,12 @@ const Content = ({ draftId, startNavigationTransition }) => {
             case "proposal":
               return createProposal({ description, transactions });
 
-            // case "candidate": {
-            //   const slug = buildCandidateSlug(draft.name.trim());
-            //   await createCandidate({ slug, description, transactions });
-            //   return { slug };
-            // }
-            //
+            case "candidate": {
+              const slug = buildCandidateSlug(draft.name.trim());
+              await createCandidate({ slug, description, transactions });
+              return { slug };
+            }
+
             // case "topic": {
             //   invariant(
             //     transactions.length === 0,
@@ -222,30 +222,30 @@ const Content = ({ draftId, startNavigationTransition }) => {
                   break;
                 }
 
-                // case "candidate":
-                // case "topic": {
-                //   const candidateId = [
-                //     connectedAccountAddress.toLowerCase(),
-                //     res.slug,
-                //   ].join("-");
-                //
-                //   await functionUtils.retryAsync(
-                //     () => fetchProposalCandidate(candidateId),
-                //     { retries: 100 },
-                //   );
-                //
-                //   startNavigationTransition(() => {
-                //     navigate(
-                //       submitTargetType === "topic"
-                //         ? `/topics/${encodeURIComponent(candidateId)}`
-                //         : `/candidates/${encodeURIComponent(candidateId)}`,
-                //       {
-                //         replace: true,
-                //       },
-                //     );
-                //   });
-                //   break;
-                // }
+                case "candidate":
+                case "topic": {
+                  const candidateId = [
+                    connectedAccountAddress.toLowerCase(),
+                    res.slug,
+                  ].join("-");
+
+                  await functionUtils.retryAsync(
+                    () => fetchProposalCandidate(candidateId),
+                    { retries: 100 },
+                  );
+
+                  startNavigationTransition(() => {
+                    navigate(
+                      submitTargetType === "topic"
+                        ? `/topics/${encodeURIComponent(candidateId)}`
+                        : `/candidates/${encodeURIComponent(candidateId)}`,
+                      {
+                        replace: true,
+                      },
+                    );
+                  });
+                  break;
+                }
               }
             } finally {
               deleteDraft(draftId);
@@ -418,19 +418,23 @@ const SubmitDialog = ({
 
   const renderInfo = () => {
     switch (submitTargetType) {
-      // case "candidate":
-      //   return (
-      //     <>
-      //       <p>
-      //         Candidates can be created by anyone. If a candidate receives
-      //         enough signatures by voters, it can be promoted to a proposal.
-      //       </p>
-      //       <p>
-      //         Submissions are <em>free for accounts with voting power</em>.
-      //         Other accounts can submit for a small fee.
-      //       </p>
-      //     </>
-      //   );
+      case "candidate":
+        return (
+          <>
+            {/*<p>
+              Candidates can be created by anyone. If a candidate receives
+              enough signatures by voters, it can be promoted to a proposal.
+            </p>*/}
+            <p>
+              Candidates can be created by anyone. If a proposer receives enough
+              delegated votes by holders, they can be promoted to a proposal.
+            </p>
+            <p>
+              Submissions are <em>free for accounts with voting power</em>.
+              Other accounts can submit for a small fee.
+            </p>
+          </>
+        );
 
       case "proposal":
         if (canCreateProposal)
@@ -472,8 +476,7 @@ const SubmitDialog = ({
             <p>
               Your voting power ({votingPower}) does not meet the required
               proposal threshold ({proposalThreshold + 1}
-              ).
-              {/* Consider{" "}
+              ). Consider{" "}
               <Link
                 underline
                 component="button"
@@ -484,7 +487,7 @@ const SubmitDialog = ({
               >
                 submitting a candidate
               </Link>{" "}
-              instead.*/}
+              instead.
             </p>
           </>
         );
@@ -533,10 +536,10 @@ const SubmitDialog = ({
                   value: "proposal",
                   label: "Submit as proposal",
                 },
-                // {
-                //   value: "candidate",
-                //   label: "Submit as candidate",
-                // },
+                {
+                  value: "candidate",
+                  label: "Submit as candidate",
+                },
               ]}
               onChange={(value) => {
                 setSubmitTargetType(value);
