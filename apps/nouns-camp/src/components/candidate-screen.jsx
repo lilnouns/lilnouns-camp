@@ -430,17 +430,22 @@ const ProposalCandidateScreenContent = ({
             {proposalThreshold + 1}).
           </p>
           <p>
-            Holders can delegate their voting power to proposers who don&apos;t have
-            enough votes to promote a proposal.
+            Holders can delegate their voting power to proposers who don&apos;t
+            have enough votes to promote a proposal.
           </p>
         </>
       ) : (
         <>
           {candidateVotingPower === 0 ? (
-            <>
+            /*<>
               {proposalThreshold + 1} sponsoring{" "}
               {proposalThreshold + 1 === 1 ? "lil noun" : "lil nouns"} required to
               promote this candidate to a proposal.
+            </>*/
+            <>
+              {proposalThreshold + 1} delegated{" "}
+              {proposalThreshold + 1 === 1 ? "lil noun" : "lil nouns"} required
+              to promote this candidate to a proposal.
             </>
           ) : (
             /*<>
@@ -1048,7 +1053,9 @@ const ProposalCandidateScreenContent = ({
                           >
                             <em>
                               {proposerVotingPower}{" "}
-                              {proposerVotingPower === 1 ? "lil noun" : "lil nouns"}
+                              {proposerVotingPower === 1
+                                ? "lil noun"
+                                : "lil nouns"}
                             </em>{" "}
                             controlled by proposer
                           </Callout>
