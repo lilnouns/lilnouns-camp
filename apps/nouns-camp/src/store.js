@@ -1370,48 +1370,49 @@ const createStore = ({ initialState, publicClient }) =>
 
           (async () => {
             // Fetch signatures, then content IDs, and finally the candidate versions
-            const { proposalCandidateSignatures } = await subgraphFetch({
-              query: `
-                query {
-                  proposalCandidateSignatures(
-                    where: { signer: "${id.toLowerCase()}" }
-                  ) {
-                    content { id }
-                  }
-                } `,
-            });
+            // const { proposalCandidateSignatures } = await subgraphFetch({
+            //   query: `
+            //     query {
+            //       proposalCandidateSignatures(
+            //         where: { signer: "${id.toLowerCase()}" }
+            //       ) {
+            //         content { id }
+            //       }
+            //     } `,
+            // });
 
-            const contentIds = arrayUtils.unique(
-              proposalCandidateSignatures.map((s) => s.content.id),
-            );
+            // const contentIds = arrayUtils.unique(
+            //   proposalCandidateSignatures.map((s) => s.content.id),
+            // );
 
-            const { proposalCandidateVersions } = await subgraphFetch({
-              query: `
-                query {
-                  proposalCandidateVersions(
-                    where: {
-                      content_in: [${contentIds.map((id) => `"${id}"`)}]
-                    }
-                  ) {
-                    id
-                  }
-                } `,
-            });
+            // const { proposalCandidateVersions } = await subgraphFetch({
+            //   query: `
+            //     query {
+            //       proposalCandidateVersions(
+            //         where: {
+            //           content_in: [${contentIds.map((id) => `"${id}"`)}]
+            //         }
+            //       ) {
+            //         id
+            //       }
+            //     } `,
+            // });
 
-            return subgraphFetch({
-              query: `
-                ${FULL_PROPOSAL_CANDIDATE_FIELDS}
-                query {
-                  proposalCandidates(
-                    where: {
-                      latestVersion_in: [${proposalCandidateVersions.map((v) => `"${v.id}"`)}]
-                    }
-                  ) {
-                    ...FullProposalCandidateFields
-                    versions { id }
-                  }
-                }`,
-            });
+            // return subgraphFetch({
+            //   query: `
+            //     ${FULL_PROPOSAL_CANDIDATE_FIELDS}
+            //     query {
+            //       proposalCandidates(
+            //         where: {
+            //           latestVersion_in: [${proposalCandidateVersions.map((v) => `"${v.id}"`)}]
+            //         }
+            //       ) {
+            //         ...FullProposalCandidateFields
+            //         versions { id }
+            //       }
+            //     }`,
+            // });
+            return { proposalCandidates: [] };
           })(),
 
           PropdatesSubgraph.fetchPropdatesByAccount(id),
