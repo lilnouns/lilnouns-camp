@@ -521,9 +521,10 @@ const createStore = ({ initialState, publicClient }) =>
         }`,
       });
 
-    const fetchCandidatesFeedbackPosts = Promise.resolve({
-      candidateFeedbacks: [],
-    });
+    const fetchCandidatesFeedbackPosts = async () =>
+      Promise.resolve({
+        candidateFeedbacks: [],
+      });
     // const fetchCandidatesFeedbackPosts = (candidateIds) =>
     //   subgraphFetch({
     //     query: `
