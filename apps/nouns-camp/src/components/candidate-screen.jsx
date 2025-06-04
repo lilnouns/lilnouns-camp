@@ -426,7 +426,7 @@ const ProposalCandidateScreenContent = ({
             promoted to a proposal.
           </p>*/}
           <p>
-            This candidate has met the voting threshold ({candidateVotingPower}/
+            This candidate has met the proposal threshold ({candidateVotingPower}/
             {proposalThreshold + 1}).
           </p>
           <p>
