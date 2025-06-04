@@ -421,9 +421,13 @@ const SubmitDialog = ({
       case "candidate":
         return (
           <>
-            <p>
+            {/*<p>
               Candidates can be created by anyone. If a candidate receives
               enough signatures by voters, it can be promoted to a proposal.
+            </p>*/}
+            <p>
+              Candidates can be created by anyone. If a proposer receives enough
+              delegated votes by holders, they can be promoted to a proposal.
             </p>
             <p>
               Submissions are <em>free for accounts with voting power</em>.
