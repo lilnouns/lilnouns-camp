@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0-alpha.2] - 2025-06-04
+
+### 🐛 Bug Fixes
+
+- *(nouns-camp)* Convert feedback fetch to async function
+
 ## [1.5.0-alpha.1] - 2025-06-04
 
 ### 🐛 Bug Fixes
