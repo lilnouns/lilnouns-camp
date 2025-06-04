@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0-alpha.1] - 2025-06-04
+
+### 🐛 Bug Fixes
+
+- *(nouns-camp)* Remove unused subgraph queries
+- *(nouns-camp)* Simplify candidate feedback fetching logic
+- *(nouns-camp)* Add conditional check for missing IDs
+
 ## [1.5.0-alpha.0] - 2025-06-04
 
 ### 🐛 Bug Fixes
