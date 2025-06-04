@@ -427,11 +427,11 @@ const ProposalCandidateScreenContent = ({
           </p>*/}
           <p>
             This candidate has met the voting threshold ({candidateVotingPower}/
-            {proposalThreshold + 1}.
+            {proposalThreshold + 1}).
           </p>
           <p>
-            Holders can delegate their voting power to this proposer to promote
-            a proposal.
+            Holders can delegate their voting power to proposers who don't have
+            enough votes to promote a proposal.
           </p>
         </>
       ) : (
@@ -450,9 +450,10 @@ const ProposalCandidateScreenContent = ({
               a proposal.
             </>*/
             <>
-              This candidate proposer needs <em>{missingSponsorVotingPower} more</em>{" "}
-              voting power ({candidateVotingPower}/{proposalThreshold + 1}) to
-              be promoted to a proposal.
+              This candidate proposer needs{" "}
+              <em>{missingSponsorVotingPower} more</em> voting power (
+              {candidateVotingPower}/{proposalThreshold + 1}) to be promoted to
+              a proposal.
             </>
           )}
         </>
