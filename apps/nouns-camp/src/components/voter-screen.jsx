@@ -21,7 +21,7 @@ import {
   useAccount,
   useAccountFetch,
   useAccountProposals,
-  // useAccountProposalCandidates,
+  useAccountProposalCandidates,
   // useAccountSponsoredProposals,
   // useAccountTopics,
   useActions,
@@ -157,7 +157,7 @@ const FeedSidebar = React.memo(({ voterAddress }) => {
             options={[
               { value: "all", label: "Everything" },
               { value: "proposals", label: "Proposal activity only" },
-              // { value: "candidates", label: "Candidate activity only" },
+              { value: "candidates", label: "Candidate activity only" },
               { value: "representation", label: "Delegation activity only" },
             ]}
             onChange={(value) => {
@@ -177,7 +177,7 @@ const FeedSidebar = React.memo(({ voterAddress }) => {
               const filterLabel = {
                 all: "Everything",
                 proposals: "Proposal activity",
-                // candidates: "Candidate activity",
+                candidates: "Candidate activity",
                 representation: "Delegation activity",
               }[value];
               return (
@@ -222,7 +222,7 @@ const FeedTabContent = React.memo(({ voterAddress }) => {
             options={[
               { value: "all", label: "Everything" },
               { value: "proposals", label: "Proposal activity only" },
-              // { value: "candidates", label: "Candidate activity only" },
+              { value: "candidates", label: "Candidate activity only" },
               { value: "representation", label: "Delegation activity only" },
             ]}
             onChange={(value) => {
@@ -234,7 +234,7 @@ const FeedTabContent = React.memo(({ voterAddress }) => {
               const filterLabel = {
                 all: "Everything",
                 proposals: "Proposal activity",
-                // candidates: "Candidate activity",
+                candidates: "Candidate activity",
                 representation: "Delegation activity",
               }[value];
               return (
@@ -772,9 +772,9 @@ const VoterMainSection = ({ voterAddress }) => {
   const delegate = useDelegate(voterAddress);
 
   const proposals = useAccountProposals(voterAddress);
-  // const candidates = useAccountProposalCandidates(voterAddress, {
-  //   includeTopics: false,
-  // });
+  const candidates = useAccountProposalCandidates(voterAddress, {
+    includeTopics: false,
+  });
   // const sponsoredProposals = useAccountSponsoredProposals(voterAddress);
   // const topics = useAccountTopics(voterAddress);
 
@@ -798,9 +798,9 @@ const VoterMainSection = ({ voterAddress }) => {
       ? `Proposals (${proposals?.length})`
       : "Proposals";
 
-  // const candidatesTabTitle = candidates?.length
-  //   ? `Candidates (${candidates?.length})`
-  //   : "Candidates";
+  const candidatesTabTitle = candidates?.length
+    ? `Candidates (${candidates?.length})`
+    : "Candidates";
 
   // const sponsoredTabTitle = sponsoredProposals.length
   //   ? `Sponsored (${sponsoredProposals.length})`
@@ -891,7 +891,7 @@ const VoterMainSection = ({ voterAddress }) => {
                   </div>
                 </div>
               </Tabs.Item>
-              {/*<Tabs.Item key="candidates" title={candidatesTabTitle}>
+              <Tabs.Item key="candidates" title={candidatesTabTitle}>
                 <div>
                   {hasFetchedData && candidates.length === 0 && (
                     <Tabs.EmptyPlaceholder
@@ -915,7 +915,7 @@ const VoterMainSection = ({ voterAddress }) => {
                     />
                   </div>
                 </div>
-              </Tabs.Item>*/}
+              </Tabs.Item>
               {/*<Tabs.Item key="sponsored" title={sponsoredTabTitle}>
                 <div>
                   {hasFetchedData && sponsoredProposals.length === 0 && (

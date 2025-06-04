@@ -31,8 +31,8 @@ const fetchProposal = async (id, { chainId }) => {
           status
           createdBlock
           createdTimestamp
-        # lastUpdatedBlock
-        # lastUpdatedTimestamp
+          lastUpdatedBlock
+          lastUpdatedTimestamp
           startBlock
           endBlock
         # updatePeriodEndBlock

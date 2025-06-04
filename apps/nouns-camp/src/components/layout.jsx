@@ -431,9 +431,9 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
       case "navigate-to-proposal-listing":
         navigate("/proposals");
         break;
-      // case "navigate-to-candidate-listing":
-      //   navigate("/candidates");
-      //   break;
+      case "navigate-to-candidate-listing":
+        navigate("/candidates");
+        break;
       case "navigate-to-topic-listing":
         navigate("/topics");
         break;
@@ -755,10 +755,10 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                 children: [
                     // { id: "navigate-to-auction", title: "Auction" },
                   { id: "navigate-to-proposal-listing", title: "Proposals" },
-                    // {
-                    //   id: "navigate-to-candidate-listing",
-                    //   title: "Candidates",
-                    // },
+                    {
+                      id: "navigate-to-candidate-listing",
+                      title: "Candidates",
+                    },
                     // {
                     //   id: "navigate-to-topic-listing",
                     //   title: "Discussion topics",

@@ -101,8 +101,8 @@ export const useProposalCasts = (
       const searchParams = new URLSearchParams({ proposal: proposalId });
       const res = await fetch(`/api/farcaster-proposal-casts?${searchParams}`);
       const { casts, accounts } = await res.json();
-      const accountsByFid = arrayUtils.indexBy((a) => a.fid, accounts);
-      const castsByHash = arrayUtils.indexBy((c) => c.hash, casts);
+      const accountsByFid = arrayUtils.indexBy((a) => a.fid, accounts ?? []);
+      const castsByHash = arrayUtils.indexBy((c) => c.hash, casts ?? []);
       setState((s) => ({
         ...s,
         accountsByFid: objectUtils.merge(
@@ -150,8 +150,8 @@ export const useCandidateCasts = (candidateId, { filter, ...fetchOptions }) => {
       });
       const res = await fetch(`/api/farcaster-candidate-casts?${searchParams}`);
       const { casts, accounts } = await res.json();
-      const accountsByFid = arrayUtils.indexBy((a) => a.fid, accounts);
-      const castsByHash = arrayUtils.indexBy((c) => c.hash, casts);
+      const accountsByFid = arrayUtils.indexBy((a) => a.fid, accounts ?? []);
+      const castsByHash = arrayUtils.indexBy((c) => c.hash, casts ?? []);
       setState((s) => ({
         ...s,
         accountsByFid: objectUtils.merge(
@@ -268,7 +268,7 @@ export const useCastConversation = (
       }
 
       const { casts, accounts } = await response.json();
-      const accountsByFid = arrayUtils.indexBy((a) => a.fid, accounts);
+      const accountsByFid = arrayUtils.indexBy((a) => a.fid, accounts ?? []);
 
       const normalizeCastsWithReplies = (casts) => {
         const castsByHash = {};
@@ -575,8 +575,8 @@ export const useRecentCasts = ({ filter, ...fetchOptions } = {}) => {
 
       const { casts, accounts } = await res.json();
 
-      const accountsByFid = arrayUtils.indexBy((a) => a.fid, accounts);
-      const castsByHash = arrayUtils.indexBy((c) => c.hash, casts);
+      const accountsByFid = arrayUtils.indexBy((a) => a.fid, accounts ?? []);
+      const castsByHash = arrayUtils.indexBy((c) => c.hash, casts ?? []);
       const castHashesByProposalId = objectUtils.mapValues(
         (casts) => casts.map((c) => c.hash),
         arrayUtils.groupBy((c) => c.proposalId, casts),

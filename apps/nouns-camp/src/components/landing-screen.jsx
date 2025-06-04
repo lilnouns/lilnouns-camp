@@ -281,8 +281,8 @@ const BrowseScreen = () => {
   const [proposalSortStrategy, setProposalSortStrategy] = React.useState(
     "reverse-chronological",
   );
-  // const [candidateSortStrategy, setCandidateSortStrategy] =
-  //   React.useState("activity");
+  const [candidateSortStrategy, setCandidateSortStrategy] =
+    React.useState("activity");
   // const [topicSortStrategy, setTopicSortStrategy] = React.useState("activity");
   const [voterSortStrategy, setVoterSortStrategy] =
     React.useState("recent-revotes");
@@ -593,7 +593,7 @@ const BrowseScreen = () => {
             })()}
           </Tabs.Item>
         )}*/}
-        {/*<Tabs.Item key="candidates" title="Candidates">
+        <Tabs.Item key="candidates" title="Candidates">
           <div
             css={css({
               display: "flex",
@@ -669,7 +669,7 @@ const BrowseScreen = () => {
               </>
             );
           })()}
-        </Tabs.Item>*/}
+        </Tabs.Item>
         <Tabs.Item key="voters" title="Voters">
           <div
             css={css({
@@ -935,10 +935,10 @@ const feedFilterCategoryItems = [
     key: "proposals",
     title: "Proposal activity",
   },
-  // {
-  //   key: "candidates",
-  //   title: "Candidate activity",
-  // },
+  {
+    key: "candidates",
+    title: "Candidate activity",
+  },
   // {
   //   key: "topics",
   //   title: "Topic activity",
@@ -957,7 +957,7 @@ const feedFilterCategoryItems = [
 ];
 const defaultSelectedFeedFilterCategories = [
   "proposals",
-  // "candidates",
+  "candidates",
   // "topics",
   "noun-representation",
   "auction-excluding-bids",
