@@ -430,7 +430,7 @@ const ProposalCandidateScreenContent = ({
             {proposalThreshold + 1}).
           </p>
           <p>
-            Holders can delegate their voting power to proposers who don't have
+            Holders can delegate their voting power to proposers who don&apos;t have
             enough votes to promote a proposal.
           </p>
         </>
