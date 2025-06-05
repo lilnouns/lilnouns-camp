@@ -6,6 +6,8 @@ import webpack from "webpack";
 import { withSentryConfig } from "@sentry/nextjs";
 import serwist from "@serwist/next";
 
+const isProductionBranch = process.env.CF_PAGES_BRANCH === "master";
+
 // `next lint` runs this file
 const isLintJob = process.env.CI_LINT != null;
 
@@ -33,7 +35,7 @@ const assertEnvironment = () => {
 try {
   assertEnvironment();
 } catch (e) {
-  if (process.env.NODE_ENV === "production") throw e;
+  if (isProductionBranch) throw e;
   console.warn("Incomplete environment", e);
 }
 
@@ -41,7 +43,7 @@ const withSerwist = serwist({
   swSrc: "src/app/service-worker.js",
   swDest: "public/service-worker.js",
   swUrl: "/service-worker.js",
-  disable: process.env.NODE_ENV !== "production",
+  disable: !isProductionBranch,
 });
 
 const withSentry = (config) =>
@@ -100,6 +102,7 @@ const ignoredModules = [
 
 export default withSentry(
   withSerwist({
+    productionBrowserSourceMaps: !isProductionBranch,
     reactStrictMode: true,
     compiler: {
       emotion: true,
@@ -122,7 +125,7 @@ export default withSentry(
         },
         {
           source: "/resolvers/uns",
-          destination: '/api/resolvers/uns',
+          destination: "/api/resolvers/uns",
         },
         {
           source: "/subgraphs/flows",
@@ -169,7 +172,7 @@ export default withSentry(
           ]),
         ),
       },
-      instrumentationHook: process.env.NODE_ENV === "production",
+      instrumentationHook: isProductionBranch,
     },
   }),
 );
