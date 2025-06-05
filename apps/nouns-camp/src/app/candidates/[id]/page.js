@@ -7,7 +7,7 @@ import {
 import metaConfig from "@/metadata-config";
 import { subgraphFetch, parseCandidate } from "@/nouns-subgraph";
 import { normalizeId, makeUrlId } from "@/utils/candidates";
-import { Hydrater as StoreHydrater } from "@/store";
+import { Hydrater as StoreHydrater, Provider as StoreProvider } from "@/store";
 import ClientAppProvider from "@/app/client-app-provider";
 import CandidateScreen from "@/components/candidate-screen";
 
@@ -90,7 +90,7 @@ export async function generateMetadata({ params, searchParams }) {
   const { item } = searchParams;
   const urlSearchParams = new URLSearchParams(searchParams);
 
-  // Can’t notFound() here since we might be on a testnet
+  // Can't notFound() here since we might be on a testnet
   if (candidate == null) nextNotFound();
 
   const { title: parsedTitle, body } = candidate.latestVersion.content;
@@ -147,11 +147,13 @@ export default async function Page({ params, searchParams }) {
   }
 
   return (
-    <ClientAppProvider>
-      <CandidateScreen candidateId={candidate.id} />
-      <StoreHydrater
-        state={{ proposalCandidatesById: { [candidate.id]: candidate } }}
-      />
-    </ClientAppProvider>
+    <StoreProvider>
+      <ClientAppProvider>
+        <CandidateScreen candidateId={candidate.id} />
+        <StoreHydrater
+          state={{ proposalCandidatesById: { [candidate.id]: candidate } }}
+        />
+      </ClientAppProvider>
+    </StoreProvider>
   );
 }
