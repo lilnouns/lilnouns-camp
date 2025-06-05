@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0-alpha.3] - 2025-06-05
+
+### 🐛 Bug Fixes
+
+- *(nouns-camp)* Add caching for UNS resolver requests
+- *(nouns-camp)* Add caching to treasury API responses
+- *(nouns-camp)* Update cache key to include `CHAIN_ID`
+- *(nouns-camp)* Include `CHAIN_ID` in UNS cache key
+
 ## [1.5.0-alpha.2] - 2025-06-04
 
 ### 🐛 Bug Fixes
