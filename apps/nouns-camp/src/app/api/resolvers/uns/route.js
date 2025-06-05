@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getRequestContext } from "@cloudflare/next-on-pages";
+import { CHAIN_ID } from "@/constants/env";
 
 export const runtime = "edge";
 
@@ -29,7 +30,7 @@ export async function POST(req) {
       );
     }
 
-    const cacheKey = `uns-resolver:${address}`;
+    const cacheKey = `uns-resolver:${CHAIN_ID}:${address}`;
 
     // Try to get a cached response first
     if (CACHE) {
