@@ -4,6 +4,7 @@ import { CHAIN_ID } from "@/constants/env";
 import { resolveIdentifier as resolveContractIdentifier } from "@/contracts";
 import { getChain } from "@/utils/chains";
 import { getJsonRpcUrl } from "@/wagmi-config";
+import { getRequestContext } from "@cloudflare/next-on-pages";
 
 export const runtime = "edge";
 
@@ -43,6 +44,30 @@ const balanceOf = ({ contract, account }) => {
 };
 
 export async function GET() {
+  const {
+    env: { CACHE },
+  } = getRequestContext();
+
+  // Try to get a cached response first
+  const cacheKey = "treasury-data";
+
+  if (CACHE) {
+    try {
+      const cachedResponse = await CACHE.get(cacheKey);
+      if (cachedResponse) {
+        const parsedResponse = JSON.parse(cachedResponse);
+        return Response.json(parsedResponse.data, {
+          headers: {
+            "X-Cache": "HIT",
+            "Cache-Control": `max-age=${ONE_HOUR_IN_SECONDS}, s-maxage=${ONE_HOUR_IN_SECONDS}, stale-while-revalidate=${ONE_HOUR_IN_SECONDS * 2}`,
+          },
+        });
+      }
+    } catch (cacheError) {
+      console.warn("Cache read error:", cacheError);
+    }
+  }
+
   const executorAddress = resolveContractIdentifier("executor")?.address;
   const daoProxyAddress = resolveContractIdentifier("dao")?.address;
   // const clientIncentivesRewardsProxyAddress = resolveContractIdentifier(
@@ -194,7 +219,8 @@ export async function GET() {
         return ["rocketPoolApr", Number(rethAPR) / 100];
       })(),
       (async () => {
-        const url = "https://api.originprotocol.com/api/v2/oeth/apr/trailing/30";
+        const url =
+          "https://api.originprotocol.com/api/v2/oeth/apr/trailing/30";
         const res = await fetch(url);
         if (!res.ok) {
           throw new Error(
@@ -207,35 +233,51 @@ export async function GET() {
     ]),
   );
 
-  // 30 min cache
-  const cacheTime = ONE_HOUR_IN_SECONDS / 2;
+  // Cache for 1 hour
+  const cacheTime = ONE_HOUR_IN_SECONDS;
 
-  return Response.json(
-    {
-      balances: {
-        executor: objectUtils.mapValues(
-          (v) => v?.toString() ?? null,
-          executorBalances,
-        ),
-        "dao-proxy": { eth: daoProxyEthBalance.toString() },
-        // "client-incentives-rewards-proxy": {
-        //   weth: clientIncentivesRewardsProxyWethBalance?.toString() ?? null,
-        // },
-        "token-buyer": { eth: tokenBuyerEthBalance.toString() },
-        payer: { usdc: payerUsdcBalance.toString() },
-        // "fork-escrow": { nouns: forkEscrowNounsBalance.toString() },
-      },
-      rates: objectUtils.mapValues((v) => v.toString(), convertionRates),
-      aprs: {
-        lido: lidoApr,
-        rocketPool: rocketPoolApr,
-        originEther: originEtherApr,
-      },
+  const responseData = {
+    balances: {
+      executor: objectUtils.mapValues(
+        (v) => v?.toString() ?? null,
+        executorBalances,
+      ),
+      "dao-proxy": { eth: daoProxyEthBalance.toString() },
+      // "client-incentives-rewards-proxy": {
+      //   weth: clientIncentivesRewardsProxyWethBalance?.toString() ?? null,
+      // },
+      "token-buyer": { eth: tokenBuyerEthBalance.toString() },
+      payer: { usdc: payerUsdcBalance.toString() },
+      // "fork-escrow": { nouns: forkEscrowNounsBalance.toString() },
     },
-    {
-      headers: {
-        "Cache-Control": `max-age=${cacheTime}, s-maxage=${cacheTime}, stale-while-revalidate=${cacheTime * 2}`,
-      },
+    rates: objectUtils.mapValues((v) => v.toString(), convertionRates),
+    aprs: {
+      lido: lidoApr,
+      rocketPool: rocketPoolApr,
+      originEther: originEtherApr,
     },
-  );
+  };
+
+  // Cache successful responses for 1 hour
+  if (CACHE) {
+    try {
+      const cacheData = {
+        data: responseData,
+        timestamp: Date.now(),
+      };
+
+      await CACHE.put(cacheKey, JSON.stringify(cacheData), {
+        expirationTtl: cacheTime, // 1 hour in seconds
+      });
+    } catch (cacheError) {
+      console.warn("Cache write error:", cacheError);
+    }
+  }
+
+  return Response.json(responseData, {
+    headers: {
+      "X-Cache": "MISS",
+      "Cache-Control": `max-age=${cacheTime}, s-maxage=${cacheTime}, stale-while-revalidate=${cacheTime * 2}`,
+    },
+  });
 }
