@@ -49,7 +49,7 @@ export async function GET() {
   } = getRequestContext();
 
   // Try to get a cached response first
-  const cacheKey = "treasury-data";
+  const cacheKey = `treasury-data:${CHAIN_ID}`;
 
   if (CACHE) {
     try {
