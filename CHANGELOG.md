@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0-alpha.4] - 2025-06-05
+
+### 🐛 Bug Fixes
+
+- *(nouns-camp)* Wrap app with `StoreProvider`
+
 ## [1.5.0-alpha.3] - 2025-06-05
 
 ### 🐛 Bug Fixes
