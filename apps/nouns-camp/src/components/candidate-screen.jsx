@@ -1557,6 +1557,8 @@ const useSponsorsVotingPower = (candidateId) => {
 };
 
 const CandidateScreen = ({ candidateId: rawId }) => {
+  const [mounted, setMounted] = useState(false);
+
   const candidateId = normalizeId(decodeURIComponent(rawId));
 
   const proposerId = candidateId.split("-")[0];
@@ -1578,6 +1580,10 @@ const CandidateScreen = ({ candidateId: rawId }) => {
   const isProposer =
     connectedWalletAccountAddress != null &&
     connectedWalletAccountAddress === candidate?.proposerId.toLowerCase();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useProposalCandidateFetch(candidateId, {
     onError: (e) => {
@@ -1645,6 +1651,8 @@ const CandidateScreen = ({ candidateId: rawId }) => {
       toggleProposeDialog,
     ],
   );
+
+  if (!mounted) return null;
 
   if (notFound) nextNotFound();
 
