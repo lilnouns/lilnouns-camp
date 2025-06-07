@@ -101,7 +101,9 @@ const ignoredModules = [
   "encoding",
 ];
 
-export default withSentry(
+initOpenNextCloudflareForDev();
+
+const nextConfig = withSentry(
   withSerwist({
     productionBrowserSourceMaps: !isProductionBranch,
     reactStrictMode: true,
@@ -178,4 +180,4 @@ export default withSentry(
   }),
 );
 
-initOpenNextCloudflareForDev();
+export default nextConfig;
