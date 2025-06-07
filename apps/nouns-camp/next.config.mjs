@@ -5,8 +5,7 @@ import dotenv from "dotenv";
 import webpack from "webpack";
 import { withSentryConfig } from "@sentry/nextjs";
 import serwist from "@serwist/next";
-
-const isProductionBranch = process.env.CF_PAGES_BRANCH === "master";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 // `next lint` runs this file
 const isLintJob = process.env.CI_LINT != null;
@@ -27,15 +26,15 @@ const assertEnvironment = () => {
   // Assert that any public keys are defined in the whitelist
   for (const key of Object.keys(process.env)) {
     if (key.startsWith("NEXT_PUBLIC_VERCEL_")) continue; // Variables injected by Vercel are fine
-    // if (key.startsWith("NEXT_PUBLIC_") && !whitelistedKeys.includes(key))
-    //   throw new Error(`${key} is not allowed`);
+    if (key.startsWith("NEXT_PUBLIC_") && !whitelistedKeys.includes(key))
+      throw new Error(`${key} is not allowed`);
   }
 };
 
 try {
   assertEnvironment();
 } catch (e) {
-  if (isProductionBranch) throw e;
+  if (process.env.NODE_ENV === "production") throw e;
   console.warn("Incomplete environment", e);
 }
 
@@ -43,36 +42,32 @@ const withSerwist = serwist({
   swSrc: "src/app/service-worker.js",
   swDest: "public/service-worker.js",
   swUrl: "/service-worker.js",
-  disable: !isProductionBranch,
+  disable: process.env.NODE_ENV !== "production",
 });
 
 const withSentry = (config) =>
-  withSentryConfig(
-    config,
-    {
-      silent: true, // Suppresses source map uploading logs during build
-      org: process.env.SENTRY_ORG,
-      project: process.env.SENTRY_PROJECT,
-      authToken: process.env.SENTRY_AUTH_TOKEN,
-    },
-    {
-      // Upload a larger set of source maps for prettier stack traces (increases build time)
-      widenClientFileUpload: true,
-      // Transpiles SDK to be compatible with IE11 (increases bundle size)
-      transpileClientSDK: true,
-      // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
-      tunnelRoute: "/monitoring",
-      // Hides source maps from generated client bundles
-      hideSourceMaps: true,
-      // Automatically tree-shake Sentry logger statements to reduce bundle size
-      disableLogger: true,
-      // Enables automatic instrumentation of Vercel Cron Monitors.
-      // See the following for more information:
-      // https://docs.sentry.io/product/crons/
-      // https://vercel.com/docs/cron-jobs
-      // automaticVercelMonitors: true,
-    },
-  );
+  withSentryConfig(config, {
+    // silent: true, // Suppresses source map uploading logs during build
+    org: process.env.SENTRY_ORG,
+    project: process.env.SENTRY_PROJECT,
+    authToken: process.env.SENTRY_AUTH_TOKEN,
+
+    // Upload a larger set of source maps for prettier stack traces (increases build time)
+    widenClientFileUpload: true,
+    // Transpiles SDK to be compatible with IE11 (increases bundle size)
+    transpileClientSDK: true,
+    // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
+    tunnelRoute: "/monitoring",
+    // Hides source maps from generated client bundles
+    hideSourceMaps: true,
+    // Automatically tree-shake Sentry logger statements to reduce bundle size
+    disableLogger: true,
+    // Enables automatic instrumentation of Vercel Cron Monitors.
+    // See the following for more information:
+    // https://docs.sentry.io/product/crons/
+    // https://vercel.com/docs/cron-jobs
+    // automaticVercelMonitors: true,
+  });
 
 const BUILD_ID = process.env.CF_PAGES_COMMIT_SHA?.slice(0, 7) ?? "dev";
 const APP_HOST = (() => {
@@ -102,7 +97,6 @@ const ignoredModules = [
 
 export default withSentry(
   withSerwist({
-    productionBrowserSourceMaps: !isProductionBranch,
     reactStrictMode: true,
     compiler: {
       emotion: true,
@@ -142,8 +136,6 @@ export default withSentry(
       ];
     },
     webpack(config) {
-      config.cache = false; // Disables PackFileCacheStrategy
-
       config.resolve.fallback = {
         ...config.resolve.fallback,
         ...Object.fromEntries(ignoredModules.map((m) => [m, false])),
@@ -164,15 +156,17 @@ export default withSentry(
     // swcMinify: false,
     experimental: {
       turbo: {
-        // Ignoring modules is not a thing yet
-        resolveAlias: Object.fromEntries(
-          ignoredModules.map((n) => [
-            n,
-            { browser: "@shades/common/empty-module" },
-          ]),
-        ),
-      },
-      instrumentationHook: isProductionBranch,
+    // Ignoring modules is not a thing yet
+    resolveAlias: Object.fromEntries(
+      ignoredModules.map((n) => [
+        n,
+        { browser: "@shades/common/empty-module" },
+      ]),
+    ),
+  },
+instrumentationHook: isProductionBranch,
     },
   }),
 );
+
+initOpenNextCloudflareForDev();
