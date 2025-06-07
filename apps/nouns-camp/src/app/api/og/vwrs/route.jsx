@@ -14,7 +14,7 @@ import {
   VOTE_FIELDS,
 } from "@/nouns-subgraph";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const theme = getTheme("light");
 

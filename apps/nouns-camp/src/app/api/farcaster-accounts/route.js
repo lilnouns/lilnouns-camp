@@ -2,7 +2,7 @@
 // import { isAddress } from "viem";
 // import { fetchAccountsWithVerifiedAddress } from "@/app/api/farcaster-utils";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 // Returns Farcaster accounts matching a verified Ethereum account address
 // eslint-disable-next-line no-unused-vars
