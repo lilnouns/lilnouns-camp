@@ -98,9 +98,6 @@ const ignoredModules = [
 ];
 
 const baseConfig = {
-  // v8: enable Next instrumentation hook for better tracing (if Next <15)
-  experimental: { instrumentationHook: true },
-
   productionBrowserSourceMaps: !isProductionBranch,
   reactStrictMode: true,
   compiler: { emotion: true },
