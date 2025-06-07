@@ -30,7 +30,6 @@
     "eslint-config-next": "14.2.30",
     "eslint-config-prettier": "10.1.5",
     "jsdom": "26.1.0",
-    "vercel": "39.1.1",
     "vitest": "3.2.4",
     "webpack": "^5.99.9",
     "wrangler": "4.23.0"
