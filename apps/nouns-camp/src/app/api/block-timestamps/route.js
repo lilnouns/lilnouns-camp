@@ -4,7 +4,7 @@ import { getChain } from "@/utils/chains";
 import { getJsonRpcUrl } from "@/wagmi-config";
 import { CACHE_ONE_YEAR } from "next/constants";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const chain = getChain(CHAIN_ID);
 

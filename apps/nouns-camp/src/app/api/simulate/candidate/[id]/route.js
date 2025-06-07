@@ -1,7 +1,7 @@
 import { fetchSimulationBundle } from "@/app/api/tenderly-utils";
 import { parseCandidate, subgraphFetch } from "@/nouns-subgraph";
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 const fetchCandidate = async (id) => {
   const data = await subgraphFetch({

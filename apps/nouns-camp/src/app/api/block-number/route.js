@@ -3,7 +3,7 @@ import { CHAIN_ID } from "@/constants/env";
 import { getChain } from "@/utils/chains";
 import { getJsonRpcUrl } from "@/wagmi-config";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const chain = getChain(CHAIN_ID);
 
