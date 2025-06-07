@@ -1,6 +1,6 @@
 // import { track } from "@vercel/analytics/server";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export async function POST(request) {
   // eslint-disable-next-line no-unused-vars

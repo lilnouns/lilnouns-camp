@@ -1,6 +1,6 @@
 // import { fetchCastReplies } from "@/app/api/farcaster-utils";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);

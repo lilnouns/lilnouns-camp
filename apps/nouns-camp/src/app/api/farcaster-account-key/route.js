@@ -6,7 +6,7 @@
 //   setPendingAccountKey,
 // } from "@/app/api/farcaster-account-key-utils";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 // const SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN = {
 //   name: "Farcaster SignedKeyRequestValidator",
