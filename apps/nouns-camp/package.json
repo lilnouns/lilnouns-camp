@@ -3,6 +3,10 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "prestart": "next-on-pages --disable-worker-minification",
     "start": "wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat --log-level=info --compatibility-date=2025-01-30",
     "format": "prettier . --write",
