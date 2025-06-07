@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "1.13.1",
+    "@opennextjs/cloudflare": "1.2.1",
     "@playwright/test": "1.53.2",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.3.0",
