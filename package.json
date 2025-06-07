@@ -5,7 +5,7 @@
     "dev": "pnpm run --recursive --parallel --if-present dev",
     "prestart": "pnpm run build",
     "start": "pnpm run --recursive --parallel --if-present start",
-    "build": "turbo build --filter='./packages/*'",
+    "build": "turbo build",
     "lint": "turbo lint",
     "format": "pnpm run --recursive --if-present format",
     "test": "pnpm run --recursive --if-present test"
