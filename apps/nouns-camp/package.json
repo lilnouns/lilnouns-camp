@@ -79,7 +79,7 @@
     "sonner": "^2.0.5",
     "tinykeys": "3.0.0",
     "use-debounce": "10.0.4",
-    "viem": "2.22.17",
+    "viem": "2.30.6",
     "wagmi": "2.15.6",
     "zustand": "4.5.7"
   }
