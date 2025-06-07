@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getRequestContext } from "@cloudflare/next-on-pages";
 import { CHAIN_ID } from "@/constants/env";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export async function POST(req) {
   const {

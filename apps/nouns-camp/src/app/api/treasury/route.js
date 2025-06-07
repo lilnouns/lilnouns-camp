@@ -6,7 +6,7 @@ import { getChain } from "@/utils/chains";
 import { getJsonRpcUrl } from "@/wagmi-config";
 import { getRequestContext } from "@cloudflare/next-on-pages";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const ONE_HOUR_IN_SECONDS = 60 * 60;
 

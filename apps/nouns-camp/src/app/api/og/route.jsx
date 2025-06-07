@@ -19,7 +19,7 @@ import { displayName, formatDate, getFonts } from "@/app/api/og-utils";
 
 const theme = getTheme("light");
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const chain = getChain(CHAIN_ID);
 const publicClient = createPublicClient({
