@@ -2,7 +2,7 @@ import ClientAppProvider from "@/app/client-app-provider";
 import { build as buildMetadata } from "@/utils/metadata";
 import BrowseAccountsScreen from "@/components/browse-accounts-screen";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export const metadata = buildMetadata({
   title: "Voters",

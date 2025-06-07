@@ -5,7 +5,7 @@ import ClientAppProvider from "@/app/client-app-provider";
 import ProposalOrTopicEditorScreen from "@/components/proposal-or-topic-editor-screen";
 import ConnectWalletScreen from "@/components/connect-wallet-screen";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export default function Page({ params }) {
   const draftId = params.segments?.[0];

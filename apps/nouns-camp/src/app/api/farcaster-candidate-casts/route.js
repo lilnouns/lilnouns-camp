@@ -14,7 +14,7 @@
 //   deleteAccountKeyForFid,
 // } from "@/app/api/farcaster-account-key-utils";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 // const createCanonicalCandidateUrl = async (candidateId) => {
 //   const { proposalCandidate } = await subgraphFetch({
