@@ -4,7 +4,7 @@ import { CHAIN_ID } from "@/constants/env";
 import { resolveIdentifier as resolveContractIdentifier } from "@/contracts";
 import { getChain } from "@/utils/chains";
 import { getJsonRpcUrl } from "@/wagmi-config";
-import { getRequestContext } from "@cloudflare/next-on-pages";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 // export const runtime = "edge";
 
@@ -46,7 +46,7 @@ const balanceOf = ({ contract, account }) => {
 export async function GET() {
   const {
     env: { CACHE },
-  } = getRequestContext();
+  } = getCloudflareContext();
 
   // Try to get a cached response first
   const cacheKey = `treasury-data:${CHAIN_ID}`;

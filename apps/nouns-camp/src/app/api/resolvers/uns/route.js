@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getRequestContext } from "@cloudflare/next-on-pages";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { CHAIN_ID } from "@/constants/env";
 
 // export const runtime = "edge";
@@ -7,7 +7,7 @@ import { CHAIN_ID } from "@/constants/env";
 export async function POST(req) {
   const {
     env: { UNS_RESOLVER_URL, UNS_RESOLVER_API_KEY, CACHE },
-  } = getRequestContext();
+  } = getCloudflareContext();
   const targetUrl = UNS_RESOLVER_URL;
   const apiKey = UNS_RESOLVER_API_KEY;
 
