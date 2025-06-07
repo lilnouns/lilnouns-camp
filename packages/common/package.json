@@ -29,6 +29,6 @@
     "@swc/core": "1.11.29",
     "rollup": "4.41.0",
     "rollup-plugin-swc3": "0.12.1",
-    "vitest": "3.2.1"
+    "vitest": "3.2.2"
   }
 }
