@@ -35,7 +35,7 @@
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
-    "@farcaster/core": "0.16.4",
+    "@farcaster/core": "0.16.5",
     "@lilnounsdao/assets": "0.5.15",
     "@lilnounsdao/contracts": "0.3.5",
     "@lilnounsdao/sdk": "0.3.15",
@@ -79,8 +79,8 @@
     "sonner": "^2.0.5",
     "tinykeys": "3.0.0",
     "use-debounce": "10.0.4",
-    "viem": "2.22.17",
-    "wagmi": "2.14.9",
+    "viem": "2.30.6",
+    "wagmi": "2.15.6",
     "zustand": "4.5.7"
   }
 }
