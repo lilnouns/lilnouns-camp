@@ -9,7 +9,7 @@
 [![Donate](https://img.shields.io/badge/donate-nekofar.crypto-a2b9bc?logo=ethereum&logoColor=f5f5f5)](https://ud.me/nekofar.crypto)
 
 > [!IMPORTANT]
-> It is advisable to consider it an under-development tool even though it is publicly available now.
+> It is advisable to consider it an underdevelopment tool even though it is publicly available now.
 
 > [!WARNING]
 > Please note that the project is currently in an experimental phase, and it is subject to significant changes as it
