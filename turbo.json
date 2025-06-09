@@ -25,9 +25,13 @@
         "PROPDATES_SUBGRAPH_URL",
         "FLOWS_SUBGRAPH_URL",
         "SENTRY_AUTH_TOKEN",
+        "SENTRY_LOG_LEVEL",
+        "SENTRY_ORG",
+        "SENTRY_PROJECT",
         "SESSION_SEAL_SECRET",
         "TENDERLY_API_KEY",
-        "TENDERLY_PROJECT_SLUG"
+        "TENDERLY_PROJECT_SLUG",
+        "NNS_RESOLVER_URL"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
