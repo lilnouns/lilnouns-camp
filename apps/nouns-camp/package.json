@@ -32,7 +32,7 @@
     "eslint-plugin-next-on-pages": "1.13.12",
     "jsdom": "26.1.0",
     "vitest": "3.2.4",
-    "webpack": "^5.99.9",
+    "webpack": "5.99.9",
     "wrangler": "4.23.0"
   },
   "dependencies": {
