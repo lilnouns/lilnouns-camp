@@ -95,65 +95,65 @@ const ignoredModules = [
   "encoding",
 ];
 
-export default withSentry(
-  withSerwist({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     productionBrowserSourceMaps: process.env.NODE_ENV !== "production",
-    reactStrictMode: true,
-    compiler: {
-      emotion: true,
-    },
-    rewrites() {
-      return [
+  reactStrictMode: true,
+  compiler: {
+    emotion: true,
+  },
+  rewrites() {
+    return [
         // { source: "/topics/:path*", destination: "/candidates/:path*" },
-        { source: "/sw.js", destination: "/service-worker.js" },
-        {
-          source: "/subgraphs/nouns",
-          destination: process.env.NOUNS_SUBGRAPH_URL,
-        },
-        {
-          source: "/subgraphs/propdates",
-          destination: process.env.PROPDATES_SUBGRAPH_URL,
-        },
-        {
-          source: "/resolvers/nns",
-          destination: process.env.NNS_RESOLVER_URL,
-        },
-        {
-          source: "/resolvers/uns",
-          destination: "/api/resolvers/uns",
-        },
-        {
-          source: "/subgraphs/flows",
-          destination: process.env.FLOWS_SUBGRAPH_URL,
-        },
-      ];
-    },
-    headers() {
-      return [
+      { source: "/sw.js", destination: "/service-worker.js" },
+      {
+        source: "/subgraphs/nouns",
+        destination: process.env.NOUNS_SUBGRAPH_URL,
+      },
+      {
+        source: "/subgraphs/propdates",
+        destination: process.env.PROPDATES_SUBGRAPH_URL,
+      },
+      {
+        source: "/resolvers/nns",
+        destination: process.env.NNS_RESOLVER_URL,
+      },
+      {
+        source: "/resolvers/uns",
+        destination: "/api/resolvers/uns",
+      },
+      {
+        source: "/subgraphs/flows",
+        destination: process.env.FLOWS_SUBGRAPH_URL,
+      },
+    ];
+  },
+  headers() {
+    return [
         // {
         //   source: "/:path*",
         //   headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
         // },
-      ];
-    },
-    webpack(config) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        ...Object.fromEntries(ignoredModules.map((m) => [m, false])),
-      };
+    ];
+  },
+  webpack(config) {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      ...Object.fromEntries(ignoredModules.map((m) => [m, false])),
+    };
 
-      config.plugins = [
-        ...config.plugins,
-        new webpack.DefinePlugin({
-          "process.env.BUILD_ID": JSON.stringify(BUILD_ID),
-          "process.env.APP_HOST": JSON.stringify(APP_HOST),
-          "process.env.APP_PRODUCTION_URL": JSON.stringify(APP_PRODUCTION_URL),
-        }),
-      ];
+    config.plugins = [
+      ...config.plugins,
+      new webpack.DefinePlugin({
+        "process.env.BUILD_ID": JSON.stringify(BUILD_ID),
+        "process.env.APP_HOST": JSON.stringify(APP_HOST),
+        "process.env.APP_PRODUCTION_URL": JSON.stringify(APP_PRODUCTION_URL),
+      }),
+    ];
 
-      return config;
-    },
-    turbopack: {
+    return config;
+  },
+  turbopack: {
     // Ignoring modules is not a thing yet
     resolveAlias: Object.fromEntries(
       ignoredModules.map((n) => [
@@ -162,7 +162,8 @@ export default withSentry(
       ]),
     ),
   },
-  }),
-);
+};
+
+export default withSentry(withSerwist(nextConfig));
 
 initOpenNextCloudflareForDev();
