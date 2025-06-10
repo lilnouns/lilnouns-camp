@@ -24,7 +24,7 @@ export async function GET(request) {
   //   }),
   // );
 
-  const hasAccountKey = null // accountsWithKeyData.some((a) => a.hasAccountKey);
+  const hasAccountKey = null; // accountsWithKeyData.some((a) => a.hasAccountKey);
 
   // Don’t cache if no account key exists, 24 hours otherwise
   const cacheTime = hasAccountKey ? 24 * 60 * 60 : 0;

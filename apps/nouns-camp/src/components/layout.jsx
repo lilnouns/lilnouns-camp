@@ -420,10 +420,7 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
       //   window.open("https://discord.gg/EvAzqBTF8x", "_blank");
       //   break;
       case "open-camp-github":
-        window.open(
-          "https://github.com/lilnouns/lilnouns-camp",
-          "_blank",
-        );
+        window.open("https://github.com/lilnouns/lilnouns-camp", "_blank");
         break;
       // case "navigate-to-auction":
       //   navigate("/auction");
@@ -753,16 +750,16 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                 id: "dao",
                 title: "DAO",
                 children: [
-                    // { id: "navigate-to-auction", title: "Auction" },
+                  // { id: "navigate-to-auction", title: "Auction" },
                   { id: "navigate-to-proposal-listing", title: "Proposals" },
-                    {
-                      id: "navigate-to-candidate-listing",
-                      title: "Candidates",
-                    },
-                    // {
-                    //   id: "navigate-to-topic-listing",
-                    //   title: "Discussion topics",
-                    // },
+                  {
+                    id: "navigate-to-candidate-listing",
+                    title: "Candidates",
+                  },
+                  // {
+                  //   id: "navigate-to-topic-listing",
+                  //   title: "Discussion topics",
+                  // },
                   { id: "navigate-to-account-listing", title: "Voters" },
                   { id: "open-treasury-dialog", title: "Treasury" },
                 ],
@@ -776,11 +773,11 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                     title: "Farcaster",
                     iconRight: <span>{"\u2197"}</span>,
                   },
-                    // {
-                    //   id: "open-flows",
-                    //   title: "Flows",
-                    //   iconRight: <span>{"\u2197"}</span>,
-                    // },
+                  // {
+                  //   id: "open-flows",
+                  //   title: "Flows",
+                  //   iconRight: <span>{"\u2197"}</span>,
+                  // },
                 ],
               };
               const settingsSection = {
@@ -851,7 +848,7 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                       },
                       {
                         id: "open-drafts-dialog",
-                          title: "Proposal drafts",
+                        title: "Proposal drafts",
                       },
                       !hasVerifiedFarcasterAccount
                         ? null

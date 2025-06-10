@@ -558,7 +558,7 @@ export async function GET(request) {
       blockNumber: currentBlockNumber,
     });
 
-    const signersIds = [] // proposal.signers.map((signer) => signer.id);
+    const signersIds = []; // proposal.signers.map((signer) => signer.id);
 
     const ensInfoByAddress = await getBatchEnsInfo([
       proposal.proposerId,
@@ -570,7 +570,7 @@ export async function GET(request) {
       ensName: ensInfoByAddress[proposal.proposerId]?.ensName,
     };
 
-    const sponsors = [] /*proposal.signers.map((signer) => {
+    const sponsors = []; /*proposal.signers.map((signer) => {
       const ensName = ensInfoByAddress[signer.id]?.ensName;
       return { id: signer.id, ensName };
     });*/
