@@ -166,8 +166,8 @@ const ProposalActionForm = ({
         return (
           <>
             Camp defaults to only show casts from accounts that have had onchain
-            interactions with Lil Nouns. Users that hasn’t opted out of this filter
-            will not see this cast.
+            interactions with Lil Nouns. Users that hasn’t opted out of this
+            filter will not see this cast.
           </>
         );
       }

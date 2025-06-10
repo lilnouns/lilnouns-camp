@@ -49,8 +49,7 @@ const addressByIdentifierByChainId = {
     "executor-v1": "0xd5f279ff9eb21c6d40c8f345a66f2751c4eea1fb",
     "token-buyer": DAO_TOKEN_BUYER_CONTRACT,
     "stream-factory": "0xb2ffeef1f68cfacdefdafe6f1a9d30ff47c7cb5e",
-    "client-incentives-rewards-proxy":
-      "0x0",
+    "client-incentives-rewards-proxy": "0x0",
     "prop-house-nouns-house": "0x0",
   },
   [sepolia.id]: {

@@ -237,10 +237,10 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
       case "nftx-pool-claim-rewards":
         return (
           <>
-          This transaction claims rewards from the{" "}
+            This transaction claims rewards from the{" "}
             <AddressDisplayNameWithTooltip address={t.target} />.
           </>
-        )
+        );
 
       case "function-call":
       case "payable-function-call":
@@ -699,7 +699,8 @@ export const TransactionExplanation = ({ transaction: t }) => {
     }
 
     case "nftx-pool-claim-rewards": {
-      const { address: nftxPoolAddress } = resolveContractIdentifier("nftx-pool");
+      const { address: nftxPoolAddress } =
+        resolveContractIdentifier("nftx-pool");
       return (
         <>
           Claim rewards from the{" "}
@@ -707,7 +708,7 @@ export const TransactionExplanation = ({ transaction: t }) => {
             <AddressDisplayNameWithTooltip address={nftxPoolAddress} />
           </em>
         </>
-      )
+      );
     }
 
     case "stream": {
@@ -827,7 +828,8 @@ export const TransactionExplanation = ({ transaction: t }) => {
         <>
           Transfer{" "}
           <strong>
-            {Number(t.tokenAmount)} lil {t.tokenAmount > 1 ? "lil nouns" : "lil noun"}
+            {Number(t.tokenAmount)} lil{" "}
+            {t.tokenAmount > 1 ? "lil nouns" : "lil noun"}
           </strong>{" "}
           to{" "}
           <em>
