@@ -1,8 +1,7 @@
 {
-  "version": "1.5.0-alpha.10",
+  "version": "1.5.0-alpha.11",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
-    "preinstall": "npx -y only-allow pnpm",
     "dev": "pnpm run --recursive --parallel --if-present dev",
     "prestart": "pnpm run build",
     "start": "pnpm run --recursive --parallel --if-present start",
