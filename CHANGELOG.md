@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0-alpha.11] - 2025-06-10
+
+### 🚜 Refactor
+
+- *(build)* Remove `preinstall` script
+
+### 📚 Documentation
+
+- *(readme)* Fix typo in important notice
+
+### ⚙️ Miscellaneous Tasks
+
+- *(config)* Add multiple env vars for configuration
+
 ## [1.5.0-alpha.10] - 2025-06-10
 
 ### ⚙️ Miscellaneous Tasks
