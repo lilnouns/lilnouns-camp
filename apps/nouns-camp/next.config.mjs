@@ -129,10 +129,10 @@ const nextConfig = {
   },
   headers() {
     return [
-      {
-        source: "/:path*",
-        headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
-      },
+      // {
+      //   source: "/:path*",
+      //   headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
+      // },
     ];
   },
   webpack(config) {
