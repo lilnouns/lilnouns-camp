@@ -20,7 +20,7 @@ import { displayName, formatDate, getFonts } from "@/app/api/og-utils";
 const theme = getTheme("light");
 
 // export const runtime = "edge";
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 const chain = getChain(CHAIN_ID);
 const publicClient = createPublicClient({
@@ -559,7 +559,7 @@ export async function GET(request) {
       blockNumber: currentBlockNumber,
     });
 
-    const signersIds = [] // proposal.signers.map((signer) => signer.id);
+    const signersIds = []; // proposal.signers.map((signer) => signer.id);
 
     const ensInfoByAddress = await getBatchEnsInfo([
       proposal.proposerId,
@@ -571,7 +571,7 @@ export async function GET(request) {
       ensName: ensInfoByAddress[proposal.proposerId]?.ensName,
     };
 
-    const sponsors = [] /*proposal.signers.map((signer) => {
+    const sponsors = []; /*proposal.signers.map((signer) => {
       const ensName = ensInfoByAddress[signer.id]?.ensName;
       return { id: signer.id, ensName };
     });*/

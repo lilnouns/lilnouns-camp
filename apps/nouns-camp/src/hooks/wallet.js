@@ -221,7 +221,10 @@ export const useWallet = () => {
   const { isLoading: isSwitchingNetwork, switchChainAsync: switchChain } =
     useSwitchChain();
 
-  const { canaryAccounts, betaAccounts } = { canaryAccounts: [], betaAccounts:[] } /*useConfig()*/;
+  const { canaryAccounts, betaAccounts } = {
+    canaryAccounts: [],
+    betaAccounts: [],
+  }; /*useConfig()*/
 
   const { address: authenticatedAccountAddress } = useSessionState();
 

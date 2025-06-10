@@ -104,6 +104,6 @@ export async function POST(request) {
   //     await deleteAccountKeyForFid(fid);
   //     return Response.json({ error: "invalid-account-key" }, { status: 401 });
   //   }
-    return Response.json({ error: "submit-failed" }, { status: 500 });
+  return Response.json({ error: "submit-failed" }, { status: 500 });
   // }
 }

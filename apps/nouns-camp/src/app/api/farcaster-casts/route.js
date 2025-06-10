@@ -69,7 +69,7 @@ const jsonResponse = (statusCode, body, headers) =>
   });
 
 export async function GET() {
-  const { casts, accounts } = { casts: [], accounts: [] } // await fetchRecentCasts();
+  const { casts, accounts } = { casts: [], accounts: [] }; // await fetchRecentCasts();
 
   return jsonResponse(
     200,
