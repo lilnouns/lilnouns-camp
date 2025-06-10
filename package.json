@@ -15,7 +15,6 @@
     "@babel/helpers": ">=7.26.10",
     "@babel/runtime": ">=7.26.10",
     "@babel/traverse": ">=7.23.2",
-    "@cloudflare/workerd-darwin-64": "1.20250520.0",
     "@coinbase/wallet-sdk": ">=4.3.0",
     "@vercel/kv": ">=3.0.0",
     "axios": ">=1.6.0",
