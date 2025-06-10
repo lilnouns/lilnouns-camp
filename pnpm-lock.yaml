@@ -8,6 +8,7 @@ overrides:
   '@babel/helpers': '>=7.26.10'
   '@babel/runtime': '>=7.26.10'
   '@babel/traverse': '>=7.23.2'
+  '@cloudflare/workerd-darwin-64': 1.20250520.0
   '@coinbase/wallet-sdk': '>=4.3.0'
   '@vercel/kv': '>=3.0.0'
   axios: '>=1.6.0'
@@ -432,14 +433,8 @@ packages:
       workerd:
         optional: true
 
-  '@cloudflare/workerd-darwin-64@1.20250408.0':
-    resolution: {integrity: sha512-bxhIwBWxaNItZLXDNOKY2dCv0FHjDiDkfJFpwv4HvtvU5MKcrivZHVmmfDzLW85rqzfcDOmKbZeMPVfiKxdBZw==}
-    engines: {node: '>=16'}
-    cpu: [x64]
-    os: [darwin]
-
-  '@cloudflare/workerd-darwin-64@1.20250525.0':
-    resolution: {integrity: sha512-L5l+7sSJJT2+riR5rS3Q3PKNNySPjWfRIeaNGMVRi1dPO6QPi4lwuxfRUFNoeUdilZJUVPfSZvTtj9RedsKznQ==}
+  '@cloudflare/workerd-darwin-64@1.20250520.0':
+    resolution: {integrity: sha512-ghgqWwruhhNT9WJoWrIeXuIEhehdE3ckM0ao1PWG61gCAiTmzLy0DpUrIU/VwAjeqPSPCaXaseV9Xp4s7Lqs7Q==}
     engines: {node: '>=16'}
     cpu: [x64]
     os: [darwin]
@@ -7587,10 +7582,7 @@ snapshots:
     optionalDependencies:
       workerd: 1.20250525.0
 
-  '@cloudflare/workerd-darwin-64@1.20250408.0':
-    optional: true
-
-  '@cloudflare/workerd-darwin-64@1.20250525.0':
+  '@cloudflare/workerd-darwin-64@1.20250520.0':
     optional: true
 
   '@cloudflare/workerd-darwin-arm64@1.20250408.0':
@@ -11313,7 +11305,7 @@ snapshots:
       sirv: 3.0.1
       tinyglobby: 0.2.14
       tinyrainbow: 2.0.0
-      vitest: 3.2.3(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@16.18.11)(@vitest/ui@3.2.3)(jiti@1.21.6)(jsdom@26.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.39.0)(yaml@2.7.0)
+      vitest: 3.2.3(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@22.13.10)(@vitest/ui@3.2.3)(jiti@1.21.6)(jsdom@26.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.39.0)(yaml@2.7.0)
 
   '@vitest/utils@3.2.3':
     dependencies:
@@ -16481,7 +16473,7 @@ snapshots:
 
   workerd@1.20250408.0:
     optionalDependencies:
-      '@cloudflare/workerd-darwin-64': 1.20250408.0
+      '@cloudflare/workerd-darwin-64': 1.20250520.0
       '@cloudflare/workerd-darwin-arm64': 1.20250408.0
       '@cloudflare/workerd-linux-64': 1.20250408.0
       '@cloudflare/workerd-linux-arm64': 1.20250408.0
@@ -16489,7 +16481,7 @@ snapshots:
 
   workerd@1.20250525.0:
     optionalDependencies:
-      '@cloudflare/workerd-darwin-64': 1.20250525.0
+      '@cloudflare/workerd-darwin-64': 1.20250520.0
       '@cloudflare/workerd-darwin-arm64': 1.20250525.0
       '@cloudflare/workerd-linux-64': 1.20250525.0
       '@cloudflare/workerd-linux-arm64': 1.20250525.0
