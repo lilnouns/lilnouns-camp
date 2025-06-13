@@ -454,7 +454,7 @@ export const FunctionCallCodeBlock = ({
       <Tooltip.Content side="top" sideOffset={6}>
         <Code>
           <span css={(t) => css({ color: t.colors.textPrimary })}>{name}</span>(
-          {formatAbiParameters(inputTypes)})
+          {inputTypes ? formatAbiParameters(inputTypes) : ""})
         </Code>
       </Tooltip.Content>
     </Tooltip.Root>
@@ -463,7 +463,7 @@ export const FunctionCallCodeBlock = ({
       <>
         <br />
         {inputs.map((input, i, inputs) => {
-          const inputType = inputTypes[i].type;
+          const inputType = inputTypes?.[i]?.type;
           return (
             <React.Fragment key={i}>
               &nbsp;&nbsp;
