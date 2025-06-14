@@ -34,8 +34,7 @@
   },
   "devDependencies": {
     "prettier": "3.6.2",
-    "turbo": "2.5.4",
-    "typescript": "5.8.3"
+    "turbo": "2.5.4"
   },
   "engines": {
     "node": ">=22.0.0",
@@ -45,7 +44,7 @@
     {
       "type": "custom",
       "url": "https://ud.me/nekofar.crypto"
-    }
+  }
   ],
   "packageManager": "pnpm@10.0.0"
 }
