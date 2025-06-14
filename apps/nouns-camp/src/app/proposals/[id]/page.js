@@ -13,7 +13,7 @@ import { Hydrater as StoreHydrater } from "@/store";
 import ClientAppProvider from "@/app/client-app-provider";
 import ProposalScreen from "@/components/proposal-screen";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const getChainId = () => {
   const wagmiState = getWagmiStateFromCookie(headers().get("cookie"));
@@ -61,7 +61,9 @@ const fetchProposal = async (id, { chainId }) => {
   return parseProposal(data.proposal, { chainId });
 };
 
-export async function generateMetadata({ params, searchParams }) {
+export async function generateMetadata(props) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const { item } = searchParams;
   const urlSearchParams = new URLSearchParams(searchParams);
 
@@ -120,7 +122,8 @@ export async function generateMetadata({ params, searchParams }) {
   };
 }
 
-export default async function Page({ params }) {
+export default async function Page(props) {
+  const params = await props.params;
   const proposal = await fetchProposal(params.id, {
     chainId: getChainId(),
   });

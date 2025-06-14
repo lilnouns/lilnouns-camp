@@ -18,7 +18,7 @@ import { Provider as FarcasterStateProvider } from "@/hooks/farcaster";
 import { lazy, Suspense } from "react";
 const MobileDevTools = lazy(() => import("@/components/mobile-devtools"));
 
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { GA_ID } from "../constants/env";
 
 import "@/reset.css";
@@ -95,7 +95,7 @@ const fetchConfig = async () => {
   //   return { canaryAccounts, betaAccounts };
   // } catch (e) {
   //   console.error(e);
-    return { canaryAccounts: [], betaAccounts: [] };
+  return { canaryAccounts: [], betaAccounts: [] };
   // }
 };
 
@@ -119,7 +119,7 @@ export default async function RootLayout({ children }) {
                 <GlobalStylesWrapper>
                   <WagmiProvider
                     initialState={getWagmiStateFromCookie(
-                      headers().get("cookie"),
+                      (await headers()).get("cookie"),
                     )}
                   >
                     <SessionProvider

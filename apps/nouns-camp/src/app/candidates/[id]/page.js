@@ -11,7 +11,7 @@ import { Hydrater as StoreHydrater, Provider as StoreProvider } from "@/store";
 import ClientAppProvider from "@/app/client-app-provider";
 import CandidateScreen from "@/components/candidate-screen";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const fetchCandidate = async (id) => {
   const data = await subgraphFetch({
@@ -80,7 +80,9 @@ const fetchCandidateByNumber = async (number) => {
 const parseId = (id) =>
   isNaN(Number(id)) ? normalizeId(decodeURIComponent(id)) : id;
 
-export async function generateMetadata({ params, searchParams }) {
+export async function generateMetadata(props) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const candidateId = parseId(params.id);
 
   const candidate = isNaN(Number(params.id))
@@ -132,7 +134,9 @@ export async function generateMetadata({ params, searchParams }) {
   };
 }
 
-export default async function Page({ params, searchParams }) {
+export default async function Page(props) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const candidate = isNaN(Number(params.id))
     ? await fetchCandidate(parseId(params.id))
     : await fetchCandidateByNumber(params.id);

@@ -1,10 +1,6 @@
 {
-  "plugins": ["next-on-pages"],
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:next-on-pages/recommended",
-    "prettier"
-  ],
+  "plugins": [],
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
   "rules": {
     "import/no-anonymous-default-export": "off",
     "jsx-a11y/alt-text": "off",

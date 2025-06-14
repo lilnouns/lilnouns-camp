@@ -173,6 +173,21 @@ export const FULL_PROPOSAL_CANDIDATE_FIELDS = `
       # }
       }
     }
+    versions {
+      id
+      createdBlock
+      createdTimestamp
+      updateMessage
+      content {
+        title
+        description
+        targets
+        values
+        signatures
+        calldatas
+        proposalIdToUpdate
+      }
+    }
   }`;
 
 const parseMarkdownDescription = (string) => {
@@ -516,11 +531,11 @@ export const subgraphFetch = async ({
 
   const makeRequest = async (retryCount) => {
     try {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ operationName, query, variables }),
-  });
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ operationName, query, variables }),
+      });
 
       if (response.status === 429) {
         if (retryCount > 0) {
@@ -557,18 +572,18 @@ export const subgraphFetch = async ({
         }
       }
 
-  if (!response.ok) {
-    console.error("Unsuccessful subgraph request", {
-      responseStatus: response.status,
-    });
-    return Promise.reject(new Error(response.status ?? "No response"));
-  }
-  const body = await response.json();
-  if (body.errors != null) {
-    console.error("Unexpected subgraph response", body);
-    return Promise.reject(new Error("subgraph-error"));
-  }
-  return body.data;
+      if (!response.ok) {
+        console.error("Unsuccessful subgraph request", {
+          responseStatus: response.status,
+        });
+        return Promise.reject(new Error(response.status ?? "No response"));
+      }
+      const body = await response.json();
+      if (body.errors != null) {
+        console.error("Unexpected subgraph response", body);
+        return Promise.reject(new Error("subgraph-error"));
+      }
+      return body.data;
     } catch (error) {
       if (retryCount > 0) {
         const waitTime = delay * (retries - retryCount + 1);

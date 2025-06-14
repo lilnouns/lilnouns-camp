@@ -5,7 +5,7 @@ import { getJsonRpcUrl } from "@/wagmi-config";
 import { getChain } from "@/utils/chains";
 import { getSession } from "@/utils/session";
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 export async function POST(request) {
   const { message, signature } = await request.json();
