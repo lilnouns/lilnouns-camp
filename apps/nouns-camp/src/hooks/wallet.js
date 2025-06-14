@@ -12,7 +12,7 @@ import Dialog from "@shades/ui-web/dialog";
 import Button from "@shades/ui-web/button";
 import Spinner from "@shades/ui-web/spinner";
 import { CHAIN_ID } from "@/constants/env";
-// import { useConfig } from "@/config-provider";
+import { useConfig } from "@/config-provider";
 import {
   useState as useSessionState,
   useActions as useSessionActions,
@@ -221,10 +221,7 @@ export const useWallet = () => {
   const { isLoading: isSwitchingNetwork, switchChainAsync: switchChain } =
     useSwitchChain();
 
-  const { canaryAccounts, betaAccounts } = {
-    canaryAccounts: [],
-    betaAccounts: [],
-  }; /*useConfig()*/
+  const { canaryAccounts, betaAccounts } = useConfig();
 
   const { address: authenticatedAccountAddress } = useSessionState();
 
