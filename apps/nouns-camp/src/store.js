@@ -619,6 +619,38 @@ const createStore = ({ initialState, publicClient }) =>
       });
     };
 
+    const fetchAllVotesForProposal = async (proposalId) => {
+      const allVotes = [];
+      let skip = 0;
+      const first = 1000;
+      let hasMore = true;
+
+      while (hasMore) {
+        const { votes } = await subgraphFetch({
+          query: `
+            ${VOTE_FIELDS}
+            query {
+              votes(
+                where: { proposal: "${proposalId}" }
+                orderBy: blockNumber
+                orderDirection: desc
+                skip: ${skip}
+                first: ${first}
+              ) {
+                ...VoteFields
+              }
+            }
+          `,
+        });
+
+        allVotes.push(...votes);
+        hasMore = votes.length === first;
+        skip += first;
+      }
+
+      return allVotes;
+    };
+
     const fetchNounsByIds = async (ids) => {
       const quotedIds = ids.map((id) => `"${id}"`);
       return await subgraphFetch({
@@ -824,9 +856,13 @@ const createStore = ({ initialState, publicClient }) =>
             [data.proposal],
           );
 
+          // fetch all votes for proposal async
+          const allVotes = await fetchAllVotesForProposal(data.proposal.id);
+
           set((storeState) =>
             mergeSubgraphEntitiesIntoStore(storeState, {
               proposals: proposalsWithTimestamps,
+              votes: allVotes,
             }),
           );
         })();
