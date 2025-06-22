@@ -200,8 +200,8 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
 
   const possibleFormActions =
     !hasCastVote && isVotingOngoing
-      ? ["vote", "onchain-comment" /*, "farcaster-comment"*/]
-      : ["onchain-comment" /*, "farcaster-comment"*/];
+      ? ["vote", "onchain-comment", "farcaster-comment"]
+      : ["onchain-comment", "farcaster-comment"];
 
   const submitProposalCast = useSubmitProposalCast(proposalId);
 
@@ -938,16 +938,16 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                   id: "external",
                   title: "Other clients",
                   children: [
-                    // {
-                    //   id: "open-nounswap",
-                    //   title: "NounSwap",
-                    //   iconRight: <span>{"\u2197"}</span>,
-                    // },
-                    // {
-                    //   id: "open-nouns-game",
-                    //   title: "nouns.game",
-                    //   iconRight: <span>{"\u2197"}</span>,
-                    // },
+                    {
+                      id: "open-nounswap",
+                      title: "NounSwap",
+                      iconRight: <span>{"\u2197"}</span>,
+                    },
+                    {
+                      id: "open-nouns-game",
+                      title: "nouns.game",
+                      iconRight: <span>{"\u2197"}</span>,
+                    },
                   ],
                 },
               ]}
@@ -979,19 +979,19 @@ const ProposalMainSection = ({ proposalId, scrollContainerRef }) => {
                       .catch((error) => console.error("Error sharing", error));
                     break;
 
-                  // case "open-nouns-game":
-                  //   window.open(
-                  //     `https://nouns.game/vote/${proposalId}`,
-                  //     "_blank",
-                  //   );
-                  //   break;
+                  case "open-nouns-game":
+                    window.open(
+                      `https://nouns.game/vote/${proposalId}`,
+                      "_blank",
+                    );
+                    break;
 
-                  // case "open-nounswap":
-                  //   window.open(
-                  //     `https://nounswap.wtf/vote/${proposalId}`,
-                  //     "_blank",
-                  //   );
-                  //   break;
+                  case "open-nounswap":
+                    window.open(
+                      `https://nounswap.wtf/vote/${proposalId}`,
+                      "_blank",
+                    );
+                    break;
 
                   default:
                     throw new Error();
@@ -1197,8 +1197,6 @@ export const ProposalHeader = ({
             return sum + usdcToEth(amount);
           case "nouns":
             return sum;
-          case "lilnouns":
-            return sum;
           default:
             throw new Error();
         }
@@ -1206,18 +1204,15 @@ export const ProposalHeader = ({
       0n,
     );
 
-    const treasuryFractionBps =
-      totals.allInEth !== 0n ? (totalAskInEth * 10_000n) / totals.allInEth : 0n;
+    const treasuryFractionBps = (totalAskInEth * 10_000n) / totals.allInEth;
 
     const stEthAprBps = BigInt(Math.round(aprs.lido * 10_000));
     const rEthAprBps = BigInt(Math.round(aprs.rocketPool * 10_000));
-    const oEthAprBps = BigInt(Math.round(aprs.originEther * 10_000));
     const stEthYield =
       ((balances.executor.steth + balances.executor.wsteth) * stEthAprBps) /
       10_000n;
     const rEthYield = ((balances.executor.reth ?? 0n) * rEthAprBps) / 10_000n;
-    const oEthYield = ((balances.executor.oeth ?? 0n) * oEthAprBps) / 10_000n;
-    const totalStakingYield = stEthYield + rEthYield + oEthYield;
+    const totalStakingYield = stEthYield + rEthYield;
 
     const projectedOneYearAuctionProceeds = avgAuctionPrice * 365n;
     const oneYearIncomeForecast =
@@ -1622,13 +1617,6 @@ const RequestedAmounts = ({ amounts }) => (
               />
             ) : (
               <>{tokens.length} nouns</>
-            );
-
-          case "lilnouns":
-            return (
-              <>
-                {Number(amount)} lil {amount > 1 ? "lil nouns" : "lil noun"}
-              </>
             );
 
           default:
@@ -2073,7 +2061,7 @@ export const VoteDistributionToolTipContent = ({ votes, delegates }) => {
         />
         <div>
           <h1>
-            {voteCount} {voteCount === 1 ? "lil noun" : "lil nouns"}
+            {voteCount} {voteCount === 1 ? "noun" : "nouns"}
           </h1>
           <div data-vote-grid>
             <span>{formatPercentage(votes.for, voteCount)}</span>
@@ -2387,7 +2375,7 @@ const ProposalsSelect = React.memo(({ selectedProposalId, ...props }) => {
                 {
                   or: [
                     { endBlock_gt: ${latestBlockNumber} },
-                  # { objectionPeriodEndBlock_gt: ${latestBlockNumber} }
+                    { objectionPeriodEndBlock_gt: ${latestBlockNumber} }
                   ]
                 }
               ]
@@ -2397,8 +2385,8 @@ const ProposalsSelect = React.memo(({ selectedProposalId, ...props }) => {
             status
             startBlock
             endBlock
-          # updatePeriodEndBlock
-          # objectionPeriodEndBlock
+            updatePeriodEndBlock
+            objectionPeriodEndBlock
             executionETA
           }
         }`,
@@ -2508,7 +2496,7 @@ const AdminDropdown = React.memo(({ proposalId }) => {
           }
         }}
       >
-        {/*<DropdownMenu.Item key="edit">Edit proposal</DropdownMenu.Item>*/}
+        <DropdownMenu.Item key="edit">Edit proposal</DropdownMenu.Item>
         <DropdownMenu.Item danger key="cancel">
           Cancel proposal
         </DropdownMenu.Item>

@@ -2,7 +2,7 @@ import getDateYear from "date-fns/getYear";
 import React from "react";
 import ReactDOM from "react-dom";
 import NextLink from "next/link";
-import { css /*keyframes*/ } from "@emotion/react";
+import { css, keyframes } from "@emotion/react";
 import {
   array as arrayUtils,
   string as stringUtils,
@@ -62,12 +62,12 @@ import { getClientData } from "@/client";
 
 const BODY_TRUNCATION_HEIGHT_THRESHOLD = 135;
 
-// const heartBounceAnimation = keyframes({
-//   "0%": { transform: "scale(1)" },
-//   "25%": { transform: "scale(1.2)" },
-//   "50%": { transform: "scale(0.95)" },
-//   "100%": { transform: "scale(1)" },
-// });
+const heartBounceAnimation = keyframes({
+  "0%": { transform: "scale(1)" },
+  "25%": { transform: "scale(1.2)" },
+  "50%": { transform: "scale(0.95)" },
+  "100%": { transform: "scale(1)" },
+});
 // const colorFadeAnimation = keyframes({
 //   "0%": { color: "var(--initial-color)" },
 //   "50%": { color: "var(--initial-color)" },
@@ -487,9 +487,9 @@ const FeedItem = React.memo(
 
     const isBoxedVariant = variant === "boxed";
 
-    // const userAccountAddress = useUserEthereumAccountAddress();
-    // const userFarcasterAccount =
-    //   useFarcasterAccountsWithVerifiedEthAddress(userAccountAddress)?.[0];
+    const userAccountAddress = useUserEthereumAccountAddress();
+    const userFarcasterAccount =
+      useFarcasterAccountsWithVerifiedEthAddress(userAccountAddress)?.[0];
 
     const containerRef = React.useRef();
     const hasBeenOnScreen = useHasBeenOnScreen(containerRef, {
@@ -719,23 +719,23 @@ const FeedItem = React.memo(
       return <RepostAction item={item} component={component} {...props} />;
     };
 
-    // const renderLikeAction = (item) => {
-    //   const hasLiked = likes?.some(
-    //     (l) =>
-    //       l.nounerAddress === userAccountAddress ||
-    //       l.fid === userFarcasterAccount?.fid,
-    //   );
-    //
-    //   return (
-    //     <LikeAction
-    //       item={item}
-    //       hasLiked={hasLiked}
-    //       onClick={() => {
-    //         onLike(item, hasLiked ? "remove" : "add");
-    //       }}
-    //     />
-    //   );
-    // };
+    const renderLikeAction = (item) => {
+      const hasLiked = likes?.some(
+        (l) =>
+          l.nounerAddress === userAccountAddress ||
+          l.fid === userFarcasterAccount?.fid,
+      );
+
+      return (
+        <LikeAction
+          item={item}
+          hasLiked={hasLiked}
+          onClick={() => {
+            onLike(item, hasLiked ? "remove" : "add");
+          }}
+        />
+      );
+    };
 
     return (
       <div
@@ -919,7 +919,7 @@ const FeedItem = React.memo(
               <div className="action-bar-container">
                 {showReplyAction && renderReplyAction(item)}
                 {showRepostAction && renderRepostAction(item)}
-                {/*{showLikeAction && renderLikeAction(item)}*/}
+                {showLikeAction && renderLikeAction(item)}
               </div>
             )}
             {showMeta && (
@@ -1801,17 +1801,10 @@ const NounTransferItem = ({ item, isOnScreen }) => {
     transfers: nounTransfers = [],
   } = transferMeta;
 
-  const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
-
   const transfers = nounTransfers.filter((t) => {
     const isTreasuryToAuctionHouseTransfer =
       t.from === treasuryAddress && t.to === auctionHouseAddress;
-    return (
-      !isTreasuryToAuctionHouseTransfer &&
-      t.from !== auctionHouseAddress &&
-      t.from !== ZERO_ADDRESS &&
-      t.to !== ZERO_ADDRESS
-    );
+    return !isTreasuryToAuctionHouseTransfer && t.from !== auctionHouseAddress;
   });
 
   const nouns = arrayUtils.unique(nounIds ?? transfers.map((t) => t.nounId));
@@ -1830,11 +1823,7 @@ const NounTransferItem = ({ item, isOnScreen }) => {
       <React.Fragment key={a}>
         {i > 0 && (
           <>
-            {as.length === 2
-              ? " and"
-              : i === as.length - 1
-                ? ", and"
-                : ", "}{" "}
+            {as.length === 2 ? " and" : i === as.length - 1 ? ", and" : ", "}{" "}
           </>
         )}
         <AccountPreviewPopoverTrigger showAvatar accountAddress={a} />
@@ -1955,7 +1944,7 @@ const NounTransferItem = ({ item, isOnScreen }) => {
                 {" "}
                 for{" "}
                 <FormattedEthWithConditionalTooltip
-                  decimals={4}
+                  decimals={2}
                   truncationDots={false}
                   value={transferMeta.amount}
                 />
@@ -2054,7 +2043,7 @@ const NounTransferItem = ({ item, isOnScreen }) => {
         </>
       );
 
-    // Lil Nouns withdrawn from fork escrow
+    // Nouns withdrawn from fork escrow
     case "fork-escrow-withdrawal":
       return (
         <>
@@ -2087,7 +2076,7 @@ const AuctionSettledItem = ({ item }) => {
           {" "}
           for{" "}
           <FormattedEthWithConditionalTooltip
-            decimals={4}
+            decimals={2}
             truncationDots={false}
             value={noun.auction.amount}
           />
@@ -2677,45 +2666,45 @@ const RepostAction = ({ item, component: Component = "div", ...props }) => (
   </Component>
 );
 
-// const LikeAction = ({ item, hasLiked, onClick }) => (
-//   <button
-//     data-liked={hasLiked}
-//     onClick={(e) => {
-//       onClick?.(e);
-//       e.currentTarget.dataset.clicked = "true";
-//     }}
-//     disabled={item.isPending}
-//     css={(t) =>
-//       css({
-//         '&[data-liked="true"]': {
-//           color: t.colors.red,
-//           "@media(hover: hover)": {
-//             ":not(:disabled):hover": { color: t.colors.red },
-//           },
-//           '&[data-clicked="true"]': {
-//             animationName: heartBounceAnimation,
-//             animationDuration: "0.45s",
-//             animationTimingFunction: "ease-in-out",
-//           },
-//         },
-//       })
-//     }
-//   >
-//     <svg
-//       aria-label="Like"
-//       role="img"
-//       viewBox="0 0 18 18"
-//       fill={hasLiked ? "currentColor" : "transparent"}
-//       stroke="currentColor"
-//       style={{ width: "1.4rem", height: "auto" }}
-//     >
-//       <path
-//         d="M1.34375 7.53125L1.34375 7.54043C1.34374 8.04211 1.34372 8.76295 1.6611 9.65585C1.9795 10.5516 2.60026 11.5779 3.77681 12.7544C5.59273 14.5704 7.58105 16.0215 8.33387 16.5497C8.73525 16.8313 9.26573 16.8313 9.66705 16.5496C10.4197 16.0213 12.4074 14.5703 14.2232 12.7544C15.3997 11.5779 16.0205 10.5516 16.3389 9.65585C16.6563 8.76296 16.6563 8.04211 16.6562 7.54043V7.53125C16.6562 5.23466 15.0849 3.25 12.6562 3.25C11.5214 3.25 10.6433 3.78244 9.99228 4.45476C9.59009 4.87012 9.26356 5.3491 9 5.81533C8.73645 5.3491 8.40991 4.87012 8.00772 4.45476C7.35672 3.78244 6.47861 3.25 5.34375 3.25C2.9151 3.25 1.34375 5.23466 1.34375 7.53125Z"
-//         strokeWidth="1.25"
-//       />
-//     </svg>
-//   </button>
-// );
+const LikeAction = ({ item, hasLiked, onClick }) => (
+  <button
+    data-liked={hasLiked}
+    onClick={(e) => {
+      onClick?.(e);
+      e.currentTarget.dataset.clicked = "true";
+    }}
+    disabled={item.isPending}
+    css={(t) =>
+      css({
+        '&[data-liked="true"]': {
+          color: t.colors.red,
+          "@media(hover: hover)": {
+            ":not(:disabled):hover": { color: t.colors.red },
+          },
+          '&[data-clicked="true"]': {
+            animationName: heartBounceAnimation,
+            animationDuration: "0.45s",
+            animationTimingFunction: "ease-in-out",
+          },
+        },
+      })
+    }
+  >
+    <svg
+      aria-label="Like"
+      role="img"
+      viewBox="0 0 18 18"
+      fill={hasLiked ? "currentColor" : "transparent"}
+      stroke="currentColor"
+      style={{ width: "1.4rem", height: "auto" }}
+    >
+      <path
+        d="M1.34375 7.53125L1.34375 7.54043C1.34374 8.04211 1.34372 8.76295 1.6611 9.65585C1.9795 10.5516 2.60026 11.5779 3.77681 12.7544C5.59273 14.5704 7.58105 16.0215 8.33387 16.5497C8.73525 16.8313 9.26573 16.8313 9.66705 16.5496C10.4197 16.0213 12.4074 14.5703 14.2232 12.7544C15.3997 11.5779 16.0205 10.5516 16.3389 9.65585C16.6563 8.76296 16.6563 8.04211 16.6562 7.54043V7.53125C16.6562 5.23466 15.0849 3.25 12.6562 3.25C11.5214 3.25 10.6433 3.78244 9.99228 4.45476C9.59009 4.87012 9.26356 5.3491 9 5.81533C8.73645 5.3491 8.40991 4.87012 8.00772 4.45476C7.35672 3.78244 6.47861 3.25 5.34375 3.25C2.9151 3.25 1.34375 5.23466 1.34375 7.53125Z"
+        strokeWidth="1.25"
+      />
+    </svg>
+  </button>
+);
 
 const useItemLikes = (item, { enabled = true } = {}) => {
   const transactionLikes = useFarcasterTransactionLikes(item.transactionHash, {

@@ -12,7 +12,7 @@ const useRecentAuctionProceeds = ({
       const { auctions } = await queryNounsSubgraph({
         query: `{
           auctions(
-            where: { settled: true, amount_gt: 0 },
+            where: { settled: true },
             orderDirection: desc,
             orderBy: startTime,
             first: ${Math.min(1000, auctionCount)}

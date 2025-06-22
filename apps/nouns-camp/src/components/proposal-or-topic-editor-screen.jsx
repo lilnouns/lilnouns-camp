@@ -4,7 +4,7 @@ import { formatEther, parseUnits } from "viem";
 import { css, useTheme } from "@emotion/react";
 import { useFetch, useLatestCallback } from "@shades/common/react";
 import {
-  // invariant,
+  invariant,
   message as messageUtils,
   function as functionUtils,
 } from "@shades/common/utils";
@@ -41,9 +41,7 @@ import Layout from "@/components/layout";
 import Callout from "@/components/callout";
 import ProposalEditor from "@/components/proposal-editor";
 import TopicEditor from "@/components/topic-editor";
-import { useTokenBuyerEthNeeded } from "@/hooks/misc-contracts";
-import useTreasuryData from "@/hooks/treasury-data";
-// import { createTopicTransactions } from "@/utils/candidates";
+import { createTopicTransactions } from "@/utils/candidates";
 
 const Content = ({ draftId, startNavigationTransition }) => {
   const navigate = useNavigate();
@@ -112,16 +110,9 @@ const Content = ({ draftId, startNavigationTransition }) => {
     }
   }, BigInt(0));
 
-  const payerTopUpValueData = useTokenBuyerEthNeeded(usdcSumValue) ?? 0n;
-  const treasuryData = useTreasuryData();
-  const executorEthBalance = treasuryData?.balances.executor.eth ?? 0n;
-  const payerUsdcBalance = treasuryData?.balances.payer.usdc ?? 0n;
-  const payerTopUpValue =
-    payerUsdcBalance > usdcSumValue
-      ? 0n
-      : executorEthBalance > payerTopUpValueData
-        ? payerTopUpValueData
-        : executorEthBalance;
+  // enable this again once the DAO liquidity problem is solved
+  // const payerTopUpValue = useTokenBuyerEthNeeded(usdcSumValue);
+  const payerTopUpValue = 0;
 
   const submit = async () => {
     const buildCandidateSlug = (title) => {
@@ -153,18 +144,6 @@ const Content = ({ draftId, startNavigationTransition }) => {
       )
         transactions.push({ type: "payer-top-up", value: payerTopUpValue });
 
-      // Check if we have a vault redeem and lack a pool claim reward.
-      const nftxRedeemExists = transactions.some(
-        (tx) => tx.type === "nftx-vault-redeem",
-      );
-      const nftxRewardMissing = !transactions.some(
-        (tx) => tx.type === "nftx-pool-claim-rewards",
-      );
-
-      if (nftxRedeemExists && nftxRewardMissing) {
-        transactions.push({ type: "nftx-pool-claim-rewards", vaultId: 558 });
-      }
-
       if (transactions.length > 10) {
         alert(
           `A proposal can at max include 10 transactions (currently ${transactions.length})`,
@@ -186,19 +165,19 @@ const Content = ({ draftId, startNavigationTransition }) => {
               return { slug };
             }
 
-            // case "topic": {
-            //   invariant(
-            //     transactions.length === 0,
-            //     "Topics should not have transactions",
-            //   );
-            //   const slug = buildCandidateSlug(draft.name.trim());
-            //   await createCandidate({
-            //     slug,
-            //     description,
-            //     transactions: createTopicTransactions(),
-            //   });
-            //   return { slug };
-            // }
+            case "topic": {
+              invariant(
+                transactions.length === 0,
+                "Topics should not have transactions",
+              );
+              const slug = buildCandidateSlug(draft.name.trim());
+              await createCandidate({
+                slug,
+                description,
+                transactions: createTopicTransactions(),
+              });
+              return { slug };
+            }
 
             default:
               throw new Error(
@@ -322,7 +301,7 @@ const Content = ({ draftId, startNavigationTransition }) => {
               onDelete={discard}
               hasPendingSubmit={hasPendingRequest}
               submitLabel="Start discussion topic"
-              submitDisabled={hasPendingRequest /*|| !hasRequiredInput*/}
+              submitDisabled={hasPendingRequest || !hasRequiredInput}
               sidebarContent={
                 <>
                   <p>
@@ -355,9 +334,6 @@ const Content = ({ draftId, startNavigationTransition }) => {
             setActions={setActions}
             proposerId={connectedAccountAddress}
             payerTopUpValue={usdcSumValue > 0 ? payerTopUpValue : 0}
-            nftxRedeemExists={draft.actions.some(
-              (a) => a.type === "nftx-vault-redeem",
-            )}
             containerHeight={`calc(100vh - ${theme.navBarHeight})`}
             onSubmit={() => {
               setShowSubmitDialog(true);
@@ -421,13 +397,9 @@ const SubmitDialog = ({
       case "candidate":
         return (
           <>
-            {/*<p>
+            <p>
               Candidates can be created by anyone. If a candidate receives
               enough signatures by voters, it can be promoted to a proposal.
-            </p>*/}
-            <p>
-              Candidates can be created by anyone. If a proposer receives enough
-              delegated votes by holders, they can be promoted to a proposal.
             </p>
             <p>
               Submissions are <em>free for accounts with voting power</em>.
