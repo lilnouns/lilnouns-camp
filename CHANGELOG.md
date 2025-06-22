@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.2] - 2025-06-22
+
+### 🚀 Features
+
+- Add version history fields to proposal candidate GraphQL query
+- Saner formatting for simple replies
+- Implement pagination for proposal votes with full vote history
+
+### 🐛 Bug Fixes
+
+- *(api)* Simplify noun text rendering logic
+- Handle UnknownSignatureError and add null checks for input types
+- Update proposal candidate GraphQL query fields
+
+### ⚡ Performance
+
+- Filter votes query to only include non-zero votes or with reasons
+
+### 🎨 Styling
+
+- Improve error condition readability with multi-line formatting
+
 ## [2.0.0-alpha.1] - 2025-06-14
 
 ### 🐛 Bug Fixes
