@@ -1,7 +1,7 @@
 import { parseEventLogs } from "viem";
 import React from "react";
 import { useReadContract, useSimulateContract } from "wagmi";
-import { CHAIN_ID /*CAMP_CLIENT_ID*/ } from "@/constants/env";
+import { CHAIN_ID, CAMP_CLIENT_ID } from "@/constants/env";
 import { unparse as unparseTransactions } from "@/utils/transactions";
 import { resolveIdentifier } from "@/contracts";
 import { useActions } from "@/store";
@@ -9,12 +9,12 @@ import useBlockNumber from "@/hooks/block-number";
 import usePublicClient from "@/hooks/public-client";
 import { useWallet } from "@/hooks/wallet";
 import useRegisterEvent from "@/hooks/register-event";
-import { useCurrentVotes, useTotalSupply } from "@/hooks/token-contract";
+import { useCurrentVotes } from "@/hooks/token-contract";
 import { useWriteContract } from "@/hooks/contract-write";
 
 const { address: contractAddress } = resolveIdentifier("dao");
 
-// const NOUNDRY_CLIENT_ID = 1;
+const NOUNDRY_CLIENT_ID = 1;
 
 const useRead = ({ enabled = true, ...options }) =>
   useReadContract({
@@ -32,12 +32,12 @@ const useSimulate = ({ enabled = true, ...options }) =>
     query: { enabled },
   });
 
-// const getClientId = (description) => {
-//   if (/submitted via[\s*\\]+\[Noundry gallery/i.test(description))
-//     return NOUNDRY_CLIENT_ID;
-//
-//   return CAMP_CLIENT_ID;
-// };
+const getClientId = (description) => {
+  if (/submitted via[\s*\\]+\[Noundry gallery/i.test(description))
+    return NOUNDRY_CLIENT_ID;
+
+  return CAMP_CLIENT_ID;
+};
 
 export const useProposalThreshold = () => {
   const { data } = useRead({
@@ -143,18 +143,17 @@ export const useCurrentDynamicQuorum = ({ againstVotes = 0 } = {}) => {
 
   const blockNumber = useBlockNumber({ watch: true, cache: 20_000 });
 
-  const adjustedTotalSupply = useTotalSupply();
-  // const { data: adjustedTotalSupply } = useRead({
-  //   abi: [
-  //     {
-  //       inputs: [],
-  //       name: "adjustedTotalSupply",
-  //       outputs: [{ type: "uint256" }],
-  //       type: "function",
-  //     },
-  //   ],
-  //   functionName: "adjustedTotalSupply",
-  // });
+  const { data: adjustedTotalSupply } = useRead({
+    abi: [
+      {
+        inputs: [],
+        name: "adjustedTotalSupply",
+        outputs: [{ type: "uint256" }],
+        type: "function",
+      },
+    ],
+    functionName: "adjustedTotalSupply",
+  });
   const quorumParams = useDynamicQuorumParamsAt(blockNumber);
 
   const { data, isSuccess } = useRead({
@@ -277,17 +276,14 @@ export const useCastProposalVote = (
   } = useSimulate({
     abi: [
       {
-        inputs: [
-          { type: "uint256" },
-          { type: "uint8" } /*, { type: "uint32" }*/,
-        ],
+        inputs: [{ type: "uint256" }, { type: "uint8" }, { type: "uint32" }],
         name: "castRefundableVote",
         outputs: [],
         type: "function",
       },
     ],
     functionName: "castRefundableVote",
-    args: [Number(proposalId), support /*, CAMP_CLIENT_ID*/],
+    args: [Number(proposalId), support, CAMP_CLIENT_ID],
     enabled: enabled && support != null && !hasReason,
   });
 
@@ -302,7 +298,7 @@ export const useCastProposalVote = (
           { type: "uint256" },
           { type: "uint8" },
           { type: "string" },
-          // { type: "uint32" },
+          { type: "uint32" },
         ],
         name: "castRefundableVoteWithReason",
         outputs: [],
@@ -310,7 +306,7 @@ export const useCastProposalVote = (
       },
     ],
     functionName: "castRefundableVoteWithReason",
-    args: [Number(proposalId), support, reason /*, CAMP_CLIENT_ID*/],
+    args: [Number(proposalId), support, reason, CAMP_CLIENT_ID],
     enabled: enabled && support != null && hasReason,
   });
 
@@ -366,7 +362,7 @@ export const useCreateProposal = () => {
   return async ({ description, transactions }) => {
     const { targets, values, signatures, calldatas } =
       unparseTransactions(transactions);
-    // const clientId = getClientId(description);
+    const clientId = getClientId(description);
 
     const hash = await writeContract({
       chainId: CHAIN_ID,
@@ -379,7 +375,7 @@ export const useCreateProposal = () => {
             { name: "signatures", type: "string[]" },
             { name: "calldatas", type: "bytes[]" },
             { name: "description", type: "string" },
-            // { name: "clientId", type: "uint32" },
+            { name: "clientId", type: "uint32" },
           ],
           name: "propose",
           outputs: [{ type: "uint256" }],
@@ -387,13 +383,7 @@ export const useCreateProposal = () => {
         },
       ],
       functionName: "propose",
-      args: [
-        targets,
-        values,
-        signatures,
-        calldatas,
-        description /*, clientId*/,
-      ],
+      args: [targets, values, signatures, calldatas, description, clientId],
     });
     registerEvent("Proposal successfully created", {
       account: accountAddress,
@@ -406,16 +396,11 @@ export const useCreateProposal = () => {
         {
           inputs: [
             { name: "id", type: "uint256" },
-            { name: "proposer", type: "address" },
-            { name: "targets", type: "address[]" },
-            { name: "values", type: "uint256[]" },
-            { name: "signatures", type: "string[]" },
-            { name: "calldatas", type: "bytes[]" },
-            { name: "startBlock", type: "uint256" },
-            { name: "endBlock", type: "uint256" },
+            { name: "signers", type: "address[]" },
+            { name: "updatePeriodEndBlock", type: "uint256" },
             { name: "proposalThreshold", type: "uint256" },
             { name: "quorumVotes", type: "uint256" },
-            { name: "description", type: "string" },
+            { indexed: true, name: "clientId", type: "uint32" },
           ],
           name: "ProposalCreatedWithRequirements",
           type: "event",
@@ -447,7 +432,7 @@ export const useCreateProposalWithSignatures = () => {
   return async ({ description, transactions, proposerSignatures }) => {
     const { targets, values, signatures, calldatas } =
       unparseTransactions(transactions);
-    // const clientId = getClientId(description);
+    const clientId = getClientId(description);
 
     const hash = await writeContract({
       chainId: CHAIN_ID,
@@ -469,7 +454,7 @@ export const useCreateProposalWithSignatures = () => {
             { name: "signatures", type: "string[]" },
             { name: "calldatas", type: "bytes[]" },
             { name: "description", type: "string" },
-            // { name: "clientId", type: "uint32" },
+            { name: "clientId", type: "uint32" },
           ],
           name: "proposeBySigs",
           outputs: [{ type: "uint256" }],
@@ -484,7 +469,7 @@ export const useCreateProposalWithSignatures = () => {
         signatures,
         calldatas,
         description,
-        // clientId,
+        clientId,
       ],
     });
     registerEvent("Proposal successfully created", {
@@ -498,11 +483,11 @@ export const useCreateProposalWithSignatures = () => {
         {
           inputs: [
             { name: "id", type: "uint256" },
-            // { name: "signers", type: "address[]" },
-            // { name: "updatePeriodEndBlock", type: "uint256" },
+            { name: "signers", type: "address[]" },
+            { name: "updatePeriodEndBlock", type: "uint256" },
             { name: "proposalThreshold", type: "uint256" },
             { name: "quorumVotes", type: "uint256" },
-            // { indexed: true, name: "clientId", type: "uint32" },
+            { indexed: true, name: "clientId", type: "uint32" },
           ],
           name: "ProposalCreatedWithRequirements",
           type: "event",

@@ -24,8 +24,8 @@ const fetchProposal = async (id) => {
           lastUpdatedTimestamp
           startBlock
           endBlock
-        # updatePeriodEndBlock
-        # objectionPeriodEndBlock
+          updatePeriodEndBlock
+          objectionPeriodEndBlock
           canceledBlock
           canceledTimestamp
           queuedBlock
@@ -40,9 +40,9 @@ const fetchProposal = async (id) => {
           proposer {
             id
           }
-        # signers {
-        #   id
-        # }
+          signers {
+            id
+          }
         }
       }`,
   });

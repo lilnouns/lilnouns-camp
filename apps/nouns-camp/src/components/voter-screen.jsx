@@ -22,8 +22,8 @@ import {
   useAccountFetch,
   useAccountProposals,
   useAccountProposalCandidates,
-  // useAccountSponsoredProposals,
-  // useAccountTopics,
+  useAccountSponsoredProposals,
+  useAccountTopics,
   useActions,
   useDelegate,
   useDelegateFetch,
@@ -294,7 +294,7 @@ const VotingPowerCallout = ({ voterAddress }) => {
       {hasVotingPower && (
         <p>
           <span css={(t) => css({ fontWeight: t.text.weights.smallHeader })}>
-            {voteCount} {voteCount === 1 ? "lil noun" : "lil nouns"} represented
+            {voteCount} {voteCount === 1 ? "noun" : "nouns"} represented
           </span>{" "}
           (~{votePowerQuorumPercentage}% of quorum)
         </p>
@@ -775,8 +775,8 @@ const VoterMainSection = ({ voterAddress }) => {
   const candidates = useAccountProposalCandidates(voterAddress, {
     includeTopics: false,
   });
-  // const sponsoredProposals = useAccountSponsoredProposals(voterAddress);
-  // const topics = useAccountTopics(voterAddress);
+  const sponsoredProposals = useAccountSponsoredProposals(voterAddress);
+  const topics = useAccountTopics(voterAddress);
 
   const [hasFetchedData, setHasFetchedData] = React.useState(
     () => proposals.length > 0,
@@ -802,13 +802,13 @@ const VoterMainSection = ({ voterAddress }) => {
     ? `Candidates (${candidates?.length})`
     : "Candidates";
 
-  // const sponsoredTabTitle = sponsoredProposals.length
-  //   ? `Sponsored (${sponsoredProposals.length})`
-  //   : "Sponsored";
+  const sponsoredTabTitle = sponsoredProposals.length
+    ? `Sponsored (${sponsoredProposals.length})`
+    : "Sponsored";
 
-  // const topicsTabTitle = topics?.length
-  //   ? `Topics (${topics?.length})`
-  //   : "Topics";
+  const topicsTabTitle = topics?.length
+    ? `Topics (${topics?.length})`
+    : "Topics";
 
   return (
     <>
@@ -916,7 +916,7 @@ const VoterMainSection = ({ voterAddress }) => {
                   </div>
                 </div>
               </Tabs.Item>
-              {/*<Tabs.Item key="sponsored" title={sponsoredTabTitle}>
+              <Tabs.Item key="sponsored" title={sponsoredTabTitle}>
                 <div>
                   {hasFetchedData && sponsoredProposals.length === 0 && (
                     <Tabs.EmptyPlaceholder
@@ -963,7 +963,7 @@ const VoterMainSection = ({ voterAddress }) => {
                     />
                   </div>
                 </div>
-              </Tabs.Item>*/}
+              </Tabs.Item>
             </Tabs.Root>
           </div>
         </MainContentContainer>

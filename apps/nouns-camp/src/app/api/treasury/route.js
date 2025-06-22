@@ -1,4 +1,4 @@
-import { createPublicClient, http, formatUnits } from "viem";
+import { createPublicClient, http } from "viem";
 import { object as objectUtils } from "@shades/common/utils";
 import { CHAIN_ID } from "@/constants/env";
 import { resolveIdentifier as resolveContractIdentifier } from "@/contracts";
@@ -45,36 +45,12 @@ const balanceOf = ({ contract, account }) => {
 };
 
 export async function GET() {
-  const {
-    env: { CACHE },
-  } = getCloudflareContext();
-
-  // Try to get a cached response first
-  const cacheKey = `treasury-data:${CHAIN_ID}`;
-
-  if (CACHE) {
-    try {
-      const cachedResponse = await CACHE.get(cacheKey);
-      if (cachedResponse) {
-        const parsedResponse = JSON.parse(cachedResponse);
-        return Response.json(parsedResponse.data, {
-          headers: {
-            "X-Cache": "HIT",
-            "Cache-Control": `max-age=${ONE_HOUR_IN_SECONDS}, s-maxage=${ONE_HOUR_IN_SECONDS}, stale-while-revalidate=${ONE_HOUR_IN_SECONDS * 2}`,
-          },
-        });
-      }
-    } catch (cacheError) {
-      console.warn("Cache read error:", cacheError);
-    }
-  }
-
   const executorAddress = resolveContractIdentifier("executor")?.address;
   const daoProxyAddress = resolveContractIdentifier("dao")?.address;
-  // const clientIncentivesRewardsProxyAddress = resolveContractIdentifier(
-  //   "client-incentives-rewards-proxy",
-  // )?.address;
-  // const forkEscrowAddress = resolveContractIdentifier("fork-escrow")?.address;
+  const clientIncentivesRewardsProxyAddress = resolveContractIdentifier(
+    "client-incentives-rewards-proxy",
+  )?.address;
+  const forkEscrowAddress = resolveContractIdentifier("fork-escrow")?.address;
   const tokenBuyerAddress = resolveContractIdentifier("token-buyer")?.address;
   const payerAddress = resolveContractIdentifier("payer")?.address;
 
@@ -82,13 +58,12 @@ export async function GET() {
     executorBalances,
     daoProxyEthBalance,
     tokenBuyerEthBalance,
-    // clientIncentivesRewardsProxyWethBalance,
+    clientIncentivesRewardsProxyWethBalance,
     payerUsdcBalance,
-    // forkEscrowNounsBalance,
+    forkEscrowNounsBalance,
     convertionRates,
     lidoApr,
     rocketPoolApr,
-    originEtherApr,
   } = Object.fromEntries(
     await Promise.all([
       (async () => {
@@ -103,18 +78,14 @@ export async function GET() {
               { key: "steth", contract: "steth-token" },
               { key: "wsteth", contract: "wsteth-token" },
               CHAIN_ID === 1 ? { key: "reth", contract: "reth-token" } : null,
-              CHAIN_ID === 1 ? { key: "oeth", contract: "oeth-token" } : null,
-              { key: "nouns", contract: "nftx-vault" },
+              { key: "nouns", contract: "token" },
             ]
               .filter(Boolean)
               .map(async ({ key, contract }) => {
-                let balance = await balanceOf({
+                const balance = await balanceOf({
                   contract,
                   account: executorAddress,
                 });
-                if (key === "nouns") {
-                  balance = Math.floor(formatUnits(balance, 18) / 1.04);
-                }
                 return [key, balance];
               }),
           ]),
@@ -131,23 +102,23 @@ export async function GET() {
         return [key, balance];
       }),
       ...[
-        // CHAIN_ID === 1
-        //   ? {
-        //       key: "clientIncentivesRewardsProxyWethBalance",
-        //       contract: "weth-token",
-        //       address: clientIncentivesRewardsProxyAddress,
-        //     }
-        //   : null,
+        CHAIN_ID === 1
+          ? {
+              key: "clientIncentivesRewardsProxyWethBalance",
+              contract: "weth-token",
+              address: clientIncentivesRewardsProxyAddress,
+            }
+          : null,
         {
           key: "payerUsdcBalance",
           contract: "usdc-token",
           address: payerAddress,
         },
-        // {
-        //   key: "forkEscrowNounsBalance",
-        //   contract: "token",
-        //   address: forkEscrowAddress,
-        // },
+        {
+          key: "forkEscrowNounsBalance",
+          contract: "token",
+          address: forkEscrowAddress,
+        },
       ]
         .filter(Boolean)
         .map(async ({ key, contract, address }) => {
@@ -177,108 +148,52 @@ export async function GET() {
             }),
           ),
         );
-
-        const oethEth = await (async () => {
-          const res = await fetch(
-            "https://api.coingecko.com/api/v3/simple/price?ids=origin-ether&vs_currencies=eth",
-          );
-
-          if (!res.ok) {
-            throw new Error(
-              `Failed to fetch from ${res.url}: ${res.status} ${res.statusText}`,
-            );
-          }
-
-          const data = await res.json();
-          const oethPriceInEth = data["origin-ether"].eth;
-
-          return BigInt(oethPriceInEth * 10 ** 18);
-        })();
-
-        return ["convertionRates", { rethEth, usdcEth, oethEth }];
+        return ["convertionRates", { rethEth, usdcEth }];
       })(),
       (async () => {
-        const url = "https://eth-api.lido.fi/v1/protocol/steth/apr/sma";
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error(
-            `Failed to fetch from ${url}: ${res.status} ${res.statusText}`,
-          );
-        }
+        const res = await fetch(
+          "https://eth-api.lido.fi/v1/protocol/steth/apr/sma",
+        );
+        if (!res.ok) throw new Error();
         const { data } = await res.json();
         return ["lidoApr", data.smaApr / 100];
       })(),
       (async () => {
-        const url = "https://api.rocketpool.net/api/mainnet/payload";
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error(
-            `Failed to fetch from ${url}: ${res.status} ${res.statusText}`,
-          );
-        }
+        const res = await fetch(
+          "https://api.rocketpool.net/api/mainnet/payload",
+        );
+        if (!res.ok) throw new Error();
         const { rethAPR } = await res.json();
         return ["rocketPoolApr", Number(rethAPR) / 100];
-      })(),
-      (async () => {
-        const url =
-          "https://api.originprotocol.com/api/v2/oeth/apr/trailing/30";
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error(
-            `Failed to fetch from ${url}: ${res.status} ${res.statusText}`,
-          );
-        }
-        const { apr } = await res.json();
-        return ["originEtherApr", Number(apr) / 100];
       })(),
     ]),
   );
 
-  // Cache for 1 hour
-  const cacheTime = ONE_HOUR_IN_SECONDS;
+  // 30 min cache
+  const cacheTime = ONE_HOUR_IN_SECONDS / 2;
 
-  const responseData = {
-    balances: {
-      executor: objectUtils.mapValues(
-        (v) => v?.toString() ?? null,
-        executorBalances,
-      ),
-      "dao-proxy": { eth: daoProxyEthBalance.toString() },
-      // "client-incentives-rewards-proxy": {
-      //   weth: clientIncentivesRewardsProxyWethBalance?.toString() ?? null,
-      // },
-      "token-buyer": { eth: tokenBuyerEthBalance.toString() },
-      payer: { usdc: payerUsdcBalance.toString() },
-      // "fork-escrow": { nouns: forkEscrowNounsBalance.toString() },
+  return Response.json(
+    {
+      balances: {
+        executor: objectUtils.mapValues(
+          (v) => v?.toString() ?? null,
+          executorBalances,
+        ),
+        "dao-proxy": { eth: daoProxyEthBalance.toString() },
+        "client-incentives-rewards-proxy": {
+          weth: clientIncentivesRewardsProxyWethBalance?.toString() ?? null,
+        },
+        "token-buyer": { eth: tokenBuyerEthBalance.toString() },
+        payer: { usdc: payerUsdcBalance.toString() },
+        "fork-escrow": { nouns: forkEscrowNounsBalance.toString() },
+      },
+      rates: objectUtils.mapValues((v) => v.toString(), convertionRates),
+      aprs: { lido: lidoApr, rocketPool: rocketPoolApr },
     },
-    rates: objectUtils.mapValues((v) => v.toString(), convertionRates),
-    aprs: {
-      lido: lidoApr,
-      rocketPool: rocketPoolApr,
-      originEther: originEtherApr,
+    {
+      headers: {
+        "Cache-Control": `max-age=${cacheTime}, s-maxage=${cacheTime}, stale-while-revalidate=${cacheTime * 2}`,
+      },
     },
-  };
-
-  // Cache successful responses for 1 hour
-  if (CACHE) {
-    try {
-      const cacheData = {
-        data: responseData,
-        timestamp: Date.now(),
-      };
-
-      await CACHE.put(cacheKey, JSON.stringify(cacheData), {
-        expirationTtl: cacheTime, // 1 hour in seconds
-      });
-    } catch (cacheError) {
-      console.warn("Cache write error:", cacheError);
-    }
-  }
-
-  return Response.json(responseData, {
-    headers: {
-      "X-Cache": "MISS",
-      "Cache-Control": `max-age=${cacheTime}, s-maxage=${cacheTime}, stale-while-revalidate=${cacheTime * 2}`,
-    },
-  });
+  );
 }

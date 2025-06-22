@@ -22,7 +22,7 @@ import FormattedNumber from "@/components/formatted-number";
 import ExplorerAddressLink from "@/components/chain-explorer-address-link";
 import Link from "@shades/ui-web/link";
 import NextLink from "next/link";
-// import { buildEtherscanLink } from "@/utils/etherscan";
+import { buildEtherscanLink } from "@/utils/etherscan";
 
 const ONE_DAY_IN_SECONDS = 24 * 60 * 60;
 
@@ -108,7 +108,7 @@ const TreasuryDialog = ({ isOpen, close }) => {
 const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
   const [searchParams] = useSearchParams();
 
-  // const forkEscrowAddress = useContract("fork-escrow")?.address;
+  const forkEscrowAddress = useContract("fork-escrow")?.address;
   const treasuryAddress = useContract("executor")?.address;
 
   const [activityDayCount, setActivityDayCount] = React.useState(
@@ -146,13 +146,12 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
 
   const usdcToEth = (usdc) => (usdc * rates.usdcEth) / 10n ** 6n;
   const rethToEth = (reth) => (reth * rates.rethEth) / 10n ** 18n;
-  const oethToEth = (oeth) => (oeth * rates.oethEth) / 10n ** 18n;
 
   const regularEthTotal = [
     balances.executor.eth,
     balances.executor.weth,
     balances["dao-proxy"].eth,
-    // balances["client-incentives-rewards-proxy"].eth,
+    balances["client-incentives-rewards-proxy"].eth,
     balances["token-buyer"].eth,
   ]
     .filter(Boolean)
@@ -169,9 +168,6 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
   );
   const rEthReturnRateEstimateBPS = BigInt(
     Math.round(aprs.rocketPool * inflowProjectionYearFraction * 10_000),
-  );
-  const oEthReturnRateEstimateBPS = BigInt(
-    Math.round(aprs.originEther * inflowProjectionYearFraction * 10_000),
   );
 
   return (
@@ -311,7 +307,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                                 </dd>
                               </>
                             )}
-                            {/*{balances["client-incentives-rewards-proxy"]?.weth >
+                            {balances["client-incentives-rewards-proxy"]?.weth >
                               0 && (
                               <>
                                 <dt>
@@ -337,7 +333,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                                   />
                                 </dd>
                               </>
-                            )}*/}
+                            )}
                             {balances.executor.weth > 0 && (
                               <>
                                 <dt>Treasury wETH</dt>
@@ -392,23 +388,6 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                         </span>
                       </li>
                     )}
-                    {balances.executor.oeth > 0 && (
-                      <li>
-                        <FormattedEth
-                          value={balances.executor.oeth}
-                          tokenSymbol="oETH"
-                          tooltip={false}
-                        />{" "}
-                        <span data-small>
-                          ({"Ξ"}
-                          <FormattedEth
-                            value={oethToEth(balances.executor.oeth)}
-                            tooltip={false}
-                          />
-                          )
-                        </span>
-                      </li>
-                    )}
                   </ul>
                 </>
               ),
@@ -440,7 +419,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
               ),
             },
             {
-              label: "Lil Nouns",
+              label: "Nouns",
               value: (() => {
                 return (
                   <>
@@ -451,20 +430,19 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                       style={{ color: "inherit", fontStyle: "normal" }}
                     >
                       {Number(
-                        balances.executor
-                          .nouns /*+ balances["fork-escrow"].nouns*/,
+                        balances.executor.nouns + balances["fork-escrow"].nouns,
                       )}
                     </Link>{" "}
-                    {/*{balances["fork-escrow"].nouns > 0 && (
+                    {balances["fork-escrow"].nouns > 0 && (
                       <span data-small>
                         (Includes {balances["fork-escrow"].nouns.toString()}{" "}
-                        Lil Nouns held in{" "}
+                        Nouns held in{" "}
                         <EtherscanLink address={forkEscrowAddress}>
                           The Fork Escrow
                         </EtherscanLink>
                         )
                       </span>
-                    )}*/}
+                    )}
                   </>
                 );
               })(),
@@ -506,12 +484,12 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                 {auctionNounIds == null ? (
                   "..."
                 ) : auctionNounIds.length === 1 ? (
-                  <>1 settled auction (Lil Noun {auctionNounIds[0]})</>
+                  <>1 settled auction (Noun {auctionNounIds[0]})</>
                 ) : (
                   <>
                     {auctionNounIds.length} settled auctions
                     <div css={(t) => css({ color: t.colors.textDimmed })}>
-                      Lil Noun {auctionNounIds[0]} to{" "}
+                      Noun {auctionNounIds[0]} to{" "}
                       {auctionNounIds[auctionNounIds.length - 1]}
                     </div>
                   </>
@@ -606,14 +584,13 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                           const count = asset.tokens.length;
                           return (
                             <>
-                              {count} {count === 1 ? "Lil Noun" : "Lil Nouns"}
+                              {count} {count === 1 ? "Noun" : "Nouns"}
                             </>
                           );
                         }
 
                         default:
-                          //throw new Error();
-                          return null;
+                          throw new Error();
                       }
                     })()}
                   </li>
@@ -769,32 +746,8 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
               </dd>
             </>
           )}
-          {balances.executor.oeth != null && (
-            <>
-              <dt>oETH yield</dt>
-              <dd>
-                {"Ξ"}
-                <FormattedEth
-                  value={
-                    (balances.executor.oeth * oEthReturnRateEstimateBPS) /
-                    10_000n
-                  }
-                  tooltip={false}
-                />{" "}
-                <span data-small>
-                  (
-                  <FormattedNumber
-                    value={aprs.originEther}
-                    style="percent"
-                    maximumFractionDigits={2}
-                  />{" "}
-                  APR)
-                </span>
-              </dd>
-            </>
-          )}
         </Dl>
-        {/*<p
+        <p
           css={(t) =>
             css({
               margin: "2.8rem 0 0",
@@ -823,20 +776,20 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
           <a href="https://tabs.wtf" target="_blank" rel="norefferer">
             tabs.wtf
           </a>
-        </p>*/}
+        </p>
       </main>
     </div>
   );
 };
 
-// const EtherscanLink = ({ address, ...props }) => (
-//   <a
-//     href={buildEtherscanLink(`/address/${address}`)}
-//     target="_blank"
-//     rel="noreferrer"
-//     {...props}
-//   />
-// );
+const EtherscanLink = ({ address, ...props }) => (
+  <a
+    href={buildEtherscanLink(`/address/${address}`)}
+    target="_blank"
+    rel="noreferrer"
+    {...props}
+  />
+);
 
 const Dl = (props) => (
   <dl

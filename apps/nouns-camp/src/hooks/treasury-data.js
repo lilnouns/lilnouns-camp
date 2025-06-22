@@ -4,16 +4,14 @@ import { object as objectUtils } from "@shades/common/utils";
 export const getTotalEth = (data) => {
   const { balances, rates } = data;
   const rethToEth = (reth) => (reth * rates.rethEth) / 10n ** 18n;
-  const oethToEth = (oeth) => (oeth * rates.oethEth) / 10n ** 18n;
   return [
     balances.executor.eth,
     balances.executor.weth,
     rethToEth(balances.executor.reth),
-    oethToEth(balances.executor.oeth),
     balances.executor.steth,
     balances.executor.wsteth,
     balances["dao-proxy"].eth,
-    // balances["client-incentives-rewards-proxy"].weth,
+    balances["client-incentives-rewards-proxy"].weth,
     balances["token-buyer"].eth,
   ]
     .filter(Boolean)
@@ -50,17 +48,15 @@ const useTreasuryData = () => {
   const usdcToEth = (usdc) => (usdc * rates.usdcEth) / 10n ** 6n;
   const ethToUsdc = (eth) => (eth * 10n ** 6n) / rates.usdcEth;
   const rethToEth = (reth) => (reth * rates.rethEth) / 10n ** 18n;
-  const oethToEth = (oeth) => (oeth * rates.oethEth) / 10n ** 18n;
 
   const ethTotal = [
     balances.executor.eth,
     balances.executor.weth,
     balances.executor.reth == null ? null : rethToEth(balances.executor.reth),
-    balances.executor.oeth == null ? null : oethToEth(balances.executor.oeth),
     balances.executor.steth,
     balances.executor.wsteth,
     balances["dao-proxy"].eth,
-    // balances["client-incentives-rewards-proxy"].weth,
+    balances["client-incentives-rewards-proxy"].weth,
     balances["token-buyer"].eth,
   ]
     .filter(Boolean)

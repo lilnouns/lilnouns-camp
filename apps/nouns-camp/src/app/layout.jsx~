@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import Script from "next/script";
-import { get as getConfig } from "@vercel/edge-config";
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+// import { get as getConfig } from "@vercel/edge-config";
+// import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { getSession } from "@/utils/session";
 import EmotionRootStyleRegistry from "@/app/emotion-style-root-registry";
 import { getStateFromCookie as getWagmiStateFromCookie } from "@/wagmi-config";
@@ -18,11 +18,15 @@ import { Provider as FarcasterStateProvider } from "@/hooks/farcaster";
 import { lazy, Suspense } from "react";
 const MobileDevTools = lazy(() => import("@/components/mobile-devtools"));
 
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { GA_ID } from "../constants/env";
+
 import "@/reset.css";
 import "@/index.css";
 
 import "@/snow.css";
 
+// eslint-disable-next-line no-unused-vars
 const isProduction = process.env.NODE_ENV === "production";
 
 const title = metaConfig.appTitle;
@@ -83,16 +87,16 @@ const beforeInteractive = () => {
 };
 
 const fetchConfig = async () => {
-  try {
-    const [canaryAccounts = [], betaAccounts = []] = await Promise.all([
-      getConfig("canary-accounts"),
-      getConfig("beta-accounts"),
-    ]);
-    return { canaryAccounts, betaAccounts };
-  } catch (e) {
-    console.error(e);
-    return { canaryAccounts: [], betaAccounts: [] };
-  }
+  // try {
+  //   const [canaryAccounts = [], betaAccounts = []] = await Promise.all([
+  //     getConfig("canary-accounts"),
+  //     getConfig("beta-accounts"),
+  //   ]);
+  //   return { canaryAccounts, betaAccounts };
+  // } catch (e) {
+  //   console.error(e);
+  return { canaryAccounts: [], betaAccounts: [] };
+  // }
 };
 
 export default async function RootLayout({ children }) {
@@ -105,7 +109,8 @@ export default async function RootLayout({ children }) {
           strategy="beforeInteractive"
         >{`(${beforeInteractive})()`}</Script>
 
-        {isProduction && <VercelAnalytics />}
+        {/*{isProduction && <VercelAnalytics />}*/}
+        {isProduction && <GoogleAnalytics gaId={GA_ID} />}
 
         <EmotionRootStyleRegistry>
           <ConfigProvider config={config}>

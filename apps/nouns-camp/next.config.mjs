@@ -46,26 +46,28 @@ const withSerwist = serwist({
 });
 
 const withSentry = (config) =>
-  withSentryConfig(config, {
-    // silent: true, // Suppresses source map uploading logs during build
+  withSentryConfig(
+    config,
+    {
+      // silent: true, // Suppresses source map uploading logs during build
     org: process.env.SENTRY_ORG,
     project: process.env.SENTRY_PROJECT,
-    authToken: process.env.SENTRY_AUTH_TOKEN,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
 
-    // Upload a larger set of source maps for prettier stack traces (increases build time)
-    widenClientFileUpload: true,
-    // Transpiles SDK to be compatible with IE11 (increases bundle size)
-    transpileClientSDK: true,
-    // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
-    tunnelRoute: "/monitoring",
-    // Hides source maps from generated client bundles
-    hideSourceMaps: true,
-    // Automatically tree-shake Sentry logger statements to reduce bundle size
-    disableLogger: true,
-    // Enables automatic instrumentation of Vercel Cron Monitors.
-    // See the following for more information:
-    // https://docs.sentry.io/product/crons/
-    // https://vercel.com/docs/cron-jobs
+      // Upload a larger set of source maps for prettier stack traces (increases build time)
+      widenClientFileUpload: true,
+      // Transpiles SDK to be compatible with IE11 (increases bundle size)
+      transpileClientSDK: true,
+      // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
+      tunnelRoute: "/monitoring",
+      // Hides source maps from generated client bundles
+      hideSourceMaps: true,
+      // Automatically tree-shake Sentry logger statements to reduce bundle size
+      disableLogger: true,
+      // Enables automatic instrumentation of Vercel Cron Monitors.
+      // See the following for more information:
+      // https://docs.sentry.io/product/crons/
+      // https://vercel.com/docs/cron-jobs
     // automaticVercelMonitors: true,
   });
 
@@ -98,23 +100,23 @@ const ignoredModules = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     productionBrowserSourceMaps: process.env.NODE_ENV !== "production",
-  reactStrictMode: true,
-  compiler: {
-    emotion: true,
-  },
-  rewrites() {
-    return [
-        // { source: "/topics/:path*", destination: "/candidates/:path*" },
-      { source: "/sw.js", destination: "/service-worker.js" },
-      {
-        source: "/subgraphs/nouns",
-        destination: process.env.NOUNS_SUBGRAPH_URL,
-      },
-      {
-        source: "/subgraphs/propdates",
-        destination: process.env.PROPDATES_SUBGRAPH_URL,
-      },
-      {
+    reactStrictMode: true,
+    compiler: {
+      emotion: true,
+    },
+    rewrites() {
+      return [
+      // { source: "/topics/:path*", destination: "/candidates/:path*" },
+        { source: "/sw.js", destination: "/service-worker.js" },
+        {
+          source: "/subgraphs/nouns",
+          destination: process.env.NOUNS_SUBGRAPH_URL,
+        },
+        {
+          source: "/subgraphs/propdates",
+          destination: process.env.PROPDATES_SUBGRAPH_URL,
+        },
+        {
         source: "/resolvers/nns",
         destination: process.env.NNS_RESOLVER_URL,
       },
@@ -123,45 +125,45 @@ const nextConfig = {
         destination: "/api/resolvers/uns",
       },
       {
-        source: "/subgraphs/flows",
-        destination: process.env.FLOWS_SUBGRAPH_URL,
-      },
-    ];
-  },
-  headers() {
-    return [
-        // {
-        //   source: "/:path*",
-        //   headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
-        // },
-    ];
-  },
-  webpack(config) {
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      ...Object.fromEntries(ignoredModules.map((m) => [m, false])),
-    };
+          source: "/subgraphs/flows",
+          destination: process.env.FLOWS_SUBGRAPH_URL,
+        },
+      ];
+    },
+    headers() {
+      return [
+      // {
+      //   source: "/:path*",
+      //   headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
+      // },
+      ];
+    },
+    webpack(config) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        ...Object.fromEntries(ignoredModules.map((m) => [m, false])),
+      };
 
-    config.plugins = [
-      ...config.plugins,
-      new webpack.DefinePlugin({
-        "process.env.BUILD_ID": JSON.stringify(BUILD_ID),
-        "process.env.APP_HOST": JSON.stringify(APP_HOST),
-        "process.env.APP_PRODUCTION_URL": JSON.stringify(APP_PRODUCTION_URL),
-      }),
-    ];
+      config.plugins = [
+        ...config.plugins,
+        new webpack.DefinePlugin({
+          "process.env.BUILD_ID": JSON.stringify(BUILD_ID),
+          "process.env.APP_HOST": JSON.stringify(APP_HOST),
+          "process.env.APP_PRODUCTION_URL": JSON.stringify(APP_PRODUCTION_URL),
+        }),
+      ];
 
-    return config;
-  },
-  turbopack: {
-    // Ignoring modules is not a thing yet
-    resolveAlias: Object.fromEntries(
-      ignoredModules.map((n) => [
-        n,
-        { browser: "@shades/common/empty-module" },
-      ]),
-    ),
-  },
+      return config;
+    },
+    turbopack: {
+      // Ignoring modules is not a thing yet
+      resolveAlias: Object.fromEntries(
+        ignoredModules.map((n) => [
+          n,
+          { browser: "@shades/common/empty-module" },
+        ]),
+      ),
+    },
 };
 
 export default withSentry(withSerwist(nextConfig));

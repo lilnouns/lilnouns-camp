@@ -96,9 +96,9 @@ const Content = ({ titleProps, dismiss }) => {
                 <Button component={NextLink} href="/new" prefetch>
                   New proposal
                 </Button>
-                {/*<Button component={NextLink} href="/new?topic=1" prefetch>*/}
-                {/*  New topic*/}
-                {/*</Button>*/}
+                {/*<Button component={NextLink} href="/new?topic=1" prefetch>
+                  New topic
+                </Button>*/}
               </div>
             </div>
           </div>

@@ -141,8 +141,6 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
       case "stream":
       case "treasury-noun-transfer":
       case "escrow-noun-transfer":
-      case "nftx-vault-redeem":
-      case "nftx-pool-claim-rewards":
         return null;
 
       default:
@@ -234,14 +232,6 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
           </>
         );
 
-      case "nftx-pool-claim-rewards":
-        return (
-          <>
-            This transaction claims rewards from the{" "}
-            <AddressDisplayNameWithTooltip address={t.target} />.
-          </>
-        );
-
       case "function-call":
       case "payable-function-call":
       case "proxied-payable-function-call":
@@ -254,7 +244,6 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
       case "stream":
       case "treasury-noun-transfer":
       case "escrow-noun-transfer":
-      case "nftx-vault-redeem":
         return null;
 
       default:
@@ -276,7 +265,6 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
       case "weth-stream-funding":
       case "treasury-noun-transfer":
       case "escrow-noun-transfer":
-      case "nftx-vault-redeem":
         return (
           <FunctionCallCodeBlock
             target={t.target}
@@ -291,7 +279,6 @@ const ListItem = ({ transaction, isSimulationRunning }) => {
 
       case "transfer":
       case "payer-top-up":
-      case "nftx-pool-claim-rewards":
         return (
           <UnparsedFunctionCallCodeBlock
             transaction={t}
@@ -698,19 +685,6 @@ export const TransactionExplanation = ({ transaction: t }) => {
       );
     }
 
-    case "nftx-pool-claim-rewards": {
-      const { address: nftxPoolAddress } =
-        resolveContractIdentifier("nftx-pool");
-      return (
-        <>
-          Claim rewards from the{" "}
-          <em>
-            <AddressDisplayNameWithTooltip address={nftxPoolAddress} />
-          </em>
-        </>
-      );
-    }
-
     case "stream": {
       const formattedUnits = formatUnits(
         t.tokenAmount,
@@ -823,21 +797,6 @@ export const TransactionExplanation = ({ transaction: t }) => {
         </>
       );
 
-    case "nftx-vault-redeem":
-      return (
-        <>
-          Transfer{" "}
-          <strong>
-            {Number(t.tokenAmount)} lil{" "}
-            {t.tokenAmount > 1 ? "lil nouns" : "lil noun"}
-          </strong>{" "}
-          to{" "}
-          <em>
-            <AddressDisplayNameWithTooltip address={t.receiverAddress} />
-          </em>
-        </>
-      );
-
     case "function-call":
     case "unparsed-function-call":
     case "payable-function-call":
@@ -883,9 +842,9 @@ export const FormattedEthWithConditionalTooltip = ({
   const ethString = (() => {
     switch (currency) {
       case "eth":
-        return formatEther(value ?? 0);
+        return formatEther(value);
       case "usdc":
-        return formatUnits(value ?? 0, 6);
+        return formatUnits(value, 6);
       default:
         throw new Error();
     }
