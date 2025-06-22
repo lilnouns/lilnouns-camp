@@ -1190,7 +1190,7 @@ const createStore = ({ initialState, publicClient }) =>
                 where: { id_in: [${proposals.map((p) => `"${p.id}"`).join(",")}] }
               ) {
                 id
-                votes { ...VoteFields }
+                votes(where: {or: [{votes_gt: 0}, {reason_not:""}]}) { ...VoteFields }
               }
               proposalVersions(
                 where: { proposal_in: [${proposals.map((p) => `"${p.id}"`).join(",")}] }
@@ -1292,7 +1292,7 @@ const createStore = ({ initialState, publicClient }) =>
                     executionETA
                     proposer { id }
                   # signers { id }
-                    votes { ...VoteFields }
+                    votes(where: {or: [{votes_gt: 0}, {reason_not:""}]}) { ...VoteFields }
                   }
 
                   proposalCandidates(

@@ -98,7 +98,7 @@ export const FULL_PROPOSAL_FIELDS = `
   # clientId
     proposer { id }
   # signers { id }
-    votes { ...VoteFields }
+    votes(where: {or: [{votes_gt: 0}, {reason_not:""}]}) { ...VoteFields }
     feedbackPosts { ...ProposalFeedbackFields }
   }`;
 
@@ -171,6 +171,21 @@ export const FULL_PROPOSAL_CANDIDATE_FIELDS = `
       # contentSignatures {
       #   ...CandidateContentSignatureFields
       # }
+      }
+    }
+    versions {
+      id
+      createdBlock
+      createdTimestamp
+      updateMessage
+      content {
+        title
+        description
+        targets
+        values
+        signatures
+        calldatas
+        proposalIdToUpdate
       }
     }
   }`;
