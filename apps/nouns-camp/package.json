@@ -28,7 +28,7 @@
     "eslint-plugin-next-on-pages": "1.13.12",
     "jsdom": "26.1.0",
     "vercel": "39.1.1",
-    "vitest": "3.2.3",
+    "vitest": "3.2.4",
     "webpack": "^5.99.9",
     "wrangler": "4.20.0"
   },
