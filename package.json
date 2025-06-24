@@ -34,7 +34,7 @@
     "ws": ">=7.5.10"
   },
   "devDependencies": {
-    "prettier": "3.5.3",
+    "prettier": "3.6.0",
     "turbo": "2.5.4",
     "typescript": "5.8.3"
   },
