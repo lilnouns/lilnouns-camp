@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.3] - 2025-06-30
+
+### 🐛 Bug Fixes
+
+- Cirrectly check empty code blocks
+
 ## [2.0.0-alpha.2] - 2025-06-22
 
 ### 🚀 Features
