@@ -76,7 +76,7 @@
     "react-stately": "3.39.0",
     "slate": "0.117.0",
     "slate-history": "0.113.1",
-    "slate-react": "0.116.0",
+    "slate-react": "0.117.3",
     "sonner": "^2.0.5",
     "tinykeys": "3.0.0",
     "use-debounce": "10.0.5",
