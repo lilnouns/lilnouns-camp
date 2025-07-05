@@ -118,7 +118,6 @@ const ProposalEditor = ({
   deleteLabel,
   note,
   payerTopUpValue,
-  nftxRedeemExists,
   scrollContainerRef,
   background,
 }) => {
@@ -132,12 +131,8 @@ const ProposalEditor = ({
           type: "payer-top-up",
           amount: formatEther(payerTopUpValue),
         },
-        nftxRedeemExists && {
-          type: "nftx-pool-claim-rewards",
-          vaultId: 558,
-        },
       ].filter(Boolean),
-    [actions, nftxRedeemExists, payerTopUpValue],
+    [actions, payerTopUpValue],
   );
 
   const maybeActionTransactions = useActionTransactions(
@@ -631,7 +626,6 @@ const FixedBottomToolbar = ({ isVisible = false, onFocus, onBlur }) => {
 const currencyFractionDigits = {
   eth: [1, 4],
   weth: [1, 4],
-  steth: [1, 4],
   usdc: [2, 2],
 };
 
@@ -717,13 +711,6 @@ const ActionSummary = ({ action: a }) => {
         />
       );
 
-    case "nftx-pool-claim-rewards":
-      return (
-        <TransactionExplanation
-          transaction={{ type: "nftx-pool-claim-rewards", vaultId: a.vaultId }}
-        />
-      );
-
     case "treasury-noun-transfer":
       return (
         <TransactionExplanation
@@ -731,18 +718,6 @@ const ActionSummary = ({ action: a }) => {
             type: "treasury-noun-transfer",
             nounId: a.nounId,
             receiverAddress: a.target,
-          }}
-        />
-      );
-
-    case "nftx-vault-redeem":
-      return (
-        <TransactionExplanation
-          transaction={{
-            type: "nftx-vault-redeem",
-            tokenAmount: a.tokenAmount,
-            nounIds: a.nounIds,
-            receiverAddress: a.receiverAddress,
           }}
         />
       );
@@ -760,7 +735,6 @@ const TransactionCodeBlock = ({ transaction, isSimulationRunning }) => {
     case "payer-top-up":
     case "unparsed-function-call":
     case "unparsed-payable-function-call":
-    case "nftx-pool-claim-rewards":
       return (
         <UnparsedFunctionCallCodeBlock
           transaction={t}
@@ -878,7 +852,6 @@ const ActionListItem = ({
   const daoTokenBuyerContract = useContract("token-buyer");
   const daoPayerContract = useContract("payer");
   const wethTokenContract = useContract("weth-token");
-  const nftxPoolContract = useContract("nftx-pool");
   const treasuryContract = useContract("executor");
 
   const [isExpanded, setExpanded] = React.useState(
@@ -906,7 +879,7 @@ const ActionListItem = ({
           <>
             This funds the stream with the requested USDC amount, via the{" "}
             <AddressDisplayNameWithTooltip address={daoPayerContract.address}>
-              Lil Nouns Payer Contract
+              Nouns Payer Contract
             </AddressDisplayNameWithTooltip>
             .
           </>
@@ -954,8 +927,6 @@ const ActionListItem = ({
       case "payer-top-up":
       case "treasury-noun-transfer":
       case "escrow-noun-transfer":
-      case "nftx-vault-redeem":
-      case "nftx-pool-claim-rewards":
         return null;
 
       case "unparsed-function-call":
@@ -1003,24 +974,6 @@ const ActionListItem = ({
             address={daoTokenBuyerContract.address}
           >
             DAO Token Buyer
-          </AddressDisplayNameWithTooltip>
-          .
-        </div>
-      )}
-      {a.type === "nftx-pool-claim-rewards" && (
-        <div
-          css={(t) =>
-            css({
-              a: { color: "currentcolor" },
-              fontSize: t.text.sizes.small,
-              color: t.colors.textDimmed,
-              padding: "0.4rem 0",
-            })
-          }
-        >
-          This transaction is automatically added to claim the rewards from the{" "}
-          <AddressDisplayNameWithTooltip address={nftxPoolContract.address}>
-            NFTX Pool
           </AddressDisplayNameWithTooltip>
           .
         </div>

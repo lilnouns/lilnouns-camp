@@ -2,9 +2,9 @@ import { createPublicClient, http } from "viem";
 import { CHAIN_ID } from "@/constants/env";
 import { getChain } from "@/utils/chains";
 import { getJsonRpcUrl } from "@/wagmi-config";
-import { CACHE_ONE_YEAR } from "next/constants";
+import { CACHE_ONE_YEAR } from "next/dist/lib/constants.js";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const chain = getChain(CHAIN_ID);
 

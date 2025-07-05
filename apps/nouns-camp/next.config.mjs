@@ -5,8 +5,7 @@ import dotenv from "dotenv";
 import webpack from "webpack";
 import { withSentryConfig } from "@sentry/nextjs";
 import serwist from "@serwist/next";
-
-const isProductionBranch = process.env.CF_PAGES_BRANCH === "master";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 // `next lint` runs this file
 const isLintJob = process.env.CI_LINT != null;
@@ -27,15 +26,15 @@ const assertEnvironment = () => {
   // Assert that any public keys are defined in the whitelist
   for (const key of Object.keys(process.env)) {
     if (key.startsWith("NEXT_PUBLIC_VERCEL_")) continue; // Variables injected by Vercel are fine
-    // if (key.startsWith("NEXT_PUBLIC_") && !whitelistedKeys.includes(key))
-    //   throw new Error(`${key} is not allowed`);
+    if (key.startsWith("NEXT_PUBLIC_") && !whitelistedKeys.includes(key))
+      throw new Error(`${key} is not allowed`);
   }
 };
 
 try {
   assertEnvironment();
 } catch (e) {
-  if (isProductionBranch) throw e;
+  if (process.env.NODE_ENV === "production") throw e;
   console.warn("Incomplete environment", e);
 }
 
@@ -43,19 +42,18 @@ const withSerwist = serwist({
   swSrc: "src/app/service-worker.js",
   swDest: "public/service-worker.js",
   swUrl: "/service-worker.js",
-  disable: !isProductionBranch,
+  disable: process.env.NODE_ENV !== "production",
 });
 
 const withSentry = (config) =>
   withSentryConfig(
     config,
     {
-      silent: true, // Suppresses source map uploading logs during build
-      org: process.env.SENTRY_ORG,
-      project: process.env.SENTRY_PROJECT,
+      // silent: true, // Suppresses source map uploading logs during build
+    org: process.env.SENTRY_ORG,
+    project: process.env.SENTRY_PROJECT,
       authToken: process.env.SENTRY_AUTH_TOKEN,
-    },
-    {
+
       // Upload a larger set of source maps for prettier stack traces (increases build time)
       widenClientFileUpload: true,
       // Transpiles SDK to be compatible with IE11 (increases bundle size)
@@ -70,9 +68,8 @@ const withSentry = (config) =>
       // See the following for more information:
       // https://docs.sentry.io/product/crons/
       // https://vercel.com/docs/cron-jobs
-      // automaticVercelMonitors: true,
-    },
-  );
+    // automaticVercelMonitors: true,
+  });
 
 const BUILD_ID = process.env.CF_PAGES_COMMIT_SHA?.slice(0, 7) ?? "dev";
 const APP_HOST = (() => {
@@ -100,16 +97,15 @@ const ignoredModules = [
   "encoding",
 ];
 
-export default withSentry(
-  withSerwist({
-    productionBrowserSourceMaps: !isProductionBranch,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     reactStrictMode: true,
     compiler: {
       emotion: true,
     },
     rewrites() {
       return [
-        { source: "/topics/:path*", destination: "/candidates/:path*" },
+      // { source: "/topics/:path*", destination: "/candidates/:path*" },
         { source: "/sw.js", destination: "/service-worker.js" },
         {
           source: "/subgraphs/nouns",
@@ -120,14 +116,14 @@ export default withSentry(
           destination: process.env.PROPDATES_SUBGRAPH_URL,
         },
         {
-          source: "/resolvers/nns",
-          destination: process.env.NNS_RESOLVER_URL,
-        },
-        {
-          source: "/resolvers/uns",
-          destination: "/api/resolvers/uns",
-        },
-        {
+        source: "/resolvers/nns",
+        destination: process.env.NNS_RESOLVER_URL,
+      },
+      {
+        source: "/resolvers/uns",
+        destination: "/api/resolvers/uns",
+      },
+      {
           source: "/subgraphs/flows",
           destination: process.env.FLOWS_SUBGRAPH_URL,
         },
@@ -135,15 +131,13 @@ export default withSentry(
     },
     headers() {
       return [
-        {
-          source: "/:path*",
-          headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
-        },
+      // {
+      //   source: "/:path*",
+      //   headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
+      // },
       ];
     },
     webpack(config) {
-      config.cache = false; // Disables PackFileCacheStrategy
-
       config.resolve.fallback = {
         ...config.resolve.fallback,
         ...Object.fromEntries(ignoredModules.map((m) => [m, false])),
@@ -160,19 +154,17 @@ export default withSentry(
 
       return config;
     },
-    // https://github.com/farcasterxyz/hub-monorepo/issues/2031
-    // swcMinify: false,
-    experimental: {
-      turbo: {
-        // Ignoring modules is not a thing yet
-        resolveAlias: Object.fromEntries(
-          ignoredModules.map((n) => [
-            n,
-            { browser: "@shades/common/empty-module" },
-          ]),
-        ),
-      },
-      instrumentationHook: isProductionBranch,
+    turbopack: {
+      // Ignoring modules is not a thing yet
+      resolveAlias: Object.fromEntries(
+        ignoredModules.map((n) => [
+          n,
+          { browser: "@shades/common/empty-module" },
+        ]),
+      ),
     },
-  }),
-);
+};
+
+export default withSentry(withSerwist(nextConfig));
+
+initOpenNextCloudflareForDev();

@@ -6,7 +6,7 @@ import {
   shareSimulations,
 } from "@/app/api/tenderly-utils";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export async function POST(request) {
   const { address: executorAddress } = resolveIdentifier("executor");
@@ -31,7 +31,7 @@ export async function POST(request) {
       "X-Access-Key": process.env.TENDERLY_API_KEY,
     },
     body: JSON.stringify({ simulations: parsedTransactions }),
-    // cache: "no-cache",
+    cache: "no-cache",
   });
 
   // when a simulation fails, the other sims won't be executed

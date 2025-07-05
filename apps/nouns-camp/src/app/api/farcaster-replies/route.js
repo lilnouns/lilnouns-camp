@@ -7,7 +7,7 @@ import {
   deleteAccountKeyForFid,
 } from "@/app/api/farcaster-account-key-utils";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export async function POST(request) {
   const { targetCastId, text, fid } = await request.json();

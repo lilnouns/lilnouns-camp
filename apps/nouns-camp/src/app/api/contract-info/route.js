@@ -1,6 +1,6 @@
 import { CHAIN_ID } from "@/constants/env";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const ONE_DAY_IN_SECONDS = 60 * 60 * 24;
 const ONE_MONTH_IN_SECONDS = ONE_DAY_IN_SECONDS * 30;
