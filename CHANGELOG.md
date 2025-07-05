@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.5] - 2025-07-05
+
+### 🚀 Features
+
+- *(common)* Add new noun `head-floppy-disc`
+
 ## [2.0.0-alpha.4] - 2025-07-03
 
 ### 🐛 Bug Fixes
