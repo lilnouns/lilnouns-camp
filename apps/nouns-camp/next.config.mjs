@@ -7,7 +7,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 import serwist from "@serwist/next";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
-const isProductionBranch = process.env.CF_PAGES_BRANCH === "master";
+const isProductionBranch = process.env.WORKERS_CI === "1";
 
 // `next lint` runs this file
 const isLintJob = process.env.CI_LINT != null;
