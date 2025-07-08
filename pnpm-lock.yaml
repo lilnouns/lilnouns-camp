@@ -52,8 +52,8 @@ importers:
         specifier: 11.14.0
         version: 11.14.0(@types/react@18.3.18)(react@18.3.1)
       '@farcaster/core':
-        specifier: 0.18.1
-        version: 0.18.1(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63)
+        specifier: 0.18.2
+        version: 0.18.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63)
       '@lilnounsdao/assets':
         specifier: 0.5.15
         version: 0.5.15
@@ -1078,8 +1078,8 @@ packages:
     resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
 
-  '@farcaster/core@0.18.1':
-    resolution: {integrity: sha512-XCqquF5/+kzfTZdeEpn4bTkESLETTR2Fmty9ulxF9mWwEWyVwyjKXWMgioA6J7TXvr5n4rWbAFRfACvd3CDX6g==}
+  '@farcaster/core@0.18.2':
+    resolution: {integrity: sha512-LzOzcKqPA63HO4WMfzFzh2XrQvCqqWm/HUrACvs78czSQ+ntTy7FGFjyHHwwwkYWxFLOmOTlKZHGGtQ8RSPTTQ==}
 
   '@fastify/deepmerge@2.0.0':
     resolution: {integrity: sha512-fsaybTGDyQ5KpPsplQqb9yKdCf2x/pbNpMNk8Tvp3rRz7lVcupKysH4b2ELMN2P4Hak1+UqTYdTj/u4FNV2p0g==}
@@ -8408,7 +8408,7 @@ snapshots:
 
   '@faker-js/faker@7.6.0': {}
 
-  '@farcaster/core@0.18.1(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63)':
+  '@farcaster/core@0.18.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63)':
     dependencies:
       '@faker-js/faker': 7.6.0
       '@noble/curves': 1.9.2
