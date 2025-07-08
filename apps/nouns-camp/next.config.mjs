@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import webpack from "webpack";
 import { withSentryConfig } from "@sentry/nextjs";
 import serwist from "@serwist/next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const isProductionBranch = process.env.CF_PAGES_BRANCH === "master";
 
@@ -176,3 +177,5 @@ export default withSentry(
     },
   }),
 );
+
+initOpenNextCloudflareForDev();
