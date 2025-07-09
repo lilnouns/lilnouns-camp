@@ -19,15 +19,15 @@ const assertEnvironment = () => {
   const templateFile = readFileSync(path.join(__dirname, ".env.template"));
   const whitelistedKeys = Object.keys(dotenv.parse(templateFile));
 
-  // Assert that required (all whitelisted) variables are defined
+  // Assert that required (all allowlisted) variables are defined
   for (const key of whitelistedKeys)
     if (process.env[key] == null) throw new Error(`${key} is not defined`);
 
-  // Assert that any public keys are defined in the whitelist
+  // Assert that any public keys are defined in the allowlist
   for (const key of Object.keys(process.env)) {
     if (key.startsWith("NEXT_PUBLIC_VERCEL_")) continue; // Variables injected by Vercel are fine
-    // if (key.startsWith("NEXT_PUBLIC_") && !whitelistedKeys.includes(key))
-    //   throw new Error(`${key} is not allowed`);
+    if (key.startsWith("NEXT_PUBLIC_") && !whitelistedKeys.includes(key))
+      throw new Error(`${key} is not allowed`);
   }
 };
 
