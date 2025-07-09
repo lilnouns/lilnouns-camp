@@ -97,6 +97,7 @@ const ignoredModules = [
 
 export default withSentry(
   withSerwist({
+    swcMinify: false,
     productionBrowserSourceMaps: process.env.NODE_ENV !== "production",
     reactStrictMode: true,
     compiler: {
