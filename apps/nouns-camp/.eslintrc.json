@@ -1,5 +1,5 @@
 {
-  "plugins": ["next-on-pages"],
+  "plugins": [],
   "extends": [
     "next/core-web-vitals",
     "plugin:next-on-pages/recommended",

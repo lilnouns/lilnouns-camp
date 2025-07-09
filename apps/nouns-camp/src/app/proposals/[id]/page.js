@@ -13,7 +13,7 @@ import { Hydrater as StoreHydrater } from "@/store";
 import ClientAppProvider from "@/app/client-app-provider";
 import ProposalScreen from "@/components/proposal-screen";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const getChainId = () => {
   const wagmiState = getWagmiStateFromCookie(headers().get("cookie"));

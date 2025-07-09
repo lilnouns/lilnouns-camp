@@ -14,7 +14,8 @@ import {
   VOTE_FIELDS,
 } from "@/nouns-subgraph";
 
-export const runtime = "edge";
+// export const runtime = "edge";
+export const dynamic = 'force-dynamic'
 
 const theme = getTheme("light");
 

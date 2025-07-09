@@ -11,7 +11,7 @@ import { Hydrater as StoreHydrater, Provider as StoreProvider } from "@/store";
 import ClientAppProvider from "@/app/client-app-provider";
 import CandidateScreen from "@/components/candidate-screen";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const fetchCandidate = async (id) => {
   const data = await subgraphFetch({

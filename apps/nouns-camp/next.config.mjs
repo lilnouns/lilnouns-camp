@@ -5,8 +5,7 @@ import dotenv from "dotenv";
 import webpack from "webpack";
 import { withSentryConfig } from "@sentry/nextjs";
 import serwist from "@serwist/next";
-
-const isProductionBranch = process.env.CF_PAGES_BRANCH === "master";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 // `next lint` runs this file
 const isLintJob = process.env.CI_LINT != null;
@@ -35,7 +34,7 @@ const assertEnvironment = () => {
 try {
   assertEnvironment();
 } catch (e) {
-  if (isProductionBranch) throw e;
+  if (process.env.NODE_ENV === "production") throw e;
   console.warn("Incomplete environment", e);
 }
 
@@ -43,7 +42,7 @@ const withSerwist = serwist({
   swSrc: "src/app/service-worker.js",
   swDest: "public/service-worker.js",
   swUrl: "/service-worker.js",
-  disable: !isProductionBranch,
+  disable: !process.env.NODE_ENV === "production",
 });
 
 const withSentry = (config) =>
@@ -74,7 +73,7 @@ const withSentry = (config) =>
     },
   );
 
-const BUILD_ID = process.env.CF_PAGES_COMMIT_SHA?.slice(0, 7) ?? "dev";
+const BUILD_ID = process.env.WORKERS_CI_COMMIT_SHA?.slice(0, 7) ?? "dev";
 const APP_HOST = (() => {
   if (process.env.APP_HOST != null) return process.env.APP_HOST;
   if (process.env.VERCEL == null && !isLintJob)
@@ -102,14 +101,14 @@ const ignoredModules = [
 
 export default withSentry(
   withSerwist({
-    productionBrowserSourceMaps: !isProductionBranch,
+    productionBrowserSourceMaps: !process.env.NODE_ENV === "production",
     reactStrictMode: true,
     compiler: {
       emotion: true,
     },
     rewrites() {
       return [
-        { source: "/topics/:path*", destination: "/candidates/:path*" },
+        // { source: "/topics/:path*", destination: "/candidates/:path*" },
         { source: "/sw.js", destination: "/service-worker.js" },
         {
           source: "/subgraphs/nouns",
@@ -135,10 +134,10 @@ export default withSentry(
     },
     headers() {
       return [
-        {
-          source: "/:path*",
-          headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
-        },
+        // {
+        //   source: "/:path*",
+        //   headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
+        // },
       ];
     },
     webpack(config) {
@@ -172,7 +171,9 @@ export default withSentry(
           ]),
         ),
       },
-      instrumentationHook: isProductionBranch,
+      instrumentationHook: process.env.NODE_ENV === "production",
     },
   }),
 );
+
+initOpenNextCloudflareForDev();
