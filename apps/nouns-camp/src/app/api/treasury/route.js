@@ -6,7 +6,6 @@ import { getChain } from "@/utils/chains";
 import { getJsonRpcUrl } from "@/wagmi-config";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 
-// export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
 const ONE_HOUR_IN_SECONDS = 60 * 60;

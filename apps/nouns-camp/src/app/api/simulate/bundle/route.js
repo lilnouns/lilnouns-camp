@@ -6,8 +6,6 @@ import {
   shareSimulations,
 } from "@/app/api/tenderly-utils";
 
-// export const runtime = "edge";
-
 export async function POST(request) {
   const { address: executorAddress } = resolveIdentifier("executor");
 

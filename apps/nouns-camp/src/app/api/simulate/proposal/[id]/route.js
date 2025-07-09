@@ -5,8 +5,6 @@ import { CHAIN_ID } from "@/constants/env";
 import { resolveIdentifier } from "@/contracts";
 import { fetchSimulationBundle } from "@/app/api/tenderly-utils";
 
-// export const runtime = "edge";
-
 const chain = getChain(CHAIN_ID);
 
 const publicClient = createPublicClient({
