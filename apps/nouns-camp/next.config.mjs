@@ -42,7 +42,7 @@ const withSerwist = serwist({
   swSrc: "src/app/service-worker.js",
   swDest: "public/service-worker.js",
   swUrl: "/service-worker.js",
-  disable: !process.env.NODE_ENV === "production",
+  disable: process.env.NODE_ENV !== "production",
 });
 
 const withSentry = (config) =>
@@ -101,7 +101,7 @@ const ignoredModules = [
 
 export default withSentry(
   withSerwist({
-    productionBrowserSourceMaps: !process.env.NODE_ENV === "production",
+    productionBrowserSourceMaps: process.env.NODE_ENV !== "production",
     reactStrictMode: true,
     compiler: {
       emotion: true,
