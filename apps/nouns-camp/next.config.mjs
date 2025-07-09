@@ -7,8 +7,6 @@ import { withSentryConfig } from "@sentry/nextjs";
 import serwist from "@serwist/next";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
-const isProductionBranch = process.env.WORKERS_CI === "1";
-
 // `next lint` runs this file
 const isLintJob = process.env.CI_LINT != null;
 
@@ -36,7 +34,7 @@ const assertEnvironment = () => {
 try {
   assertEnvironment();
 } catch (e) {
-  if (isProductionBranch) throw e;
+  if (process.env.NODE_ENV === "production") throw e;
   console.warn("Incomplete environment", e);
 }
 
@@ -44,7 +42,7 @@ const withSerwist = serwist({
   swSrc: "src/app/service-worker.js",
   swDest: "public/service-worker.js",
   swUrl: "/service-worker.js",
-  disable: !isProductionBranch,
+  disable: !process.env.NODE_ENV === "production",
 });
 
 const withSentry = (config) =>
@@ -103,7 +101,7 @@ const ignoredModules = [
 
 export default withSentry(
   withSerwist({
-    productionBrowserSourceMaps: !isProductionBranch,
+    productionBrowserSourceMaps: !process.env.NODE_ENV === "production",
     reactStrictMode: true,
     compiler: {
       emotion: true,
@@ -173,7 +171,7 @@ export default withSentry(
           ]),
         ),
       },
-      instrumentationHook: isProductionBranch,
+      instrumentationHook: process.env.NODE_ENV === "production",
     },
   }),
 );
