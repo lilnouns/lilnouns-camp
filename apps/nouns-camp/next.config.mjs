@@ -97,6 +97,9 @@ const ignoredModules = [
 
 export default withSentry(
   withSerwist({
+    logger: {
+      level: "debug",
+    },
     swcMinify: false,
     productionBrowserSourceMaps: true,
     reactStrictMode: true,
