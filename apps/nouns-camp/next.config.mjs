@@ -171,6 +171,6 @@ const nextConfig = {
   },
 };
 
-export default withSentry(withSerwist(nextConfig));
+export default nextConfig; //withSentry(withSerwist(nextConfig));
 
 initOpenNextCloudflareForDev();
