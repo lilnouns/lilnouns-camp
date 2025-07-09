@@ -110,7 +110,7 @@ export default withSentry(
     },
     rewrites() {
       return [
-        { source: "/topics/:path*", destination: "/candidates/:path*" },
+        // { source: "/topics/:path*", destination: "/candidates/:path*" },
         { source: "/sw.js", destination: "/service-worker.js" },
         {
           source: "/subgraphs/nouns",
