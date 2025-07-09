@@ -105,6 +105,7 @@ export default withSentry(
     reactStrictMode: true,
     compiler: {
       emotion: true,
+      reactRemoveProperties: false,
     },
     rewrites() {
       return [
