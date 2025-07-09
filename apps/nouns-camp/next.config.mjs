@@ -156,14 +156,14 @@ export default withSentry(
       return config;
     },
     turbopack: {
-    // Ignoring modules is not a thing yet
-    resolveAlias: Object.fromEntries(
-      ignoredModules.map((n) => [
-        n,
-        { browser: "@shades/common/empty-module" },
-      ]),
-    ),
-  },
+      // Ignoring modules is not a thing yet
+      resolveAlias: Object.fromEntries(
+        ignoredModules.map((n) => [
+          n,
+          { browser: "@shades/common/empty-module" },
+        ]),
+      ),
+    },
   }),
 );
 
