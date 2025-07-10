@@ -8,7 +8,7 @@ import { getStateFromCookie as getWagmiStateFromCookie } from "@/wagmi-config";
 import metaConfig from "@/metadata-config";
 // import CacheStoreProvider from "@/cache-store-provider";
 // import ConfigProvider from "@/config-provider";
-import ThemeProvider from "@/theme-provider";
+// import ThemeProvider from "@/theme-provider";
 import WagmiProvider from "@/wagmi-provider";
 import GlobalStylesWrapper from "@/global-styles-wrapper";
 import SessionProvider from "@/session-provider";
@@ -118,29 +118,29 @@ export default async function RootLayout({ children }) {
         {/*<EmotionRootStyleRegistry>*/}
         {/*<ConfigProvider config={config}>*/}
         {/*<CacheStoreProvider>*/}
-        <ThemeProvider>
-          <GlobalStylesWrapper>
-            <WagmiProvider
-              initialState={getWagmiStateFromCookie(
-                (await headers()).get("cookie"),
-              )}
-            >
-              <SessionProvider initialSession={{ address: session.address }}>
-                <StoreProvider>
-                  <FarcasterStateProvider>
-                    {children}
-                    {(process.env.NODE_ENV === "development" ||
-                      process.env.VERCEL_ENV === "preview") && (
-                      <Suspense fallback={null}>
-                        <MobileDevTools />
-                      </Suspense>
-                    )}
-                  </FarcasterStateProvider>
-                </StoreProvider>
-              </SessionProvider>
-            </WagmiProvider>
-          </GlobalStylesWrapper>
-        </ThemeProvider>
+        {/*<ThemeProvider>*/}
+        <GlobalStylesWrapper>
+          <WagmiProvider
+            initialState={getWagmiStateFromCookie(
+              (await headers()).get("cookie"),
+            )}
+          >
+            <SessionProvider initialSession={{ address: session.address }}>
+              <StoreProvider>
+                <FarcasterStateProvider>
+                  {children}
+                  {(process.env.NODE_ENV === "development" ||
+                    process.env.VERCEL_ENV === "preview") && (
+                    <Suspense fallback={null}>
+                      <MobileDevTools />
+                    </Suspense>
+                  )}
+                </FarcasterStateProvider>
+              </StoreProvider>
+            </SessionProvider>
+          </WagmiProvider>
+        </GlobalStylesWrapper>
+        {/*</ThemeProvider>*/}
         {/*</CacheStoreProvider>*/}
         {/*</ConfigProvider>*/}
         {/*</EmotionRootStyleRegistry>*/}
