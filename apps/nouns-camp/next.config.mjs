@@ -97,10 +97,6 @@ const ignoredModules = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  logger: {
-    level: "debug",
-  },
-  swcMinify: false,
   productionBrowserSourceMaps: true,
   reactStrictMode: true,
   compiler: {
