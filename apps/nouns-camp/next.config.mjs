@@ -106,40 +106,40 @@ const nextConfig = {
     emotion: true,
     reactRemoveProperties: false,
   },
-  // rewrites() {
-  //   return [
-  //     // { source: "/topics/:path*", destination: "/candidates/:path*" },
-  //     { source: "/sw.js", destination: "/service-worker.js" },
-  //     {
-  //       source: "/subgraphs/nouns",
-  //       destination: process.env.NOUNS_SUBGRAPH_URL,
-  //     },
-  //     {
-  //       source: "/subgraphs/propdates",
-  //       destination: process.env.PROPDATES_SUBGRAPH_URL,
-  //     },
-  //     {
-  //       source: "/resolvers/nns",
-  //       destination: process.env.NNS_RESOLVER_URL,
-  //     },
-  //     {
-  //       source: "/resolvers/uns",
-  //       destination: "/api/resolvers/uns",
-  //     },
-  //     {
-  //       source: "/subgraphs/flows",
-  //       destination: process.env.FLOWS_SUBGRAPH_URL,
-  //     },
-  //   ];
-  // },
-  // headers() {
-  //   return [
-  //     // {
-  //     //   source: "/:path*",
-  //     //   headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
-  //     // },
-  //   ];
-  // },
+  rewrites() {
+    return [
+      // { source: "/topics/:path*", destination: "/candidates/:path*" },
+      { source: "/sw.js", destination: "/service-worker.js" },
+      {
+        source: "/subgraphs/nouns",
+        destination: process.env.NOUNS_SUBGRAPH_URL,
+      },
+      {
+        source: "/subgraphs/propdates",
+        destination: process.env.PROPDATES_SUBGRAPH_URL,
+      },
+      {
+        source: "/resolvers/nns",
+        destination: process.env.NNS_RESOLVER_URL,
+      },
+      {
+        source: "/resolvers/uns",
+        destination: "/api/resolvers/uns",
+      },
+      {
+        source: "/subgraphs/flows",
+        destination: process.env.FLOWS_SUBGRAPH_URL,
+      },
+    ];
+  },
+  headers() {
+    return [
+      // {
+      //   source: "/:path*",
+      //   headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
+      // },
+    ];
+  },
   webpack(config) {
     config.cache = false; // Disables PackFileCacheStrategy
 
