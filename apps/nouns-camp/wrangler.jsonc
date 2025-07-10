@@ -37,7 +37,7 @@
    */
    "vars": {
      "UNS_RESOLVER_URL": "https://api.unstoppabledomains.com/resolve/reverse/query"
-   }//,
+   },
   /**
    * Note: Use secrets to store sensitive data.
    * https://developers.cloudflare.com/workers/configuration/secrets/
@@ -53,5 +53,5 @@
    * Service Bindings (communicate between multiple Workers)
    * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
    */
-  // "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
+   "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "lilnouns-camp" }]
 }
