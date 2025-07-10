@@ -6,6 +6,7 @@
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "lilnouns-camp",
   "main": ".open-next/worker.js",
+  "minify": true,
   "compatibility_date": "2025-05-08",
   "compatibility_flags": [
     "nodejs_compat",
