@@ -18,6 +18,8 @@ import { Provider as FarcasterStateProvider } from "@/hooks/farcaster";
 import { lazy, Suspense } from "react";
 const MobileDevTools = lazy(() => import("@/components/mobile-devtools"));
 
+export const dynamic = "force-dynamic";
+
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { GA_ID } from "../constants/env";
 
