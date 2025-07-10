@@ -100,7 +100,7 @@ const nextConfig = {
   experimental: {
     typedRoutes: true,
   },
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: process.env.NODE_ENV !== "production",
   reactStrictMode: true,
   compiler: {
     emotion: true,
