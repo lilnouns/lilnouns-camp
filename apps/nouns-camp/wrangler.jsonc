@@ -8,10 +8,7 @@
   "main": ".open-next/worker.js",
   "minify": true,
   "compatibility_date": "2025-05-08",
-  "compatibility_flags": [
-    "nodejs_compat",
-    "global_fetch_strictly_public"
-  ],
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "observability": {
     "enabled": true
   },
@@ -21,11 +18,17 @@
       "bucket_name": "lilnouns-camp"
     }
   ],
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      "id": "e64e688128e449e9a109a26ea0d13e9d"
+    }
+  ],
   /**
    * Smart Placement
    * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
    */
-   "placement": { "mode": "smart" },
+  "placement": { "mode": "smart" },
 
   /**
    * Bindings
@@ -38,9 +41,9 @@
    * Environment Variables
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
    */
-   "vars": {
-     "UNS_RESOLVER_URL": "https://api.unstoppabledomains.com/resolve/reverse/query"
-   },
+  "vars": {
+    "UNS_RESOLVER_URL": "https://api.unstoppabledomains.com/resolve/reverse/query"
+  },
   /**
    * Note: Use secrets to store sensitive data.
    * https://developers.cloudflare.com/workers/configuration/secrets/
@@ -59,5 +62,10 @@
    * Service Bindings (communicate between multiple Workers)
    * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
    */
-   "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "lilnouns-camp" }]
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "lilnouns-camp"
+    }
+  ]
 }
