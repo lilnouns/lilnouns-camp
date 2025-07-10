@@ -11,10 +11,6 @@
     "nodejs_compat",
     "global_fetch_strictly_public"
   ],
-  "assets": {
-    "binding": "ASSETS",
-    "directory": ".open-next/assets"
-  },
   "observability": {
     "enabled": true
   },
@@ -47,7 +43,10 @@
    * Static Assets
    * https://developers.cloudflare.com/workers/static-assets/binding/
    */
-  // "assets": { "directory": "./public/", "binding": "ASSETS" },
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
 
   /**
    * Service Bindings (communicate between multiple Workers)
