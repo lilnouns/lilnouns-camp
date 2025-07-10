@@ -7,7 +7,7 @@ import { getSession } from "@/utils/session";
 import { getStateFromCookie as getWagmiStateFromCookie } from "@/wagmi-config";
 import metaConfig from "@/metadata-config";
 import CacheStoreProvider from "@/cache-store-provider";
-import ConfigProvider from "@/config-provider";
+// import ConfigProvider from "@/config-provider";
 import ThemeProvider from "@/theme-provider";
 import WagmiProvider from "@/wagmi-provider";
 import GlobalStylesWrapper from "@/global-styles-wrapper";
@@ -102,6 +102,7 @@ const fetchConfig = async () => {
 };
 
 export default async function RootLayout({ children }) {
+  // eslint-disable-next-line no-unused-vars
   const [session, config] = await Promise.all([getSession(), fetchConfig()]);
   return (
     <html lang="en">
@@ -115,35 +116,33 @@ export default async function RootLayout({ children }) {
         {isProduction && <GoogleAnalytics gaId={GA_ID} />}
 
         {/*<EmotionRootStyleRegistry>*/}
-        <ConfigProvider config={config}>
-          <CacheStoreProvider>
-            <ThemeProvider>
-              <GlobalStylesWrapper>
-                <WagmiProvider
-                  initialState={getWagmiStateFromCookie(
-                    (await headers()).get("cookie"),
-                  )}
-                >
-                  <SessionProvider
-                    initialSession={{ address: session.address }}
-                  >
-                    <StoreProvider>
-                      <FarcasterStateProvider>
-                        {children}
-                        {(process.env.NODE_ENV === "development" ||
-                          process.env.VERCEL_ENV === "preview") && (
-                          <Suspense fallback={null}>
-                            <MobileDevTools />
-                          </Suspense>
-                        )}
-                      </FarcasterStateProvider>
-                    </StoreProvider>
-                  </SessionProvider>
-                </WagmiProvider>
-              </GlobalStylesWrapper>
-            </ThemeProvider>
-          </CacheStoreProvider>
-        </ConfigProvider>
+        {/*<ConfigProvider config={config}>*/}
+        <CacheStoreProvider>
+          <ThemeProvider>
+            <GlobalStylesWrapper>
+              <WagmiProvider
+                initialState={getWagmiStateFromCookie(
+                  (await headers()).get("cookie"),
+                )}
+              >
+                <SessionProvider initialSession={{ address: session.address }}>
+                  <StoreProvider>
+                    <FarcasterStateProvider>
+                      {children}
+                      {(process.env.NODE_ENV === "development" ||
+                        process.env.VERCEL_ENV === "preview") && (
+                        <Suspense fallback={null}>
+                          <MobileDevTools />
+                        </Suspense>
+                      )}
+                    </FarcasterStateProvider>
+                  </StoreProvider>
+                </SessionProvider>
+              </WagmiProvider>
+            </GlobalStylesWrapper>
+          </ThemeProvider>
+        </CacheStoreProvider>
+        {/*</ConfigProvider>*/}
         {/*</EmotionRootStyleRegistry>*/}
       </body>
     </html>
