@@ -3,7 +3,7 @@ import Script from "next/script";
 // import { get as getConfig } from "@vercel/edge-config";
 // import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { getSession } from "@/utils/session";
-import EmotionRootStyleRegistry from "@/app/emotion-style-root-registry";
+// import EmotionRootStyleRegistry from "@/app/emotion-style-root-registry";
 import { getStateFromCookie as getWagmiStateFromCookie } from "@/wagmi-config";
 import metaConfig from "@/metadata-config";
 import CacheStoreProvider from "@/cache-store-provider";
@@ -114,37 +114,37 @@ export default async function RootLayout({ children }) {
         {/*{isProduction && <VercelAnalytics />}*/}
         {isProduction && <GoogleAnalytics gaId={GA_ID} />}
 
-        <EmotionRootStyleRegistry>
-          <ConfigProvider config={config}>
-            <CacheStoreProvider>
-              <ThemeProvider>
-                <GlobalStylesWrapper>
-                  <WagmiProvider
-                    initialState={getWagmiStateFromCookie(
-                      (await headers()).get("cookie"),
-                    )}
+        {/*<EmotionRootStyleRegistry>*/}
+        <ConfigProvider config={config}>
+          <CacheStoreProvider>
+            <ThemeProvider>
+              <GlobalStylesWrapper>
+                <WagmiProvider
+                  initialState={getWagmiStateFromCookie(
+                    (await headers()).get("cookie"),
+                  )}
+                >
+                  <SessionProvider
+                    initialSession={{ address: session.address }}
                   >
-                    <SessionProvider
-                      initialSession={{ address: session.address }}
-                    >
-                      <StoreProvider>
-                        <FarcasterStateProvider>
-                          {children}
-                          {(process.env.NODE_ENV === "development" ||
-                            process.env.VERCEL_ENV === "preview") && (
-                            <Suspense fallback={null}>
-                              <MobileDevTools />
-                            </Suspense>
-                          )}
-                        </FarcasterStateProvider>
-                      </StoreProvider>
-                    </SessionProvider>
-                  </WagmiProvider>
-                </GlobalStylesWrapper>
-              </ThemeProvider>
-            </CacheStoreProvider>
-          </ConfigProvider>
-        </EmotionRootStyleRegistry>
+                    <StoreProvider>
+                      <FarcasterStateProvider>
+                        {children}
+                        {(process.env.NODE_ENV === "development" ||
+                          process.env.VERCEL_ENV === "preview") && (
+                          <Suspense fallback={null}>
+                            <MobileDevTools />
+                          </Suspense>
+                        )}
+                      </FarcasterStateProvider>
+                    </StoreProvider>
+                  </SessionProvider>
+                </WagmiProvider>
+              </GlobalStylesWrapper>
+            </ThemeProvider>
+          </CacheStoreProvider>
+        </ConfigProvider>
+        {/*</EmotionRootStyleRegistry>*/}
       </body>
     </html>
   );
