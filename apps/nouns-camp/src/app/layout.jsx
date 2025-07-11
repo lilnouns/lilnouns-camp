@@ -11,7 +11,7 @@ import metaConfig from "@/metadata-config";
 // import ThemeProvider from "@/theme-provider";
 // import WagmiProvider from "@/wagmi-provider";
 // import GlobalStylesWrapper from "@/global-styles-wrapper";
-import SessionProvider from "@/session-provider";
+// import SessionProvider from "@/session-provider";
 import { Provider as StoreProvider } from "@/store";
 import { Provider as FarcasterStateProvider } from "@/hooks/farcaster";
 // MobileDevTools will be lazy-loaded in development and preview deployments
@@ -125,19 +125,19 @@ export default async function RootLayout({ children }) {
             (await headers()).get("cookie"),
           )}
         >*/}
-        <SessionProvider initialSession={{ address: session.address }}>
-          <StoreProvider>
-            <FarcasterStateProvider>
-              {children}
-              {(process.env.NODE_ENV === "development" ||
-                process.env.VERCEL_ENV === "preview") && (
-                <Suspense fallback={null}>
-                  <MobileDevTools />
-                </Suspense>
-              )}
-            </FarcasterStateProvider>
-          </StoreProvider>
-        </SessionProvider>
+        {/*<SessionProvider initialSession={{ address: session.address }}>*/}
+        <StoreProvider>
+          <FarcasterStateProvider>
+            {children}
+            {(process.env.NODE_ENV === "development" ||
+              process.env.VERCEL_ENV === "preview") && (
+              <Suspense fallback={null}>
+                <MobileDevTools />
+              </Suspense>
+            )}
+          </FarcasterStateProvider>
+        </StoreProvider>
+        {/*</SessionProvider>*/}
         {/*</WagmiProvider>*/}
         {/*</GlobalStylesWrapper>*/}
         {/*</ThemeProvider>*/}
