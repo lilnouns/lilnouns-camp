@@ -2,7 +2,7 @@ import getDateYear from "date-fns/getYear";
 import React from "react";
 import ReactDOM from "react-dom";
 import NextLink from "next/link";
-import { css, /*keyframes*/ } from "@emotion/react";
+import { css /*keyframes*/ } from "@emotion/react";
 import {
   array as arrayUtils,
   string as stringUtils,
@@ -1830,7 +1830,11 @@ const NounTransferItem = ({ item, isOnScreen }) => {
       <React.Fragment key={a}>
         {i > 0 && (
           <>
-            {as.length === 2 ? " and" : i === as.length - 1 ? ", and" : ", "}{" "}
+            {as.length === 2
+              ? " and"
+              : i === as.length - 1
+                ? ", and"
+                : ", "}{" "}
           </>
         )}
         <AccountPreviewPopoverTrigger showAvatar accountAddress={a} />

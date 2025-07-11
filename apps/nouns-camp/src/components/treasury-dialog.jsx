@@ -613,7 +613,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
 
                         default:
                           //throw new Error();
-                          return null
+                          return null;
                       }
                     })()}
                   </li>

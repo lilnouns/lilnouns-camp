@@ -426,8 +426,8 @@ const ProposalCandidateScreenContent = ({
             promoted to a proposal.
           </p>*/}
           <p>
-            This candidate has met the proposal threshold ({candidateVotingPower}/
-            {proposalThreshold + 1}).
+            This candidate has met the proposal threshold (
+            {candidateVotingPower}/{proposalThreshold + 1}).
           </p>
           <p>
             Holders can delegate their voting power to proposers who don&apos;t

@@ -12,7 +12,7 @@
 //   deleteAccountKeyForFid,
 // } from "@/app/api/farcaster-account-key-utils";
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 // eslint-disable-next-line no-unused-vars
 export async function GET(request) {
@@ -89,6 +89,6 @@ export async function POST(request) {
   //     await deleteAccountKeyForFid(fid);
   //     return Response.json({ error: "invalid-account-key" }, { status: 401 });
   //   }
-    return Response.json({ error: "submit-failed" }, { status: 500 });
+  return Response.json({ error: "submit-failed" }, { status: 500 });
   // }
 }

@@ -1,8 +1,6 @@
 import { generateSiweNonce } from "viem/siwe";
 import { getSession } from "@/utils/session";
 
-export const runtime = "edge";
-
 export async function GET() {
   const session = await getSession();
   const nonce = generateSiweNonce();

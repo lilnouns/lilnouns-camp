@@ -4,7 +4,7 @@
 // import { createUri as createTransactionReceiptUri } from "@/utils/erc-2400";
 // import { fetchCastsByParentUrl } from "@/app/api/farcaster-utils";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 // const DAY_THRESHOLD = 14;
 // const CAST_LIMIT_PER_PROP = 20;
@@ -69,7 +69,7 @@ const jsonResponse = (statusCode, body, headers) =>
   });
 
 export async function GET() {
-  const { casts, accounts } = { casts: [], accounts: [] } // await fetchRecentCasts();
+  const { casts, accounts } = { casts: [], accounts: [] }; // await fetchRecentCasts();
 
   return jsonResponse(
     200,
