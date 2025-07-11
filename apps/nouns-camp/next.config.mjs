@@ -129,11 +129,16 @@ const nextConfig = {
       },
     ];
   },
-  headers() {
+  async headers() {
     return [
       {
-        source: "/:path*",
-        headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
+        source: "/(.*)",
+        headers: [
+          {
+            key: "x-camp-build-id",
+            value: BUILD_ID,
+          },
+        ],
       },
     ];
   },
