@@ -41,9 +41,9 @@
    * Environment Variables
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
    */
-  "vars": {
+  /*"vars": {
     "UNS_RESOLVER_URL": "https://api.unstoppabledomains.com/resolve/reverse/query"
-  },
+  },*/
   /**
    * Note: Use secrets to store sensitive data.
    * https://developers.cloudflare.com/workers/configuration/secrets/
