@@ -2,6 +2,77 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.7] - 2025-07-11
+
+### 🚀 Features
+
+- *(nouns-camp)* Add initial wrangler configuration
+- *(nouns-camp)* Add Cloudflare config with guidance
+- *(nouns-camp)* Add new Cloudflare-specific workflows
+- *(nouns-camp)* Add caching headers for `_next/static`
+- *(nouns-camp)* Add `dynamic` export with `force-dynamic`
+
+### 🐛 Bug Fixes
+
+- *(nouns-camp)* Improve error message for subgraph endpoint
+
+### 🚜 Refactor
+
+- *(nouns-camp)* Comment out `runtime` exports
+- *(nouns-camp)* Replace `getRequestContext` with `getCloudflareContext`
+- *(build)* Remove unused `postbuild` script
+- *(nouns-camp)* Update ESLint configuration
+- *(nouns-camp)* Reformat code for improved readability
+- *(nouns-camp)* Restructure `instrumentation` implementation
+- *(nouns-camp)* Re-enable use of `useConfig` and cache setting
+- *(nouns-camp)* Simplify `APP_HOST` environment variable logic
+- *(nouns-camp)* Remove unused `StoreProvider` wrapper
+- *(nouns-camp)* Simplify `fetchProposal` function
+- *(nouns-camp)* Remove unused `runtime` comments
+- *(nouns-camp)* Simplify `next.config` structure
+- *(nouns-camp)* Remove `withSentry` and `withSerwist`
+- *(nouns-camp)* Comment out rewrites and headers methods
+
+### 🎨 Styling
+
+- *(nouns-camp)* Fix indentation in `next.config`
+
+### ⚙️ Miscellaneous Tasks
+
+- *(nouns-camp)* Remove unused `next-on-pages` plugin
+- *(nouns-camp)* Initialize `initOpenNextCloudflareForDev`
+- *(nouns-camp)* Update production branch detection logic
+- *(nouns-camp)* Update build ID environment variable
+- *(nouns-camp)* Comment out `headers` configuration
+- *(nouns-camp)* Comment out `topics` rewrite
+- *(nouns-camp)* Update `compatibility_date` in wrangler config
+- *(nouns-camp)* Simplify production detection logic
+- *(nouns-camp)* Correct production environment checks
+- *(nouns-camp)* Rename `whitelist` to `allowlist`
+- Update to next 15
+- *(nouns-camp)* Simplify `next.config` and init Cloudflare
+- *(nouns-camp)* Add `UNS_RESOLVER_URL` environment variable
+- *(nouns-camp)* Disable `swcMinify` in `next.config`
+- *(nouns-camp)* Enable `productionBrowserSourceMaps`
+- *(nouns-camp)* Add `logger` with debug level to config
+- *(nouns-camp)* Disable `reactRemoveProperties` in config
+- *(nouns-camp)* Remove unused `logger` and `swcMinify`
+- *(nouns-camp)* Enable `smart` placement in config
+- *(nouns-camp)* Add `WORKER_SELF_REFERENCE` service binding
+- *(nouns-camp)* Adjust `assets` configuration
+- *(nouns-camp)* Enable `typedRoutes` in config
+- *(nouns-camp)* Enable R2 incremental cache
+- *(nouns-camp)* Enable `minify` option in config
+- *(nouns-camp)* Add `CACHE` namespace configuration
+- *(nouns-camp)* Comment out `vars` configuration
+- *(nouns-camp)* Enable `keep_vars` in config
+
+### ◀️ Revert
+
+- *(nouns-camp)* Comment out rewrites and headers methods
+- *(nouns-camp)* Enable `productionBrowserSourceMaps`
+- *(nouns-camp)* Enable `typedRoutes` in config
+
 ## [2.0.0-alpha.6] - 2025-07-08
 
 ### 🐛 Bug Fixes
