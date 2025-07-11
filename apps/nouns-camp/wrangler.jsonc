@@ -42,9 +42,17 @@
    * Environment Variables
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
    */
-  /*"vars": {
-    "UNS_RESOLVER_URL": "https://api.unstoppabledomains.com/resolve/reverse/query"
-  },*/
+  "vars": {
+    "UNS_RESOLVER_URL": "",
+    "SENTRY_ORG": "",
+    "SENTRY_PROJECT": "",
+    "NNS_RESOLVER_URL": "",
+    "FARCASTER_HUB_HTTP_ENDPOINT": "",
+    "TENDERLY_PROJECT_SLUG": "",
+    "NOUNS_SUBGRAPH_URL": "",
+    "PROPDATES_SUBGRAPH_URL": "",
+    "FLOWS_SUBGRAPH_URL": ""
+  },
   /**
    * Note: Use secrets to store sensitive data.
    * https://developers.cloudflare.com/workers/configuration/secrets/

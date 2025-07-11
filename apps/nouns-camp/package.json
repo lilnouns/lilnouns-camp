@@ -18,8 +18,8 @@
     "test:e2e:ui": "playwright test --ui"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "1.4.0",
-    "@playwright/test": "1.54.0",
+    "@opennextjs/cloudflare": "1.5.1",
+    "@playwright/test": "1.54.1",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.3.0",
     "@vitejs/plugin-react": "4.6.0",
@@ -32,8 +32,8 @@
     "eslint-plugin-prettier": "5.5.1",
     "jsdom": "26.1.0",
     "vitest": "3.2.4",
-    "webpack": "5.100.0",
-    "wrangler": "4.16.0"
+    "webpack": "5.100.1",
+    "wrangler": "4.24.3"
   },
   "dependencies": {
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
@@ -51,13 +51,13 @@
     "@nouns/sdk": "0.4.0",
     "@radix-ui/react-toolbar": "1.1.10",
     "@radix-ui/react-tooltip": "1.2.7",
-    "@sentry/nextjs": "9.37.0",
+    "@sentry/nextjs": "9.38.0",
     "@serwist/next": "9.0.15",
     "@serwist/precaching": "9.0.15",
     "@serwist/sw": "9.0.15",
     "@shades/common": "workspace:0.0.0",
     "@shades/ui-web": "workspace:0.0.0",
-    "@tanstack/react-query": "5.82.0",
+    "@tanstack/react-query": "5.83.0",
     "@vercel/analytics": "1.5.0",
     "@vercel/edge-config": "1.4.0",
     "@vercel/kv": "3.0.0",
