@@ -97,6 +97,9 @@ const ignoredModules = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    BUILD_ID: BUILD_ID,
+  },
   productionBrowserSourceMaps: process.env.NODE_ENV !== "production",
   reactStrictMode: true,
   compiler: {

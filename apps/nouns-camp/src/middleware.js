@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 
+const BUILD_ID = process.env.BUILD_ID;
+
 // eslint-disable-next-line no-unused-vars
 export function middleware(request) {
   const res = NextResponse.next();
-  res.headers.set(
-    "x-camp-build-id",
-    process.env.WORKERS_CI_COMMIT_SHA?.slice(0, 7) ?? "dev",
-  );
+  res.headers.set("x-camp-build-id", BUILD_ID);
+
   return res;
 }
 
