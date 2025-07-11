@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.8] - 2025-07-11
+
+### ⚙️ Miscellaneous Tasks
+
+- *(nouns-camp)* Update `vars` configuration
+- *(nouns-camp)* Update Prettier configuration
+
 ## [2.0.0-alpha.7] - 2025-07-11
 
 ### 🚀 Features
