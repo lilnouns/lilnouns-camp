@@ -10,7 +10,7 @@ import metaConfig from "@/metadata-config";
 // import ConfigProvider from "@/config-provider";
 // import ThemeProvider from "@/theme-provider";
 import WagmiProvider from "@/wagmi-provider";
-import GlobalStylesWrapper from "@/global-styles-wrapper";
+// import GlobalStylesWrapper from "@/global-styles-wrapper";
 import SessionProvider from "@/session-provider";
 import { Provider as StoreProvider } from "@/store";
 import { Provider as FarcasterStateProvider } from "@/hooks/farcaster";
@@ -119,27 +119,27 @@ export default async function RootLayout({ children }) {
         {/*<ConfigProvider config={config}>*/}
         {/*<CacheStoreProvider>*/}
         {/*<ThemeProvider>*/}
-        <GlobalStylesWrapper>
-          <WagmiProvider
-            initialState={getWagmiStateFromCookie(
-              (await headers()).get("cookie"),
-            )}
-          >
-            <SessionProvider initialSession={{ address: session.address }}>
-              <StoreProvider>
-                <FarcasterStateProvider>
-                  {children}
-                  {(process.env.NODE_ENV === "development" ||
-                    process.env.VERCEL_ENV === "preview") && (
-                    <Suspense fallback={null}>
-                      <MobileDevTools />
-                    </Suspense>
-                  )}
-                </FarcasterStateProvider>
-              </StoreProvider>
-            </SessionProvider>
-          </WagmiProvider>
-        </GlobalStylesWrapper>
+        {/*<GlobalStylesWrapper>*/}
+        <WagmiProvider
+          initialState={getWagmiStateFromCookie(
+            (await headers()).get("cookie"),
+          )}
+        >
+          <SessionProvider initialSession={{ address: session.address }}>
+            <StoreProvider>
+              <FarcasterStateProvider>
+                {children}
+                {(process.env.NODE_ENV === "development" ||
+                  process.env.VERCEL_ENV === "preview") && (
+                  <Suspense fallback={null}>
+                    <MobileDevTools />
+                  </Suspense>
+                )}
+              </FarcasterStateProvider>
+            </StoreProvider>
+          </SessionProvider>
+        </WagmiProvider>
+        {/*</GlobalStylesWrapper>*/}
         {/*</ThemeProvider>*/}
         {/*</CacheStoreProvider>*/}
         {/*</ConfigProvider>*/}
