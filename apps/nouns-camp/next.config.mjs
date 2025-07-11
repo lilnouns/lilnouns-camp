@@ -129,19 +129,19 @@ const nextConfig = {
       },
     ];
   },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          {
-            key: "x-camp-build-id",
-            value: BUILD_ID,
-          },
-        ],
-      },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       source: "/(.*)",
+  //       headers: [
+  //         {
+  //           key: "x-camp-build-id",
+  //           value: BUILD_ID,
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // },
   webpack(config) {
     config.cache = false; // Disables PackFileCacheStrategy
 
