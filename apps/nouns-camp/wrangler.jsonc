@@ -13,50 +13,12 @@
   "observability": {
     "enabled": true
   },
-  "r2_buckets": [
-    {
-      "binding": "NEXT_INC_CACHE_R2_BUCKET",
-      "bucket_name": "lilnouns-camp"
-    }
-  ],
-  "kv_namespaces": [
-    {
-      "binding": "CACHE",
-      "id": "e64e688128e449e9a109a26ea0d13e9d"
-    }
-  ],
+
   /**
    * Smart Placement
    * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
    */
   "placement": { "mode": "smart" },
-
-  /**
-   * Bindings
-   * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
-   * databases, object storage, AI inference, real-time communication and more.
-   * https://developers.cloudflare.com/workers/runtime-apis/bindings/
-   */
-
-  /**
-   * Environment Variables
-   * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
-   */
-  "vars": {
-    "UNS_RESOLVER_URL": "",
-    "SENTRY_ORG": "",
-    "SENTRY_PROJECT": "",
-    "NNS_RESOLVER_URL": "",
-    "FARCASTER_HUB_HTTP_ENDPOINT": "",
-    "TENDERLY_PROJECT_SLUG": "",
-    "NOUNS_SUBGRAPH_URL": "",
-    "PROPDATES_SUBGRAPH_URL": "",
-    "FLOWS_SUBGRAPH_URL": ""
-  },
-  /**
-   * Note: Use secrets to store sensitive data.
-   * https://developers.cloudflare.com/workers/configuration/secrets/
-   */
 
   /**
    * Static Assets
@@ -75,6 +37,20 @@
     {
       "binding": "WORKER_SELF_REFERENCE",
       "service": "lilnouns-camp"
+    }
+  ],
+
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "lilnouns-camp"
+    }
+  ],
+
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      "id": "e64e688128e449e9a109a26ea0d13e9d"
     }
   ]
 }
