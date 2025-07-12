@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.12] - 2025-07-12
+
+### ⚙️ Miscellaneous Tasks
+
+- *(nouns-camp)* Comment out `d1_databases` binding
+
 ## [2.0.0-alpha.11] - 2025-07-12
 
 ### 🚀 Features
