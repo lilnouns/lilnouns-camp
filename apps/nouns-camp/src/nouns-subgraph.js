@@ -527,15 +527,6 @@ export const subgraphFetch = async ({
     return CLIENT_URL;
   })();
 
-  console.log(
-    `Subgraph endpoint: ${url}`,
-    `Operation: ${operationName}`,
-    `Query: ${query}`,
-    `Variables: ${JSON.stringify(variables)}`,
-    `Retries: ${retries}`,
-    `Delay: ${delay}ms`,
-  );
-
   if (url == null) throw new Error("Unable to determine subgraph endpoint.");
 
   const makeRequest = async (retryCount) => {
