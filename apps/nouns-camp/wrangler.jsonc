@@ -85,6 +85,10 @@
 
   "kv_namespaces": [
     {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "caf3b80cf9c644fb80108baa023c3525"
+    },
+    {
       "binding": "CACHE",
       "id": "e64e688128e449e9a109a26ea0d13e9d"
     }
