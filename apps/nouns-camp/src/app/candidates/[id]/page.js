@@ -137,10 +137,10 @@ export async function generateMetadata(props) {
 export default async function Page(props) {
   const searchParams = await props.searchParams;
   const params = await props.params;
-  console.log({ params });
   const candidate = isNaN(Number(params.id))
     ? await fetchCandidate(parseId(params.id))
     : await fetchCandidateByNumber(params.id);
+  console.log({ params, candidate, id: parseId(params.id) });
 
   if (candidate == null) nextNotFound();
 
