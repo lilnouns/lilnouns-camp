@@ -60,29 +60,6 @@
     }
   ],
 
-  "durable_objects": {
-    "bindings": [
-      {
-        "name": "NEXT_CACHE_DO_QUEUE",
-        "class_name": "DOQueueHandler"
-      }
-    ]
-  },
-  "migrations": [
-    {
-      "tag": "v1",
-      "new_sqlite_classes": ["DOQueueHandler"]
-    }
-  ],
-
-//  "d1_databases": [
-//    {
-//      "binding": "NEXT_TAG_CACHE_D1",
-//      "database_id": "8d7bad16-3877-400c-97c2-d52abafc79db",
-//      "database_name": "lilnouns-camp"
-//    }
-//  ],
-
   "kv_namespaces": [
     {
       "binding": "NEXT_INC_CACHE_KV",
