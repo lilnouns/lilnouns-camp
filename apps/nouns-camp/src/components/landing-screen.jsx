@@ -52,8 +52,8 @@ import { useVotes, useRevoteCount } from "@/components/browse-accounts-screen";
 
 const ActivityFeed = React.lazy(() => import("@/components/activity-feed"));
 
-const DIGEST_NEW_THRESHOLD_IN_DAYS = 14;
-const DIGEST_ACTIVE_THRESHOLD_IN_DAYS = 14;
+const DIGEST_NEW_THRESHOLD_IN_DAYS = 30;
+const DIGEST_ACTIVE_THRESHOLD_IN_DAYS = 30;
 
 const BROWSE_LIST_PAGE_ITEM_COUNT = 20;
 
