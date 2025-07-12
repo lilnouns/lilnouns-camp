@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.13] - 2025-07-12
+
+### ◀️ Revert
+
+- *(nouns-camp)* Comment out `d1_databases` binding
+- *(nouns-camp)* Integrate durable objects and D1 database
+
 ## [2.0.0-alpha.12] - 2025-07-12
 
 ### ⚙️ Miscellaneous Tasks
