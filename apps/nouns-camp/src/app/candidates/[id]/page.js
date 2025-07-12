@@ -72,7 +72,7 @@ const fetchCandidateByNumber = async (number) => {
       }`,
   });
 
-  if (data?.proposalCandidates?.length == 0) return null;
+  if (data?.proposalCandidates?.length === 0) return null;
 
   return parseCandidate(data.proposalCandidates[0]);
 };
@@ -137,6 +137,7 @@ export async function generateMetadata(props) {
 export default async function Page(props) {
   const searchParams = await props.searchParams;
   const params = await props.params;
+  console.log({ params });
   const candidate = isNaN(Number(params.id))
     ? await fetchCandidate(parseId(params.id))
     : await fetchCandidateByNumber(params.id);
