@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.11] - 2025-07-12
+
+### 🚀 Features
+
+- *(nouns-camp)* Add `NEXT_INC_CACHE_KV` namespace binding
+
 ## [2.0.0-alpha.10] - 2025-07-12
 
 ### 🚀 Features
