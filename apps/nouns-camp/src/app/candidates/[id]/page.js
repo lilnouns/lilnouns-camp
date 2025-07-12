@@ -140,7 +140,6 @@ export default async function Page(props) {
   const candidate = isNaN(Number(params.id))
     ? await fetchCandidate(parseId(params.id))
     : await fetchCandidateByNumber(params.id);
-  console.log({ params, candidate, id: parseId(params.id) });
 
   if (candidate == null) nextNotFound();
 
