@@ -13,7 +13,13 @@
   "observability": {
     "enabled": true
   },
+  "workers_dev": false,
 
+  /**
+   * Custom Domain Configuration
+   * Defines the routing and custom domain settings for the Worker
+   * Docs: https://developers.cloudflare.com/workers/configuration/routing/custom-domains/
+   */
   "routes": [
     {
       "pattern": "lilnouns.camp",
