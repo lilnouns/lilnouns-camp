@@ -47,7 +47,7 @@ const withSerwist = serwist({
 
 const withSentry = (config) =>
   withSentryConfig(config, {
-    // silent: true, // Suppresses source map uploading logs during build
+    silent: true, // Suppresses source map uploading logs during build
     org: process.env.SENTRY_ORG,
     project: process.env.SENTRY_PROJECT,
     authToken: process.env.SENTRY_AUTH_TOKEN,
@@ -97,6 +97,9 @@ const ignoredModules = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    BUILD_ID: BUILD_ID,
+  },
   productionBrowserSourceMaps: process.env.NODE_ENV !== "production",
   reactStrictMode: true,
   compiler: {
@@ -129,14 +132,19 @@ const nextConfig = {
       },
     ];
   },
-  headers() {
-    return [
-      // {
-      //   source: "/:path*",
-      //   headers: [{ key: "x-camp-build-id", value: BUILD_ID }],
-      // },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       source: "/(.*)",
+  //       headers: [
+  //         {
+  //           key: "x-camp-build-id",
+  //           value: BUILD_ID,
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // },
   webpack(config) {
     config.cache = false; // Disables PackFileCacheStrategy
 
@@ -167,6 +175,6 @@ const nextConfig = {
   },
 };
 
-export default nextConfig; //withSentry(withSerwist(nextConfig));
+export default withSentry(withSerwist(nextConfig));
 
 initOpenNextCloudflareForDev();

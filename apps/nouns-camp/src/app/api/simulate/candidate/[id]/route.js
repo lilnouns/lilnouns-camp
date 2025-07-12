@@ -4,8 +4,8 @@ import { parseCandidate, subgraphFetch } from "@/nouns-subgraph";
 const fetchCandidate = async (id) => {
   const data = await subgraphFetch({
     query: `
-      query {
-        proposalCandidate(id: ${JSON.stringify(id)}) {
+      query($id: ID!) {
+        proposalCandidate(id: $id) {
           id
           slug
           proposer
@@ -21,6 +21,7 @@ const fetchCandidate = async (id) => {
           }
         }
       }`,
+    variables: { id },
   });
 
   if (data?.proposalCandidate == null) return null;

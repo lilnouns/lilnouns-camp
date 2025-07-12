@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.9] - 2025-07-12
+
+### 🚀 Features
+
+- *(nouns-camp)* Add `middleware` for dynamic headers
+- *(nouns-camp)* Add `BUILD_ID` to environment config
+
+### 🐛 Bug Fixes
+
+- Handle malformed signatures in proposal simulation and decoding
+- *(nouns-camp)* Update `headers` method signature
+- *(nouns-camp)* Use strict equality for consistency
+- *(nouns-camp)* Add debug log for `candidate` and `params`
+- *(nouns-camp)* Remove leftover debug log for `candidate`
+- *(nouns-camp)* Refactor `fetchCandidate` query variables
+- *(nouns-camp)* Remove redundant debug logs
+- *(nouns-camp)* Update query to use variables object
+- *(nouns-camp)* Update query to use dynamic variables
+- *(nouns-camp)* Add custom domain routing configuration
+- *(nouns-camp)* Disable `workers_dev` in wrangler config
+
+### ⚙️ Miscellaneous Tasks
+
+- *(nouns-camp)* Rearrange configuration sections
+- *(nouns-camp)* Restore `headers` configuration
+- *(nouns-camp)* Enable sentry and serwist configuration
+- *(nouns-camp)* Enable silent mode for sentry upload
+
 ## [2.0.0-alpha.8] - 2025-07-11
 
 ### ⚙️ Miscellaneous Tasks
