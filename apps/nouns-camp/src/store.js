@@ -549,8 +549,8 @@ const createStore = ({ initialState, publicClient }) =>
         query: `
           ${FULL_PROPOSAL_CANDIDATE_FIELDS}
           ${CANDIDATE_FEEDBACK_FIELDS}
-          query {
-            proposalCandidate(id: ${JSON.stringify(id)}) {
+          query($id:ID!) {
+            proposalCandidate(id: $id) {
               ...FullProposalCandidateFields
               versions {
                 id
@@ -577,6 +577,7 @@ const createStore = ({ initialState, publicClient }) =>
               ...CandidateFeedbackFields
             }
           }`,
+        variables: { id },
       });
 
       if (data.proposalCandidate == null)
