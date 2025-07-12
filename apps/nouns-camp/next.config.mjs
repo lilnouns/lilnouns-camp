@@ -99,6 +99,15 @@ const ignoredModules = [
 const nextConfig = {
   env: {
     BUILD_ID: BUILD_ID,
+    NOUNS_SUBGRAPH_URL: process.env.NOUNS_SUBGRAPH_URL,
+    PROPDATES_SUBGRAPH_URL: process.env.PROPDATES_SUBGRAPH_URL,
+    NNS_RESOLVER_URL: process.env.NNS_RESOLVER_URL,
+    FLOWS_SUBGRAPH_URL: process.env.FLOWS_SUBGRAPH_URL,
+    SENTRY_LOG_LEVEL: process.env.SENTRY_LOG_LEVEL,
+    SENTRY_ORG: process.env.SENTRY_ORG,
+    SENTRY_PROJECT: process.env.SENTRY_PROJECT,
+    TENDERLY_PROJECT_SLUG: process.env.TENDERLY_PROJECT_SLUG,
+    UNS_RESOLVER_URL: process.env.UNS_RESOLVER_URL,
   },
   productionBrowserSourceMaps: process.env.NODE_ENV !== "production",
   reactStrictMode: true,
