@@ -4,6 +4,7 @@ import {
   cookieStorage,
   createStorage,
   cookieToInitialState,
+  fallback,
 } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
 import {
@@ -28,6 +29,17 @@ export const getJsonRpcUrl = (chainId) => {
   }
 };
 
+export const getAnkrJsonRpcUrl = (chainId) => {
+  switch (chainId) {
+    case mainnet.id:
+      return `https://rpc.ankr.com/eth/${process.env.NEXT_PUBLIC_ANKR_API_KEY}`;
+    case sepolia.id:
+      return `https://rpc.ankr.com/eth_sepolia/${process.env.NEXT_PUBLIC_ANKR_API_KEY}`;
+    default:
+      throw new Error();
+  }
+};
+
 export const config = createConfig({
   ssr: true,
   storage: createStorage({ storage: cookieStorage }),
@@ -42,7 +54,10 @@ export const config = createConfig({
     injected(),
   ],
   transports: {
-    [chain.id]: http(getJsonRpcUrl(chain.id)),
+    [chain.id]: fallback([
+      http(getJsonRpcUrl(chain.id)),
+      http(getAnkrJsonRpcUrl(chain.id)),
+    ]),
   },
   batch: {
     multicall: {
