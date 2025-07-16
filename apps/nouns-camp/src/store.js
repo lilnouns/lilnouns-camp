@@ -48,7 +48,6 @@ import {
   FULL_PROPOSAL_CANDIDATE_FIELDS,
 } from "@/nouns-subgraph";
 import * as PropdatesSubgraph from "@/propdates-subgraph";
-import * as FlowsSubgraph from "@/flows-subgraph";
 
 const createFeedbackPostCompositeId = (post) =>
   [post.proposalId, post.candidateId, post.reason, post.support, post.voterId]
@@ -1468,7 +1467,7 @@ const createStore = ({ initialState, publicClient }) =>
           getBlockTimestamp(startBlock),
           getBlockTimestamp(endBlock),
         ]);
-        const [propdates, { proposals }, flowVotes] = await Promise.all([
+        const [propdates, { proposals }] = await Promise.all([
           PropdatesSubgraph.fetchPropdates({ startBlock, endBlock }),
           subgraphFetch({
             query: `
@@ -1570,7 +1569,6 @@ const createStore = ({ initialState, publicClient }) =>
                 }
               }`,
           }),
-          FlowsSubgraph.fetchFlowVotes(startTimestamp, endTimestamp),
         ]);
 
         (async () => {
@@ -1586,6 +1584,7 @@ const createStore = ({ initialState, publicClient }) =>
           );
         })();
 
+        const flowVotes = [];
         const flowVotesByAccountId = objectUtils.mapValues(
           (flowVotes, voter) => ({ id: voter, flowVotes }),
           arrayUtils.groupBy((v) => v.voter, flowVotes),

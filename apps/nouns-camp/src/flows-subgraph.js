@@ -47,7 +47,7 @@ const subgraphFetch = async (query) => {
 };
 
 export const fetchFlowVotes = async (startTimestamp, endTimestamp) => {
-  return [];
+  return []; // Disable flows subgraph calls
   // eslint-disable-next-line no-unreachable
   if (CHAIN_ID !== 1) return [];
 
