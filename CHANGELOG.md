@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.16] - 2025-07-16
+
+### 🚀 Features
+
+- *(nouns-camp)* Add fallback RPC with Ankr integration
+- *(nouns-camp)* Add `NEXT_PUBLIC_ANKR_API_KEY` to env template
+
+### ⚙️ Miscellaneous Tasks
+
+- *(workflows)* Add support for `NEXT_PUBLIC_ANKR_API_KEY`
+
 ## [2.0.0-alpha.15] - 2025-07-14
 
 ### 🐛 Bug Fixes
