@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.17] - 2025-07-16
+
+### ◀️ Revert
+
+- *(deps)* Bump the next group with 3 updates
+
 ## [2.0.0-alpha.16] - 2025-07-16
 
 ### 🚀 Features
