@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.18] - 2025-07-16
+
+### ⚡ Performance
+
+- Temporarily disable flows subgraph calls
+- Disable flow votes at the subgraph level
+
 ## [2.0.0-alpha.17] - 2025-07-16
 
 ### ◀️ Revert
