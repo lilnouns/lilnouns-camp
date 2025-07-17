@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0-alpha.18",
+  "version": "2.0.0-alpha.19",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "dev": "pnpm run --recursive --parallel --if-present dev",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "prettier": "3.6.2",
-    "turbo": "2.5.4"
+    "turbo": "2.5.5"
   },
   "engines": {
     "node": ">=22.0.0",

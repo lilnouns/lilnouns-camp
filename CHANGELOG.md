@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.19] - 2025-07-17
+
+### 🚀 Features
+
+- *(api)* Add Ankr fallback for JSON-RPC transport
+
 ## [2.0.0-alpha.18] - 2025-07-16
 
 ### ⚡ Performance

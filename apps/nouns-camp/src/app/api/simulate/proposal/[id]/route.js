@@ -1,6 +1,6 @@
-import { createPublicClient, http } from "viem";
+import { createPublicClient, http, fallback } from "viem";
 import { getChain } from "@/utils/chains";
-import { getJsonRpcUrl } from "@/wagmi-config";
+import { getJsonRpcUrl, getAnkrJsonRpcUrl } from "@/wagmi-config";
 import { CHAIN_ID } from "@/constants/env";
 import { resolveIdentifier } from "@/contracts";
 import { fetchSimulationBundle } from "@/app/api/tenderly-utils";
@@ -9,11 +9,18 @@ const chain = getChain(CHAIN_ID);
 
 const publicClient = createPublicClient({
   chain,
-  transport: http(getJsonRpcUrl(chain.id), {
-    fetchOptions: {
-      cache: "no-cache",
-    },
-  }),
+  transport: fallback([
+    http(getJsonRpcUrl(chain.id), {
+      fetchOptions: {
+        cache: "no-cache",
+      },
+    }),
+    http(getAnkrJsonRpcUrl(chain.id), {
+      fetchOptions: {
+        cache: "no-cache",
+      },
+    }),
+  ]),
 });
 
 export async function GET(_, context) {

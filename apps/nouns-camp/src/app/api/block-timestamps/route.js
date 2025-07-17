@@ -1,7 +1,7 @@
-import { createPublicClient, http } from "viem";
+import { createPublicClient, http, fallback } from "viem";
 import { CHAIN_ID } from "@/constants/env";
 import { getChain } from "@/utils/chains";
-import { getJsonRpcUrl } from "@/wagmi-config";
+import { getJsonRpcUrl, getAnkrJsonRpcUrl } from "@/wagmi-config";
 import { CACHE_ONE_YEAR } from "next/constants";
 
 // export const runtime = "edge";
@@ -12,7 +12,10 @@ const ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60;
 
 const publicClient = createPublicClient({
   chain,
-  transport: http(getJsonRpcUrl(chain.id)),
+  transport: fallback([
+    http(getJsonRpcUrl(chain.id)),
+    http(getAnkrJsonRpcUrl(chain.id)),
+  ]),
 });
 
 export async function GET(request) {

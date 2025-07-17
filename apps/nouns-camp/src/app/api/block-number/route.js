@@ -1,7 +1,7 @@
-import { createPublicClient, http } from "viem";
+import { createPublicClient, http, fallback } from "viem";
 import { CHAIN_ID } from "@/constants/env";
 import { getChain } from "@/utils/chains";
-import { getJsonRpcUrl } from "@/wagmi-config";
+import { getJsonRpcUrl, getAnkrJsonRpcUrl } from "@/wagmi-config";
 
 // export const runtime = "edge";
 
@@ -11,11 +11,18 @@ const MAX_AGE = 5; // 5 seconds
 
 const publicClient = createPublicClient({
   chain,
-  transport: http(getJsonRpcUrl(chain.id), {
-    fetchOptions: {
-      cache: "no-cache",
-    },
-  }),
+  transport: fallback([
+    http(getJsonRpcUrl(chain.id), {
+      fetchOptions: {
+        cache: "no-cache",
+      },
+    }),
+    http(getAnkrJsonRpcUrl(chain.id), {
+      fetchOptions: {
+        cache: "no-cache",
+      },
+    }),
+  ]),
 });
 
 export async function GET() {

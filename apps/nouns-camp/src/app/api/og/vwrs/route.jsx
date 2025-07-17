@@ -1,8 +1,8 @@
 import { CHAIN_ID } from "@/constants/env";
 import { getTheme } from "@/theme";
 import { getChain } from "@/utils/chains";
-import { getJsonRpcUrl } from "@/wagmi-config";
-import { createPublicClient, http } from "viem";
+import { getJsonRpcUrl, getAnkrJsonRpcUrl } from "@/wagmi-config";
+import { createPublicClient, http, fallback } from "viem";
 import { displayName, formatDate, getFonts } from "@/app/api/og-utils";
 import { ImageResponse } from "next/og";
 import {
@@ -21,7 +21,10 @@ const theme = getTheme("light");
 const chain = getChain(CHAIN_ID);
 const publicClient = createPublicClient({
   chain,
-  transport: http(getJsonRpcUrl(chain.id)),
+  transport: fallback([
+    http(getJsonRpcUrl(chain.id)),
+    http(getAnkrJsonRpcUrl(chain.id)),
+  ]),
   batch: {
     multicall: {
       wait: 250,

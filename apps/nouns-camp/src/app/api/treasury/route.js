@@ -1,9 +1,9 @@
-import { createPublicClient, http, formatUnits } from "viem";
+import { createPublicClient, http, formatUnits, fallback } from "viem";
 import { object as objectUtils } from "@shades/common/utils";
 import { CHAIN_ID } from "@/constants/env";
 import { resolveIdentifier as resolveContractIdentifier } from "@/contracts";
 import { getChain } from "@/utils/chains";
-import { getJsonRpcUrl } from "@/wagmi-config";
+import { getJsonRpcUrl, getAnkrJsonRpcUrl } from "@/wagmi-config";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +14,10 @@ const chain = getChain(CHAIN_ID);
 
 const publicClient = createPublicClient({
   chain,
-  transport: http(getJsonRpcUrl(chain.id)),
+  transport: fallback([
+    http(getJsonRpcUrl(chain.id)),
+    http(getAnkrJsonRpcUrl(chain.id)),
+  ]),
 });
 
 const mainnetPublicClient =
@@ -22,7 +25,10 @@ const mainnetPublicClient =
     ? publicClient
     : createPublicClient({
         chain,
-        transport: http(getJsonRpcUrl(1)),
+        transport: fallback([
+          http(getJsonRpcUrl(1)),
+          http(getAnkrJsonRpcUrl(1)),
+        ]),
       });
 
 const balanceOf = ({ contract, account }) => {
