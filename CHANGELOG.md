@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.22] - 2025-07-17
+
+### 🚜 Refactor
+
+- *(config)* Remove unused environment variables
+- *(config)* Comment out unused environment variables
+
 ## [2.0.0-alpha.21] - 2025-07-17
 
 ### 🐛 Bug Fixes
