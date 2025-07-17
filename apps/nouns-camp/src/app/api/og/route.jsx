@@ -7,7 +7,13 @@ import {
   isSucceededState as isSucceededProposalState,
 } from "@/utils/proposals";
 import React from "react";
-import { createPublicClient, formatEther, formatUnits, http, fallback } from "viem";
+import {
+  createPublicClient,
+  formatEther,
+  formatUnits,
+  http,
+  fallback,
+} from "viem";
 import { getChain } from "@/utils/chains";
 import { getJsonRpcUrl, getAnkrJsonRpcUrl } from "@/wagmi-config";
 import { CHAIN_ID } from "@/constants/env";
