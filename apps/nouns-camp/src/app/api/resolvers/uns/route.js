@@ -6,10 +6,10 @@ import { CHAIN_ID } from "@/constants/env";
 
 export async function POST(req) {
   const {
-    env: { UNS_RESOLVER_URL, UNS_RESOLVER_API_KEY, CACHE },
+    env: { CACHE },
   } = getCloudflareContext();
-  const targetUrl = UNS_RESOLVER_URL;
-  const apiKey = UNS_RESOLVER_API_KEY;
+  const targetUrl = process.env.UNS_RESOLVER_URL;
+  const apiKey = process.env.UNS_RESOLVER_API_KEY;
 
   if (!targetUrl || !apiKey) {
     return NextResponse.json(
