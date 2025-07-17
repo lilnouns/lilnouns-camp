@@ -7,9 +7,9 @@ import {
   isSucceededState as isSucceededProposalState,
 } from "@/utils/proposals";
 import React from "react";
-import { createPublicClient, formatEther, formatUnits, http } from "viem";
+import { createPublicClient, formatEther, formatUnits, http, fallback } from "viem";
 import { getChain } from "@/utils/chains";
-import { getJsonRpcUrl } from "@/wagmi-config";
+import { getJsonRpcUrl, getAnkrJsonRpcUrl } from "@/wagmi-config";
 import { CHAIN_ID } from "@/constants/env";
 import { extractAmounts } from "@/utils/transactions";
 import { approximateBlockTimestamp } from "@/hooks/approximate-block-timestamp-calculator";
@@ -24,7 +24,10 @@ export const dynamic = "force-dynamic";
 const chain = getChain(CHAIN_ID);
 const publicClient = createPublicClient({
   chain,
-  transport: http(getJsonRpcUrl(chain.id)),
+  transport: fallback([
+    http(getJsonRpcUrl(chain.id)),
+    http(getAnkrJsonRpcUrl(chain.id)),
+  ]),
   batch: {
     multicall: {
       wait: 250,

@@ -1,7 +1,7 @@
-import { createPublicClient, http } from "viem";
+import { createPublicClient, http, fallback } from "viem";
 import { parseSiweMessage, validateSiweMessage } from "viem/siwe";
 import { CHAIN_ID, APP_HOST } from "@/constants/env";
-import { getJsonRpcUrl } from "@/wagmi-config";
+import { getJsonRpcUrl, getAnkrJsonRpcUrl } from "@/wagmi-config";
 import { getChain } from "@/utils/chains";
 import { getSession } from "@/utils/session";
 
@@ -12,7 +12,10 @@ export async function POST(request) {
 
   const publicClient = createPublicClient({
     chain,
-    transport: http(getJsonRpcUrl(chain.id)),
+    transport: fallback([
+      http(getJsonRpcUrl(chain.id)),
+      http(getAnkrJsonRpcUrl(chain.id)),
+    ]),
   });
 
   const isValidSignature = await publicClient.verifySiweMessage({
