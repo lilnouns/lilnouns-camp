@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.21] - 2025-07-17
+
+### 🐛 Bug Fixes
+
+- *(api)* Load UNS resolver env vars from `process.env`
+
 ## [2.0.0-alpha.20] - 2025-07-17
 
 ### 🎨 Styling
