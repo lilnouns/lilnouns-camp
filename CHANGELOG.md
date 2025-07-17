@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.23] - 2025-07-17
+
+### 🚜 Refactor
+
+- *(config)* Comment out farcaster account variables
+
 ## [2.0.0-alpha.22] - 2025-07-17
 
 ### 🚜 Refactor
