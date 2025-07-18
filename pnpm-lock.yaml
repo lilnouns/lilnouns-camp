@@ -80,7 +80,7 @@ importers:
         version: 0.4.0(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       '@opennextjs/cloudflare':
         specifier: 1.5.1
-        version: 1.5.1(wrangler@4.24.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+        version: 1.5.1(wrangler@4.25.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@radix-ui/react-toolbar':
         specifier: 1.1.10
         version: 1.1.10(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -239,8 +239,8 @@ importers:
         specifier: 5.100.2
         version: 5.100.2
       wrangler:
-        specifier: 4.24.4
-        version: 4.24.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+        specifier: 4.25.0
+        version: 4.25.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
 
   packages/common:
     dependencies:
@@ -8283,8 +8283,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.24.4:
-    resolution: {integrity: sha512-qjDdZWt/aiK19YrQbjFjJoa9+y+arsXcUpRomwMdmbccZw/w5QgDsEeXMxoPSisUDQlW9ZX5A68ZPWY1/im54w==}
+  wrangler@4.25.0:
+    resolution: {integrity: sha512-SepXQbzWkdp0O7qAx3i0go+fw5I0VkDqLV2G3ewbffO5k8kpvuCkhalS23KO+7+o8+Oa3vfC7x+16IL3rj2n4w==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -11187,7 +11187,7 @@ snapshots:
       - aws-crt
       - supports-color
 
-  '@opennextjs/cloudflare@1.5.1(wrangler@4.24.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
+  '@opennextjs/cloudflare@1.5.1(wrangler@4.25.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
     dependencies:
       '@dotenvx/dotenvx': 1.31.0
       '@opennextjs/aws': 3.7.0
@@ -11195,7 +11195,7 @@ snapshots:
       enquirer: 2.4.1
       glob: 11.0.2
       ts-tqdm: 0.8.6
-      wrangler: 4.24.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      wrangler: 4.25.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - aws-crt
       - encoding
@@ -19583,7 +19583,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20250712.0
       '@cloudflare/workerd-windows-64': 1.20250712.0
 
-  wrangler@4.24.4(bufferutil@4.0.8)(utf-8-validate@5.0.10):
+  wrangler@4.25.0(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.3(unenv@2.0.0-rc.17)(workerd@1.20250712.0)
