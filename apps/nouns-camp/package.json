@@ -27,7 +27,7 @@
     "dotenv": "17.2.0",
     "eslint": "8.57.1",
     "eslint-config-next": "15.4.1",
-    "eslint-config-prettier": "10.1.5",
+    "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.3",
     "jsdom": "26.1.0",
     "vitest": "3.2.4",
