@@ -118,8 +118,8 @@ importers:
         specifier: '>=3.0.0'
         version: 3.0.0
       '@vercel/og':
-        specifier: 0.7.2
-        version: 0.7.2
+        specifier: 0.8.4
+        version: 0.8.4
       abitype:
         specifier: 1.0.8
         version: 1.0.8(typescript@5.8.3)(zod@3.25.63)
@@ -4382,8 +4382,8 @@ packages:
     resolution: {integrity: sha512-pKT8fRnfyYk2MgvyB6fn6ipJPCdfZwiKDdw7vB+HL50rjboEBHDVBEcnwfkEpVSp2AjNtoaOUH7zG+bVC/rvSg==}
     engines: {node: '>=14.6'}
 
-  '@vercel/og@0.7.2':
-    resolution: {integrity: sha512-yOlbztkWaDtPOrCBsV66SpIZvIwRidAe3DiAYxDOjVj2H7HaJm1PDultH9PQO8J+PeT+mFQaNNSxS9yUTo7i9A==}
+  '@vercel/og@0.8.4':
+    resolution: {integrity: sha512-661yVXg8uMtTkYS8OC8xn4bIPXEZkHvvIFFIZ5pbrdyeIMo2n1y6w6km1CpFGaoG+vUli9611k3SC/nWlFv6cw==}
     engines: {node: '>=16'}
 
   '@vitejs/plugin-react@4.7.0':
@@ -7331,8 +7331,8 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  satori@0.15.2:
-    resolution: {integrity: sha512-vu/49vdc8MzV5jUchs3TIRDCOkOvMc1iJ11MrZvhg9tE4ziKIEIBjBZvies6a9sfM2vQ2gc3dXeu6rCK7AztHA==}
+  satori@0.16.0:
+    resolution: {integrity: sha512-ZvHN3ygzZ8FuxjSNB+mKBiF/NIoqHzlBGbD0MJiT+MvSsFOvotnWOhdTjxKzhHRT2wPC1QbhLzx2q/Y83VhfYQ==}
     engines: {node: '>=16'}
 
   saxes@6.0.0:
@@ -8378,8 +8378,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  yoga-wasm-web@0.3.3:
-    resolution: {integrity: sha512-N+d4UJSJbt/R3wqY7Coqs5pcV0aUj2j9IaQ3rNj9bVCLld8tTGKRa2USARjnvZJWVx1NDmQev8EknoczaOQDOA==}
+  yoga-layout@3.2.1:
+    resolution: {integrity: sha512-0LPOt3AxKqMdFBZA3HBAt/t/8vIKq7VaQYbuA8WxCgung+p9TVyKRYdpvCb80HcdTN2NkbIKbhNwKUfm3tQywQ==}
 
   youch@3.3.4:
     resolution: {integrity: sha512-UeVBXie8cA35DS6+nBkls68xaBBXCye0CNznrhszZjTbRVnJKQuNsyLKBTTL4ln1o1rh2PKtv35twV7irj5SEg==}
@@ -14432,11 +14432,10 @@ snapshots:
     dependencies:
       '@upstash/redis': 1.34.0
 
-  '@vercel/og@0.7.2':
+  '@vercel/og@0.8.4':
     dependencies:
       '@resvg/resvg-wasm': 2.4.0
-      satori: 0.15.2
-      yoga-wasm-web: 0.3.3
+      satori: 0.16.0
 
   '@vitejs/plugin-react@4.7.0(vite@7.0.4(@types/node@24.0.14)(jiti@1.21.6)(terser@5.39.0)(yaml@2.7.0))':
     dependencies:
@@ -18400,7 +18399,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  satori@0.15.2:
+  satori@0.16.0:
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
       css-background-parser: 0.1.0
@@ -18412,7 +18411,7 @@ snapshots:
       linebreak: 1.1.0
       parse-css-color: 0.2.1
       postcss-value-parser: 4.2.0
-      yoga-wasm-web: 0.3.3
+      yoga-layout: 3.2.1
 
   saxes@6.0.0:
     dependencies:
@@ -19659,7 +19658,7 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  yoga-wasm-web@0.3.3: {}
+  yoga-layout@3.2.1: {}
 
   youch@3.3.4:
     dependencies:
