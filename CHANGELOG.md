@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.24] - 2025-07-25
+
+### ◀️ Revert
+
+- *(deps)* Bump the next group with 2 updates
+
 ## [2.0.0-alpha.23] - 2025-07-17
 
 ### 🚜 Refactor
