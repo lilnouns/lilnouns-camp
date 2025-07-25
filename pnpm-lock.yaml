@@ -76,8 +76,8 @@ importers:
         specifier: 0.3.0
         version: 0.3.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@nouns/sdk':
-        specifier: 0.4.0
-        version: 0.4.0(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
+        specifier: 1.0.0
+        version: 1.0.0(@wagmi/core@2.17.3(@tanstack/query-core@5.83.0)(@types/react@18.3.18)(immer@10.1.1)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.31.0(bufferutil@4.0.8)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63)))(wagmi@2.15.6(@tanstack/query-core@5.83.0)(@tanstack/react-query@5.83.0(react@19.1.0))(@types/react@18.3.18)(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(immer@10.1.1)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.0(bufferutil@4.0.8)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63))(zod@3.25.63))
       '@opennextjs/cloudflare':
         specifier: 1.6.1
         version: 1.6.1(wrangler@4.16.1(bufferutil@4.0.8)(utf-8-validate@5.0.10))
@@ -2016,10 +2016,14 @@ packages:
   '@nouns/contracts@0.3.0':
     resolution: {integrity: sha512-l619EP77QqX0gPGw3gPfh9tgBlz5lFwK8EzB+orLJx3JrfHSUqfjjYCfZih+I++bhJuK78ro2FgFx6U0kZnXEw==}
 
-  '@nouns/sdk@0.4.0':
-    resolution: {integrity: sha512-PLRDUad/TXCsGmP2ITXkYBrwlzQfO9DaoB0xwikvNPF/Vul+rAVnsXgMf8gm5KQ8CKVlxImoEnxsL8Dcx5elAw==}
+  '@nouns/sdk@1.0.0':
+    resolution: {integrity: sha512-3NHGqy0iuJpV1Ok0tnF8Oifu/FCT2lEIgzx7sR5gVYlsXlQwS3mOhYlVDlUywpfnNW6p9GKMmpOOTADB3+u2CQ==}
     peerDependencies:
-      ethers: '>=5.0.0'
+      '@wagmi/core': ^2.0.0
+      wagmi: ^2.0.0
+    peerDependenciesMeta:
+      wagmi:
+        optional: true
 
   '@opennextjs/aws@3.7.0':
     resolution: {integrity: sha512-JXUZice+CedEQW20hnBVqzBEj+jfr4Oe2LVYSE4RNKdfHVIeYG+WJAop14TxRJ+NugKWGcJx6opf944l+ZG7XQ==}
@@ -11173,13 +11177,11 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@nouns/sdk@0.4.0(bufferutil@4.0.8)(ethers@5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)':
+  '@nouns/sdk@1.0.0(@wagmi/core@2.17.3(@tanstack/query-core@5.83.0)(@types/react@18.3.18)(immer@10.1.1)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.31.0(bufferutil@4.0.8)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63)))(wagmi@2.15.6(@tanstack/query-core@5.83.0)(@tanstack/react-query@5.83.0(react@19.1.0))(@types/react@18.3.18)(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(immer@10.1.1)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.0(bufferutil@4.0.8)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63))(zod@3.25.63))':
     dependencies:
-      '@nouns/contracts': 0.3.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      ethers: 5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
+      '@wagmi/core': 2.17.3(@tanstack/query-core@5.83.0)(@types/react@18.3.18)(immer@10.1.1)(react@19.1.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.31.0(bufferutil@4.0.8)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63))
+    optionalDependencies:
+      wagmi: 2.15.6(@tanstack/query-core@5.83.0)(@tanstack/react-query@5.83.0(react@19.1.0))(@types/react@18.3.18)(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(immer@10.1.1)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.0(bufferutil@4.0.8)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63))(zod@3.25.63)
 
   '@opennextjs/aws@3.7.0':
     dependencies:
