@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.25] - 2025-07-28
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
 ## [2.0.0-alpha.24] - 2025-07-25
 
 ### ◀️ Revert
