@@ -14,12 +14,6 @@ All notable changes to this project will be documented in this file.
 
 - Solve some minor issues and update dependencies
 
-## [2.0.0-alpha.24] - 2025-07-25
-
-### ◀️ Revert
-
-- *(deps)* Bump the next group with 2 updates
-
 ## [2.0.0-alpha.23] - 2025-07-17
 
 ### 🚜 Refactor
@@ -57,12 +51,6 @@ All notable changes to this project will be documented in this file.
 
 - Temporarily disable flows subgraph calls
 - Disable flow votes at the subgraph level
-
-## [2.0.0-alpha.17] - 2025-07-16
-
-### ◀️ Revert
-
-- *(deps)* Bump the next group with 3 updates
 
 ## [2.0.0-alpha.16] - 2025-07-16
 
@@ -703,12 +691,6 @@ All notable changes to this project will be documented in this file.
 - Update CLAUDE.md files with improved formatting and pnpm commands
 - Rename CLAUDE.md to AI-CONTEXT.md for AI assistants
 
-### ◀️ Revert
-
-- *(deps)* Bump react-aria-components from 1.6.0 to 1.7.0 (#1035)
-- *(deps)* Bump react-stately from 3.35.0 to 3.36.0 (#1034)
-- *(deps)* Bump react-aria from 3.37.0 to 3.38.0 (#1033)
-
 ## [1.4.0-alpha.64] - 2025-03-09
 
 ### 🐛 Bug Fixes
@@ -861,12 +843,6 @@ All notable changes to this project will be documented in this file.
 ### 🐛 Bug Fixes
 
 - *(camp)* Don’t show candidate score for topics
-
-## [1.4.0-alpha.45] - 2025-02-15
-
-### ◀️ Revert
-
-- *(deps)* Add `nanoid` to resolutions`
 
 ## [1.4.0-alpha.44] - 2025-02-15
 
@@ -1171,10 +1147,6 @@ All notable changes to this project will be documented in this file.
 
 - *(camp)* Update `build` script to remove flags
 
-### ◀️ Revert
-
-- *(deps)* Add `nanoid` to resolutions
-
 ## [1.4.0-alpha.15] - 2024-12-17
 
 ### 🐛 Bug Fixes
@@ -1258,16 +1230,6 @@ All notable changes to this project will be documented in this file.
 
 - *(ethereum-react)* Add `useNNSName` hook
 - *(hooks)* Add NNS name lookup in `useAccountDisplayName`
-
-### ◀️ Revert
-
-- *(deps-dev)* Bump vercel from 39.1.1 to 39.1.2 (#845)
-
-## [1.4.0-alpha.4] - 2024-11-27
-
-### ◀️ Revert
-
-- *(deps-dev)* Bump vercel from 39.1.1 to 39.1.2 (#838)
 
 ## [1.4.0-alpha.3] - 2024-11-25
 
@@ -1536,10 +1498,6 @@ All notable changes to this project will be documented in this file.
 - *(store)* Uncomment proposal state fields
 - *(store)* Enable `delegator` field in queries
 
-### ◀️ Revert
-
-- *(deps)* Bump the next group with 3 updates (#724)
-
 ## [1.3.0-alpha.38] - 2024-10-23
 
 ### 🐛 Bug Fixes
@@ -1569,10 +1527,6 @@ All notable changes to this project will be documented in this file.
 ### 🚀 Features
 
 - *(propose-screen)* Enhance `payerTopUpValue` logic
-
-### ◀️ Revert
-
-- *(deps)* Bump zustand from 4.5.5 to 5.0.0 (#706)
 
 ## [1.3.0-alpha.34] - 2024-10-13
 
@@ -1633,10 +1587,6 @@ All notable changes to this project will be documented in this file.
 
 - *(proposal-screen)* Comment out unused fields
 
-### ◀️ Revert
-
-- *(deps)* Bump @tanstack/react-query from 5.56.2 to 5.59.0 (#673)
-
 ## [1.3.0-alpha.29] - 2024-10-02
 
 ### ◀️ Revert
@@ -1664,10 +1614,6 @@ All notable changes to this project will be documented in this file.
 ### 🚜 Refactor
 
 - *(store)* Comment out unused fetch functions
-
-### ◀️ Revert
-
-- *(deps)* Bump @tanstack/react-query from 5.56.2 to 5.59.0 (#665)
 
 ## [1.3.0-alpha.27] - 2024-09-29
 
@@ -1969,12 +1915,6 @@ All notable changes to this project will be documented in this file.
 - *(dependabot)* Add `next-on-page` group
 - *(dependabot)* Update dependabot ignore configuration
 
-### ◀️ Revert
-
-- *(deps-dev)* Bump @cloudflare/next-on-pages from 1.13.1 to 1.13.2 (#509)
-- *(deps-dev)* Bump eslint-plugin-next-on-pages from 1.13.1 to 1.13.2 (#508)
-- *(deps-dev)* Bump @cloudflare/next-on-pages from 1.13.1 to 1.13.2 (#514)
-
 ## [1.2.0-alpha.15] - 2024-08-08
 
 ### 🚀 Features
@@ -1990,11 +1930,6 @@ All notable changes to this project will be documented in this file.
 ### ⚙️ Miscellaneous Tasks
 
 - *(nouns-camp)* Update `prestart` script
-
-### ◀️ Revert
-
-- *(deps-dev)* Bump @cloudflare/next-on-pages from 1.13.1 to 1.13.2 (#501)
-- *(deps-dev)* Bump eslint-plugin-next-on-pages from 1.13.1 to 1.13.2 (#504)
 
 ## [1.2.0-alpha.13] - 2024-08-06
 
@@ -2124,12 +2059,6 @@ All notable changes to this project will be documented in this file.
 - *(dependabot)* Ignore major version updates for eslint
 - *(dependabot)* Ignore major updates for @serwist/next
 - *(dependabot)* Ignore major updates for @sentry/nextjs
-
-### ◀️ Revert
-
-- *(deps-dev)* Bump eslint from 8.57.0 to 9.6.0 in the eslint group (#393)
-- *(deps)* Bump @sentry/nextjs from 7.111.0 to 8.13.0 (#396)
-- *(deps)* Bump @serwist/next from 8.4.4 to 9.0.3 (#401)
 
 ## [1.1.0] - 2024-07-02
 
