@@ -81,7 +81,7 @@
     "slate-dom": "0.117.4",
     "slate-history": "0.113.1",
     "slate-react": "0.117.4",
-    "sonner": "^2.0.6",
+    "sonner": "^2.0.7",
     "tinykeys": "3.0.0",
     "use-debounce": "10.0.5",
     "viem": "2.31.0",
