@@ -147,6 +147,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
   const usdcToEth = (usdc) => (usdc * rates.usdcEth) / 10n ** 6n;
   const rethToEth = (reth) => (reth * rates.rethEth) / 10n ** 18n;
   const oethToEth = (oeth) => (oeth * rates.oethEth) / 10n ** 18n;
+  const methToEth = (meth) => (meth * rates.methEth) / 10n ** 18n;
 
   const regularEthTotal = [
     balances.executor.eth,
@@ -172,6 +173,9 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
   );
   const oEthReturnRateEstimateBPS = BigInt(
     Math.round(aprs.originEther * inflowProjectionYearFraction * 10_000),
+  );
+  const mEthReturnRateEstimateBPS = BigInt(
+    Math.round(aprs.mantle * inflowProjectionYearFraction * 10_000),
   );
 
   return (
@@ -403,6 +407,23 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                           ({"Ξ"}
                           <FormattedEth
                             value={oethToEth(balances.executor.oeth)}
+                            tooltip={false}
+                          />
+                          )
+                        </span>
+                      </li>
+                    )}
+                    {balances.executor.meth > 0 && (
+                      <li>
+                        <FormattedEth
+                          value={balances.executor.meth}
+                          tokenSymbol="mETH"
+                          tooltip={false}
+                        />{" "}
+                        <span data-small>
+                          ({"Ξ"}
+                          <FormattedEth
+                            value={methToEth(balances.executor.meth)}
                             tooltip={false}
                           />
                           )
@@ -785,6 +806,30 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                   (
                   <FormattedNumber
                     value={aprs.originEther}
+                    style="percent"
+                    maximumFractionDigits={2}
+                  />{" "}
+                  APR)
+                </span>
+              </dd>
+            </>
+          )}
+          {balances.executor.meth != null && (
+            <>
+              <dt>mETH yield</dt>
+              <dd>
+                {"Ξ"}
+                <FormattedEth
+                  value={
+                    (balances.executor.meth * mEthReturnRateEstimateBPS) /
+                    10_000n
+                  }
+                  tooltip={false}
+                />{" "}
+                <span data-small>
+                  (
+                  <FormattedNumber
+                    value={aprs.mantle}
                     style="percent"
                     maximumFractionDigits={2}
                   />{" "}

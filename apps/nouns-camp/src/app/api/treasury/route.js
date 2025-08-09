@@ -94,6 +94,7 @@ export async function GET() {
     lidoApr,
     rocketPoolApr,
     originEtherApr,
+    mantleApr,
   } = Object.fromEntries(
     await Promise.all([
       (async () => {
@@ -109,6 +110,7 @@ export async function GET() {
               { key: "wsteth", contract: "wsteth-token" },
               CHAIN_ID === 1 ? { key: "reth", contract: "reth-token" } : null,
               CHAIN_ID === 1 ? { key: "oeth", contract: "oeth-token" } : null,
+              CHAIN_ID === 1 ? { key: "meth", contract: "meth-token" } : null,
               { key: "nouns", contract: "nftx-vault" },
             ]
               .filter(Boolean)
@@ -200,7 +202,24 @@ export async function GET() {
           return BigInt(oethPriceInEth * 10 ** 18);
         })();
 
-        return ["convertionRates", { rethEth, usdcEth, oethEth }];
+        const methEth = await (async () => {
+          const res = await fetch(
+            "https://api.coingecko.com/api/v3/simple/price?ids=mantle-staked-ether&vs_currencies=eth",
+          );
+
+          if (!res.ok) {
+            throw new Error(
+              `Failed to fetch from ${res.url}: ${res.status} ${res.statusText}`,
+            );
+          }
+
+          const data = await res.json();
+          const methPriceInEth = data["mantle-staked-ether"].eth;
+
+          return BigInt(methPriceInEth * 10 ** 18);
+        })();
+
+        return ["convertionRates", { rethEth, usdcEth, oethEth, methEth }];
       })(),
       (async () => {
         const url = "https://eth-api.lido.fi/v1/protocol/steth/apr/sma";
@@ -236,6 +255,17 @@ export async function GET() {
         const { apr } = await res.json();
         return ["originEtherApr", Number(apr) / 100];
       })(),
+      (async () => {
+        const url = "https://stake.mantle.xyz/api/meth/apr";
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(
+            `Failed to fetch from ${url}: ${res.status} ${res.statusText}`,
+          );
+        }
+        const { apr } = await res.json();
+        return ["mantleApr", Number(apr) / 100];
+      })(),
     ]),
   );
 
@@ -261,6 +291,7 @@ export async function GET() {
       lido: lidoApr,
       rocketPool: rocketPoolApr,
       originEther: originEtherApr,
+      mantle: mantleApr,
     },
   };
 
