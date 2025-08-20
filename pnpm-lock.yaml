@@ -121,8 +121,8 @@ importers:
         specifier: 0.8.5
         version: 0.8.5
       abitype:
-        specifier: 1.0.8
-        version: 1.0.8(typescript@5.8.3)(zod@3.25.63)
+        specifier: 1.0.9
+        version: 1.0.9(typescript@5.8.3)(zod@3.25.63)
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -4649,6 +4649,17 @@ packages:
 
   abitype@1.0.8:
     resolution: {integrity: sha512-ZeiI6h3GnW06uYDLx0etQtX/p8E24UaHHBj57RSjK7YBFe7iuVn07EDpOeP451D06sF27VOz9JJPlIKJmXgkEg==}
+    peerDependencies:
+      typescript: '>=5.0.4'
+      zod: ^3 >=3.22.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      zod:
+        optional: true
+
+  abitype@1.0.9:
+    resolution: {integrity: sha512-oN0S++TQmlwWuB+rkA6aiEefLv3SP+2l/tC5mux/TLj6qdA6rF15Vbpex4fHovLsMkwLwTIRj8/Q8vXCS3GfOg==}
     peerDependencies:
       typescript: '>=5.0.4'
       zod: ^3 >=3.22.0
@@ -15045,6 +15056,16 @@ snapshots:
       typescript: 5.8.3
       zod: 3.25.63
 
+  abitype@1.0.9(typescript@5.8.3)(zod@3.22.4):
+    optionalDependencies:
+      typescript: 5.8.3
+      zod: 3.22.4
+
+  abitype@1.0.9(typescript@5.8.3)(zod@3.25.63):
+    optionalDependencies:
+      typescript: 5.8.3
+      zod: 3.25.63
+
   abort-controller@3.0.0:
     dependencies:
       event-target-shim: 5.0.1
@@ -17691,7 +17712,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.6.2
       '@scure/bip39': 1.5.4
-      abitype: 1.0.8(typescript@5.8.3)(zod@3.25.63)
+      abitype: 1.0.9(typescript@5.8.3)(zod@3.25.63)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
@@ -17706,7 +17727,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.0.8(typescript@5.8.3)(zod@3.22.4)
+      abitype: 1.0.9(typescript@5.8.3)(zod@3.22.4)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
@@ -17721,7 +17742,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.0.8(typescript@5.8.3)(zod@3.25.63)
+      abitype: 1.0.9(typescript@5.8.3)(zod@3.25.63)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
