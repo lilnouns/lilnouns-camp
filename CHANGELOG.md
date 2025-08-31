@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.29] - 2025-08-09
+
+### 🚀 Features
+
+- *(api)* Add `mantleApr` to treasury APRs
+- *(api)* Add `methEth` to conversion rates
+- *(treasury-data)* Add support for mETH conversions
+- *(proposal-screen)* Add `mEthAprBps` and `mEthYield`
+- *(treasury-dialog)* Add support for mETH balances and yield
+- *(docs)* Document oETH implementation and mETH integration
+
 ## [2.0.0-alpha.28] - 2025-08-07
 
 ### 🐛 Bug Fixes
