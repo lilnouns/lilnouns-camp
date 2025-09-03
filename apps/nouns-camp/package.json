@@ -51,7 +51,7 @@
     "@nouns/sdk": "1.2.0",
     "@radix-ui/react-toolbar": "1.1.11",
     "@radix-ui/react-tooltip": "1.2.8",
-    "@sentry/nextjs": "10.7.0",
+    "@sentry/nextjs": "10.8.0",
     "@serwist/next": "9.1.1",
     "@serwist/precaching": "9.1.1",
     "@serwist/sw": "9.1.1",
