@@ -83,7 +83,7 @@
     "slate-react": "0.117.4",
     "sonner": "^2.0.7",
     "tinykeys": "3.0.0",
-    "use-debounce": "10.0.5",
+    "use-debounce": "10.0.6",
     "viem": "2.31.0",
     "wagmi": "2.15.6",
     "zustand": "4.5.7"
