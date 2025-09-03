@@ -35,7 +35,7 @@
     "wrangler": "4.16.1"
   },
   "dependencies": {
-    "@opennextjs/cloudflare": "1.6.5",
+    "@opennextjs/cloudflare": "1.7.1",
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
