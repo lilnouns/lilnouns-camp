@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.31] - 2025-09-07
+
+### 🐛 Bug Fixes
+
+- *(nouns-camp)* Update `webpack` config method signature
+
 ## [2.0.0-alpha.30] - 2025-09-07
 
 ### 🐛 Bug Fixes

@@ -2,7 +2,6 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import dotenv from "dotenv";
-import webpack from "webpack";
 import { withSentryConfig } from "@sentry/nextjs";
 import serwist from "@serwist/next";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
@@ -149,7 +148,7 @@ const nextConfig = {
   //     },
   //   ];
   // },
-  webpack(config) {
+  webpack(config, { isServer, webpack }) {
     config.cache = false; // Disables PackFileCacheStrategy
 
     config.resolve.fallback = {

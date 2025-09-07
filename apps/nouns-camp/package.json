@@ -35,7 +35,6 @@
     "wrangler": "4.16.1"
   },
   "dependencies": {
-    "@opennextjs/cloudflare": "1.7.1",
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
@@ -49,6 +48,7 @@
     "@nouns/assets": "0.10.0",
     "@nouns/contracts": "0.3.0",
     "@nouns/sdk": "1.2.0",
+    "@opennextjs/cloudflare": "1.8.0",
     "@radix-ui/react-toolbar": "1.1.11",
     "@radix-ui/react-tooltip": "1.2.8",
     "@sentry/nextjs": "10.10.0",
@@ -57,7 +57,7 @@
     "@serwist/sw": "9.2.1",
     "@shades/common": "workspace:0.0.0",
     "@shades/ui-web": "workspace:0.0.0",
-    "@tanstack/react-query": "5.86.0",
+    "@tanstack/react-query": "5.87.1",
     "@vercel/analytics": "1.5.0",
     "@vercel/edge-config": "1.4.0",
     "@vercel/kv": "3.0.0",
@@ -69,7 +69,7 @@
     "iron-session": "8.0.4",
     "is-hotkey": "0.2.0",
     "lodash.throttle": "4.1.1",
-    "marked": "16.1.2",
+    "marked": "16.2.1",
     "next": "15.3.5",
     "qrcode": "1.5.4",
     "react": "19.1.1",
@@ -84,8 +84,8 @@
     "sonner": "^2.0.7",
     "tinykeys": "3.0.0",
     "use-debounce": "10.0.6",
-    "viem": "2.31.0",
-    "wagmi": "2.15.6",
+    "viem": "2.37.4",
+    "wagmi": "2.16.9",
     "zustand": "4.5.7"
   }
 }
