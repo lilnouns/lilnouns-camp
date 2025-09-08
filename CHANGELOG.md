@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.34] - 2025-09-08
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* Simplify caching and setup for pnpm
+
 ## [2.0.0-alpha.33] - 2025-09-08
 
 ### 🐛 Bug Fixes
