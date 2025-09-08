@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.33] - 2025-09-08
+
+### 🐛 Bug Fixes
+
+- *(utils)* Handle `def` tokens in `markdown`
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* Update matrix to test on Node.js 24.x
+
 ## [2.0.0-alpha.32] - 2025-09-07
 
 ### 🐛 Bug Fixes
