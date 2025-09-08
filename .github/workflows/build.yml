@@ -77,15 +77,15 @@ jobs:
 
     strategy: # Allows you to create a matrix for job configuration.
       matrix:
-        node-version: [22.x,23.x] # Running tests across different environments.
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [22.x, 24.x] # Running tests across different environments.
+        # See the supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps: # The sequence of tasks that make up a job.
       - name: Checking out repository code
         uses: actions/checkout@v5.0.0 # Action for checking out a repo.
 
       - name: Setup Node.js ${{ matrix.node-version }} Environment
-        uses: actions/setup-node@v4.4.0 # Action for setting up Node environment.
+        uses: actions/setup-node@v5.0.0 # Action for setting up Node environment.
         with:
           node-version: ${{ matrix.node-version }}
 

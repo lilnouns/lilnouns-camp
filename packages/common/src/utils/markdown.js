@@ -421,6 +421,10 @@ const parseToken = (token, context = {}) => {
         children: [{ type: "text", text: token.text }],
       };
 
+    case "def":
+      // Reference definition tokens (for [label]: url) should be ignored; lexer already resolves references.
+      return [];
+
     default:
       if (isProduction) return null;
       throw new Error(`Unknown token "${token.type}"`);
