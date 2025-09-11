@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.1] - 2025-09-11
+
+### 🐛 Bug Fixes
+
+- *(api)* Update `oeth` API endpoint URL
+
 ## [3.0.0-alpha.0] - 2025-09-11
 
 ### 🚀 Features
