@@ -1225,7 +1225,8 @@ export const ProposalHeader = ({
     const totalStakingYield = stEthYield + rEthYield + oEthYield;
 
     const expectedAuctionsInYear = (() => {
-      const est = auctionsPerDay != null ? Math.round(auctionsPerDay * 365) : 365;
+      const est =
+        auctionsPerDay != null ? Math.round(auctionsPerDay * 365) : 365;
       return BigInt(est > 0 ? est : 0);
     })();
 
@@ -1509,13 +1510,17 @@ export const ProposalHeader = ({
                   />{" "}
                   ({"Ξ"}
                   <FormattedEthWithConditionalTooltip
-                    value={(emaAuctionPrice ?? avgAuctionPrice)}
+                    value={emaAuctionPrice ?? avgAuctionPrice}
                     decimals={2}
                     truncationDots={false}
                     tokenSymbol={false}
                     localeFormatting
                   />{" "}
-                  {"×"} {Math.round(auctionsPerDay != null ? auctionsPerDay * 365 : 365)} auctions + {"Ξ"}
+                  {"×"}{" "}
+                  {Math.round(
+                    auctionsPerDay != null ? auctionsPerDay * 365 : 365,
+                  )}{" "}
+                  auctions + {"Ξ"}
                   <FormattedEthWithConditionalTooltip
                     value={stakingYield}
                     decimals={2}
