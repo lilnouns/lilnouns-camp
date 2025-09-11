@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.4] - 2025-09-11
+
+### 🎨 Styling
+
+- *(hooks)* Remove trailing newline in export statement
+
 ## [3.0.0-alpha.3] - 2025-09-11
 
 ### 🚀 Features
