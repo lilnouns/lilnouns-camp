@@ -90,14 +90,16 @@ const commands = [
     category: "proposals",
     label: "Create Proposal...",
     keywords: ["new", "proposal", "create", "start", "proposals"],
-    action: (navigate) => navigate("/new"),
+    action: (_, { openProposalTemplatesDialog }) =>
+      openProposalTemplatesDialog(),
   },
   {
     id: "create-candidate",
     category: "proposals",
     label: "Create Candidate...",
     keywords: ["new", "candidate", "create", "proposals"],
-    action: (navigate) => navigate("/new"),
+    action: (_, { openProposalTemplatesDialog }) =>
+      openProposalTemplatesDialog(),
   },
   // Topics section
   // {
@@ -205,6 +207,7 @@ const CommandPalette = () => {
   const { open: openEditProfileDialog } = useDialog("profile-edit");
   const { open: openSettingsDialog } = useDialog("settings");
   const { open: openDraftsDialog } = useDialog("drafts");
+  const { open: openProposalTemplatesDialog } = useDialog("proposal-templates");
 
   const [eagerInputValue, setInputValue] = useState("");
   const inputValue = React.useDeferredValue(eagerInputValue);
@@ -521,7 +524,7 @@ const CommandPalette = () => {
                 navigate(`/proposals/${id}`);
               } else if (key.startsWith("draft-")) {
                 const id = key.split("draft-")[1];
-                navigate(`/new/proposal?draft=${id}`);
+                navigate(`/new/${id}`);
               } else if (key.startsWith("candidate-")) {
                 const id = key.split("candidate-")[1];
                 navigate(`/candidates/${id}`);
@@ -540,6 +543,7 @@ const CommandPalette = () => {
                   openEditProfileDialog,
                   openDraftsDialog,
                   openSettingsDialog,
+                  openProposalTemplatesDialog,
                 });
               }
 

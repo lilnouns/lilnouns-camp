@@ -1,12 +1,12 @@
 import React from "react";
 import { css } from "@emotion/react";
-import NextLink from "next/link";
 import { array as arrayUtils } from "@shades/common/utils";
 import Dialog from "@shades/ui-web/dialog";
 import DialogHeader from "@shades/ui-web/dialog-header";
 import Button from "@shades/ui-web/button";
 import { isNodeEmpty as isRichTextNodeEmpty } from "@shades/ui-web/rich-text-editor";
 import { useCollection as useDrafts } from "@/hooks/drafts";
+import { useDialog } from "@/hooks/global-dialogs";
 import ProposalList from "@/components/sectioned-list";
 
 const ProposalOrTopicDraftsDialog = ({ isOpen, close }) => {
@@ -25,6 +25,7 @@ const ProposalOrTopicDraftsDialog = ({ isOpen, close }) => {
 
 const Content = ({ titleProps, dismiss }) => {
   const { items: proposalDrafts } = useDrafts();
+  const { open: openTemplateDialog } = useDialog("proposal-templates");
 
   const filteredSortedProposalDrafts = React.useMemo(() => {
     if (proposalDrafts == null) return [];
@@ -93,7 +94,12 @@ const Content = ({ titleProps, dismiss }) => {
 
             <div css={css({ display: "flex", justifyContent: "center" })}>
               <div className="button-grid">
-                <Button component={NextLink} href="/new" prefetch>
+                <Button
+                  onClick={() => {
+                    dismiss();
+                    openTemplateDialog();
+                  }}
+                >
                   New proposal
                 </Button>
                 {/*<Button component={NextLink} href="/new?topic=1" prefetch>*/}
