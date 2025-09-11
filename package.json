@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0-alpha.34",
+  "version": "3.0.0-alpha.0",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "dev": "pnpm run --recursive --parallel --if-present dev",
@@ -46,5 +46,5 @@
       "url": "https://ud.me/nekofar.crypto"
     }
   ],
-  "packageManager": "pnpm@10.0.0"
+  "packageManager": "pnpm@10.15.1"
 }

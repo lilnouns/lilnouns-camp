@@ -26,6 +26,19 @@ import NextLink from "next/link";
 
 const ONE_DAY_IN_SECONDS = 24 * 60 * 60;
 
+const sqrtBigInt = (value) => {
+  if (value < 0n)
+    throw new Error("square root of negative numbers is not supported");
+  if (value < 2n) return value;
+  let x0 = value / 2n;
+  let x1 = (x0 + value / x0) / 2n;
+  while (x1 < x0) {
+    x0 = x1;
+    x1 = (x0 + value / x0) / 2n;
+  }
+  return x0;
+};
+
 const useAssetsDeployed = ({ days = 30 } = {}) => {
   const { data } = useQuery({
     queryKey: ["assets-deployed", days],
@@ -130,16 +143,18 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
       enabled: activityDayCount !== 14,
     }) ?? {};
 
+  const {
+    emaAuctionPrice,
+    varianceAuctionPrice,
+    auctionsPerDay,
+    medianAuctionPrice,
+  } = useRecentAuctionProceeds({ auctionCount: 50 }) ?? {};
+
   // Beautiful
   const [auctionProceeds, auctionNounIds] =
     activityDayCount === 14
       ? [twoWeekAuctionProceeds, twoWeekSettledNounIds]
       : [auctionProceeds_, auctionNounIds_];
-
-  const twoWeekAvgNounPrice =
-    twoWeekAuctionProceeds == null
-      ? null
-      : twoWeekAuctionProceeds / BigInt(twoWeekSettledNounIds.length);
 
   const { assets: assetsDeployed, proposalIds: deployedProposalIds } =
     useAssetsDeployed({ days: activityDayCount }) ?? {};
@@ -157,6 +172,17 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
   ]
     .filter(Boolean)
     .reduce((sum, amount) => sum + amount, BigInt(0));
+
+  const expectedAuctions =
+    auctionsPerDay != null
+      ? Math.round(auctionsPerDay * inflowProjectionDayCount)
+      : null;
+  const inflowProjection =
+    emaAuctionPrice != null && expectedAuctions != null
+      ? emaAuctionPrice * BigInt(expectedAuctions)
+      : null;
+  const auctionPriceStdDev =
+    varianceAuctionPrice != null ? sqrtBigInt(varianceAuctionPrice) : null;
 
   const stEthTotal = [balances.executor.steth, balances.executor.wsteth]
     .filter(Boolean)
@@ -655,23 +681,15 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
         <Dl>
           <dt>Auction proceeds</dt>
           <dd>
-            {twoWeekAvgNounPrice != null && (
+            {inflowProjection != null && (
               <Tooltip.Root>
                 <Tooltip.Trigger>
                   {"Ξ"}
-                  <FormattedEth
-                    value={
-                      twoWeekAvgNounPrice * BigInt(inflowProjectionDayCount)
-                    }
-                    tooltip={false}
-                  />{" "}
+                  <FormattedEth value={inflowProjection} tooltip={false} />{" "}
                   <span data-small>
                     ({"Ξ"}
-                    <FormattedEth
-                      value={twoWeekAvgNounPrice}
-                      tooltip={false}
-                    />{" "}
-                    per auction)
+                    <FormattedEth value={emaAuctionPrice} tooltip={false} /> per
+                    auction)
                   </span>
                   <p
                     css={(t) =>
@@ -700,30 +718,33 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                   }
                 >
                   <p>
-                    Projection made using a 14 day rolling auction price average{" "}
-                    <span className="nowrap">
-                      ({"Ξ"}
-                      <FormattedEth
-                        value={twoWeekAvgNounPrice}
-                        tooltip={false}
-                      />
-                      )
-                    </span>
+                    Projection uses an exponential moving average over the last
+                    50 settled auctions and an observed average of{" "}
+                    {auctionsPerDay != null ? auctionsPerDay.toFixed(2) : 0}{" "}
+                    auctions per day.
                   </p>
                   <p className="dimmed">
                     {"Ξ"}
                     <FormattedEth
-                      value={twoWeekAvgNounPrice}
+                      value={emaAuctionPrice}
                       tooltip={false}
                     />{" "}
-                    {"×"} {inflowProjectionDayCount} days = {"Ξ"}
-                    <FormattedEth
-                      value={
-                        twoWeekAvgNounPrice * BigInt(inflowProjectionDayCount)
-                      }
-                      tooltip={false}
-                    />
+                    {"×"} {expectedAuctions} auctions = {"Ξ"}
+                    <FormattedEth value={inflowProjection} tooltip={false} />
                   </p>
+                  <p className="dimmed">
+                    Median per auction: {"Ξ"}
+                    <FormattedEth value={medianAuctionPrice} tooltip={false} />
+                  </p>
+                  {auctionPriceStdDev != null && (
+                    <p className="dimmed">
+                      σ per auction: {"Ξ"}
+                      <FormattedEth
+                        value={auctionPriceStdDev}
+                        tooltip={false}
+                      />
+                    </p>
+                  )}
                 </Tooltip.Content>
               </Tooltip.Root>
             )}

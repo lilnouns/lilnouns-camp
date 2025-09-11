@@ -326,6 +326,7 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
   const { open: openAccountDialog } = useDialog("account");
   const { open: openEditProfileDialog } = useDialog("profile-edit");
   const { open: openProposalDraftsDialog } = useDialog("drafts");
+  const { open: openProposalTemplatesDialog } = useDialog("proposal-templates");
   const { open: openDelegationDialog } = useDialog("delegation");
   const { open: openStreamsDialog } = useDialog("streams");
   const { open: openSettingsDialog } = useDialog("settings");
@@ -384,7 +385,7 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
   const handleDropDownAction = async (key) => {
     switch (key) {
       case "new-proposal":
-        navigate("/new");
+        openProposalTemplatesDialog();
         break;
       // case "new-discussion-topic":
       //   navigate("/new?topic=1");
