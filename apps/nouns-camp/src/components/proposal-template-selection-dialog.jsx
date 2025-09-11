@@ -45,6 +45,7 @@ const Content = ({ titleProps, dismiss }) => {
     >
       <DialogHeader
         title="Select a template"
+        subtitle="Select the template that best matches your project type"
         titleProps={titleProps}
         dismiss={dismiss}
       />
