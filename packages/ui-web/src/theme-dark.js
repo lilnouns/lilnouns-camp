@@ -147,7 +147,7 @@ export default {
     textHighlight: "#ffd376", // Light yellow
     textHighlightBackground: "#b8810e66",
     // Higher-contrast selection for dark mode
-    textSelectionBackground: createPrimary({ saturation: 1, lightness: 0.35 }),
+    textSelectionBackground: createPrimary({ saturation: 1, lightness: 0.5 }),
     textSelectionColor: "white",
     textDanger,
     link: primaryTintLighter,
