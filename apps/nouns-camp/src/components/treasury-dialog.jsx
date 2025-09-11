@@ -189,12 +189,6 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
     Math.round(aprs.originEther * inflowProjectionYearFraction * 10_000),
   );
 
-  const skeletonPulse = keyframes({
-    "0%": { opacity: 0.35 },
-    "50%": { opacity: 0.65 },
-    "100%": { opacity: 0.35 },
-  });
-
   const Skeleton = ({ width = "8rem", height = "1em" }) => (
     <span
       aria-hidden
@@ -203,11 +197,11 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
           display: "inline-block",
           width,
           height,
-          borderRadius: 4,
-          backgroundColor: t.colors.textDimmed,
-          animation: `${skeletonPulse} 1.2s ease-in-out infinite`,
+          borderRadius: "0.5rem",
+          backgroundColor: t.colors.backgroundModifierNormal,
         })
       }
+      className="item-placeholder"
     />
   );
 
