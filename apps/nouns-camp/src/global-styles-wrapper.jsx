@@ -30,6 +30,7 @@ const GlobalStyles = ({ children }) => {
           background: t.colors.backgroundPrimary,
           "::selection": {
             background: t.colors.textSelectionBackground,
+            color: t.colors.textSelectionColor ?? t.colors.textAccent,
           },
           colorScheme: t.colorScheme ?? "light",
         })

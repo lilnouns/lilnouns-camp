@@ -146,7 +146,9 @@ export default {
     textPrimaryModifierHover: createPrimary({ saturation: 1, lightness: 0.6 }),
     textHighlight: "#ffd376", // Light yellow
     textHighlightBackground: "#b8810e66",
-    textSelectionBackground: createPrimary({ saturation: 1, lightness: 0 }),
+    // Higher-contrast selection for dark mode
+    textSelectionBackground: createPrimary({ saturation: 1, lightness: 0.35 }),
+    textSelectionColor: "white",
     textDanger,
     link: primaryTintLighter,
     linkModifierHover: createPrimary({ saturation: 1, lightness: 0.65 }),
