@@ -107,4 +107,3 @@ const useAuctionProceedsByDays = ({ days = 30, enabled = true } = {}) => {
 };
 
 export default useAuctionProceedsByDays;
-
