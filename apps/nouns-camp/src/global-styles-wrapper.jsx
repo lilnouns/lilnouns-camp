@@ -29,7 +29,11 @@ const GlobalStyles = ({ children }) => {
           color: t.colors.textNormal,
           background: t.colors.backgroundPrimary,
           "::selection": {
-            background: t.colors.textSelectionBackground,
+            backgroundColor: t.colors.textSelectionBackground,
+            color: t.colors.textSelectionColor ?? t.colors.textAccent,
+          },
+          "::-moz-selection": {
+            backgroundColor: t.colors.textSelectionBackground,
             color: t.colors.textSelectionColor ?? t.colors.textAccent,
           },
           colorScheme: t.colorScheme ?? "light",
