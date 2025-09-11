@@ -226,7 +226,7 @@ export async function GET() {
       })(),
       (async () => {
         const url =
-          "https://api.originprotocol.com/api/v2/oeth/apr/trailing/30";
+          "https://api.originprotocol.com/api/v2/oeth/apr/history?chainId=1";
         const res = await fetch(url);
         if (!res.ok) {
           throw new Error(
