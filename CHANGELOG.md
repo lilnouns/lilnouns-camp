@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.0] - 2025-09-11
+
+### 🚀 Features
+
+- *(data)* Add proposal templates
+- *(components)* Add proposal template selection dialog
+- *(components)* Integrate proposal template dialog
+- *(components)* Update proposal action to use templates
+- *(components)* Update navigation for proposal actions
+- *(app)* Add draft creation with navigation
+- *(components)* Enhance proposal template dialog styling
+- *(components)* Add subtitle to proposal dialog header
+- *(theme)* Improve text selection styling for themes
+- *(theme)* Enhance text selection for dark mode
+- *(camp)* Add proposal template selection dialog
+- (camp) enhance auction proceeds calculations with median, EMA, and variance metrics
+- *(camp)* Enhance auction proceeds calculations with EMA and extended auction count
+
+### 🚜 Refactor
+
+- *(components)* Remove unused draft navigation logic
+- *(components)* Clean up unused `useTheme` reference
+
+### 🧪 Testing
+
+- *(components)* Add tests for proposal selection dialog
+
 ## [2.0.0-alpha.34] - 2025-09-08
 
 ### ⚙️ Miscellaneous Tasks
