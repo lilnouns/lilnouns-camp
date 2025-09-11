@@ -51,6 +51,12 @@ const dialogs = [
     ),
   },
   {
+    key: "proposal-templates",
+    component: ReactLazyWithPreload(
+      () => import("@/components/proposal-template-selection-dialog"),
+    ),
+  },
+  {
     key: "settings",
     component: ReactLazyWithPreload(
       () => import("@/components/settings-dialog"),
