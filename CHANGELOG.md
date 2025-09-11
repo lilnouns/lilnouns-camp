@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.3] - 2025-09-11
+
+### 🚀 Features
+
+- *(treasury-dialog)* Replace recent auctions logic
+- *(treasury-dialog)* Add skeleton loaders for placeholders
+
 ## [3.0.0-alpha.2] - 2025-09-11
 
 ### 🐛 Bug Fixes
