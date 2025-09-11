@@ -1,5 +1,5 @@
 import React from "react";
-import { css, useTheme } from "@emotion/react";
+import { css } from "@emotion/react";
 import { markdown as markdownUtils } from "@shades/common/utils";
 import Dialog from "@shades/ui-web/dialog";
 import DialogHeader from "@shades/ui-web/dialog-header";
@@ -20,7 +20,6 @@ const ProposalTemplateSelectionDialog = ({ isOpen, close }) => {
 const Content = ({ titleProps, dismiss }) => {
   const { createItem: createDraft } = useDrafts();
   const navigate = useNavigate();
-  const theme = useTheme();
 
   const handleSelect = React.useCallback(
     (defaults) => {
@@ -60,7 +59,7 @@ const Content = ({ titleProps, dismiss }) => {
               gap: "1rem",
               // Mimic sectioned-list hover treatment
               "@media(hover: hover)": {
-                "button": { cursor: "pointer" },
+                button: { cursor: "pointer" },
                 "button:hover": {
                   background: `linear-gradient(90deg, transparent 0%, ${t.colors.backgroundModifierNormal} 20%, ${t.colors.backgroundModifierNormal} 80%, transparent 100%)`,
                 },
@@ -85,7 +84,7 @@ const Content = ({ titleProps, dismiss }) => {
                 }
               >
                 <div
-                  css={(t) =>
+                  css={() =>
                     css({
                       display: "flex",
                       flexDirection: "column",
