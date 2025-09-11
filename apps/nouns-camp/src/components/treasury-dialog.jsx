@@ -17,6 +17,7 @@ import useContract from "@/hooks/contract";
 import { useSearchParams } from "@/hooks/navigation";
 import useTreasuryData from "@/hooks/treasury-data";
 import useRecentAuctionProceeds from "@/hooks/recent-auction-proceeds";
+import useAuctionProceedsByDays from "@/hooks/auction-proceeds-by-days";
 import { FormattedEthWithConditionalTooltip } from "@/components/transaction-list";
 import FormattedNumber from "@/components/formatted-number";
 import ExplorerAddressLink from "@/components/chain-explorer-address-link";
@@ -130,31 +131,19 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
   const [inflowProjectionDayCount, setInflowProjectionDayCount] =
     React.useState(365);
 
+  // Use actual days window for displayed Auction Proceeds in Activity
   const {
-    totalAuctionProceeds: twoWeekAuctionProceeds,
-    auctionedNounIds: twoWeekSettledNounIds,
-  } = useRecentAuctionProceeds({ auctionCount: 14 }) ?? {};
-  const {
-    totalAuctionProceeds: auctionProceeds_,
-    auctionedNounIds: auctionNounIds_,
-  } =
-    useRecentAuctionProceeds({
-      auctionCount: activityDayCount,
-      enabled: activityDayCount !== 14,
-    }) ?? {};
+    totalAuctionProceeds: auctionProceeds,
+    auctionedNounIds: auctionNounIds,
+  } = useAuctionProceedsByDays({ days: activityDayCount }) ?? {};
 
+  // Keep EMA/median/variance using last 50 auctions for the projection section
   const {
     emaAuctionPrice,
     varianceAuctionPrice,
     auctionsPerDay,
     medianAuctionPrice,
   } = useRecentAuctionProceeds({ auctionCount: 50 }) ?? {};
-
-  // Beautiful
-  const [auctionProceeds, auctionNounIds] =
-    activityDayCount === 14
-      ? [twoWeekAuctionProceeds, twoWeekSettledNounIds]
-      : [auctionProceeds_, auctionNounIds_];
 
   const { assets: assetsDeployed, proposalIds: deployedProposalIds } =
     useAssetsDeployed({ days: activityDayCount }) ?? {};
@@ -531,6 +520,8 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
               <Tooltip.Content side="top" sideOffset={6} portal>
                 {auctionNounIds == null ? (
                   "..."
+                ) : auctionNounIds.length === 0 ? (
+                  <>0 settled auctions</>
                 ) : auctionNounIds.length === 1 ? (
                   <>1 settled auction (Lil Noun {auctionNounIds[0]})</>
                 ) : (
@@ -550,14 +541,16 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
               <>
                 {"Ξ"}
                 <FormattedEth value={auctionProceeds} tooltip={false} />{" "}
-                <span data-small>
-                  (avg {"Ξ"}
-                  <FormattedEth
-                    value={auctionProceeds / BigInt(auctionNounIds.length)}
-                    tooltip={false}
-                  />{" "}
-                  per token)
-                </span>
+                {auctionNounIds != null && auctionNounIds.length > 0 && (
+                  <span data-small>
+                    (avg {"Ξ"}
+                    <FormattedEth
+                      value={auctionProceeds / BigInt(auctionNounIds.length)}
+                      tooltip={false}
+                    />{" "}
+                    per token)
+                  </span>
+                )}
               </>
             )}
           </dd>
