@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.5] - 2025-09-11
+
+### 🎨 Styling
+
+- *(treasury-dialog)* Update `Skeleton` styles for consistency
+
 ## [3.0.0-alpha.4] - 2025-09-11
 
 ### 🎨 Styling
