@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "@emotion/react";
+import { css, keyframes } from "@emotion/react";
 import { useQuery } from "@tanstack/react-query";
 import { array as arrayUtils } from "@shades/common/utils";
 import Dialog from "@shades/ui-web/dialog";
@@ -187,6 +187,28 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
   );
   const oEthReturnRateEstimateBPS = BigInt(
     Math.round(aprs.originEther * inflowProjectionYearFraction * 10_000),
+  );
+
+  const skeletonPulse = keyframes({
+    "0%": { opacity: 0.35 },
+    "50%": { opacity: 0.65 },
+    "100%": { opacity: 0.35 },
+  });
+
+  const Skeleton = ({ width = "8rem", height = "1em" }) => (
+    <span
+      aria-hidden
+      css={(t) =>
+        css({
+          display: "inline-block",
+          width,
+          height,
+          borderRadius: 4,
+          backgroundColor: t.colors.textDimmed,
+          animation: `${skeletonPulse} 1.2s ease-in-out infinite`,
+        })
+      }
+    />
   );
 
   return (
@@ -537,7 +559,9 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
             </Tooltip.Root>
           </dt>
           <dd>
-            {auctionProceeds != null && (
+            {auctionProceeds == null ? (
+              <Skeleton width="10rem" height="1.1em" />
+            ) : (
               <>
                 {"Ξ"}
                 <FormattedEth value={auctionProceeds} tooltip={false} />{" "}
@@ -582,7 +606,11 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
             </Tooltip.Root>
           </dt>
           <dd>
-            {assetsDeployed != null && (
+            {assetsDeployed == null ? (
+              <Skeleton width="10rem" height="1.1em" />
+            ) : assetsDeployed.length === 0 ? (
+              <span css={(t) => css({ color: t.colors.textDimmed })}>Ξ0</span>
+            ) : (
               <ul
                 css={css({
                   listStyle: "none",
