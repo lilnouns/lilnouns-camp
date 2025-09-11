@@ -1168,8 +1168,12 @@ export const ProposalHeader = ({
   const [showFullAskBreakdown, setShowFullAskBreakdown] = React.useState(false);
 
   const treasuryData = useTreasuryData();
+  // Keep 14-auction average for legacy fallback
   const { avgAuctionPrice } =
     useRecentAuctionProceeds({ auctionCount: 14 }) ?? {};
+  // Use EMA + auctions/day over a larger window for projections
+  const { emaAuctionPrice, auctionsPerDay } =
+    useRecentAuctionProceeds({ auctionCount: 50 }) ?? {};
 
   const requestedAmounts = extractAmountsFromTransactions(transactions);
 
@@ -1180,7 +1184,8 @@ export const ProposalHeader = ({
     numberOfDays,
     stakingYield,
   } = (() => {
-    if (treasuryData == null || avgAuctionPrice == null) return {};
+    const displayAuctionPrice = emaAuctionPrice ?? avgAuctionPrice;
+    if (treasuryData == null || displayAuctionPrice == null) return {};
 
     const { balances, totals, rates, aprs } = treasuryData;
 
@@ -1219,12 +1224,19 @@ export const ProposalHeader = ({
     const oEthYield = ((balances.executor.oeth ?? 0n) * oEthAprBps) / 10_000n;
     const totalStakingYield = stEthYield + rEthYield + oEthYield;
 
-    const projectedOneYearAuctionProceeds = avgAuctionPrice * 365n;
+    const expectedAuctionsInYear = (() => {
+      const est = auctionsPerDay != null ? Math.round(auctionsPerDay * 365) : 365;
+      return BigInt(est > 0 ? est : 0);
+    })();
+
+    const projectedOneYearAuctionProceeds =
+      displayAuctionPrice * expectedAuctionsInYear;
     const oneYearIncomeForecast =
       projectedOneYearAuctionProceeds + totalStakingYield;
     const oneYearIncomeForecastFractionBps =
       (totalAskInEth * 10_000n) / oneYearIncomeForecast;
-    const forcastedDailyIncome = avgAuctionPrice + totalStakingYield / 365n;
+    const forcastedDailyIncome =
+      projectedOneYearAuctionProceeds / 365n + totalStakingYield / 365n;
 
     return {
       // Round to one decimal
@@ -1478,15 +1490,15 @@ export const ProposalHeader = ({
                     </>
                   )}
                   <br />
-                  Recent auction price average: {"Ξ"}
+                  Recent auction price (EMA): {"Ξ"}
                   <FormattedEthWithConditionalTooltip
-                    value={avgAuctionPrice}
+                    value={emaAuctionPrice ?? avgAuctionPrice}
                     decimals={2}
                     truncationDots={false}
                     tokenSymbol={false}
                     localeFormatting
                   />{" "}
-                  (last 14 auctions)
+                  (last 50 auctions)
                   <br />1 year inflow projection: {"Ξ"}
                   <FormattedEthWithConditionalTooltip
                     value={oneYearIncomeForecast}
@@ -1497,13 +1509,13 @@ export const ProposalHeader = ({
                   />{" "}
                   ({"Ξ"}
                   <FormattedEthWithConditionalTooltip
-                    value={avgAuctionPrice}
+                    value={(emaAuctionPrice ?? avgAuctionPrice)}
                     decimals={2}
                     truncationDots={false}
                     tokenSymbol={false}
                     localeFormatting
                   />{" "}
-                  {"×"} 365 days + {"Ξ"}
+                  {"×"} {Math.round(auctionsPerDay != null ? auctionsPerDay * 365 : 365)} auctions + {"Ξ"}
                   <FormattedEthWithConditionalTooltip
                     value={stakingYield}
                     decimals={2}
