@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.35] - 2025-09-11
+
+### 🚀 Features
+
+- *(data)* Add proposal templates
+- *(components)* Add proposal template selection dialog
+- *(components)* Integrate proposal template dialog
+- *(components)* Update proposal action to use templates
+- *(components)* Update navigation for proposal actions
+- *(hooks)* Add proposal templates to global dialogs
+- *(app)* Add draft creation with navigation
+- *(components)* Enhance proposal template dialog styling
+- *(components)* Add subtitle to proposal dialog header
+- *(theme)* Improve text selection styling for themes
+- *(theme)* Enhance text selection for dark mode
+
+### 🚜 Refactor
+
+- *(components)* Remove unused draft navigation logic
+- *(components)* Clean up unused `useTheme` reference
+
+### 🧪 Testing
+
+- *(components)* Add tests for proposal selection dialog
+
 ## [2.0.0-alpha.34] - 2025-09-08
 
 ### ⚙️ Miscellaneous Tasks
