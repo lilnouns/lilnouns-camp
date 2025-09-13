@@ -514,7 +514,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
             variant="tag"
             aria-label="Activity day count"
             value={activityDayCount}
-            options={[7, 14, 30, 60, 90, 365].map((count) => ({
+            options={[7, 14, 30, 60, 90, 180, 365].map((count) => ({
               value: count,
               label: `${count} days`,
             }))}
