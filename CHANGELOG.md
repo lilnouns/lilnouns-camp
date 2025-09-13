@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.6] - 2025-09-13
+
+### 🎨 Styling
+
+- *(treasury-dialog)* Remove unused import `keyframes`
+
 ## [3.0.0-alpha.5] - 2025-09-11
 
 ### 🎨 Styling
