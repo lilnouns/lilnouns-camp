@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.7] - 2025-09-13
+
+### 🐛 Bug Fixes
+
+- *(treasury-dialog)* Extend activity day count options to include 180 days
+
 ## [3.0.0-alpha.6] - 2025-09-13
 
 ### 🎨 Styling
