@@ -49,8 +49,8 @@ importers:
         specifier: 11.14.0
         version: 11.14.0(@types/react@18.3.18)(react@19.1.1)
       '@farcaster/core':
-        specifier: 0.18.6
-        version: 0.18.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63)
+        specifier: 0.18.7
+        version: 0.18.7(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63)
       '@lilnounsdao/assets':
         specifier: 0.5.15
         version: 0.5.15
@@ -1396,8 +1396,8 @@ packages:
     resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
 
-  '@farcaster/core@0.18.6':
-    resolution: {integrity: sha512-SEBkYDYdXtlsodewNQsmrP992jj9S2NqCNQHG2pJ9YAeHupFxNE9InKP7hQ638XRCLZwGHhpDVYQsc8gDBqy2A==}
+  '@farcaster/core@0.18.7':
+    resolution: {integrity: sha512-hUBZNX+OEdB2kIRP9VZrlghgB6UgbJMe/2RxmjD4/xlYq4laJBwPZ5EHUAOlehyp5VBEjBjPjWODrlX6UqZmWQ==}
 
   '@fastify/deepmerge@2.0.0':
     resolution: {integrity: sha512-fsaybTGDyQ5KpPsplQqb9yKdCf2x/pbNpMNk8Tvp3rRz7lVcupKysH4b2ELMN2P4Hak1+UqTYdTj/u4FNV2p0g==}
@@ -5120,6 +5120,15 @@ packages:
       supports-color:
         optional: true
 
+  debug@4.4.3:
+    resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
   decamelize@1.2.0:
     resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==}
     engines: {node: '>=0.10.0'}
@@ -6923,6 +6932,9 @@ packages:
 
   preact@10.27.1:
     resolution: {integrity: sha512-V79raXEWch/rbqoNc7nT9E4ep7lu+mI3+sBmfRD4i1M73R3WLYcCtdI0ibxGVf4eQL8ZIz2nFacqEC+rmnOORQ==}
+
+  preact@10.27.2:
+    resolution: {integrity: sha512-5SYSgFKSyhCbk6SrXyMpqjb5+MQBgfvEKE/OC+PujcY34sOpqtr+0AZQtPYx5IA6VxynQ7rUPCtKzyovpj9Bpg==}
 
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -9601,7 +9613,7 @@ snapshots:
       eth-json-rpc-filters: 6.0.1
       eventemitter3: 5.0.1
       keccak: 3.0.4
-      preact: 10.27.1
+      preact: 10.27.2
       sha.js: 2.4.12
     transitivePeerDependencies:
       - supports-color
@@ -10251,7 +10263,7 @@ snapshots:
 
   '@faker-js/faker@7.6.0': {}
 
-  '@farcaster/core@0.18.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63)':
+  '@farcaster/core@0.18.7(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.63)':
     dependencies:
       '@faker-js/faker': 7.6.0
       '@noble/curves': 1.9.7
@@ -10742,7 +10754,7 @@ snapshots:
     dependencies:
       '@ethereumjs/tx': 4.2.0
       '@types/debug': 4.1.12
-      debug: 4.4.1
+      debug: 4.4.3
       semver: 7.7.2
       superstruct: 1.0.4
     transitivePeerDependencies:
@@ -10769,7 +10781,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/base': 1.2.6
       '@types/debug': 4.1.12
-      debug: 4.4.1
+      debug: 4.4.3
       pony-cause: 2.1.11
       semver: 7.7.2
       uuid: 9.0.1
@@ -12944,7 +12956,7 @@ snapshots:
 
   '@scure/bip32@1.7.0':
     dependencies:
-      '@noble/curves': 1.9.1
+      '@noble/curves': 1.9.7
       '@noble/hashes': 1.8.0
       '@scure/base': 1.2.6
 
@@ -15575,6 +15587,10 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
+  debug@4.4.3:
+    dependencies:
+      ms: 2.1.3
+
   decamelize@1.2.0: {}
 
   decimal.js@10.5.0: {}
@@ -17737,6 +17753,8 @@ snapshots:
   preact@10.24.2: {}
 
   preact@10.27.1: {}
+
+  preact@10.27.2: {}
 
   prelude-ls@1.2.1: {}
 
