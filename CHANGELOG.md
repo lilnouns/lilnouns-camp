@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.8] - 2025-09-18
+
+### 🐛 Bug Fixes
+
+- *(proposal-templates)* Clear blank template title
+
 ## [3.0.0-alpha.7] - 2025-09-13
 
 ### 🐛 Bug Fixes
