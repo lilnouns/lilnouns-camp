@@ -21,7 +21,7 @@
     "@playwright/test": "1.55.0",
     "@testing-library/jest-dom": "6.8.0",
     "@testing-library/react": "16.3.0",
-    "@vitejs/plugin-react": "5.0.2",
+    "@vitejs/plugin-react": "5.0.3",
     "@vitest/coverage-v8": "3.2.4",
     "@vitest/ui": "3.2.4",
     "dotenv": "17.2.2",
