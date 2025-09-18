@@ -362,7 +362,7 @@ export const proposalTemplates = [
     id: "blank",
     name: "Blank Proposal",
     description: "Start from an empty draft",
-    defaults: { name: "Proposal Title", body: "", actions: [] },
+    defaults: { name: "", body: "", actions: [] },
   },
 ];
 
