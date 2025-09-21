@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.9] - 2025-09-21
+
+### 🐛 Bug Fixes
+
+- *(api)* Improve font loading with error handling
+
 ## [3.0.0-alpha.8] - 2025-09-18
 
 ### 🐛 Bug Fixes
