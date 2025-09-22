@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.13] - 2025-09-22
+
+### 🐛 Bug Fixes
+
+- *(api)* Add support for `steth` token rendering
+- *(api)* Remove `getCloudflareContext` usage in `getFonts`
+
 ## [3.0.0-alpha.12] - 2025-09-22
 
 ### 🐛 Bug Fixes
