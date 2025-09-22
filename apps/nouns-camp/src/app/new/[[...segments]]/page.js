@@ -1,5 +1,5 @@
 "use client";
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 
 import { useWallet } from "@/hooks/wallet";
 import ClientAppProvider from "@/app/client-app-provider";
@@ -29,7 +29,7 @@ const PageContent = ({ draftId }) => {
   const { open: openTemplateDialog, isOpen: isTemplateDialogOpen } =
     useDialog("proposal-templates");
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (draftId == null && searchParams.get("topic") != null) {
       const draft = createDraft({ actions: null });
       navigate(`/new/${draft.id}`, { replace: true });
@@ -39,7 +39,7 @@ const PageContent = ({ draftId }) => {
     if (draftId == null) openTemplateDialog();
   }, [draftId, searchParams, createDraft, navigate, openTemplateDialog]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (draftId == null && !isTemplateDialogOpen) {
       navigate("/", { replace: true });
     }
