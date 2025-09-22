@@ -2,9 +2,9 @@ import React from "react";
 import NextLink from "next/link";
 import { formatEther, parseUnits } from "viem";
 import { css, useTheme } from "@emotion/react";
-import { useFetch } from "@shades/common/react";
+import { useFetch, useLatestCallback } from "@shades/common/react";
 import {
-  // invariant,
+  invariant,
   message as messageUtils,
   function as functionUtils,
 } from "@shades/common/utils";
@@ -26,7 +26,7 @@ import {
   useActiveProposalId,
 } from "@/hooks/dao-contract";
 import { useActions, useAccountProposalCandidates } from "@/store";
-import { useNavigate } from "@/hooks/navigation";
+import { useNavigate, useSearchParams } from "@/hooks/navigation";
 import {
   useCreateProposalCandidate,
   useProposalCandidateCreateCost,
@@ -43,7 +43,7 @@ import ProposalEditor from "@/components/proposal-editor";
 import TopicEditor from "@/components/topic-editor";
 import { useTokenBuyerEthNeeded } from "@/hooks/misc-contracts";
 import useTreasuryData from "@/hooks/treasury-data";
-// import { createTopicTransactions } from "@/utils/candidates";
+import { createTopicTransactions } from "@/utils/candidates";
 
 const Content = ({ draftId, startNavigationTransition }) => {
   const navigate = useNavigate();
@@ -186,19 +186,19 @@ const Content = ({ draftId, startNavigationTransition }) => {
               return { slug };
             }
 
-            // case "topic": {
-            //   invariant(
-            //     transactions.length === 0,
-            //     "Topics should not have transactions",
-            //   );
-            //   const slug = buildCandidateSlug(draft.name.trim());
-            //   await createCandidate({
-            //     slug,
-            //     description,
-            //     transactions: createTopicTransactions(),
-            //   });
-            //   return { slug };
-            // }
+            case "topic": {
+              invariant(
+                transactions.length === 0,
+                "Topics should not have transactions",
+              );
+              const slug = buildCandidateSlug(draft.name.trim());
+              await createCandidate({
+                slug,
+                description,
+                transactions: createTopicTransactions(),
+              });
+              return { slug };
+            }
 
             default:
               throw new Error(
@@ -322,7 +322,7 @@ const Content = ({ draftId, startNavigationTransition }) => {
               onDelete={discard}
               hasPendingSubmit={hasPendingRequest}
               submitLabel="Start discussion topic"
-              submitDisabled={hasPendingRequest /*|| !hasRequiredInput*/}
+              submitDisabled={hasPendingRequest || !hasRequiredInput}
               sidebarContent={
                 <>
                   <p>
@@ -591,8 +591,10 @@ const SubmitDialog = ({
 
 export default function ProposalOfTopicEditorScreen({ draftId }) {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const [draft] = useDraft(draftId);
+  const { items: drafts, createItem: createDraft } = useDrafts();
 
   const [hasPendingNavigationTransition, startNavigationTransition] =
     React.useTransition();
@@ -605,6 +607,57 @@ export default function ProposalOfTopicEditorScreen({ draftId }) {
       navigate("/", { replace: true });
     }
   }, [draftId, draft, navigate, hasPendingNavigationTransition]);
+
+  const targetType = searchParams.get("topic") != null ? "topic" : "proposal";
+
+  const getFirstEmptyDraft = useLatestCallback(() =>
+    drafts.find((draft) => {
+      const hasEmptyName = draft.name.trim() === "";
+      const hasEmptyBody =
+        draft.body === "" ||
+        (draft.body.length === 1 && isRichTextEditorNodeEmpty(draft.body[0]));
+
+      if (targetType === "topic") {
+        const isTopicDraft = draft.actions == null;
+        return isTopicDraft && hasEmptyName && hasEmptyBody;
+      }
+
+      const isProposalDraft = draft.actions != null;
+
+      return (
+        isProposalDraft &&
+        hasEmptyName &&
+        hasEmptyBody &&
+        draft.actions.length === 0
+      );
+    }),
+  );
+
+  React.useEffect(() => {
+    if (draftId != null || createDraft == null) return;
+
+    const preExistingEmptyDraft = getFirstEmptyDraft();
+
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete("topic");
+
+    if (preExistingEmptyDraft != null) {
+      navigate(`/new/${preExistingEmptyDraft.id}?${newSearchParams}`, {
+        replace: true,
+      });
+      return;
+    }
+
+    const draft = createDraft({ actions: targetType === "topic" ? null : [] });
+    navigate(`/new/${draft.id}?${newSearchParams}`, { replace: true });
+  }, [
+    draftId,
+    targetType,
+    createDraft,
+    getFirstEmptyDraft,
+    navigate,
+    searchParams,
+  ]);
 
   if (draft == null) return null; // Spinner
 
