@@ -1,19 +1,17 @@
 import { isAddress as isEthereumAccountAddress } from "viem";
 import { ethereum as ethereumUtils } from "@shades/common/utils";
-import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 const { truncateAddress } = ethereumUtils;
 
 export const getFonts = async (request) => {
-  const { env } = await getCloudflareContext({ async: true });
   const fontName = "Inter";
 
-  const semiBoldResp = await env.ASSETS.fetch(
+  const semiBoldResp = await fetch(
     new URL("/assets/fonts/Inter-SemiBold.woff", request.url),
   );
   const semiBoldFontArray = await semiBoldResp.arrayBuffer();
 
-  const boldResp = await env.ASSETS.fetch(
+  const boldResp = await fetch(
     new URL("/assets/fonts/Inter-Bold.woff", request.url),
   );
   const boldFontArray = await boldResp.arrayBuffer();
