@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NextLink from "next/link";
 import { formatEther, parseUnits } from "viem";
 import { css, useTheme } from "@emotion/react";
@@ -592,6 +592,18 @@ const SubmitDialog = ({
 export default function ProposalOfTopicEditorScreen({ draftId }) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { open: openTemplateDialog, isOpen: isTemplateDialogOpen } =
+    useDialog("proposal-templates");
+
+  const initialTargetTypeRef = React.useRef();
+  if (initialTargetTypeRef.current == null) {
+    initialTargetTypeRef.current =
+      searchParams.get("topic") != null ? "topic" : "proposal";
+  }
+  const initialTargetType = initialTargetTypeRef.current;
+  const isTopicFlow = initialTargetType === "topic";
+  const templateDialogAttemptedRef = React.useRef(false);
+  const templateDialogHasBeenOpenRef = React.useRef(false);
 
   const [draft] = useDraft(draftId);
   const { items: drafts, createItem: createDraft } = useDrafts();
@@ -608,8 +620,6 @@ export default function ProposalOfTopicEditorScreen({ draftId }) {
     }
   }, [draftId, draft, navigate, hasPendingNavigationTransition]);
 
-  const targetType = searchParams.get("topic") != null ? "topic" : "proposal";
-
   const getFirstEmptyDraft = useLatestCallback(() =>
     drafts.find((draft) => {
       const hasEmptyName = draft.name.trim() === "";
@@ -617,7 +627,7 @@ export default function ProposalOfTopicEditorScreen({ draftId }) {
         draft.body === "" ||
         (draft.body.length === 1 && isRichTextEditorNodeEmpty(draft.body[0]));
 
-      if (targetType === "topic") {
+      if (isTopicFlow) {
         const isTopicDraft = draft.actions == null;
         return isTopicDraft && hasEmptyName && hasEmptyBody;
       }
@@ -648,16 +658,39 @@ export default function ProposalOfTopicEditorScreen({ draftId }) {
       return;
     }
 
-    const draft = createDraft({ actions: targetType === "topic" ? null : [] });
+    const draft = createDraft({ actions: isTopicFlow ? null : [] });
     navigate(`/new/${draft.id}?${newSearchParams}`, { replace: true });
   }, [
     draftId,
-    targetType,
+    isTopicFlow,
     createDraft,
     getFirstEmptyDraft,
     navigate,
     searchParams,
   ]);
+
+  useEffect(() => {
+    if (draftId != null || isTopicFlow || isTemplateDialogOpen) return;
+    if (templateDialogAttemptedRef.current) return;
+
+    templateDialogAttemptedRef.current = true;
+    openTemplateDialog();
+  }, [draftId, isTopicFlow, isTemplateDialogOpen, openTemplateDialog]);
+
+  useEffect(() => {
+    if (!isTemplateDialogOpen) return;
+    templateDialogHasBeenOpenRef.current = true;
+    templateDialogAttemptedRef.current = true;
+  }, [isTemplateDialogOpen]);
+
+  useEffect(() => {
+    if (draftId != null || isTopicFlow) return;
+    if (isTemplateDialogOpen) return;
+    if (!templateDialogAttemptedRef.current) return;
+    if (!templateDialogHasBeenOpenRef.current) return;
+
+    navigate("/", { replace: true });
+  }, [draftId, isTopicFlow, isTemplateDialogOpen, navigate]);
 
   if (draft == null) return null; // Spinner
 

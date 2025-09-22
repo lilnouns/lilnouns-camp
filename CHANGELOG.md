@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.15] - 2025-09-22
+
+### 🐛 Bug Fixes
+
+- *(nouns-camp)* Replace `React.useEffect` with `useEffect`
+- *(nouns-camp)* Add `hasTopicParam` to simplify checks
+- *(nouns-camp)* Consolidate draft logic in editor screen
+
 ## [3.0.0-alpha.14] - 2025-09-22
 
 ### 🐛 Bug Fixes
