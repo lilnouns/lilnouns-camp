@@ -6,29 +6,30 @@ const { truncateAddress } = ethereumUtils;
 export const getFonts = async () => {
   const fontName = "Inter";
 
-  const fonts = [];
+  const semiBoldResp = await fetch(
+    new URL("../../assets/fonts/Inter-SemiBold.woff", import.meta.url),
+  );
+  const semiBoldFontArray = await semiBoldResp.arrayBuffer();
 
-  const load = async (relativePath, weight) => {
-    try {
-      const res = await fetch(new URL(relativePath, import.meta.url));
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.arrayBuffer();
-      fonts.push({ data, name: fontName, weight, style: "normal" });
-    } catch (e) {
-      // Gracefully degrade if the font asset is missing or URL resolution fails.
-      // This keeps OG generation working with default fonts instead of 500s.
-      console.warn(
-        `[og] Failed to load font '${relativePath}': ${e?.message ?? e}`,
-      );
-    }
-  };
+  const boldResp = await fetch(
+    new URL("../../assets/fonts/Inter-Bold.woff", import.meta.url),
+  );
+  const boldFontArray = await boldResp.arrayBuffer();
 
-  await Promise.all([
-    load("../../assets/fonts/Inter-SemiBold.woff", 400),
-    load("../../assets/fonts/Inter-Bold.woff", 700),
-  ]);
-
-  return fonts;
+  return [
+    {
+      data: semiBoldFontArray,
+      name: fontName,
+      weight: 400,
+      style: "normal",
+    },
+    {
+      data: boldFontArray,
+      name: fontName,
+      weight: 700,
+      style: "normal",
+    },
+  ];
 };
 
 export const formatDate = ({ value, ...options }) => {
