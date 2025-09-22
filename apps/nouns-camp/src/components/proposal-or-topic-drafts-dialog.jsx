@@ -1,5 +1,6 @@
 import React from "react";
 import { css } from "@emotion/react";
+import NextLink from "next/link";
 import { array as arrayUtils } from "@shades/common/utils";
 import Dialog from "@shades/ui-web/dialog";
 import DialogHeader from "@shades/ui-web/dialog-header";
@@ -54,7 +55,7 @@ const Content = ({ titleProps, dismiss }) => {
       })}
     >
       <DialogHeader
-        title="Proposal drafts"
+        title="Proposal & topic drafts"
         subtitle={hasDrafts ? info : null}
         titleProps={titleProps}
         dismiss={dismiss}
@@ -102,9 +103,9 @@ const Content = ({ titleProps, dismiss }) => {
                 >
                   New proposal
                 </Button>
-                {/*<Button component={NextLink} href="/new?topic=1" prefetch>*/}
-                {/*  New topic*/}
-                {/*</Button>*/}
+                <Button component={NextLink} href="/new?topic=1" prefetch>
+                  New topic
+                </Button>
               </div>
             </div>
           </div>

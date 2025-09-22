@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.14] - 2025-09-22
+
+### 🐛 Bug Fixes
+
+- *(store)* Enable handling for `topics` category
+- *(components)* Reinstate `topics` in voter screen
+- *(components)* Reinstate topic draft creation logic
+- *(components)* Reinstate topic draft creation button
+- *(components)* Reinstate `discussion topic` functionality
+- *(components)* Reinstate `topics` functionality in landing screen
+- *(components)* Reinstate `topics` section in command palette
+- *(nouns-camp)* Enable `topics` rewrite rule
+
 ## [3.0.0-alpha.13] - 2025-09-22
 
 ### 🐛 Bug Fixes
