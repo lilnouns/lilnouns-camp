@@ -9,7 +9,7 @@ import * as DropdownMenu from "@shades/ui-web/dropdown-menu";
 import {
   CaretDown as CaretDownIcon,
   DotsHorizontal as DotsIcon,
-  // ChatBubbles as ChatBubblesIcon,
+  ChatBubbles as ChatBubblesIcon,
   Document as DocumentIcon,
 } from "@shades/ui-web/icons";
 import { CHAIN_ID } from "@/constants/env";
@@ -262,20 +262,20 @@ const predefinedActions = {
               />
             ),
           },
-          // {
-          //   id: "new-discussion-topic",
-          //   title: "Discussion topic",
-          //   description: "Start a discussion thread (onchain)",
-          //   icon: (
-          //     <ChatBubblesIcon
-          //       style={{
-          //         width: "1.6rem",
-          //         height: "auto",
-          //         transform: "translateY(1px)",
-          //       }}
-          //     />
-          //   ),
-          // },
+          {
+            id: "new-discussion-topic",
+            title: "Discussion topic",
+            description: "Start a discussion thread (onchain)",
+            icon: (
+              <ChatBubblesIcon
+                style={{
+                  width: "1.6rem",
+                  height: "auto",
+                  transform: "translateY(1px)",
+                }}
+              />
+            ),
+          },
         ],
       },
     ],
@@ -387,9 +387,9 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
       case "new-proposal":
         openProposalTemplatesDialog();
         break;
-      // case "new-discussion-topic":
-      //   navigate("/new?topic=1");
-      //   break;
+      case "new-discussion-topic":
+        navigate("/new?topic=1");
+        break;
       case "open-account-dialog":
         openAccountDialog();
         break;
@@ -757,10 +757,10 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                     id: "navigate-to-candidate-listing",
                     title: "Candidates",
                   },
-                  // {
-                  //   id: "navigate-to-topic-listing",
-                  //   title: "Discussion topics",
-                  // },
+                  {
+                    id: "navigate-to-topic-listing",
+                    title: "Discussion topics",
+                  },
                   { id: "navigate-to-account-listing", title: "Voters" },
                   { id: "open-treasury-dialog", title: "Treasury" },
                 ],
@@ -849,7 +849,7 @@ const NavBar = ({ navigationStack, actions: customActions }) => {
                       },
                       {
                         id: "open-drafts-dialog",
-                        title: "Proposal drafts",
+                        title: "Proposal & topic drafts",
                       },
                       !hasVerifiedFarcasterAccount
                         ? null

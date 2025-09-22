@@ -23,7 +23,7 @@ import {
   useAccountProposals,
   useAccountProposalCandidates,
   // useAccountSponsoredProposals,
-  // useAccountTopics,
+  useAccountTopics,
   useActions,
   useDelegate,
   useDelegateFetch,
@@ -776,7 +776,7 @@ const VoterMainSection = ({ voterAddress }) => {
     includeTopics: false,
   });
   // const sponsoredProposals = useAccountSponsoredProposals(voterAddress);
-  // const topics = useAccountTopics(voterAddress);
+  const topics = useAccountTopics(voterAddress);
 
   const [hasFetchedData, setHasFetchedData] = React.useState(
     () => proposals.length > 0,
@@ -806,9 +806,9 @@ const VoterMainSection = ({ voterAddress }) => {
   //   ? `Sponsored (${sponsoredProposals.length})`
   //   : "Sponsored";
 
-  // const topicsTabTitle = topics?.length
-  //   ? `Topics (${topics?.length})`
-  //   : "Topics";
+  const topicsTabTitle = topics?.length
+    ? `Topics (${topics?.length})`
+    : "Topics";
 
   return (
     <>
@@ -940,7 +940,7 @@ const VoterMainSection = ({ voterAddress }) => {
                     />
                   </div>
                 </div>
-              </Tabs.Item>
+              </Tabs.Item>*/}
               <Tabs.Item key="topics" title={topicsTabTitle}>
                 <div>
                   {hasFetchedData && topics.length === 0 && (
@@ -963,7 +963,7 @@ const VoterMainSection = ({ voterAddress }) => {
                     />
                   </div>
                 </div>
-              </Tabs.Item>*/}
+              </Tabs.Item>
             </Tabs.Root>
           </div>
         </MainContentContainer>

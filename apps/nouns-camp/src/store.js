@@ -2436,12 +2436,12 @@ export const useMainFeedItems = (categories, { enabled = true }) => {
                     return buildProposalItems();
                   case "candidates":
                     return buildCandidateItems();
-                  // case "topics":
-                  //   return buildTopicItems();
                   // case "propdates":
                   //   return buildPropdateItems();
                   // case "flow-votes":
                   //   return buildFlowVotesFeed(s);
+                  case "topics":
+                    return buildTopicItems();
                   default:
                     console.error(`Unrecognized category: "${category}"`);
                 }
