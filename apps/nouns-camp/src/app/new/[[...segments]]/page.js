@@ -29,21 +29,23 @@ const PageContent = ({ draftId }) => {
   const { open: openTemplateDialog, isOpen: isTemplateDialogOpen } =
     useDialog("proposal-templates");
 
+  const hasTopicParam = searchParams.get("topic") != null;
+
   useEffect(() => {
-    if (draftId == null && searchParams.get("topic") != null) {
+    if (draftId == null && hasTopicParam) {
       const draft = createDraft({ actions: null });
       navigate(`/new/${draft.id}`, { replace: true });
       return;
     }
 
     if (draftId == null) openTemplateDialog();
-  }, [draftId, searchParams, createDraft, navigate, openTemplateDialog]);
+  }, [draftId, hasTopicParam, createDraft, navigate, openTemplateDialog]);
 
   useEffect(() => {
-    if (draftId == null && !isTemplateDialogOpen) {
+    if (draftId == null && !isTemplateDialogOpen && !hasTopicParam) {
       navigate("/", { replace: true });
     }
-  }, [draftId, isTemplateDialogOpen, navigate]);
+  }, [draftId, hasTopicParam, isTemplateDialogOpen, navigate]);
 
   if (draftId == null) return null;
 
