@@ -283,7 +283,7 @@ const BrowseScreen = () => {
   );
   const [candidateSortStrategy, setCandidateSortStrategy] =
     React.useState("activity");
-  // const [topicSortStrategy, setTopicSortStrategy] = React.useState("activity");
+  const [topicSortStrategy, setTopicSortStrategy] = React.useState("activity");
   const [voterSortStrategy, setVoterSortStrategy] =
     React.useState("recent-revotes");
 
@@ -517,7 +517,7 @@ const BrowseScreen = () => {
             );
           })()}
         </Tabs.Item>
-        {/*{topics.length > 0 && (
+        {topics.length > 0 && (
           <Tabs.Item key="topics" title="Topics">
             <div
               css={css({
@@ -592,7 +592,7 @@ const BrowseScreen = () => {
               );
             })()}
           </Tabs.Item>
-        )}*/}
+        )}
         <Tabs.Item key="candidates" title="Candidates">
           <div
             css={css({
@@ -939,10 +939,10 @@ const feedFilterCategoryItems = [
     key: "candidates",
     title: "Candidate activity",
   },
-  // {
-  //   key: "topics",
-  //   title: "Topic activity",
-  // },
+  {
+    key: "topics",
+    title: "Topic activity",
+  },
   {
     key: "noun-representation",
     title: "Delegations & transfers",
@@ -958,7 +958,7 @@ const feedFilterCategoryItems = [
 const defaultSelectedFeedFilterCategories = [
   "proposals",
   "candidates",
-  // "topics",
+  "topics",
   "noun-representation",
   "auction-excluding-bids",
   // "auction-bids",
