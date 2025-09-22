@@ -549,7 +549,7 @@ const getBatchEnsInfo = async (addresses) => {
 };
 
 export async function GET(request) {
-  const fonts = await getFonts();
+  const fonts = await getFonts(request);
 
   try {
     const { searchParams } = new URL(request.url);
