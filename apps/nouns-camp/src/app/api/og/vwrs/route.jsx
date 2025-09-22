@@ -78,7 +78,7 @@ const Signal = ({ positive, negative, ...props }) => (
 );
 
 export async function GET(request) {
-  const fonts = await getFonts();
+  const fonts = await getFonts(request);
 
   const { searchParams } = new URL(request.url);
   const voteOrFeedbackId = searchParams.get("id");

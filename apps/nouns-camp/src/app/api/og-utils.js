@@ -4,16 +4,18 @@ import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 const { truncateAddress } = ethereumUtils;
 
-export const getFonts = async () => {
+export const getFonts = async (request) => {
   const { env } = await getCloudflareContext({ async: true });
   const fontName = "Inter";
 
   const semiBoldResp = await env.ASSETS.fetch(
-    "/assets/fonts/Inter-SemiBold.woff",
+    new URL("/assets/fonts/Inter-SemiBold.woff", request.url),
   );
   const semiBoldFontArray = await semiBoldResp.arrayBuffer();
 
-  const boldResp = await env.ASSETS.fetch("/assets/fonts/Inter-Bold.woff");
+  const boldResp = await env.ASSETS.fetch(
+    new URL("/assets/fonts/Inter-Bold.woff", request.url),
+  );
   const boldFontArray = await boldResp.arrayBuffer();
 
   return [
