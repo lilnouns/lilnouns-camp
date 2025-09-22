@@ -146,6 +146,9 @@ const RequestedAmounts = ({ amounts }) => (
           case "weth":
             return <FormattedAmount value={amount} tokenSymbol="WETH" />;
 
+          case "steth":
+            return <FormattedAmount value={amount} tokenSymbol="stETH" />;
+
           case "usdc":
             return (
               <>{parseFloat(formatUnits(amount, 6)).toLocaleString()} USDC</>
