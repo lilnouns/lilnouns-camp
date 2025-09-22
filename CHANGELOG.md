@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.12] - 2025-09-22
+
+### 🐛 Bug Fixes
+
+- *(api)* Pass `request` to `getFonts` for URL resolution
+
 ## [3.0.0-alpha.11] - 2025-09-22
 
 ### ⚙️ Miscellaneous Tasks
