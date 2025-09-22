@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.11] - 2025-09-22
+
+### ⚙️ Miscellaneous Tasks
+
+- *(nouns-camp)* Relocate font assets to public directory
+
 ## [3.0.0-alpha.10] - 2025-09-22
 
 ### 🐛 Bug Fixes
