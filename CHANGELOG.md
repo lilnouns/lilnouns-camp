@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.18] - 2025-09-24
+
+### 🚜 Refactor
+
+- *(routes)* Move /topics→/candidates rewrite to middleware
+
 ## [3.0.0-alpha.17] - 2025-09-24
 
 ### 🐛 Bug Fixes
