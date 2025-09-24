@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.16] - 2025-09-24
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
 ## [3.0.0-alpha.15] - 2025-09-22
 
 ### 🐛 Bug Fixes
