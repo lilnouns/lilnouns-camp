@@ -879,7 +879,7 @@ const FeedItem = React.memo(
             {!isBoxedVariant && isReply && !isMultiReply && (
               <ItemBody
                 text={item.replies[0].body}
-                displayImages={item.type === "event"}
+                displayImages={item.type === "event" || item.type === "vote"}
                 truncateLines
               />
             )}
@@ -887,7 +887,7 @@ const FeedItem = React.memo(
             {hasBody && (
               <ItemBody
                 text={itemBody}
-                displayImages={item.type === "event"}
+                displayImages={item.type === "event" || item.type === "vote"}
                 truncateLines
               />
             )}

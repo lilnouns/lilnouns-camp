@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.19] - 2025-09-24
+
+### 🚀 Features
+
+- *(activity-feed)* Enable images in markdown for event and vote bodies
+
 ## [3.0.0-alpha.18] - 2025-09-24
 
 ### 🚜 Refactor
