@@ -7,8 +7,11 @@ export function middleware(request) {
   const { pathname } = nextUrl;
 
   // Rewrite /topics/:path* to /candidates/:path*
+  const isTopicDetailPath =
+    pathname.startsWith("/topics/") && pathname !== "/topics/";
+
   let response;
-  if (pathname === "/topics" || pathname.startsWith("/topics/")) {
+  if (isTopicDetailPath) {
     const url = nextUrl.clone();
     url.pathname = pathname.replace(/^\/topics(\/|$)/, "/candidates$1");
     response = NextResponse.rewrite(url);

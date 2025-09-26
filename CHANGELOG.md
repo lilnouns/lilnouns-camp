@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.20] - 2025-09-26
+
+### 🐛 Bug Fixes
+
+- *(middleware)* Keep topics index from rewriting to candidates
+
 ## [3.0.0-alpha.19] - 2025-09-24
 
 ### 🚀 Features
