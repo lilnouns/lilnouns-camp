@@ -200,8 +200,8 @@ importers:
         specifier: 1.55.0
         version: 1.55.0
       '@testing-library/jest-dom':
-        specifier: 6.8.0
-        version: 6.8.0
+        specifier: 6.9.1
+        version: 6.9.1
       '@testing-library/react':
         specifier: 16.3.0
         version: 16.3.0(@testing-library/dom@9.3.4)(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -4102,8 +4102,8 @@ packages:
     resolution: {integrity: sha512-FlS4ZWlp97iiNWig0Muq8p+3rVDjRiYE+YKGbAqXOu9nwJFFOdL00kFpz42M+4huzYi86vAK1sOOfyOG45muIQ==}
     engines: {node: '>=14'}
 
-  '@testing-library/jest-dom@6.8.0':
-    resolution: {integrity: sha512-WgXcWzVM6idy5JaftTVC8Vs83NKRmGJz4Hqs4oyOuO2J4r/y79vvKZsb+CaGyCSEbUPI6OsewfPd0G1A0/TUZQ==}
+  '@testing-library/jest-dom@6.9.1':
+    resolution: {integrity: sha512-zIcONa+hVtVSSep9UT3jZ5rizo2BsxgyDYU7WFD5eICBE7no3881HGeb/QkGfsJs6JTkY1aQhT7rIPC7e+0nnA==}
     engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
 
   '@testing-library/react@16.3.0':
@@ -7770,8 +7770,8 @@ packages:
     resolution: {integrity: sha512-WMi/OQ2axVTf/ykqCQgXiIct+mSQDFdH2fkwhPwgEwvJ1kSzZRiinb0zF2Xb8u4+OqPChmyI6MEu4EezNJz+FQ==}
     hasBin: true
 
-  to-buffer@1.2.1:
-    resolution: {integrity: sha512-tB82LpAIWjhLYbqjx3X4zEeHN6M8CiuOEy2JY8SEQVdYRe3CCHOFaqrBW1doLDrfpWhplcW7BL+bO3/6S3pcDQ==}
+  to-buffer@1.2.2:
+    resolution: {integrity: sha512-db0E3UJjcFhpDhAF4tLo03oli3pwl3dbnzXOUIlRKrp+ldk/VUxzpWYZENsw2SZiuBjHAk7DfB0VU7NKdpb6sw==}
     engines: {node: '>= 0.4'}
 
   to-regex-range@5.0.1:
@@ -14087,7 +14087,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@6.8.0':
+  '@testing-library/jest-dom@6.9.1':
     dependencies:
       '@adobe/css-tools': 4.4.4
       aria-query: 5.3.2
@@ -18509,7 +18509,7 @@ snapshots:
     dependencies:
       inherits: 2.0.4
       safe-buffer: 5.2.1
-      to-buffer: 1.2.1
+      to-buffer: 1.2.2
 
   sharp@0.33.5:
     dependencies:
@@ -18938,7 +18938,7 @@ snapshots:
     dependencies:
       tldts-core: 6.1.86
 
-  to-buffer@1.2.1:
+  to-buffer@1.2.2:
     dependencies:
       isarray: 2.0.5
       safe-buffer: 5.2.1
