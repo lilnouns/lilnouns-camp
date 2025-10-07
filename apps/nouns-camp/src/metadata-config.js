@@ -11,4 +11,8 @@ export default {
   openGraphSiteName: APP_HOST,
   twitterCard: "summary",
   appleWebAppStatusBarStyle: "default",
+  // Farcaster miniapp configuration
+  miniappName: "Lil Nouns Camp",
+  miniappButtonTitle: "🏛️ Open",
+  miniappSplashBackgroundColor: "#ffffff", // matches light theme backgroundPrimary
 };
