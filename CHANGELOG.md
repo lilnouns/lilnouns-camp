@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.23] - 2025-10-07
+
+### 🚀 Features
+
+- *(api)* Add support for `ratio` to customize image dimensions
+- *(metadata)* Add farcaster miniapp configuration
+- *(metadata)* Integrate miniapp support into proposals
+- *(hooks)* Signal readiness to farcaster miniapp
+- *(config)* Add miniapp connector to Wagmi configuration
+
 ## [3.0.0-alpha.22] - 2025-10-03
 
 ### 🐛 Bug Fixes
