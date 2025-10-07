@@ -15,8 +15,8 @@ const buildMiniappConfig = (canonicalPathname = "/") => {
         name: metaConfig.miniappName,
         splashImageUrl: `${baseUrl}/apple-icon.png`,
         splashBackgroundColor: metaConfig.miniappSplashBackgroundColor,
-      }
-    }
+      },
+    },
   };
 };
 
