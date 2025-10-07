@@ -557,6 +557,7 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const proposalId = searchParams.get("proposal");
+    const ratio = searchParams.get("ratio") || "og"; // "og" for 1.91:1, "miniapp" for 3:2
 
     const proposal = await fetchProposal(proposalId);
     if (!proposal) {
@@ -599,20 +600,36 @@ export async function GET(request) {
       latestBlockNumber: currentBlockNumber,
     });
 
+    // Image dimensions based on ratio
+    const dimensions =
+      ratio === "miniapp"
+        ? {
+            width: 900,
+            height: 600,
+            padding: "1.5rem",
+            fontSize: theme.text.sizes.base,
+          }
+        : {
+            width: 1200,
+            height: 628,
+            padding: "2rem",
+            fontSize: theme.text.sizes.large,
+          };
+
     return new ImageResponse(
       (
         <div
           style={{
             backgroundColor: theme.colors.backgroundPrimary,
             backgroundSize: "150px 150px",
-            padding: "2rem",
+            padding: dimensions.padding,
             height: "100%",
             width: "100%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
             color: theme.colors.textNormal,
-            fontSize: theme.text.sizes.large,
+            fontSize: dimensions.fontSize,
             // fontWeight: "500",
           }}
         >
@@ -680,8 +697,8 @@ export async function GET(request) {
       ),
       {
         // debug: true,
-        width: 1000,
-        height: 525,
+        width: dimensions.width,
+        height: dimensions.height,
         emoji: "twemoji",
         fonts,
         headers: {

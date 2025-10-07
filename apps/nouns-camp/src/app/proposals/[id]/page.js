@@ -73,13 +73,34 @@ export async function generateMetadata(props) {
   const description = stringUtils.truncate(220, firstRegularParagraph);
 
   const canonicalUrl = `${metaConfig.canonicalAppBasename}/proposals/${params.id}?${urlSearchParams}`;
-  const firstImage = markdownUtils.getFirstImage(body ?? "");
+  const firstImage = { url: null }; // markdownUtils.getFirstImage(body ?? "");
 
   const ogImage =
     item != null
       ? `${metaConfig.canonicalAppBasename}/api/og/vwrs?id=${item}`
       : (firstImage?.url ??
         `${metaConfig.canonicalAppBasename}/api/og?proposal=${params.id}`);
+
+  const miniappImage =
+    item != null
+      ? `${metaConfig.canonicalAppBasename}/api/og/vwrs?id=${item}&ratio=miniapp`
+      : `${metaConfig.canonicalAppBasename}/api/og?proposal=${params.id}&ratio=miniapp`;
+
+  // Farcaster miniapp configuration
+  const miniappConfig = {
+    version: "1",
+    imageUrl: miniappImage,
+    button: {
+      title: metaConfig.miniappButtonTitle,
+      action: {
+        type: "launch_miniapp",
+        url: canonicalUrl,
+        name: metaConfig.miniappName,
+        splashImageUrl: `${metaConfig.canonicalAppBasename}/apple-icon.png`,
+        splashBackgroundColor: metaConfig.miniappSplashBackgroundColor,
+      },
+    },
+  };
 
   return {
     title,
@@ -98,16 +119,9 @@ export async function generateMetadata(props) {
       url: canonicalUrl,
       images: ogImage,
     },
-    other:
-      item && firstImage?.url
-        ? {}
-        : {
-            "fc:frame": "vNext",
-            "fc:frame:image": ogImage,
-            "fc:frame:button:1": "View proposal",
-            "fc:frame:button:1:action": "link",
-            "fc:frame:button:1:target": canonicalUrl,
-          },
+    other: {
+      "fc:miniapp": JSON.stringify(miniappConfig),
+    },
   };
 }
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { sdk } from "@farcaster/miniapp-sdk";
 import {
   useMutation as useTanstackMutation,
   useQuery as useTanstackQuery,
@@ -37,6 +38,13 @@ export const Provider = ({ children }) => {
     castHashesByCandidateId: {},
     castHashesByParentHash: {},
   });
+
+  // Signal to Farcaster miniapp that the app is fully loaded and ready
+  React.useEffect(() => {
+    sdk.actions.ready().catch((error) => {
+      console.error("Failed to signal Farcaster miniapp ready:", error);
+    });
+  }, []);
 
   const contextValue = React.useMemo(
     () => ({ state, setState }),
