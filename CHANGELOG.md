@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.24] - 2025-10-07
+
+### 🎨 Styling
+
+- *(metadata)* Fix inconsistent indentation in metadata object
+
 ## [3.0.0-alpha.23] - 2025-10-07
 
 ### 🚀 Features
