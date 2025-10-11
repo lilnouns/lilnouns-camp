@@ -39,7 +39,7 @@
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@farcaster/core": "0.18.6",
-    "@farcaster/miniapp-sdk": "^0.1.10",
+    "@farcaster/miniapp-sdk": "^0.2.0",
     "@farcaster/miniapp-wagmi-connector": "^1.1.0",
     "@lilnounsdao/assets": "0.5.15",
     "@lilnounsdao/contracts": "0.3.5",
