@@ -1,5 +1,5 @@
 {
-  "version": "3.0.0-alpha.26",
+  "version": "3.0.0-alpha.27",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "dev": "pnpm run --recursive --parallel --if-present dev",
