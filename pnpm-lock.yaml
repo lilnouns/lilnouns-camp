@@ -85,8 +85,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(@tanstack/react-query@5.90.3(react@19.2.0))(@wagmi/core@2.20.3(@tanstack/query-core@5.90.3)(@types/react@18.3.18)(immer@10.1.1)(react@19.2.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.2.0))(viem@2.37.4(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76)))(wagmi@2.16.9(@tanstack/query-core@5.90.3)(@tanstack/react-query@5.90.3(react@19.2.0))(@types/react@18.3.18)(@vercel/kv@3.0.0)(aws4fetch@1.0.20)(bufferutil@4.0.9)(immer@10.1.1)(react@19.2.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.37.4(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(zod@3.25.76))
       '@opennextjs/cloudflare':
-        specifier: 1.10.1
-        version: 1.10.1(wrangler@4.16.1(bufferutil@4.0.9)(utf-8-validate@5.0.10))
+        specifier: 1.9.1
+        version: 1.9.1(wrangler@4.16.1(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       '@radix-ui/react-toolbar':
         specifier: 1.1.11
         version: 1.1.11(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -2037,12 +2037,12 @@ packages:
       wagmi:
         optional: true
 
-  '@opennextjs/aws@3.8.4':
-    resolution: {integrity: sha512-kREIlui1ZW725qG4p9GtRqR74Qe+ijZNmWhPiBTRx7p06c6Ak1Cy47hNJL/aM5aLmNiCEMu5CLk2OPZzcyVmHA==}
+  '@opennextjs/aws@3.8.0':
+    resolution: {integrity: sha512-MIIAPuWNedAB59qMboGgIj1o1iCpIO4q1MkqfJG8LOdLeFfni6X+HSHKoEUnt9p3alsnI5r6VwpZBDlxvqWoCg==}
     hasBin: true
 
-  '@opennextjs/cloudflare@1.10.1':
-    resolution: {integrity: sha512-a6jeigTTvolj8QEGWibbCyLUNyE67M6bW3IoT3v7M2bAOqDlzO197yWqZscrB2V2c5TWid5kF199+pfxdEYfaA==}
+  '@opennextjs/cloudflare@1.9.1':
+    resolution: {integrity: sha512-MB5kL3g37fwrluTAfsCDDgRCknU8XD+4RJliXxHcZ144pwcWO+ngjcvzgTWQt4yc7d+Qi7ztC7H8UbQQD3rScg==}
     hasBin: true
     peerDependencies:
       wrangler: ^4.38.0
@@ -11133,7 +11133,7 @@ snapshots:
       '@tanstack/react-query': 5.90.3(react@19.2.0)
       wagmi: 2.16.9(@tanstack/query-core@5.90.3)(@tanstack/react-query@5.90.3(react@19.2.0))(@types/react@18.3.18)(@vercel/kv@3.0.0)(aws4fetch@1.0.20)(bufferutil@4.0.9)(immer@10.1.1)(react@19.2.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.37.4(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(zod@3.25.76)
 
-  '@opennextjs/aws@3.8.4':
+  '@opennextjs/aws@3.8.0':
     dependencies:
       '@ast-grep/napi': 0.35.0
       '@aws-sdk/client-cloudfront': 3.398.0
@@ -11156,10 +11156,10 @@ snapshots:
       - aws-crt
       - supports-color
 
-  '@opennextjs/cloudflare@1.10.1(wrangler@4.16.1(bufferutil@4.0.9)(utf-8-validate@5.0.10))':
+  '@opennextjs/cloudflare@1.9.1(wrangler@4.16.1(bufferutil@4.0.9)(utf-8-validate@5.0.10))':
     dependencies:
       '@dotenvx/dotenvx': 1.31.0
-      '@opennextjs/aws': 3.8.4
+      '@opennextjs/aws': 3.8.0
       cloudflare: 4.5.0
       enquirer: 2.4.1
       glob: 11.0.3
