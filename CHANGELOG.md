@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.30] - 2025-10-14
+
+### ◀️ Revert
+
+- Bump webpack from 5.101.3 to 5.102.1 (#1553)
+- Bump marked from 16.2.1 to 16.4.0 (#1554)
+- Bump @sentry/nextjs from 10.11.0 to 10.18.0 (#1555)
+
 ## [3.0.0-alpha.29] - 2025-10-14
 
 ### 🐛 Bug Fixes
