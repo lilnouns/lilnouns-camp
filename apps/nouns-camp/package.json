@@ -50,7 +50,7 @@
     "@nouns/assets": "0.10.0",
     "@nouns/contracts": "0.3.0",
     "@nouns/sdk": "1.2.0",
-    "@opennextjs/cloudflare": "1.9.1",
+    "@opennextjs/cloudflare": "1.10.1",
     "@radix-ui/react-toolbar": "1.1.11",
     "@radix-ui/react-tooltip": "1.2.8",
     "@sentry/nextjs": "10.11.0",
