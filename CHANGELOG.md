@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.31] - 2025-10-20
+
+### ⚙️ Miscellaneous Tasks
+
+- *(config)* Enforce exact npm installs
+
 ## [3.0.0-alpha.30] - 2025-10-14
 
 ### ◀️ Revert
