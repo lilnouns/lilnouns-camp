@@ -18,7 +18,7 @@
     "test:e2e:ui": "playwright test --ui"
   },
   "devDependencies": {
-    "@playwright/test": "1.56.0",
+    "@playwright/test": "1.56.1",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.0",
     "@vitejs/plugin-react": "5.0.2",
