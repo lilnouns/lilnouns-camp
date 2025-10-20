@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.32] - 2025-10-20
+
+### ◀️ Revert
+
+- Bump @sentry/nextjs from 10.11.0 to 10.19.0 (#1571)
+
 ## [3.0.0-alpha.31] - 2025-10-20
 
 ### ⚙️ Miscellaneous Tasks
