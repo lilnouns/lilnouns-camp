@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.33] - 2025-10-22
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
 ## [3.0.0-alpha.32] - 2025-10-20
 
 ### ◀️ Revert
