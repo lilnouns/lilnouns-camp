@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.34] - 2025-10-22
+
+### 🐛 Bug Fixes
+
+- *(proposal-screen)* Remove duplicate lil nouns text
+
 ## [3.0.0-alpha.33] - 2025-10-22
 
 ### 🐛 Bug Fixes
