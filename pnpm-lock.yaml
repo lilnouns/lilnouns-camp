@@ -118,8 +118,8 @@ importers:
         specifier: 1.5.0
         version: 1.5.0(next@15.5.6(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(@playwright/test@1.56.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       '@vercel/edge-config':
-        specifier: 1.4.0
-        version: 1.4.0(@opentelemetry/api@1.9.0)
+        specifier: 1.4.2
+        version: 1.4.2(@opentelemetry/api@1.9.0)(next@15.5.6(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(@playwright/test@1.56.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))
       '@vercel/kv':
         specifier: '>=3.0.0'
         version: 3.0.0
@@ -4448,13 +4448,16 @@ packages:
   '@vercel/edge-config-fs@0.1.0':
     resolution: {integrity: sha512-NRIBwfcS0bUoUbRWlNGetqjvLSwgYH/BqKqDN7vK1g32p7dN96k0712COgaz6VFizAm9b0g6IG6hR6+hc0KCPg==}
 
-  '@vercel/edge-config@1.4.0':
-    resolution: {integrity: sha512-69Wg5gw9DzwnyUmnjToSeLRm1nm8mCPgN0kflX8EHRHyqvzH80wPem5A8rI2LXPb2Y9tJNoqN3vXPcQhS2Wh5g==}
+  '@vercel/edge-config@1.4.2':
+    resolution: {integrity: sha512-hUTqMLNxs/PEtuvOX67JoN84B3Z8mpSkMTCoMJ4g4G0DrAc3sNu1cUlsFatHOlxQdZLM4iipY7w28qZP4Vy26g==}
     engines: {node: '>=14.6'}
     peerDependencies:
       '@opentelemetry/api': ^1.7.0
+      next: '>=1'
     peerDependenciesMeta:
       '@opentelemetry/api':
+        optional: true
+      next:
         optional: true
 
   '@vercel/kv@3.0.0':
@@ -4560,6 +4563,7 @@ packages:
 
   '@walletconnect/ethereum-provider@2.21.1':
     resolution: {integrity: sha512-SSlIG6QEVxClgl1s0LMk4xr2wg4eT3Zn/Hb81IocyqNSGfXpjtawWxKxiC5/9Z95f1INyBD6MctJbL/R1oBwIw==}
+    deprecated: 'Reliability and performance improvements. See: https://github.com/WalletConnect/walletconnect-monorepo/releases'
 
   '@walletconnect/events@1.0.1':
     resolution: {integrity: sha512-NPTqaoi0oPBVNuLv7qPaJazmGHs5JGyO8eEAk5VGKmJzDR7AHzD4k6ilox5kxk1iwiOnFopBOOMLs86Oa76HpQ==}
@@ -4604,9 +4608,11 @@ packages:
 
   '@walletconnect/sign-client@2.21.0':
     resolution: {integrity: sha512-z7h+PeLa5Au2R591d/8ZlziE0stJvdzP9jNFzFolf2RG/OiXulgFKum8PrIyXy+Rg2q95U9nRVUF9fWcn78yBA==}
+    deprecated: 'Reliability and performance improvements. See: https://github.com/WalletConnect/walletconnect-monorepo/releases'
 
   '@walletconnect/sign-client@2.21.1':
     resolution: {integrity: sha512-QaXzmPsMnKGV6tc4UcdnQVNOz4zyXgarvdIQibJ4L3EmLat73r5ZVl4c0cCOcoaV7rgM9Wbphgu5E/7jNcd3Zg==}
+    deprecated: 'Reliability and performance improvements. See: https://github.com/WalletConnect/walletconnect-monorepo/releases'
 
   '@walletconnect/time@1.0.2':
     resolution: {integrity: sha512-uzdd9woDcJ1AaBZRhqy5rNC9laqWGErfc4dxA9a87mPdKOgWMD85mcFo9dIYIts/Jwocfwn07EC6EzclKubk/g==}
@@ -4619,9 +4625,11 @@ packages:
 
   '@walletconnect/universal-provider@2.21.0':
     resolution: {integrity: sha512-mtUQvewt+X0VBQay/xOJBvxsB3Xsm1lTwFjZ6WUwSOTR1X+FNb71hSApnV5kbsdDIpYPXeQUbGt2se1n5E5UBg==}
+    deprecated: 'Reliability and performance improvements. See: https://github.com/WalletConnect/walletconnect-monorepo/releases'
 
   '@walletconnect/universal-provider@2.21.1':
     resolution: {integrity: sha512-Wjx9G8gUHVMnYfxtasC9poGm8QMiPCpXpbbLFT+iPoQskDDly8BwueWnqKs4Mx2SdIAWAwuXeZ5ojk5qQOxJJg==}
+    deprecated: 'Reliability and performance improvements. See: https://github.com/WalletConnect/walletconnect-monorepo/releases'
 
   '@walletconnect/utils@2.21.0':
     resolution: {integrity: sha512-zfHLiUoBrQ8rP57HTPXW7rQMnYxYI4gT9yTACxVW6LhIFROTF6/ytm5SKNoIvi4a5nX5dfXG4D9XwQUCu8Ilig==}
@@ -14648,11 +14656,12 @@ snapshots:
 
   '@vercel/edge-config-fs@0.1.0': {}
 
-  '@vercel/edge-config@1.4.0(@opentelemetry/api@1.9.0)':
+  '@vercel/edge-config@1.4.2(@opentelemetry/api@1.9.0)(next@15.5.6(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(@playwright/test@1.56.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))':
     dependencies:
       '@vercel/edge-config-fs': 0.1.0
     optionalDependencies:
       '@opentelemetry/api': 1.9.0
+      next: 15.5.6(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(@playwright/test@1.56.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
 
   '@vercel/kv@3.0.0':
     dependencies:
