@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.35] - 2025-10-24
+
+### ⚙️ Miscellaneous Tasks
+
+- *(dependabot)* Ignore major dependency upgrade
+
+### ◀️ Revert
+
+- Bump the next group with 2 updates (#1586)
+
 ## [3.0.0-alpha.34] - 2025-10-22
 
 ### 🐛 Bug Fixes
