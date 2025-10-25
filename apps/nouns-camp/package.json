@@ -82,7 +82,7 @@
     "slate": "0.118.1",
     "slate-dom": "0.118.1",
     "slate-history": "0.113.1",
-    "slate-react": "0.117.4",
+    "slate-react": "0.118.2",
     "sonner": "^2.0.7",
     "tinykeys": "3.0.0",
     "use-debounce": "10.0.6",
