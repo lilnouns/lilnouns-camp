@@ -118,8 +118,8 @@ importers:
         specifier: 1.5.0
         version: 1.5.0(next@15.5.6(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.56.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       '@vercel/edge-config':
-        specifier: 1.4.2
-        version: 1.4.2(@opentelemetry/api@1.9.0)(next@15.5.6(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.56.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))
+        specifier: 1.4.3
+        version: 1.4.3(@opentelemetry/api@1.9.0)(next@15.5.6(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.56.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))
       '@vercel/kv':
         specifier: '>=3.0.0'
         version: 3.0.0
@@ -4444,8 +4444,8 @@ packages:
   '@vercel/edge-config-fs@0.1.0':
     resolution: {integrity: sha512-NRIBwfcS0bUoUbRWlNGetqjvLSwgYH/BqKqDN7vK1g32p7dN96k0712COgaz6VFizAm9b0g6IG6hR6+hc0KCPg==}
 
-  '@vercel/edge-config@1.4.2':
-    resolution: {integrity: sha512-hUTqMLNxs/PEtuvOX67JoN84B3Z8mpSkMTCoMJ4g4G0DrAc3sNu1cUlsFatHOlxQdZLM4iipY7w28qZP4Vy26g==}
+  '@vercel/edge-config@1.4.3':
+    resolution: {integrity: sha512-8vTDATodRrH49wMzKEjZ8/5H2qs1aPkD0uRK585f/Fx4YN2wfHfY/3td9OFrh+gdnCq07z8A5f0hoY6xhBcPkg==}
     engines: {node: '>=14.6'}
     peerDependencies:
       '@opentelemetry/api': ^1.7.0
@@ -14605,7 +14605,7 @@ snapshots:
 
   '@vercel/edge-config-fs@0.1.0': {}
 
-  '@vercel/edge-config@1.4.2(@opentelemetry/api@1.9.0)(next@15.5.6(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.56.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))':
+  '@vercel/edge-config@1.4.3(@opentelemetry/api@1.9.0)(next@15.5.6(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.56.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))':
     dependencies:
       '@vercel/edge-config-fs': 0.1.0
     optionalDependencies:
