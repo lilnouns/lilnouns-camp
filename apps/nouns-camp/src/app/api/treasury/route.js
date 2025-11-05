@@ -81,12 +81,14 @@ export async function GET() {
   // )?.address;
   // const forkEscrowAddress = resolveContractIdentifier("fork-escrow")?.address;
   const tokenBuyerAddress = resolveContractIdentifier("token-buyer")?.address;
+  const nounsBidderAddress = resolveContractIdentifier("nouns-bidder")?.address;
   const payerAddress = resolveContractIdentifier("payer")?.address;
 
   const {
     executorBalances,
     daoProxyEthBalance,
     tokenBuyerEthBalance,
+    nounsBidderEthBalance,
     // clientIncentivesRewardsProxyWethBalance,
     payerUsdcBalance,
     // forkEscrowNounsBalance,
@@ -129,12 +131,15 @@ export async function GET() {
       ...[
         { key: "daoProxyEthBalance", address: daoProxyAddress },
         { key: "tokenBuyerEthBalance", address: tokenBuyerAddress },
-      ].map(async ({ key, address }) => {
-        const balance = await publicClient.getBalance({
-          address,
-        });
-        return [key, balance];
-      }),
+        { key: "nounsBidderEthBalance", address: nounsBidderAddress },
+      ]
+        .filter(({ address }) => address != null)
+        .map(async ({ key, address }) => {
+          const balance = await publicClient.getBalance({
+            address,
+          });
+          return [key, balance];
+        }),
       ...[
         // CHAIN_ID === 1
         //   ? {
@@ -253,6 +258,12 @@ export async function GET() {
       //   weth: clientIncentivesRewardsProxyWethBalance?.toString() ?? null,
       // },
       "token-buyer": { eth: tokenBuyerEthBalance.toString() },
+      "nouns-bidder": {
+        eth:
+          nounsBidderEthBalance != null
+            ? nounsBidderEthBalance.toString()
+            : "0",
+      },
       payer: { usdc: payerUsdcBalance.toString() },
       // "fork-escrow": { nouns: forkEscrowNounsBalance.toString() },
     },
