@@ -158,6 +158,7 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
     balances["dao-proxy"].eth,
     // balances["client-incentives-rewards-proxy"].eth,
     balances["token-buyer"].eth,
+    balances["nouns-bidder"].eth,
   ]
     .filter(Boolean)
     .reduce((sum, amount) => sum + amount, BigInt(0));
@@ -316,6 +317,27 @@ const Content = ({ balances, rates, aprs, totals, titleProps, dismiss }) => {
                                 <dd>
                                   <FormattedEth
                                     value={balances["token-buyer"].eth}
+                                    tokenSymbol={false}
+                                    tooltip={false}
+                                  />
+                                </dd>
+                              </>
+                            )}
+                            {balances["nouns-bidder"].eth > 0 && (
+                              <>
+                                <dt>
+                                  <ExplorerAddressLink
+                                    address={
+                                      resolveContractIdentifier("nouns-bidder")
+                                        .address
+                                    }
+                                  >
+                                    Bidder ETH
+                                  </ExplorerAddressLink>
+                                </dt>
+                                <dd>
+                                  <FormattedEth
+                                    value={balances["nouns-bidder"].eth}
                                     tokenSymbol={false}
                                     tooltip={false}
                                   />
