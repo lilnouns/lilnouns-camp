@@ -35,7 +35,7 @@ const addressByIdentifierByChainId = {
       "0x986b5e1e1755e3c2440e960477f25201b0a8bbd4",
     "nftx-pool": "0x688c3e4658b5367da06fd629e41879beab538e37",
     "nftx-vault": "0x18222a762bf67024193de25e1cdc7aa6e614c695",
-    "nouns-bidder": "0x3F09354832C67a27510601530C9E9F6Ea39E2544",
+    "nouns-bidder": "0x3f09354832c67a27510601530c9e9f6ea39e2544",
 
     // Lil Nouns contracts
     dao: DAO_LOGIC_PROXY_CONTRACT,
