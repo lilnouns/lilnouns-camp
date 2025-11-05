@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.37] - 2025-11-05
+
+### 🚀 Features
+
+- *(assets)* Add paper bag head
+- *(nouns-camp)* Add nouns bidder contract mapping (#1618)
+- Include bidder treasury balance (#1619)
+
+### 🐛 Bug Fixes
+
+- *(contracts)* Normalize nouns bidder address
+
+### ⚙️ Miscellaneous Tasks
+
+- *(repo)* Mark workspace package as private
+
 ## [3.0.0-alpha.36] - 2025-10-29
 
 ### 🐛 Bug Fixes
