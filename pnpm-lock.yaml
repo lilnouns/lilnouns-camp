@@ -218,8 +218,8 @@ importers:
         specifier: 4.0.7
         version: 4.0.7(vitest@4.0.7)
       '@vitest/ui':
-        specifier: 4.0.6
-        version: 4.0.6(vitest@4.0.7)
+        specifier: 4.0.7
+        version: 4.0.7(vitest@4.0.7)
       dotenv:
         specifier: 17.2.3
         version: 17.2.3
@@ -240,7 +240,7 @@ importers:
         version: 27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       vitest:
         specifier: 4.0.7
-        version: 4.0.7(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.7.2)(@vitest/ui@4.0.6)(jiti@1.21.6)(jsdom@27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.44.0)(yaml@2.8.1)
+        version: 4.0.7(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.7.2)(@vitest/ui@4.0.7)(jiti@1.21.6)(jsdom@27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.44.0)(yaml@2.8.1)
       webpack:
         specifier: 5.102.1
         version: 5.102.1
@@ -271,7 +271,7 @@ importers:
         version: 0.12.1(@swc/core@1.15.0(@swc/helpers@0.5.17))(rollup@4.52.5)
       vitest:
         specifier: 4.0.7
-        version: 4.0.7(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.7.2)(@vitest/ui@4.0.6)(jiti@1.21.6)(jsdom@27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.44.0)(yaml@2.8.1)
+        version: 4.0.7(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.7.2)(@vitest/ui@4.0.7)(jiti@1.21.6)(jsdom@27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.44.0)(yaml@2.8.1)
 
   packages/ui-web:
     dependencies:
@@ -4494,9 +4494,6 @@ packages:
       vite:
         optional: true
 
-  '@vitest/pretty-format@4.0.6':
-    resolution: {integrity: sha512-4vptgNkLIA1W1Nn5X4x8rLJBzPiJwnPc+awKtfBE5hNMVsoAl/JCCPPzNrbf+L4NKgklsis5Yp2gYa+XAS442g==}
-
   '@vitest/pretty-format@4.0.7':
     resolution: {integrity: sha512-YY//yxqTmk29+/pK+Wi1UB4DUH3lSVgIm+M10rAJ74pOSMgT7rydMSc+vFuq9LjZLhFvVEXir8EcqMke3SVM6Q==}
 
@@ -4509,13 +4506,10 @@ packages:
   '@vitest/spy@4.0.7':
     resolution: {integrity: sha512-FW4X8hzIEn4z+HublB4hBF/FhCVaXfIHm8sUfvlznrcy1MQG7VooBgZPMtVCGZtHi0yl3KESaXTqsKh16d8cFg==}
 
-  '@vitest/ui@4.0.6':
-    resolution: {integrity: sha512-1ekpBsYNUm0Xv/0YsTvoSRmiRkmzz9Pma7qQ3Ui76sg2gwp2/ewSWqx4W/HfaN5dF0E8iBbidFo1wGaeqXYIrQ==}
+  '@vitest/ui@4.0.7':
+    resolution: {integrity: sha512-aIFPci9xoTmVkxpqsSKcRG/Hn0lTy421jsCehHydYeIMd+getn0Pue0JqY5cW8yZglZjMeX0YfIy5wDtQDHEcA==}
     peerDependencies:
-      vitest: 4.0.6
-
-  '@vitest/utils@4.0.6':
-    resolution: {integrity: sha512-bG43VS3iYKrMIZXBo+y8Pti0O7uNju3KvNn6DrQWhQQKcLavMB+0NZfO1/QBAEbq0MaQ3QjNsnnXlGQvsh0Z6A==}
+      vitest: 4.0.7
 
   '@vitest/utils@4.0.7':
     resolution: {integrity: sha512-HNrg9CM/Z4ZWB6RuExhuC6FPmLipiShKVMnT9JlQvfhwR47JatWLChA6mtZqVHqypE6p/z6ofcjbyWpM7YLxPQ==}
@@ -14650,7 +14644,7 @@ snapshots:
       magicast: 0.3.5
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.7(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.7.2)(@vitest/ui@4.0.6)(jiti@1.21.6)(jsdom@27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.44.0)(yaml@2.8.1)
+      vitest: 4.0.7(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.7.2)(@vitest/ui@4.0.7)(jiti@1.21.6)(jsdom@27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.44.0)(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -14671,10 +14665,6 @@ snapshots:
     optionalDependencies:
       vite: 7.2.0(@types/node@24.7.2)(jiti@1.21.6)(terser@5.44.0)(yaml@2.8.1)
 
-  '@vitest/pretty-format@4.0.6':
-    dependencies:
-      tinyrainbow: 3.0.3
-
   '@vitest/pretty-format@4.0.7':
     dependencies:
       tinyrainbow: 3.0.3
@@ -14692,21 +14682,16 @@ snapshots:
 
   '@vitest/spy@4.0.7': {}
 
-  '@vitest/ui@4.0.6(vitest@4.0.7)':
+  '@vitest/ui@4.0.7(vitest@4.0.7)':
     dependencies:
-      '@vitest/utils': 4.0.6
+      '@vitest/utils': 4.0.7
       fflate: 0.8.2
       flatted: 3.3.3
       pathe: 2.0.3
       sirv: 3.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vitest: 4.0.7(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.7.2)(@vitest/ui@4.0.6)(jiti@1.21.6)(jsdom@27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.44.0)(yaml@2.8.1)
-
-  '@vitest/utils@4.0.6':
-    dependencies:
-      '@vitest/pretty-format': 4.0.6
-      tinyrainbow: 3.0.3
+      vitest: 4.0.7(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.7.2)(@vitest/ui@4.0.7)(jiti@1.21.6)(jsdom@27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.44.0)(yaml@2.8.1)
 
   '@vitest/utils@4.0.7':
     dependencies:
@@ -19709,7 +19694,7 @@ snapshots:
       terser: 5.44.0
       yaml: 2.8.1
 
-  vitest@4.0.7(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.7.2)(@vitest/ui@4.0.6)(jiti@1.21.6)(jsdom@27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.44.0)(yaml@2.8.1):
+  vitest@4.0.7(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.7.2)(@vitest/ui@4.0.7)(jiti@1.21.6)(jsdom@27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(terser@5.44.0)(yaml@2.8.1):
     dependencies:
       '@vitest/expect': 4.0.7
       '@vitest/mocker': 4.0.7(vite@7.2.0(@types/node@24.7.2)(jiti@1.21.6)(terser@5.44.0)(yaml@2.8.1))
@@ -19735,7 +19720,7 @@ snapshots:
       '@edge-runtime/vm': 3.2.0
       '@types/debug': 4.1.12
       '@types/node': 24.7.2
-      '@vitest/ui': 4.0.6(vitest@4.0.7)
+      '@vitest/ui': 4.0.7(vitest@4.0.7)
       jsdom: 27.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - jiti
