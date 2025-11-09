@@ -148,8 +148,8 @@ importers:
         specifier: 4.1.1
         version: 4.1.1
       marked:
-        specifier: 16.4.1
-        version: 16.4.1
+        specifier: 16.4.2
+        version: 16.4.2
       next:
         specifier: 15.5.6
         version: 15.5.6(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@playwright/test@1.56.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -6636,8 +6636,8 @@ packages:
     resolution: {integrity: sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==}
     engines: {node: '>=10'}
 
-  marked@16.4.1:
-    resolution: {integrity: sha512-ntROs7RaN3EvWfy3EZi14H4YxmT6A5YvywfhO+0pm+cH/dnSQRmdAmoFIc3B9aiwTehyk7pESH4ofyBY+V5hZg==}
+  marked@16.4.2:
+    resolution: {integrity: sha512-TI3V8YYWvkVf3KJe1dRkpnjs68JUPyEa5vjKrp1XEEJUAOaQc+Qj+L1qWbPd0SJuAdQkFU0h73sXXqwDYxsiDA==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -17761,7 +17761,7 @@ snapshots:
     dependencies:
       semver: 7.7.3
 
-  marked@16.4.1: {}
+  marked@16.4.2: {}
 
   math-intrinsics@1.1.0: {}
 
