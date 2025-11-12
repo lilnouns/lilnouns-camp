@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "3.0.0-alpha.40",
+  "version": "3.0.0-alpha.41",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "dev": "pnpm run --recursive --parallel --if-present dev",
