@@ -215,8 +215,8 @@ importers:
         specifier: 5.1.1
         version: 5.1.1(vite@7.2.2(@types/node@24.10.1)(jiti@1.21.6)(terser@5.44.0)(yaml@2.8.1))
       '@vitest/coverage-v8':
-        specifier: 4.0.9
-        version: 4.0.9(vitest@4.0.8)
+        specifier: 4.0.10
+        version: 4.0.10(vitest@4.0.8)
       '@vitest/ui':
         specifier: 4.0.10
         version: 4.0.10(vitest@4.0.8)
@@ -4471,11 +4471,11 @@ packages:
     peerDependencies:
       vite: '>=6.3.4'
 
-  '@vitest/coverage-v8@4.0.9':
-    resolution: {integrity: sha512-70oyhP+Q0HlWBIeGSP74YBw5KSjYhNgSCQjvmuQFciMqnyF36WL2cIkcT7XD85G4JPmBQitEMUsx+XMFv2AzQA==}
+  '@vitest/coverage-v8@4.0.10':
+    resolution: {integrity: sha512-g+brmtoKa/sAeIohNJnnWhnHtU6GuqqVOSQ4SxDIPcgZWZyhJs5RmF5LpqXs8Kq64lANP+vnbn5JLzhLj/G56g==}
     peerDependencies:
-      '@vitest/browser': 4.0.9
-      vitest: 4.0.9
+      '@vitest/browser': 4.0.10
+      vitest: 4.0.10
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -4499,9 +4499,6 @@ packages:
 
   '@vitest/pretty-format@4.0.8':
     resolution: {integrity: sha512-qRrjdRkINi9DaZHAimV+8ia9Gq6LeGz2CgIEmMLz3sBDYV53EsnLZbJMR1q84z1HZCMsf7s0orDgZn7ScXsZKg==}
-
-  '@vitest/pretty-format@4.0.9':
-    resolution: {integrity: sha512-Hor0IBTwEi/uZqB7pvGepyElaM8J75pYjrrqbC8ZYMB9/4n5QA63KC15xhT+sqHpdGWfdnPo96E8lQUxs2YzSQ==}
 
   '@vitest/runner@4.0.8':
     resolution: {integrity: sha512-mdY8Sf1gsM8hKJUQfiPT3pn1n8RF4QBcJYFslgWh41JTfrK1cbqY8whpGCFzBl45LN028g0njLCYm0d7XxSaQQ==}
@@ -4527,9 +4524,6 @@ packages:
 
   '@vitest/utils@4.0.8':
     resolution: {integrity: sha512-pdk2phO5NDvEFfUTxcTP8RFYjVj/kfLSPIN5ebP2Mu9kcIMeAQTbknqcFEyBcC4z2pJlJI9aS5UQjcYfhmKAow==}
-
-  '@vitest/utils@4.0.9':
-    resolution: {integrity: sha512-cEol6ygTzY4rUPvNZM19sDf7zGa35IYTm9wfzkHoT/f5jX10IOY7QleWSOh5T0e3I3WVozwK5Asom79qW8DiuQ==}
 
   '@wagmi/connectors@6.1.0':
     resolution: {integrity: sha512-MnpJHEABUIsajNxLc6br0LiqJvoFZbavQ6yG+mQb7Xlb3Hmm3IRjH5NU1g2zw5PCTRd3BFQLjwniLdwDnUPYNw==}
@@ -14650,10 +14644,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-v8@4.0.9(vitest@4.0.8)':
+  '@vitest/coverage-v8@4.0.10(vitest@4.0.8)':
     dependencies:
       '@bcoe/v8-coverage': 1.0.2
-      '@vitest/utils': 4.0.9
+      '@vitest/utils': 4.0.10
       ast-v8-to-istanbul: 0.3.8
       debug: 4.4.3
       istanbul-lib-coverage: 3.2.2
@@ -14689,10 +14683,6 @@ snapshots:
       tinyrainbow: 3.0.3
 
   '@vitest/pretty-format@4.0.8':
-    dependencies:
-      tinyrainbow: 3.0.3
-
-  '@vitest/pretty-format@4.0.9':
     dependencies:
       tinyrainbow: 3.0.3
 
@@ -14740,11 +14730,6 @@ snapshots:
   '@vitest/utils@4.0.8':
     dependencies:
       '@vitest/pretty-format': 4.0.8
-      tinyrainbow: 3.0.3
-
-  '@vitest/utils@4.0.9':
-    dependencies:
-      '@vitest/pretty-format': 4.0.9
       tinyrainbow: 3.0.3
 
   '@wagmi/connectors@6.1.0(@tanstack/react-query@5.90.10(react@19.2.0))(@types/react@18.3.18)(@vercel/kv@3.0.0)(@wagmi/core@2.22.1(@tanstack/query-core@5.90.10)(@types/react@18.3.18)(immer@10.1.1)(react@19.2.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.2.0))(viem@2.38.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.12)))(aws4fetch@1.0.20)(bufferutil@4.0.9)(immer@10.1.1)(react@19.2.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.2.0))(utf-8-validate@5.0.10)(viem@2.38.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.12))(wagmi@2.18.2(@tanstack/query-core@5.90.10)(@tanstack/react-query@5.90.10(react@19.2.0))(@types/react@18.3.18)(@vercel/kv@3.0.0)(aws4fetch@1.0.20)(bufferutil@4.0.9)(immer@10.1.1)(react@19.2.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.38.3(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.12))(zod@4.1.12))(zod@4.1.12)':
