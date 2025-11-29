@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.46] - 2025-11-29
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [3.0.0-alpha.45] - 2025-11-25
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [3.0.0-alpha.44] - 2025-11-23
+
+### ◀️ Revert
+
+- Bump @opennextjs/cloudflare from 1.12.0 to 1.13.0 (#1645)
+
 ## [3.0.0-alpha.43] - 2025-11-19
 
 ### 🐛 Bug Fixes
