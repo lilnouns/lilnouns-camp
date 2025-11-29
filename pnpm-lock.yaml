@@ -31,8 +31,8 @@ importers:
   .:
     devDependencies:
       prettier:
-        specifier: 3.6.2
-        version: 3.6.2
+        specifier: 3.7.2
+        version: 3.7.2
       turbo:
         specifier: 2.6.1
         version: 2.6.1
@@ -234,7 +234,7 @@ importers:
         version: 10.1.8(eslint@8.57.1)
       eslint-plugin-prettier:
         specifier: 5.5.4
-        version: 5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@8.57.1))(eslint@8.57.1)(prettier@3.6.2)
+        version: 5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@8.57.1))(eslint@8.57.1)(prettier@3.7.2)
       jsdom:
         specifier: 27.2.0
         version: 27.2.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
@@ -7196,8 +7196,8 @@ packages:
     resolution: {integrity: sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==}
     engines: {node: '>=6.0.0'}
 
-  prettier@3.6.2:
-    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
+  prettier@3.7.2:
+    resolution: {integrity: sha512-n3HV2J6QhItCXndGa3oMWvWFAgN1ibnS7R9mt6iokScBOC0Ul9/iZORmU2IWUMcyAQaMPjTlY3uT34TqocUxMA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -16575,10 +16575,10 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.1
 
-  eslint-plugin-prettier@5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@8.57.1))(eslint@8.57.1)(prettier@3.6.2):
+  eslint-plugin-prettier@5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@8.57.1))(eslint@8.57.1)(prettier@3.7.2):
     dependencies:
       eslint: 8.57.1
-      prettier: 3.6.2
+      prettier: 3.7.2
       prettier-linter-helpers: 1.0.0
       synckit: 0.11.11
     optionalDependencies:
@@ -18317,7 +18317,7 @@ snapshots:
     dependencies:
       fast-diff: 1.3.0
 
-  prettier@3.6.2: {}
+  prettier@3.7.2: {}
 
   pretty-bytes@6.1.1: {}
 
