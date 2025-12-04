@@ -64,7 +64,7 @@
     "@vercel/edge-config": "1.4.3",
     "@vercel/kv": "3.0.0",
     "@vercel/og": "0.8.5",
-    "abitype": "1.2.0",
+    "abitype": "1.2.1",
     "date-fns": "4.1.0",
     "diff": "5.2.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
