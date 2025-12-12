@@ -32,7 +32,7 @@
     "jsdom": "27.3.0",
     "vitest": "4.0.15",
     "webpack": "5.103.0",
-    "wrangler": "4.53.0"
+    "wrangler": "4.54.0"
   },
   "dependencies": {
     "@cloudflare/pages-plugin-vercel-og": "0.1.2",
