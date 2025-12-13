@@ -104,7 +104,6 @@ updates:
       - dependency-name: "wrangler"
         update-types:
           - "version-update:semver-major"
-          - "version-update:semver-minor"
       - dependency-name: "@sentry/nextjs"
         update-types:
           - "version-update:semver-major"

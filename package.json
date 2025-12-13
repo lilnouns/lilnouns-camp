@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "3.0.0-alpha.51",
+  "version": "3.0.0-alpha.55",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "dev": "pnpm run --recursive --parallel --if-present dev",
@@ -34,7 +34,7 @@
     "ws": ">=7.5.10"
   },
   "devDependencies": {
-    "prettier": "3.7.3",
+    "prettier": "3.7.4",
     "turbo": "2.6.3"
   },
   "engines": {
@@ -47,5 +47,5 @@
       "url": "https://ud.me/nekofar.crypto"
     }
   ],
-  "packageManager": "pnpm@10.23.0"
+  "packageManager": "pnpm@10.25.0"
 }

@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.55] - 2025-12-12
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [3.0.0-alpha.54] - 2025-12-11
+
+### 🐛 Bug Fixes
+
+- *(promote-candidate-dialog)* Handle null signers gracefully
+
+## [3.0.0-alpha.53] - 2025-12-10
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
+## [3.0.0-alpha.52] - 2025-12-04
+
+### 🐛 Bug Fixes
+
+- Solve some minor issues and update dependencies
+
 ## [3.0.0-alpha.51] - 2025-12-04
 
 ### 🐛 Bug Fixes
