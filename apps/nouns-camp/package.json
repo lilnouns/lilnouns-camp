@@ -63,7 +63,7 @@
     "@vercel/analytics": "1.6.1",
     "@vercel/edge-config": "1.4.3",
     "@vercel/kv": ">=3.0.0",
-    "@vercel/og": "0.8.5",
+    "@vercel/og": "0.8.6",
     "abitype": "1.2.3",
     "date-fns": "4.1.0",
     "diff": "5.2.0",
