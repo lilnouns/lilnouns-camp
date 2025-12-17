@@ -124,8 +124,8 @@ importers:
         specifier: '>=3.0.0'
         version: 3.0.0
       '@vercel/og':
-        specifier: 0.8.5
-        version: 0.8.5
+        specifier: 0.8.6
+        version: 0.8.6
       abitype:
         specifier: 1.2.3
         version: 1.2.3(typescript@5.8.3)(zod@4.1.13)
@@ -4652,8 +4652,8 @@ packages:
     resolution: {integrity: sha512-pKT8fRnfyYk2MgvyB6fn6ipJPCdfZwiKDdw7vB+HL50rjboEBHDVBEcnwfkEpVSp2AjNtoaOUH7zG+bVC/rvSg==}
     engines: {node: '>=14.6'}
 
-  '@vercel/og@0.8.5':
-    resolution: {integrity: sha512-fHqnxfBYcwkamlEgcIzaZqL8IHT09hR7FZL7UdMTdGJyoaBzM/dY6ulO5Swi4ig30FrBJI9I2C+GLV9sb9vexA==}
+  '@vercel/og@0.8.6':
+    resolution: {integrity: sha512-hBcWIOppZV14bi+eAmCZj8Elj8hVSUZJTpf1lgGBhVD85pervzQ1poM/qYfFUlPraYSZYP+ASg6To5BwYmUSGQ==}
     engines: {node: '>=16'}
 
   '@vitejs/plugin-react@5.1.2':
@@ -14973,7 +14973,7 @@ snapshots:
     dependencies:
       '@upstash/redis': 1.34.0
 
-  '@vercel/og@0.8.5':
+  '@vercel/og@0.8.6':
     dependencies:
       '@resvg/resvg-wasm': 2.4.0
       satori: 0.16.0
