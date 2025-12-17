@@ -127,8 +127,8 @@ importers:
         specifier: 0.8.5
         version: 0.8.5
       abitype:
-        specifier: 1.2.2
-        version: 1.2.2(typescript@5.8.3)(zod@4.1.13)
+        specifier: 1.2.3
+        version: 1.2.3(typescript@5.8.3)(zod@4.1.13)
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -4925,8 +4925,8 @@ packages:
       zod:
         optional: true
 
-  abitype@1.2.2:
-    resolution: {integrity: sha512-4DOIMWscIB3j8hboLAUjLZCE8TMLdgecBpHFumfU4PdO/C1SBCVx4Nu1wPYXaL2iK8B0Jk3tiwnDLCpUtm3fZg==}
+  abitype@1.2.3:
+    resolution: {integrity: sha512-Ofer5QUnuUdTFsBRwARMoWKOH1ND5ehwYhJ3OJ/BQO+StkwQjHw0XyVh4vDttzHB7QOFhPHa/o413PJ82gU/Tg==}
     peerDependencies:
       typescript: '>=5.0.4'
       zod: ^3.22.0 || ^4.0.0
@@ -15817,17 +15817,17 @@ snapshots:
       typescript: 5.8.3
       zod: 4.1.13
 
-  abitype@1.2.2(typescript@5.8.3)(zod@3.22.4):
+  abitype@1.2.3(typescript@5.8.3)(zod@3.22.4):
     optionalDependencies:
       typescript: 5.8.3
       zod: 3.22.4
 
-  abitype@1.2.2(typescript@5.8.3)(zod@3.25.76):
+  abitype@1.2.3(typescript@5.8.3)(zod@3.25.76):
     optionalDependencies:
       typescript: 5.8.3
       zod: 3.25.76
 
-  abitype@1.2.2(typescript@5.8.3)(zod@4.1.13):
+  abitype@1.2.3(typescript@5.8.3)(zod@4.1.13):
     optionalDependencies:
       typescript: 5.8.3
       zod: 4.1.13
@@ -18505,7 +18505,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.2.2(typescript@5.8.3)(zod@3.25.76)
+      abitype: 1.2.3(typescript@5.8.3)(zod@3.25.76)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
@@ -18519,7 +18519,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.2.2(typescript@5.8.3)(zod@4.1.13)
+      abitype: 1.2.3(typescript@5.8.3)(zod@4.1.13)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
@@ -18533,7 +18533,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.6.2
       '@scure/bip39': 1.5.4
-      abitype: 1.2.2(typescript@5.8.3)(zod@4.1.13)
+      abitype: 1.2.3(typescript@5.8.3)(zod@4.1.13)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
@@ -18547,7 +18547,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.2.2(typescript@5.8.3)(zod@4.1.13)
+      abitype: 1.2.3(typescript@5.8.3)(zod@4.1.13)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
@@ -18562,7 +18562,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.2.2(typescript@5.8.3)(zod@4.1.13)
+      abitype: 1.2.3(typescript@5.8.3)(zod@4.1.13)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
@@ -18577,7 +18577,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.2.2(typescript@5.8.3)(zod@3.22.4)
+      abitype: 1.2.3(typescript@5.8.3)(zod@3.22.4)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
@@ -18592,7 +18592,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.2.2(typescript@5.8.3)(zod@4.1.13)
+      abitype: 1.2.3(typescript@5.8.3)(zod@4.1.13)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
