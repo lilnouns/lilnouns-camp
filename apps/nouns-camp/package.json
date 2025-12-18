@@ -30,7 +30,7 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.4",
     "jsdom": "27.3.0",
-    "vitest": "4.0.15",
+    "vitest": "4.0.16",
     "webpack": "5.103.0",
     "wrangler": "4.54.0"
   },
