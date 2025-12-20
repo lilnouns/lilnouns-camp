@@ -31,7 +31,7 @@
     "eslint-plugin-prettier": "5.5.4",
     "jsdom": "27.3.0",
     "vitest": "4.0.16",
-    "webpack": "5.104.0",
+    "webpack": "5.104.1",
     "wrangler": "4.54.0"
   },
   "dependencies": {
