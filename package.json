@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "3.0.0-alpha.58",
+  "version": "3.0.0-alpha.59",
   "name": "@lilnouns/lilnouns-camp",
   "scripts": {
     "dev": "pnpm run --recursive --parallel --if-present dev",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "prettier": "3.7.4",
-    "turbo": "2.6.3"
+    "turbo": "2.7.2"
   },
   "engines": {
     "node": ">=22.0.0",
