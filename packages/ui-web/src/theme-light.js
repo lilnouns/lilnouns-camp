@@ -36,7 +36,10 @@ export default {
     secondary: "#d89900",
     pink: "#c347dd",
     // High-contrast selection for light mode
-    textSelectionBackground: createPrimary({ saturation: 0.85, lightness: 0.75 }),
+    textSelectionBackground: createPrimary({
+      saturation: 0.85,
+      lightness: 0.75,
+    }),
     textSelectionColor: "hsl(0 0% 6%)",
     backgroundPrimary: backgroundNormal,
     backgroundSecondary: backgroundDark,

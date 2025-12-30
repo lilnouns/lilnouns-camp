@@ -9,7 +9,7 @@ export const validate = (string) => {
     if (url.origin.endsWith(".eth")) return false;
     if (url.origin.match(/\.[a-z]{2,}$/) == null) return false;
     return ["http:", "https:"].some((p) => url.protocol === p);
-  } catch (_) {
+  } catch {
     return false;
   }
 };
@@ -23,7 +23,7 @@ export const domainEquals = (url1, url2, { subdomain = true } = {}) => {
         : url.hostname.split(".").slice(-2).join(".");
     });
     return d1 === d2;
-  } catch (_) {
+  } catch {
     return false;
   }
 };

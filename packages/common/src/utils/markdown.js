@@ -8,7 +8,7 @@ const fixUrl = (url) => {
   try {
     new URL(url);
     return url;
-  } catch (e) {
+  } catch {
     // I hate this
     return `http://${url}`;
   }
@@ -134,7 +134,7 @@ const parseToken = (token, context = {}) => {
           try {
             new URL(children[0].text);
             return true;
-          } catch (e) {
+          } catch {
             return false;
           }
         })();
