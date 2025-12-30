@@ -59,7 +59,7 @@ export const reloadPageOnce = () => {
     if (localStorage.getItem("reloaded-once") != null) return;
     localStorage.setItem("reloaded-once", 1);
     location.replace(location.href);
-  } catch (e) {
+  } catch {
     const searchParams = new URLSearchParams(location.search);
     if (searchParams.get("reload") != null) return;
     searchParams.set("reload", 1);

@@ -465,7 +465,7 @@ export const toMarkdown = (blockElements) => {
         try {
           new URL(el.caption);
           return `[![${alt}](${el.url} ${JSON.stringify(el.caption)})](${el.caption})`;
-        } catch (e) {
+        } catch {
           return `![${alt}](${el.url} ${JSON.stringify(el.caption)})`;
         }
       }

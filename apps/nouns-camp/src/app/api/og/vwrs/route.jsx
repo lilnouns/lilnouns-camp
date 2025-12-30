@@ -144,106 +144,104 @@ export async function GET(request) {
         };
 
   return new ImageResponse(
-    (
+    <div
+      id="imageResponse"
+      style={{
+        backgroundColor: theme.colors.backgroundPrimary,
+        backgroundSize: "150px 150px",
+        padding: dimensions.padding,
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        color: theme.colors.textNormal,
+      }}
+    >
       <div
-        id="imageResponse"
         style={{
-          backgroundColor: theme.colors.backgroundPrimary,
-          backgroundSize: "150px 150px",
-          padding: dimensions.padding,
-          height: "100%",
-          width: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          color: theme.colors.textNormal,
+          gap: "1rem",
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
           <div
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
+              whiteSpace: "pre",
+              fontWeight: theme.text.weights.emphasis,
+              fontSize: dimensions.fontSize,
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                whiteSpace: "pre",
-                fontWeight: theme.text.weights.emphasis,
-                fontSize: dimensions.fontSize,
-              }}
-            >
-              {displayName({ address: voteOrFeedback.voterId, ensName })}{" "}
-              {(() => {
-                switch (voteOrFeedback.support) {
-                  case 0:
-                    return (
-                      <Signal negative>
-                        {signalWord} against
-                        {voteOrFeedback.votes != null && (
-                          <> ({voteOrFeedback.votes})</>
-                        )}
-                      </Signal>
-                    );
-                  case 1:
-                    return (
-                      <Signal positive>
-                        {signalWord} for
-                        {voteOrFeedback.votes != null && (
-                          <> ({voteOrFeedback.votes})</>
-                        )}
-                      </Signal>
-                    );
-                  case 2:
-                    return voteOrFeedback.type === "vote" ? (
-                      <Signal>
-                        abstained
-                        {voteOrFeedback.votes != null && (
-                          <> ({voteOrFeedback.votes})</>
-                        )}
-                      </Signal>
-                    ) : (
-                      <>{signalWord} on</>
-                    );
-                }
-              })()}
-            </div>
-
-            <div
-              style={{
-                color: theme.colors.textDimmed,
-                fontSize: theme.text.sizes.small,
-              }}
-            >
-              {voteDate}
-            </div>
+            {displayName({ address: voteOrFeedback.voterId, ensName })}{" "}
+            {(() => {
+              switch (voteOrFeedback.support) {
+                case 0:
+                  return (
+                    <Signal negative>
+                      {signalWord} against
+                      {voteOrFeedback.votes != null && (
+                        <> ({voteOrFeedback.votes})</>
+                      )}
+                    </Signal>
+                  );
+                case 1:
+                  return (
+                    <Signal positive>
+                      {signalWord} for
+                      {voteOrFeedback.votes != null && (
+                        <> ({voteOrFeedback.votes})</>
+                      )}
+                    </Signal>
+                  );
+                case 2:
+                  return voteOrFeedback.type === "vote" ? (
+                    <Signal>
+                      abstained
+                      {voteOrFeedback.votes != null && (
+                        <> ({voteOrFeedback.votes})</>
+                      )}
+                    </Signal>
+                  ) : (
+                    <>{signalWord} on</>
+                  );
+              }
+            })()}
           </div>
 
           <div
             style={{
-              display: "block",
-              whiteSpace: "pre-line",
-              lineHeight: 1.5,
-              fontSize: dimensions.fontSize,
-              lineClamp: '7 "[...]"',
-              overflow: "hidden",
+              color: theme.colors.textDimmed,
+              fontSize: theme.text.sizes.small,
             }}
           >
-            {voteOrFeedback.reason}
+            {voteDate}
           </div>
         </div>
+
+        <div
+          style={{
+            display: "block",
+            whiteSpace: "pre-line",
+            lineHeight: 1.5,
+            fontSize: dimensions.fontSize,
+            lineClamp: '7 "[...]"',
+            overflow: "hidden",
+          }}
+        >
+          {voteOrFeedback.reason}
+        </div>
       </div>
-    ),
+    </div>,
     {
       // debug: true,
       width: dimensions.width,

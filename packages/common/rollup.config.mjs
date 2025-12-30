@@ -1,5 +1,5 @@
 import { swc } from "rollup-plugin-swc3";
-import json from '@rollup/plugin-json';
+import json from "@rollup/plugin-json";
 
 const plugins = [
   swc({
@@ -16,7 +16,7 @@ const plugins = [
       },
     },
   }),
-  json()
+  json(),
 ];
 
 const createConfig = ({ file, dependencies = [] }) => ({

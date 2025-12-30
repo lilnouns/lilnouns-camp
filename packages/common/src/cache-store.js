@@ -90,13 +90,6 @@ export const useCachedState = (
 ) => {
   const store = useStore();
   const cleanupTimeoutRef = React.useRef(null);
-  const initialStateRef = React.useRef(initialState);
-  const middlewareRef = React.useRef(middleware);
-
-  React.useEffect(() => {
-    initialStateRef.current = initialState;
-    middlewareRef.current = middleware;
-  });
 
   // Get current value from storage. We need to read the raw value to prevent
   // the reference from changing on each call.
@@ -106,16 +99,19 @@ export const useCachedState = (
   );
 
   // Parse stored value and apply middleware
-  const parseAndTransform = React.useCallback((value) => {
-    try {
-      const parsedValue = parse(value);
-      if (middlewareRef.current == null) return parsedValue;
-      return middlewareRef.current(parsedValue);
-    } catch (error) {
-      console.warn("Failed to process cached value:", error);
-      return null;
-    }
-  }, []);
+  const parseAndTransform = React.useCallback(
+    (value) => {
+      try {
+        const parsedValue = parse(value);
+        if (middleware == null) return parsedValue;
+        return middleware(parsedValue);
+      } catch (error) {
+        console.warn("Failed to process cached value:", error);
+        return null;
+      }
+    },
+    [middleware],
+  );
 
   const cachedValue = React.useSyncExternalStore(
     store.subscribe,
@@ -125,21 +121,24 @@ export const useCachedState = (
 
   const state = React.useMemo(() => {
     if (cachedValue == null) {
-      return initialStateRef.current;
+      return initialState;
     }
     return parseAndTransform(cachedValue);
-  }, [cachedValue, parseAndTransform]);
+  }, [cachedValue, initialState, parseAndTransform]);
 
   const setState = React.useCallback(
     (updater) => {
       const getCurrentValue = () =>
-        parseAndTransform(getSnapshot()) ?? initialStateRef.current;
+        parseAndTransform(getSnapshot()) ?? initialState;
 
       const newValue =
         typeof updater === "function" ? updater(getCurrentValue()) : updater;
 
       // Cancel any pending cleanup
-      if (cleanupTimeoutRef.current != null) {
+      if (
+        cleanupTimeoutRef.current != null &&
+        typeof cancelIdleCallback === "function"
+      ) {
         cancelIdleCallback(cleanupTimeoutRef.current);
         cleanupTimeoutRef.current = null;
       }
@@ -149,15 +148,24 @@ export const useCachedState = (
 
       // Clear async if the new value matches the initial state
       if (clearOnMatchInitial) {
+        if (typeof requestIdleCallback !== "function") return;
+
         requestIdleCallback(() => {
-          if (serialize(newValue) === serialize(initialStateRef.current)) {
+          if (serialize(newValue) === serialize(initialState)) {
             store.write(key, null);
           }
           cleanupTimeoutRef.current = null;
         });
       }
     },
-    [store, key, getSnapshot, parseAndTransform, clearOnMatchInitial],
+    [
+      store,
+      key,
+      getSnapshot,
+      parseAndTransform,
+      clearOnMatchInitial,
+      initialState,
+    ],
   );
 
   return [state, setState];
