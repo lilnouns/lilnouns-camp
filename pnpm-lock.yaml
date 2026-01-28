@@ -133,8 +133,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       diff:
-        specifier: 5.2.0
-        version: 5.2.0
+        specifier: 5.2.2
+        version: 5.2.2
       eslint-plugin-jsx-a11y:
         specifier: ^6.10.2
         version: 6.10.2(eslint@8.57.1)
@@ -5574,8 +5574,8 @@ packages:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
 
-  diff@5.2.0:
-    resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
+  diff@5.2.2:
+    resolution: {integrity: sha512-vtcDfH3TOjP8UekytvnHH1o1P4FcUdt4eQ1Y+Abap1tk/OB2MWQvcwS2ClCd1zuIhc3JKOx6p3kod8Vfys3E+A==}
     engines: {node: '>=0.3.1'}
 
   dijkstrajs@1.0.3:
@@ -16475,7 +16475,7 @@ snapshots:
 
   detect-libc@2.1.2: {}
 
-  diff@5.2.0: {}
+  diff@5.2.2: {}
 
   dijkstrajs@1.0.3: {}
 
