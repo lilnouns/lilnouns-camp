@@ -617,84 +617,82 @@ export async function GET(request) {
           };
 
     return new ImageResponse(
-      (
-        <div
-          style={{
-            backgroundColor: theme.colors.backgroundPrimary,
-            backgroundSize: "150px 150px",
-            padding: dimensions.padding,
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            color: theme.colors.textNormal,
-            fontSize: dimensions.fontSize,
-            // fontWeight: "500",
-          }}
-        >
-          <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          backgroundColor: theme.colors.backgroundPrimary,
+          backgroundSize: "150px 150px",
+          padding: dimensions.padding,
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          color: theme.colors.textNormal,
+          fontSize: dimensions.fontSize,
+          // fontWeight: "500",
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "1.2rem",
+            }}
+          >
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
+                flexDirection: "row",
+                gap: "1.2rem",
                 alignItems: "center",
-                marginBottom: "1.2rem",
+                justifyContent: "flex-start",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "1.2rem",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                }}
-              >
-                <ProposalStateTag state={proposalState} />
-                {["active", "objection-period"].includes(proposalState) && (
-                  <p
-                    style={{
-                      margin: 0,
-                      color: theme.colors.textDimmed,
-                    }}
-                  >
-                    {renderProposalStateText({
-                      proposal: { ...proposal, state: proposalState },
-                      latestBlockNumber: currentBlockNumber,
-                    })}
-                  </p>
-                )}
-              </div>
+              <ProposalStateTag state={proposalState} />
+              {["active", "objection-period"].includes(proposalState) && (
+                <p
+                  style={{
+                    margin: 0,
+                    color: theme.colors.textDimmed,
+                  }}
+                >
+                  {renderProposalStateText({
+                    proposal: { ...proposal, state: proposalState },
+                    latestBlockNumber: currentBlockNumber,
+                  })}
+                </p>
+              )}
             </div>
-
-            <ProposalHeader
-              title={proposal.title === null ? "Untitled" : proposal.title}
-              proposer={proposer}
-              createdAt={proposal.createdTimestamp}
-              updatedAt={proposal.lastUpdatedTimestamp}
-              transactions={proposal.transactions}
-              hasPassed={isFinalOrSucceededState}
-              sponsors={sponsors}
-            />
           </div>
-          {["updatable", "pending"].includes(proposalState) ? (
-            <p
-              style={{
-                margin: 0,
-                color: theme.colors.textDimmed,
-              }}
-            >
-              {renderProposalStateText({
-                proposal: { ...proposal, state: proposalState },
-                latestBlockNumber: currentBlockNumber,
-              })}
-            </p>
-          ) : hasVotes ? (
-            <ProposalVotesProgress proposal={proposal} />
-          ) : null}
+
+          <ProposalHeader
+            title={proposal.title === null ? "Untitled" : proposal.title}
+            proposer={proposer}
+            createdAt={proposal.createdTimestamp}
+            updatedAt={proposal.lastUpdatedTimestamp}
+            transactions={proposal.transactions}
+            hasPassed={isFinalOrSucceededState}
+            sponsors={sponsors}
+          />
         </div>
-      ),
+        {["updatable", "pending"].includes(proposalState) ? (
+          <p
+            style={{
+              margin: 0,
+              color: theme.colors.textDimmed,
+            }}
+          >
+            {renderProposalStateText({
+              proposal: { ...proposal, state: proposalState },
+              latestBlockNumber: currentBlockNumber,
+            })}
+          </p>
+        ) : hasVotes ? (
+          <ProposalVotesProgress proposal={proposal} />
+        ) : null}
+      </div>,
       {
         // debug: true,
         width: dimensions.width,
