@@ -59,7 +59,7 @@
     "@serwist/sw": "9.5.3",
     "@shades/common": "workspace:0.0.0",
     "@shades/ui-web": "workspace:0.0.0",
-    "@tanstack/react-query": "5.90.12",
+    "@tanstack/react-query": "5.90.20",
     "@vercel/analytics": "1.6.1",
     "@vercel/edge-config": "1.4.3",
     "@vercel/kv": ">=3.0.0",
