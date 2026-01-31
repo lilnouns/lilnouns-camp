@@ -2,11 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0-alpha.68] - 2026-01-31
+
+### 🐛 Bug Fixes
+
+- *(api)* Add custom headers to `fetch` request
+
 ## [3.0.0-alpha.67] - 2026-01-31
 
 ### 🐛 Bug Fixes
 
 - Solve some minor issues and update dependencies
+
+### 🚜 Refactor
+
+- *(api)* Simplify JSX structure in routes
+
+### ◀️ Revert
+
+- Bump `@sentry/nextjs` to 10.38.0
 
 ## [3.0.0-alpha.64] - 2026-01-23
 
