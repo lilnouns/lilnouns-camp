@@ -191,6 +191,12 @@ export async function GET() {
         const oethEth = await (async () => {
           const res = await fetch(
             "https://api.coingecko.com/api/v3/simple/price?ids=origin-ether&vs_currencies=eth",
+            {
+              headers: {
+                accept: "application/json",
+                "user-agent": "lilnouns-camp/1.0 (+https://lilnouns.camp)",
+              },
+            },
           );
 
           if (!res.ok) {
